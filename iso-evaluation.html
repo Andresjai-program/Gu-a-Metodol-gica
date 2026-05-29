@@ -6,6 +6,7 @@
   <meta name="description" content="Evaluación interactiva de calidad de software basada en ISO/IEC 25010:2023.">
   <title>Evaluación ISO 25010 — Guía Metodológica</title>
   <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/framework.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -21,8 +22,10 @@
     <a href="index.html" class="header-logo"><span class="header-logo-mark" aria-hidden="true"></span><span>Guía Metodológica</span></a>
     <nav class="header-nav">
       <a href="index.html">Inicio</a>
-      <a href="pasos.html">Los 6 Pasos</a>
-      <a href="iso-evaluation.html" aria-current="page">Evaluación ISO 25010</a>
+      <a href="framework.html">Arquitectura</a>
+      <a href="governance.html">Gobernanza</a>
+      <a href="pasos.html">Módulos</a>
+      <a href="iso-evaluation.html" aria-current="page">Evaluación ISO</a>
       <a href="normativa.html">Normativa</a>
           <a href="guide_IA.html">Guía completa</a>
     </nav>
@@ -58,9 +61,9 @@
 
   <!-- INTRO -->
   <div class="eval-intro">
-    <h2 style="margin-bottom: var(--sp-lg);">Cómo usar esta evaluación</h2>
+    <h2 style="margin-bottom: var(--sp-lg);">Capa de aseguramiento · ISO 25010</h2>
     <p style="margin-bottom: var(--sp-lg);">
-      Para cada pregunta, selecciona la opción que mejor describe el estado actual de tu proyecto. Las opciones van de "Cumple completamente" (4 puntos) a "No cumple" (1 punto). Al finalizar, obtendrás un diagnóstico de cumplimiento por característica.
+      Esta evaluación cierra el ciclo del <a href="framework.html">framework metodológico</a>. Los entregables de los módulos P01–P06 (EVID-P0N) deben existir antes de responder: spec, informe de revisión, auditoría OWASP, ADRs, declaración de IA y autoevaluación. Cada pregunta mapea a evidencia verificable, no a percepción subjetiva.
     </p>
     <div style="display: flex; gap: var(--sp-lg); flex-wrap: wrap; font-size: 0.9rem; color: var(--text-secondary);">
       <span>✓ Cumple completamente (4 pts)</span>
@@ -95,7 +98,7 @@
   <section style="margin-bottom: var(--sp-3xl);">
     
     <!-- CHAR 1 -->
-    <div class="iso-char-card">
+    <div class="iso-char-card" id="iso-adec">
       <div class="iso-char-head" onclick="toggleChar(this)">
         <div class="iso-char-icon"><i data-lucide="target" class="icon-lg"></i></div>
         <div style="flex: 1;">
@@ -138,7 +141,7 @@
     </div>
 
     <!-- CHAR 2 -->
-    <div class="iso-char-card">
+    <div class="iso-char-card" id="iso-efic">
       <div class="iso-char-head" onclick="toggleChar(this)">
         <div class="iso-char-icon"><i data-lucide="zap" class="icon-lg"></i></div>
         <div style="flex: 1;">
@@ -181,7 +184,7 @@
     </div>
 
     <!-- CHAR 3 -->
-    <div class="iso-char-card">
+    <div class="iso-char-card" id="iso-compat">
       <div class="iso-char-head" onclick="toggleChar(this)">
         <div class="iso-char-icon"><i data-lucide="link-2" class="icon-lg"></i></div>
         <div style="flex: 1;">
@@ -224,7 +227,7 @@
     </div>
 
     <!-- CHAR 4 -->
-    <div class="iso-char-card">
+    <div class="iso-char-card" id="iso-inter">
       <div class="iso-char-head" onclick="toggleChar(this)">
         <div class="iso-char-icon"><i data-lucide="monitor" class="icon-lg"></i></div>
         <div style="flex: 1;">
@@ -267,7 +270,7 @@
     </div>
 
     <!-- CHAR 5 -->
-    <div class="iso-char-card">
+    <div class="iso-char-card" id="iso-fiab">
       <div class="iso-char-head" onclick="toggleChar(this)">
         <div class="iso-char-icon"><i data-lucide="shield" class="icon-lg"></i></div>
         <div style="flex: 1;">
@@ -310,7 +313,7 @@
     </div>
 
     <!-- CHAR 6 -->
-    <div class="iso-char-card">
+    <div class="iso-char-card" id="iso-seg">
       <div class="iso-char-head" onclick="toggleChar(this)">
         <div class="iso-char-icon"><i data-lucide="lock" class="icon-lg"></i></div>
         <div style="flex: 1;">
@@ -353,7 +356,7 @@
     </div>
 
     <!-- CHAR 7 -->
-    <div class="iso-char-card">
+    <div class="iso-char-card" id="iso-mant">
       <div class="iso-char-head" onclick="toggleChar(this)">
         <div class="iso-char-icon"><i data-lucide="wrench" class="icon-lg"></i></div>
         <div style="flex: 1;">
@@ -396,7 +399,7 @@
     </div>
 
     <!-- CHAR 8 -->
-    <div class="iso-char-card">
+    <div class="iso-char-card" id="iso-flex">
       <div class="iso-char-head" onclick="toggleChar(this)">
         <div class="iso-char-icon"><i data-lucide="layers" class="icon-lg"></i></div>
         <div style="flex: 1;">
@@ -439,7 +442,7 @@
     </div>
 
     <!-- CHAR 9 -->
-    <div class="iso-char-card">
+    <div class="iso-char-card" id="iso-prot">
       <div class="iso-char-head" onclick="toggleChar(this)">
         <div class="iso-char-icon"><i data-lucide="alert-triangle" class="icon-lg"></i></div>
         <div style="flex: 1;">

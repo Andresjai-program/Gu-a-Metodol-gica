@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gobernanza Human-in-the-Loop y mitigación de riesgos de IA en desarrollo de software.">
+  <title>Gobernanza IA — Human-in-the-Loop</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/framework.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header class="header">
+  <div class="header-content">
+    <a href="index.html" class="header-logo">
+      <span class="header-logo-mark" aria-hidden="true"></span>
+      <span>Framework IA · Ingeniería TIC</span>
+    </a>
+    <nav class="header-nav" aria-label="Principal">
+      <a href="index.html">Inicio</a>
+      <a href="framework.html">Arquitectura</a>
+      <a href="governance.html" aria-current="page">Gobernanza</a>
+      <a href="pasos.html">Módulos</a>
+      <a href="iso-evaluation.html">Evaluación ISO</a>
+      <a href="guide_IA.html">Handbook</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" aria-label="Cambiar tema">
+        <i data-lucide="sun-moon" class="icon-md"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="main-container">
+
+  <nav class="breadcrumb" aria-label="Ruta">
+    <a href="index.html">Inicio</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Gobernanza IA</span>
+  </nav>
+
+  <section class="hero">
+    <p class="fw-hero-badge">AI GOVERNANCE · HUMAN-IN-THE-LOOP</p>
+    <h1>Gobernanza de desarrollo <em>asistido por IA</em></h1>
+    <p class="hero-lead">
+      Modelo operativo donde la IA acelera el trabajo, pero el ingeniero humano define, valida, audita y aprueba. Este marco mitiga sesgo de automatización, código caja negra y dependencia excesiva del modelo.
+    </p>
+  </section>
+
+  <section class="section" id="hitl">
+    <h2>Human-in-the-Loop Governance</h2>
+    <p class="section-lead">
+      Cuatro funciones humanas no delegables. Cada una tiene módulos, evidencias y controles asociados en el framework P01–P06.
+    </p>
+
+    <div class="hitl-flow" role="list">
+      <div class="hitl-step" role="listitem">
+        <div class="hitl-step-num">01</div>
+        <h4><i data-lucide="pen-line" class="icon-sm"></i> Humano define</h4>
+        <p>Problema, criterios, arquitectura, restricciones normativas</p>
+        <p class="risk-module" style="margin-top:8px">P01</p>
+      </div>
+      <div class="hitl-step" role="listitem">
+        <div class="hitl-step-num">02</div>
+        <h4><i data-lucide="bot" class="icon-sm"></i> IA asiste</h4>
+        <p>Generación, borradores, alternativas, análisis asistido</p>
+        <p class="risk-module" style="margin-top:8px">Durante P01–P04</p>
+      </div>
+      <div class="hitl-step" role="listitem">
+        <div class="hitl-step-num">03</div>
+        <h4><i data-lucide="search-check" class="icon-sm"></i> Humano valida</h4>
+        <p>Tests, ejecución, revisión, OWASP, trazabilidad spec→código</p>
+        <p class="risk-module" style="margin-top:8px">P02 · P03</p>
+      </div>
+      <div class="hitl-step" role="listitem">
+        <div class="hitl-step-num">04</div>
+        <h4><i data-lucide="stamp" class="icon-sm"></i> Humano aprueba</h4>
+        <p>Merge, entrega, declaración ética, accountability legal</p>
+        <p class="risk-module" style="margin-top:8px">P04 · P05 · P06</p>
+      </div>
+    </div>
+
+    <div class="hitl-principle">
+      <p><strong>Principio de accountability:</strong> El artefacto entregado (código, informe, repositorio) es responsabilidad del ingeniero o equipo humano identificado. La IA no es autor, revisor ni aprobador. Reglamento UE 2024/1689 Art. 14 · NIST AI RMF GOVERN · CONPES 4144.</p>
+    </div>
+
+    <div class="onboard-table-wrap">
+      <table class="dt">
+        <thead>
+          <tr><th>Actividad</th><th>Responsable</th><th>IA permitida</th><th>Evidencia</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Definir requisitos y criterios</td><td>Humano</td><td>Solo como sparring (P01)</td><td>EVID-P01</td></tr>
+          <tr><td>Generar código borrador</td><td>IA bajo spec humana</td><td>Sí, con spec previa</td><td>Prompt log · commit</td></tr>
+          <tr><td>Verificar corrección y tests</td><td>Humano</td><td>No sustituye ejecución</td><td>EVID-P02</td></tr>
+          <tr><td>Auditoría de seguridad</td><td>Humano (+ IA adversarial)</td><td>Asiste, no certifica</td><td>EVID-P03</td></tr>
+          <tr><td>Decisiones arquitectónicas</td><td>Humano</td><td>IA propone, humano elige</td><td>EVID-P04 ADR</td></tr>
+          <tr><td>Entrega y autoría</td><td>Humano</td><td>Transparencia obligatoria</td><td>EVID-P05</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="riesgos-ia">
+    <h2>Riesgos de IA en ingeniería de software</h2>
+    <p class="section-lead">
+      Catálogo de riesgos que el framework mitiga de forma explícita. Cada riesgo se vincula a módulos, técnicas de prompt y métricas ISO.
+    </p>
+
+    <div class="risk-register">
+      <table>
+        <thead>
+          <tr>
+            <th>Riesgo</th>
+            <th>Manifestación</th>
+            <th>Módulo(s)</th>
+            <th>Técnica de mitigación</th>
+            <th>ISO / estándar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="risk-name"><i data-lucide="git-branch-plus" class="icon-sm"></i> Automation Bias</div>
+            </td>
+            <td>Aceptar output de IA sin cuestionarlo; delegar decisiones de diseño</td>
+            <td><span class="risk-module">P01 · P04</span></td>
+            <td>CoT previo · ADR con alternativas · Reflection</td>
+            <td>Fiabilidad · Mantenibilidad</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="risk-name"><i data-lucide="sparkles" class="icon-sm"></i> Hallucinations</div>
+            </td>
+            <td>APIs, librerías o patrones inexistentes en el código generado</td>
+            <td><span class="risk-module">P02</span></td>
+            <td>Self-consistency (3 passes) · verificación documentación oficial</td>
+            <td>Fiabilidad · Corrección funcional</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="risk-name"><i data-lucide="box" class="icon-sm"></i> Black Box Code</div>
+            </td>
+            <td>Código que funciona pero el desarrollador no puede explicar ni mantener</td>
+            <td><span class="risk-module">P02 · P06</span></td>
+            <td>Revisión línea a línea · autoevaluación cognitiva</td>
+            <td>Analizabilidad · Mantenibilidad</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="risk-name"><i data-lucide="shield-off" class="icon-sm"></i> Hidden Vulnerabilities</div>
+            </td>
+            <td>Vulnerabilidades sutiles (inyección, XSS, secrets) no detectadas</td>
+            <td><span class="risk-module">P03</span></td>
+            <td>Adversarial prompting · OWASP Top 10 · npm/pip audit</td>
+            <td>Seguridad · Protección</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="risk-name"><i data-lucide="link-2-off" class="icon-sm"></i> Overreliance on AI</div>
+            </td>
+            <td>Dependencia acumulativa; incapacidad de resolver sin asistente</td>
+            <td><span class="risk-module">P01 · P06</span></td>
+            <td>Delimitación humano/IA · plan de práctica autónoma</td>
+            <td>Adecuación · Pensamiento crítico</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="risk-name"><i data-lucide="trending-down" class="icon-sm"></i> Technical Debt Amplification</div>
+            </td>
+            <td>IA genera deuda rápida (acoplamiento, duplicación, smells)</td>
+            <td><span class="risk-module">P02 · P04</span></td>
+            <td>Complejidad ciclomática · SOLID · refactor en ADR</td>
+            <td>Mantenibilidad · Modularidad</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="risk-name"><i data-lucide="brain" class="icon-sm"></i> Loss of Engineering Judgment</div>
+            </td>
+            <td>Erosión del criterio técnico y trade-offs arquitectónicos</td>
+            <td><span class="risk-module">P04 · P06</span></td>
+            <td>Supervisión continua · reflexión post-sesión</td>
+            <td>Flexibilidad · Analizabilidad</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="risk-name"><i data-lucide="cloud-off" class="icon-sm"></i> Vendor Dependence</div>
+            </td>
+            <td>Lock-in a un proveedor de LLM o IDE sin portabilidad de proceso</td>
+            <td><span class="risk-module">P04 · P05</span></td>
+            <td>Prompts documentados · procesos agnósticos al modelo</td>
+            <td>Trazabilidad · Gobernanza</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Objetivos del framework (calidad de software)</h2>
+    <p class="section-lead">Cómo la gobernanza se traduce en atributos de calidad medibles.</p>
+
+    <div class="trace-matrix-wrap">
+      <table class="trace-matrix">
+        <thead>
+          <tr><th>Objetivo</th><th>Mecanismo</th><th>Módulo</th><th>Métrica</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Mantenibilidad</td><td>Revisión, modularidad, ADR</td><td>P02 · P04</td><td>CC por función · acoplamiento</td></tr>
+          <tr><td>Fiabilidad</td><td>Tests · self-consistency</td><td>P02</td><td>Cobertura casos borde</td></tr>
+          <tr><td>Seguridad</td><td>OWASP adversarial</td><td>P03</td><td>0 Critical CVE</td></tr>
+          <tr><td>Trazabilidad</td><td>EVID-P0N · spec→código→test</td><td>P01–P06</td><td>100% requisitos con ID</td></tr>
+          <tr><td>Gobernanza IA</td><td>HITL · declaración</td><td>P04 · P05</td><td>Declaración firmada</td></tr>
+          <tr><td>Reducir sesgo automatización</td><td>Validación obligatoria pre-merge</td><td>P02 · P04</td><td>Checklist humano</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="btn-group">
+      <a href="guide_IA.html#gobernanza" class="btn btn-primary">Ver en handbook</a>
+      <a href="framework.html#matriz" class="btn btn-secondary">Matriz de trazabilidad</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-bottom">Gobernanza IA · Framework metodológico · 2025</div>
+  </div>
+</footer>
+
+<button type="button" class="scroll-top" id="scrollTop" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i data-lucide="arrow-up" class="icon-md"></i>
+</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -3,585 +3,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Los 6 pasos metodológicos para integración responsable de IA en desarrollo de software.">
-  <title>Los 6 Pasos — Guía Metodológica</title>
+  <meta name="description" content="Seis módulos operativos del framework de desarrollo y auditoría de software asistido por IA.">
+  <title>Módulos P01–P06 — Framework IA</title>
   <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/framework.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 </head>
 <body>
-
 <div id="progress-bar"></div>
-
-<!-- HEADER -->
 <header class="header">
   <div class="header-content">
-    <a href="index.html" class="header-logo"><span class="header-logo-mark" aria-hidden="true"></span><span>Guía Metodológica</span></a>
-    <nav class="header-nav">
+    <a href="index.html" class="header-logo"><span class="header-logo-mark" aria-hidden="true"></span><span>Framework IA</span></a>
+    <nav class="header-nav" aria-label="Principal">
       <a href="index.html">Inicio</a>
-      <a href="pasos.html" aria-current="page">Los 6 pasos</a>
-      <a href="iso-evaluation.html">Evaluación</a>
+      <a href="framework.html">Arquitectura</a>
+      <a href="governance.html">Gobernanza</a>
+      <a href="pasos.html" aria-current="page">Módulos</a>
+      <a href="iso-evaluation.html">Evaluación ISO</a>
       <a href="normativa.html">Normativa</a>
-          <a href="guide_IA.html">Guía completa</a>
+      <a href="guide_IA.html">Handbook</a>
     </nav>
     <div class="header-actions">
-      <button type="button" class="theme-toggle" aria-label="Cambiar tema">
-        <i data-lucide="sun-moon" class="icon-md"></i>
-      </button>
+      <button type="button" class="theme-toggle" aria-label="Cambiar tema"><i data-lucide="sun-moon" class="icon-md"></i></button>
     </div>
   </div>
 </header>
-
-<!-- MAIN -->
 <main class="main-container">
+  <nav class="breadcrumb"><a href="index.html">Inicio</a><span class="breadcrumb-sep">/</span><span>Módulos</span></nav>
+  <section class="hero" style="margin-bottom: var(--sp-10);">
+    <p class="fw-hero-badge">MÓDULOS OPERATIVOS</p>
+    <h1>Seis módulos <em>P01–P06</em></h1>
+    <p class="hero-lead">Vista resumida. Cada módulo en el handbook incluye 10 bloques metodológicos, prompts de ingeniería avanzada, métricas, auditoría y evidencia trazable hacia ISO 25010.</p>
+  </section>
 
-  <!-- BREADCRUMB -->
-  <div class="breadcrumb">
-    <a href="index.html">Inicio</a>
-    <span class="breadcrumb-sep" aria-hidden="true">/</span>
-    <span>Los 6 Pasos</span>
-  </div>
-
-  <!-- HERO -->
-  <section class="hero" style="margin-bottom: var(--sp-3xl);">
-    <div class="hero-eyebrow"><span>Metodología de integración</span>
+  <article class="paso-card fw-module" data-step="1" id="paso1">
+    <div class="paso-head">
+      <div class="paso-num-badge" data-step="1">01</div>
+      <div class="paso-head-info">
+        <p class="fw-module-id">P01-DEF</p>
+        <h3>Definición del propósito y especificación</h3>
+        <p>Establecer trazabilidad requisito→diseño antes de cualquier generación de código asistida.</p>
+      </div>
     </div>
-    
-    <h1>Los 6 pasos <em>fundamentales</em></h1>
-    
-    <p class="hero-lead">
-      Cada paso mitiga un riesgo específico (técnico, ético, cognitivo o normativo) y debe ejecutarse en orden. Todos tienen entregables verificables que documentan tu cumplimiento.
-    </p>
-  </section>
-
-  <!-- PASO 1 -->
-  <section class="paso-section">
-    <article class="paso-card" data-step="1" id="paso1">
-      <div class="paso-head">
-        <div class="paso-num-badge" data-step="1">01</div>
-        <div class="paso-head-info">
-          <h3>Definición de Propósito</h3>
-          <p>Antes de abrir la IA, define explícitamente qué quieres resolver y cómo sabrás que lo lograste.</p>
-        </div>
+    <div class="paso-body">
+      <p>Desarrollar la capacidad de elaborar especificaciones técnicas verificables que delimiten el alcance humano vs. asistido por IA, alineadas con completitud y pertinencia funcional (ISO 25010).…</p>
+      <div class="fw-standards" style="margin: var(--sp-4) 0;">
+        <span class="fw-std fw-std-iso">ISO 25010 · Adecuación</span><span class="fw-std fw-std-iso">ISO 25010 · Fiabilidad</span><span class="fw-std fw-std-eng">SOLID · SRP (alcance)</span><span class="fw-std fw-std-eng">Clean Code · nombres/significado</span>
       </div>
-      
-      <div class="paso-body">
-        <div class="tags">
-          <span class="tag tag-risk">Dependencia cognitiva</span>
-          <span class="tag tag-iso">ISO 25010 — Funcionalidad</span>
-          <span class="tag tag-norm">NIST AI RMF — GOVERN</span>
-        </div>
+      <p class="fw-technique" style="margin-bottom: var(--sp-4);">Chain-of-Thought + Meta-prompting + Reflection</p>
+      <a href="guide_IA.html#paso1" class="btn btn-primary">Abrir módulo completo (10 bloques + prompts)</a>
+    </div>
+  </article>
 
-        <div class="content-block">
-          <div class="content-block-label">¿Por qué es obligatorio?</div>
-          <p>
-            Un problema mal definido lleva a soluciones genéricas que resuelven poco. Cuando solicitas a la IA "ayúdame con mi código" sin criterios específicos, la herramienta tiende a generar soluciones promedio, amplias, sin ajustarse a tus necesidades reales. Además, si no sabes qué quieres, delegas la decisión arquitectónica a un modelo entrenado, abdicando de tu responsabilidad como ingeniero.
-          </p>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Instrucciones de ejecución</div>
-          <ol class="nsteps">
-            <li><div class="step-text"><strong>Escribe el problema en una única frase clara.</strong> No incluyas soluciones ni tecnologías aún. Ej: "Necesito procesar archivos CSV de 500MB sin ocupar más de 512MB de RAM".</span></div></li>
-            <li><div class="step-text"><strong>Define 3 criterios de éxito verificables.</strong> Que no sean subjetivos: "La aplicación es rápida" no sirve. "Procesa 100 registros/segundo en hardware de 2020" sí.</div></li>
-            <li><div class="step-text"><strong>Especifica restricciones explícitas:</strong> tecnologías permitidas, dependencias prohibidas, regulaciones que aplican (datos personales, código abierto, etc.).</div></li>
-            <li><div class="step-text"><strong>Crea un documento de 1–2 páginas</strong> con lo anterior. Este será tu referencia durante toda la sesión con la IA.</div></li>
-          </ol>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Prompts estructurados</div>
-          
-          <div class="accordion">
-            <button class="acc-trigger" onclick="toggleAcc(this)">
-              <span>Prompt 1A — Definición de problema</span>
-              <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
-            </button>
-            <div class="acc-body">
-              <div class="acc-content">
-                <div class="prompt-block">
-                  <div class="prompt-header">
-                    <span class="prompt-title">prompt · definición-problema</span>
-                    <button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>
-                  </div>
-                  <div class="prompt-body">Quiero que me ayudes a definir un problema de programación antes de empezar a codificar.
-
-El problema a resolver es: <span class="pv">[Tu enunciado]</span>
-
-Ayúdame a:
-1. Reformular el problema de forma específica y mensurable
-2. Identificar si me falta contexto técnico clave
-3. Proponer 3 criterios de éxito verificables
-4. Listar restricciones explícitas (tecnologías, recursos, regulaciones)
-5. Crear un breve specification (máx 1 página)
-
-El objetivo es que cuando codifiquemos, tengamos claridad y no desviaciones.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion">
-            <button class="acc-trigger" onclick="toggleAcc(this)">
-              <span>Prompt 1B — Especificación de requisitos</span>
-              <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
-            </button>
-            <div class="acc-body">
-              <div class="acc-content">
-                <div class="prompt-block">
-                  <div class="prompt-header">
-                    <span class="prompt-title">prompt · especificación-requisitos</span>
-                    <button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>
-                  </div>
-                  <div class="prompt-body">Basándote en este problema:
-
-<span class="pv">[Pega tu problema definido]</span>
-
-Crea una especificación técnica que incluya:
-
-1. Requisitos funcionales (qué debe hacer): Lista de 3–5 capacidades
-2. Requisitos no funcionales (cómo debe hacerlo): Rendimiento, escalabilidad, seguridad
-3. Restricciones: Tecnologías permitidas/prohibidas, dependencias, límites de recursos
-4. Casos de uso críticos: 2–3 escenarios específicos que deben funcionar
-5. Criterios de aceptación: Cómo verificaré que está completo
-
-Formato: Simple, máx 2 páginas. Sé específico con números, no con adjetivos.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Lista de verificación</div>
-          <ul class="checklist" onclick="toggleCheck(event)">
-            <li><div class="checklist-box"></div><span>Tengo definido explícitamente qué quiero resolver en una frase</span></li>
-            <li><div class="checklist-box"></div><span>He creado 3 criterios de éxito verificables (no subjetivos)</span></li>
-            <li><div class="checklist-box"></div><span>He listado las restricciones técnicas y normativas que aplican</span></li>
-            <li><div class="checklist-box"></div><span>Tengo documento de especificación guardado para consultar</span></li>
-            <li><div class="checklist-box"></div><span>Revisé la especificación antes de abrir la herramienta de IA</span></li>
-          </ul>
-        </div>
+  <article class="paso-card fw-module" data-step="2" id="paso2">
+    <div class="paso-head">
+      <div class="paso-num-badge" data-step="2">02</div>
+      <div class="paso-head-info">
+        <p class="fw-module-id">P02-VAL</p>
+        <h3>Validación técnica del output</h3>
+        <p>Verificación sistemática del código generado: corrección, pruebas, complejidad y alineación con la spec.</p>
       </div>
-    </article>
-  </section>
-
-  <!-- PASO 2 -->
-  <section class="paso-section">
-    <article class="paso-card" data-step="2" id="paso2">
-      <div class="paso-head">
-        <div class="paso-num-badge" data-step="2">02</div>
-        <div class="paso-head-info">
-          <h3>Validación de Outputs</h3>
-          <p>Todo lo que la IA produce debe ejecutarse, probarse y revisarse. Las alucinaciones son reales.</p>
-        </div>
+    </div>
+    <div class="paso-body">
+      <p>Instaurar validación basada en evidencia (tests, revisión estática, ejecución) que detecte alucinaciones, APIs inexistentes y regresiones antes de integrar.…</p>
+      <div class="fw-standards" style="margin: var(--sp-4) 0;">
+        <span class="fw-std fw-std-iso">ISO 25010 · Fiabilidad</span><span class="fw-std fw-std-iso">ISO 25010 · Mantenibilidad</span><span class="fw-std fw-std-owasp">OWASP A03 Injection</span><span class="fw-std fw-std-eng">Clean Code · funciones pequeñas</span>
       </div>
-      
-      <div class="paso-body">
-        <div class="tags">
-          <span class="tag tag-risk">Alucinaciones · Código defectuoso</span>
-          <span class="tag tag-iso">ISO 25010 — Fiabilidad</span>
-          <span class="tag tag-norm">NIST AI RMF — MEASURE</span>
-        </div>
+      <p class="fw-technique" style="margin-bottom: var(--sp-4);">Self-consistency + Few-shot + Reflection</p>
+      <a href="guide_IA.html#paso2" class="btn btn-primary">Abrir módulo completo (10 bloques + prompts)</a>
+    </div>
+  </article>
 
-        <div class="content-block">
-          <div class="content-block-label">¿Por qué es obligatorio?</div>
-          <p>
-            Los modelos de IA no entienden código: generan patrones estadísticos. Eso significa que producen respuestas que se ven correctas pero fallan en casos específicos, contienen vulnerabilidades sutiles, o simplemente no funcionan. El 31% de estudiantes reporta que ha integrado código IA defectuoso sin validar. Cada línea debe verificarse.
-          </p>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Instrucciones de ejecución</div>
-          <ol class="nsteps">
-            <li><div class="step-text"><strong>Ejecuta el código.</strong> Antes que nada, corre la solución con el dataset de prueba que creaste en el Paso 1.</div></li>
-            <li><div class="step-text"><strong>Escribe casos de prueba unitarios</strong> que cubran al menos los criterios de éxito y casos edge (valores límite, entradas vacías, etc.).</div></li>
-            <li><div class="step-text"><strong>Revisa la lógica línea por línea:</strong> ¿Hay índices fuera de rango? ¿Conversiones de tipo incorrectas? ¿Manejo de excepciones?</div></li>
-            <li><div class="step-text"><strong>Presta atención a detalles sutiles</strong> que los modelos cometen frecuentemente: inicialización de variables, off-by-one errors, manejo de null/undefined.</div></li>
-          </ol>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Checklist de validación</div>
-          <ul class="checklist" onclick="toggleCheck(event)">
-            <li><div class="checklist-box"></div><span>El código se ejecuta sin errores con los datos de prueba</span></li>
-            <li><div class="checklist-box"></div><span>Pasó al menos 3 casos de prueba unitarios</span></li>
-            <li><div class="checklist-box"></div><span>Revisé la lógica línea por línea y entiendo cada paso</span></li>
-            <li><div class="checklist-box"></div><span>Probé al menos un caso edge (valor límite, entrada vacía)</span></li>
-            <li><div class="checklist-box"></div><span>Documenté cualquier defecto encontrado y corregido</span></li>
-          </ul>
-        </div>
+  <article class="paso-card fw-module" data-step="3" id="paso3">
+    <div class="paso-head">
+      <div class="paso-num-badge" data-step="3">03</div>
+      <div class="paso-head-info">
+        <p class="fw-module-id">P03-SEC</p>
+        <h3>Auditoría de seguridad y cumplimiento</h3>
+        <p>Evaluación OWASP Top 10, protección de datos y controles antes de merge o entrega.</p>
       </div>
-    </article>
-  </section>
-
-  <!-- PASO 3 -->
-  <section class="paso-section">
-    <article class="paso-card" data-step="3" id="paso3">
-      <div class="paso-head">
-        <div class="paso-num-badge" data-step="3">03</div>
-        <div class="paso-head-info">
-          <h3>Auditoría de Seguridad</h3>
-          <p>Antes de integrar el código, verifica que no expone datos, tiene vulnerabilidades conocidas o viola regulaciones.</p>
-        </div>
+    </div>
+    <div class="paso-body">
+      <p>Aplicar auditoría de seguridad estructurada al código asistido por IA, mapeando hallazgos a OWASP e ISO 25010 Seguridad/Protección.…</p>
+      <div class="fw-standards" style="margin: var(--sp-4) 0;">
+        <span class="fw-std fw-std-owasp">OWASP Top 10 2021</span><span class="fw-std fw-std-iso">ISO 25010 · Seguridad</span><span class="fw-std fw-std-iso">ISO 25010 · Protección</span><span class="fw-std fw-std-iso">Ley 1581 / GDPR</span>
       </div>
-      
-      <div class="paso-body">
-        <div class="tags">
-          <span class="tag tag-risk">Vulnerabilidades · Exposición de datos</span>
-          <span class="tag tag-iso">ISO 25010 — Seguridad</span>
-          <span class="tag tag-norm">Ley 1581/2012 · UE Art. 9</span>
-        </div>
+      <p class="fw-technique" style="margin-bottom: var(--sp-4);">Adversarial prompting + Tree-of-thoughts</p>
+      <a href="guide_IA.html#paso3" class="btn btn-primary">Abrir módulo completo (10 bloques + prompts)</a>
+    </div>
+  </article>
 
-        <div class="content-block">
-          <div class="content-block-label">¿Por qué es obligatorio?</div>
-          <p>
-            El código generado por IA puede incluir patrones de seguridad débiles porque los modelos entrenados con código público no distinguen entre código inseguro y código seguro. Inyección SQL, XSS, exposure de secretos en logs, falta de validación: todo es posible. En Colombia, Ley 1581/2012 es vinculante para datos personales. La UE requiere compliance con GDPR.
-          </p>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Checklist de seguridad</div>
-          <ul class="checklist" onclick="toggleCheck(event)">
-            <li><div class="checklist-box"></div><span>No hay secretos (tokens, passwords) hardcodeados</span></li>
-            <li><div class="checklist-box"></div><span>Las entradas del usuario están validadas y sanitizadas</span></li>
-            <li><div class="checklist-box"></div><span>No hay SQL injection: usa prepared statements o ORM</span></li>
-            <li><div class="checklist-box"></div><span>No hay XSS: las salidas están escapadas</span></li>
-            <li><div class="checklist-box"></div><span>Si procesa datos personales, aplica principios de GDPR/Ley 1581</span></li>
-            <li><div class="checklist-box"></div><span>No hay exposición de datos sensibles en logs o mensajes de error</span></li>
-            <li><div class="checklist-box"></div><span>Las dependencias de terceros no tienen vulnerabilidades conocidas (npm audit, pip audit)</span></li>
-          </ul>
-        </div>
+  <article class="paso-card fw-module" data-step="4" id="paso4">
+    <div class="paso-head">
+      <div class="paso-num-badge" data-step="4">04</div>
+      <div class="paso-head-info">
+        <p class="fw-module-id">P04-SUP</p>
+        <h3>Supervisión humana y trazabilidad de decisiones</h3>
+        <p>Registro de decisiones técnicas, ADRs y control del sesgo de automatización.</p>
       </div>
-    </article>
-  </section>
-
-  <!-- PASO 4 -->
-  <section class="paso-section">
-    <article class="paso-card" data-step="4" id="paso4">
-      <div class="paso-head">
-        <div class="paso-num-badge" data-step="4">04</div>
-        <div class="paso-head-info">
-          <h3>Supervisión Activa</h3>
-          <p>Mantén registro explícito de qué fue generado por IA, en qué contexto, por quién y cuándo.</p>
-        </div>
+    </div>
+    <div class="paso-body">
+      <p>Garantizar supervisión humana efectiva (UE Art. 14) documentando alternativas evaluadas y decisiones finales sobre código asistido.…</p>
+      <div class="fw-standards" style="margin: var(--sp-4) 0;">
+        <span class="fw-std fw-std-iso">Reglamento UE · Art. 14</span><span class="fw-std fw-std-iso">ISO 25010 · Mantenibilidad</span><span class="fw-std fw-std-eng">SOLID · DIP/OCP</span><span class="fw-std fw-std-eng">ADR (Architecture Decision Records)</span>
       </div>
-      
-      <div class="paso-body">
-        <div class="tags">
-          <span class="tag tag-risk">Sesgo de automatización</span>
-          <span class="tag tag-iso">ISO 25010 — Mantenibilidad</span>
-          <span class="tag tag-norm">Reglamento UE 2024/1689 Art. 14</span>
-        </div>
+      <p class="fw-technique" style="margin-bottom: var(--sp-4);">Reflection prompting + Meta-prompting</p>
+      <a href="guide_IA.html#paso4" class="btn btn-primary">Abrir módulo completo (10 bloques + prompts)</a>
+    </div>
+  </article>
 
-        <div class="content-block">
-          <div class="content-block-label">¿Por qué es obligatorio?</div>
-          <p>
-            Sin registro activo, los desarrolladores tienden a usar IA cada vez más sin reflexión (sesgo de automatización). Además, es tu prueba de debida diligencia: si algo sale mal, demuestras que revisaste y supervisaste explícitamente. El Reglamento UE 2024/1689 Art. 14 requiere supervisión humana. La recomendación es dejar trazas.
-          </p>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Qué registrar</div>
-          <p><strong>Para cada sesión de trabajo con IA:</strong></p>
-          <ol class="nsteps">
-            <li><div class="step-text"><strong>Timestamp:</strong> Fecha y hora exacta</div></li>
-            <li><div class="step-text"><strong>Qué solicitaste:</strong> El prompt o problema específico</div></li>
-            <li><div class="step-text"><strong>Qué recibiste:</strong> Linajes aproximados de código generado vs. escrito por ti</div></li>
-            <li><div class="step-text"><strong>Validación realizada:</strong> Resumen de qué probaste y encontraste</div></li>
-            <li><div class="step-text"><strong>Decisión:</strong> ¿Aceptaste íntegro, modificaste, o rechazaste?</div></li>
-          </ol>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Formato simple de registro</div>
-          <div class="prompt-block">
-            <div class="prompt-header">
-              <span class="prompt-title">registro · sesión-ia</span>
-            </div>
-            <div class="prompt-body">Fecha: [DD/MM/YYYY HH:MM]
-Herramienta: [GitHub Copilot / ChatGPT / Claude / etc]
-
-Problema solicitado:
-[Describe brevemente qué pediste]
-
-Líneas de código generadas aprox: [número]
-Líneas de código modificadas por mí: [número]
-Líneas de código rechazadas: [número]
-
-Validación:
-- Ejecuté: ✓ / ✗
-- Probé casos: ✓ / ✗
-- Revisé seguridad: ✓ / ✗
-
-Decisión:
-[ ] Aceptado íntegro
-[ ] Aceptado con modificaciones
-[ ] Rechazado
-
-Notas:</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Lista de verificación</div>
-          <ul class="checklist" onclick="toggleCheck(event)">
-            <li><div class="checklist-box"></div><span>Tengo un registro de IA abierto (documento o hoja)</span></li>
-            <li><div class="checklist-box"></div><span>Completo el registro al final de cada sesión con IA</span></li>
-            <li><div class="checklist-box"></div><span>Documento qué fue generado vs qué escribí</span></li>
-            <li><div class="checklist-box"></div><span>Especifico validaciones que realicé</span></li>
-            <li><div class="checklist-box"></div><span>Mi registro es comprensible para un revisor externo</span></li>
-          </ul>
-        </div>
+  <article class="paso-card fw-module" data-step="5" id="paso5">
+    <div class="paso-head">
+      <div class="paso-num-badge" data-step="5">05</div>
+      <div class="paso-head-info">
+        <p class="fw-module-id">P05-ETH</p>
+        <h3>Ética, autoría y cumplimiento académico</h3>
+        <p>Transparencia de uso de IA, PI, licencias y declaración formal de autoría.</p>
       </div>
-    </article>
-  </section>
-
-  <!-- PASO 5 -->
-  <section class="paso-section">
-    <article class="paso-card" data-step="5" id="paso5">
-      <div class="paso-head">
-        <div class="paso-num-badge" data-step="5">05</div>
-        <div class="paso-head-info">
-          <h3>Declaración Ética</h3>
-          <p>Declara explícitamente el uso de IA. Verifica que no cometiste fraude ni violaste derechos.</p>
-        </div>
+    </div>
+    <div class="paso-body">
+      <p>Asegurar autenticidad, transparencia y cumplimiento de políticas institucionales y Ley 23/1982 sobre autoría y licencias.…</p>
+      <div class="fw-standards" style="margin: var(--sp-4) 0;">
+        <span class="fw-std fw-std-iso">ISO 25010 · Autenticidad</span><span class="fw-std fw-std-iso">Ley 23 / PI</span><span class="fw-std fw-std-iso">IEEE 7000</span><span class="fw-std fw-std-iso">CONPES 4144</span>
       </div>
-      
-      <div class="paso-body">
-        <div class="tags">
-          <span class="tag tag-risk">Fraude · Violación de PI</span>
-          <span class="tag tag-iso">ISO 25010 — Autenticidad</span>
-          <span class="tag tag-norm">Ley 23/1982 · CONPES 4144</span>
-        </div>
+      <p class="fw-technique" style="margin-bottom: var(--sp-4);">Meta-prompting + Chain-of-Thought</p>
+      <a href="guide_IA.html#paso5" class="btn btn-primary">Abrir módulo completo (10 bloques + prompts)</a>
+    </div>
+  </article>
 
-        <div class="content-block">
-          <div class="content-block-label">¿Por qué es obligatorio?</div>
-          <p>
-            Declarar uso de IA no es deshonesto; ocultarlo sí. Las universidades y empresas están adoptando políticas explícitas sobre IA. El CONPES 4144 de Colombia exige transparencia. Si usaste IA, dilo. Si el código que generó la IA viola licencias open source (GPL), eso es tu responsabilidad revisar.
-          </p>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Qué verificar antes de entregar</div>
-          <ol class="nsteps">
-            <li><div class="step-text"><strong>¿Usé IA?</strong> Identifica exactamente dónde y en qué medida. No es todo o nada; puede ser: "IA para boilerplate, humano para lógica crítica".</div></li>
-            <li><div class="step-text"><strong>¿Violé derechos de autor?</strong> Si usaste código de GitHub/Stack Overflow, verifica licencia. Si el modelo generó código que coincide palabra-por-palabra con código existente, eso es sospechoso.</div></li>
-            <li><div class="step-text"><strong>¿Hay plagio?</strong> Plagio no es usar IA; es presentar trabajo ajeno como propio sin citar. Si usaste IA y lo declaras, no hay plagio.</div></li>
-            <li><div class="step-text"><strong>¿Entiendo el código?</strong> Puedes explicar qué hace, línea por línea, sin la IA presente? Si no, no lo entrargues.</div></li>
-          </ol>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Plantilla de declaración</div>
-          <div class="prompt-block">
-            <div class="prompt-header">
-              <span class="prompt-title">documento · declaración-ia</span>
-            </div>
-            <div class="prompt-body">DECLARACIÓN DE USO DE INTELIGENCIA ARTIFICIAL
-
-Proyecto: [Nombre]
-Fecha: [DD/MM/YYYY]
-Autor: [Tu nombre]
-
-1. USO DE IA
-[ ] Se utilizó asistente de IA (especificar cuál: _________)
-[ ] No se utilizó asistencia de IA
-
-2. PARTES GENERADAS O ASISTIDAS POR IA
-Descripción breve de qué componentes fueron generados o asistidos:
-[Ej: "Funciones de validación de entrada", "Estructura de base de datos"]
-
-Estimado % de código: ___%
-
-3. VALIDACIÓN REALIZADA
-[ ] Ejecuté el código y funcionó correctamente
-[ ] Probé casos de prueba específicos
-[ ] Revisé seguridad
-[ ] Revisé licencias de dependencias
-
-4. ORIGINALIDAD Y DERECHOS
-[ ] Todo el código es original o está debidamente citado
-[ ] No hay plagio de código ajeno
-[ ] Las licencias usadas son compatibles con el proyecto
-[ ] Soy responsable de cualquier violación de derechos que se encuentre
-
-5. AUTORÍA Y COMPRENSIÓN
-[ ] Puedo explicar completamente cómo funciona el código
-[ ] El análisis y conclusiones son resultado de mi razonamiento propio
-[ ] Soy responsable de las decisiones técnicas del proyecto
-
-Firma: ________________  Fecha: ________________</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Lista de verificación</div>
-          <ul class="checklist" onclick="toggleCheck(event)">
-            <li><div class="checklist-box"></div><span>Tengo registro de qué partes usaron IA y para qué</span></li>
-            <li><div class="checklist-box"></div><span>Incluí o prepararé una declaración de uso de IA en mi entrega</span></li>
-            <li><div class="checklist-box"></div><span>No hay datos de investigación ficticios generados por IA</span></li>
-            <li><div class="checklist-box"></div><span>Revisé las implicaciones éticas del sistema para sus usuarios</span></li>
-            <li><div class="checklist-box"></div><span>El análisis y conclusiones del trabajo son de mi propio razonamiento</span></li>
-          </ul>
-        </div>
+  <article class="paso-card fw-module" data-step="6" id="paso6">
+    <div class="paso-head">
+      <div class="paso-num-badge" data-step="6">06</div>
+      <div class="paso-head-info">
+        <p class="fw-module-id">P06-CRT</p>
+        <h3>Preservación del pensamiento crítico</h3>
+        <p>Autoevaluación cognitiva, brechas de conocimiento y plan de práctica autónoma.</p>
       </div>
-    </article>
-  </section>
-
-  <!-- PASO 6 -->
-  <section class="paso-section">
-    <article class="paso-card" data-step="6" id="paso6">
-      <div class="paso-head">
-        <div class="paso-num-badge" data-step="6">06</div>
-        <div class="paso-head-info">
-          <h3>Preservación del Pensamiento Crítico</h3>
-          <p>Al finalizar sesión, reflexiona sobre lo que aprendiste, lo que delegaste, y practica sin IA.</p>
-        </div>
+    </div>
+    <div class="paso-body">
+      <p>Contrarrestar dependencia cognitiva mediante reflexión estructurada y plan de mejora de competencias técnicas verificables.…</p>
+      <div class="fw-standards" style="margin: var(--sp-4) 0;">
+        <span class="fw-std fw-std-iso">ISO 25010 · Analizabilidad</span><span class="fw-std fw-std-iso">CONPES 4144 · talento digital</span><span class="fw-std fw-std-iso">IEEE 7000 · bienestar</span><span class="fw-std fw-std-eng">Deliberate practice (ciencia aprendizaje)</span>
       </div>
-      
-      <div class="paso-body">
-        <div class="tags">
-          <span class="tag tag-risk">Dependencia cognitiva acumulada</span>
-          <span class="tag tag-iso">ISO 25010 — Analizabilidad</span>
-          <span class="tag tag-norm">CONPES 4144 · IEEE 7000</span>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">¿Por qué es obligatorio?</div>
-          <p>
-            La dependencia cognitiva es acumulativa. Si cada semana delegas más decisiones a la IA sin reflexión, en 6 meses tu capacidad de razonamiento autónomo se habrá atrofiado. Este paso es el mecanismo que interrumpe esa espiral. No requiere mucho tiempo, pero es crítico.
-          </p>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Instrucciones de ejecución</div>
-          <ol class="nsteps">
-            <li><div class="step-text"><strong>Ejecuta la reflexión al finalizar cada sesión,</strong> no al final del proyecto. Dedica 5 minutos a responder las preguntas del prompt de autoevaluación.</div></li>
-            <li><div class="step-text"><strong>Identifica qué habilidades ejercitaste</strong> y cuáles delegaste completamente a la IA.</div></li>
-            <li><div class="step-text"><strong>Practica sin IA al menos una vez por semana.</strong> Elige un ejercicio que puedas resolver solo. Esto mantiene activas tus capacidades de razonamiento autónomo.</div></li>
-            <li><div class="step-text"><strong>Lleva un registro de tu índice de dependencia</strong> por proyecto en escala 1–4. Si sube consistentemente, activa una revisión de tus hábitos.</div></li>
-          </ol>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Prompts de autoevaluación</div>
-          
-          <div class="accordion">
-            <button class="acc-trigger" onclick="toggleAcc(this)">
-              <span>Prompt 6A — Autoevaluación al cierre</span>
-              <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
-            </button>
-            <div class="acc-body">
-              <div class="acc-content">
-                <div class="prompt-block">
-                  <div class="prompt-header">
-                    <span class="prompt-title">prompt · autoevaluación-sesión</span>
-                    <button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>
-                  </div>
-                  <div class="prompt-body">Al finalizar esta sesión, quiero hacer una autoevaluación de mi uso de IA.
-
-Trabajé en: <span class="pv">[describe la tarea]</span>
-
-Respóndeme honestamente:
-1. ¿Qué partes pude haber resuelto por mi cuenta sin IA?
-2. ¿Entiendo completamente todo lo que produjimos juntos?
-3. ¿Hay conceptos que la IA usó que no conocía y debo estudiar?
-4. ¿Si tuviera que reproducir esto mañana sin IA, podría hacerlo?
-5. ¿Hay habilidades que estoy dejando de practicar porque la IA las resuelve?
-
-El objetivo es identificar oportunidades de aprendizaje propio.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion">
-            <button class="acc-trigger" onclick="toggleAcc(this)">
-              <span>Prompt 6B — Plan de práctica autónoma</span>
-              <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
-            </button>
-            <div class="acc-body">
-              <div class="acc-content">
-                <div class="prompt-block">
-                  <div class="prompt-header">
-                    <span class="prompt-title">prompt · ejercicio-autónomo</span>
-                    <button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>
-                  </div>
-                  <div class="prompt-body">He estado usando IA en tareas de <span class="pv">[tipo de tareas]</span>. Quiero verificar que mis habilidades están activas con un ejercicio sin IA.
-
-Dame un ejercicio de dificultad <span class="pv">[básica / media / avanzada]</span> sobre <span class="pv">[tema específico]</span> que:
-1. No requiera instalaciones complejas
-2. Pueda completarse en 20–30 minutos
-3. Tenga un resultado verificable que yo mismo pueda comprobar
-
-Solo dame el ejercicio. No me des la solución todavía.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="content-block">
-          <div class="content-block-label">Lista de verificación</div>
-          <ul class="checklist" onclick="toggleCheck(event)">
-            <li><div class="checklist-box"></div><span>Realicé la autoevaluación de la sesión antes de cerrar</span></li>
-            <li><div class="checklist-box"></div><span>Identifiqué al menos un concepto nuevo que debo estudiar por mi cuenta</span></li>
-            <li><div class="checklist-box"></div><span>Puedo explicar todo el trabajo de la sesión sin apoyo de la IA</span></li>
-            <li><div class="checklist-box"></div><span>Esta semana practiqué al menos un ejercicio sin IA</span></li>
-            <li><div class="checklist-box"></div><span>Mi índice de dependencia no aumentó respecto a la sesión anterior</span></li>
-          </ul>
-        </div>
-      </div>
-    </article>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- CTA -->
-  <section class="section" style="text-align: center; margin-bottom: var(--sp-3xl);">
-    <h2 style="margin-bottom: var(--sp-lg);">¿Completaste los 6 pasos?</h2>
-    <p style="margin-bottom: var(--sp-2xl); max-width: 600px; margin-left: auto; margin-right: auto;">
-      Ahora evalúa la calidad del código resultante usando el instrumento basado en ISO/IEC 25010.
-    </p>
-    <a href="iso-evaluation.html" class="btn btn-primary">
-      Ir a evaluación ISO 25010 →
-    </a>
-  </section>
+      <p class="fw-technique" style="margin-bottom: var(--sp-4);">Reflection prompting + Few-shot</p>
+      <a href="guide_IA.html#paso6" class="btn btn-primary">Abrir módulo completo (10 bloques + prompts)</a>
+    </div>
+  </article>
 
 </main>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-main">
-      <div class="footer-section">
-        <h4>Metodología</h4>
-        <p><a href="index.html">Inicio</a><br><a href="pasos.html">Los 6 Pasos</a><br><a href="iso-evaluation.html">Evaluación</a><br><a href="normativa.html">Normativa</a></p>
-      </div>
-      <div class="footer-section">
-        <h4>Autoría</h4>
-        <p>Andrés Felipe Jaimes Carrillo<br>Universidad Libre · Cúcuta<br>Ing. en TIC · 2025</p>
-      </div>
-      <div class="footer-section">
-        <h4>Dirección</h4>
-        <p>PhD. Jesús Álvarez Guerrero<br>Ing. Alix Ospino</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <strong>Fundamento normativo:</strong> ISO/IEC 25010:2023, NIST AI RMF, Reglamento UE 2024/1689, Ley 1581/2012, Ley 23/1982, CONPES 4144, IEEE 7000:2021
-    </div>
-  </div>
-</footer>
-
-<!-- SCROLL TO TOP -->
+<footer class="footer"><div class="footer-content"><div class="footer-bottom">Framework metodológico · 2025</div></div></footer>
 <button type="button" class="scroll-top" id="scrollTop" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i data-lucide="arrow-up" class="icon-md"></i></button>
-
-<!-- SCRIPTS -->
 <script src="assets/app.js"></script>
 </body>
 </html>

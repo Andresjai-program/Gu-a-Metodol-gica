@@ -7,6 +7,8 @@
 <meta name="theme-color" content="#ffffff">
 <title>Integración de IA en Desarrollo — Guía Metodológica Oficial</title>
   <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/framework.css">
+  <link rel="stylesheet" href="assets/framework.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -30,8 +32,8 @@
 <!-- ═══════════════ SIDEBAR ═══════════════ -->
 <nav class="sidebar">
   <div class="sb-header">
-    <div class="sb-eyebrow">Guía Metodológica · 2025</div>
-    <div class="sb-title">Integración de IA en Desarrollo de Software</div>
+    <div class="sb-eyebrow">Framework · Handbook · 2025</div>
+    <div class="sb-title">Desarrollo y auditoría de software asistido por IA</div>
     <div class="sb-meta">Universidad Libre · Cúcuta<br>Ing. en TIC</div>
   </div>
 
@@ -39,7 +41,8 @@
     <div class="sb-group">
       <div class="sb-group-label">Inicio</div>
       <a class="sb-link active" href="#intro"><span class="sb-indicator" style="background:#5b9cf6"></span>Introducción</a>
-      <a class="sb-link" href="#como-usar"><span class="sb-indicator" style="background:#5a6180"></span>Cómo usar la guía</a>
+      <a class="sb-link" href="#gobernanza"><span class="sb-indicator" style="background:#5a6180"></span>Gobernanza HITL</a>
+      <a class="sb-link" href="#como-usar"><span class="sb-indicator" style="background:#5a6180"></span>Protocolo P01–P06</a>
     </div>
     <div class="sb-group">
       <div class="sb-group-label">Los 6 Pasos</div>
@@ -93,14 +96,38 @@
 
 <!-- ═══ HERO ═══ -->
 <section id="intro" class="section hero">
-  <div class="hero-eyebrow"><span></span>Metodología Oficial · Versión 1.0 · 2025</div>
-  <h1>Metodología Integral de<br><em>Integración de la IA</em></h1>
-  <p class="hero-lead">Guía paso a paso para el uso ético, seguro y analítico de herramientas de inteligencia artificial en el desarrollo de proyectos de software — aplicable en el aula de clases y en equipos profesionales. Fundamentada en ISO/IEC 25010, NIST AI RMF y Reglamento UE 2024/1689.</p>
+  <p class="fw-hero-badge">FRAMEWORK METODOLÓGICO · v2.0 · 2025</p>
+  <h1>Desarrollo, validación y auditoría<br><em>de software asistido por IA</em></h1>
+  <p class="hero-lead">Handbook institucional para Ingeniería TIC: seis módulos operativos integrados con ISO/IEC 25010, OWASP Top 10, ingeniería de prompts avanzada y trazabilidad de evidencia. No sustituye el criterio profesional — lo fortalece.</p>
   <div class="hero-stats">
-    <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">Pasos metodológicos con verificación</div></div>
-    <div class="stat-card"><div class="stat-num">18</div><div class="stat-label">Prompts estructurados listos para usar</div></div>
-    <div class="stat-card"><div class="stat-num">9</div><div class="stat-label">Características ISO 25010 evaluadas</div></div>
-    <div class="stat-card"><div class="stat-num">27+</div><div class="stat-label">Preguntas de evaluación de calidad</div></div>
+    <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">Módulos P01–P06</div></div>
+    <div class="stat-card"><div class="stat-num">10</div><div class="stat-label">Bloques por módulo</div></div>
+    <div class="stat-card"><div class="stat-num">9</div><div class="stat-label">Características ISO 25010</div></div>
+    <div class="stat-card"><div class="stat-num">10</div><div class="stat-label">OWASP en auditoría P03</div></div>
+  </div>
+  <div class="btn-group" style="margin-top: var(--sp-6);">
+    <a href="framework.html" class="btn btn-primary">Ver arquitectura</a>
+    <a href="#paso1" class="btn btn-secondary">Módulo P01</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ GOBERNANZA ═══ -->
+<section id="gobernanza" class="section">
+  <div class="s-eyebrow">AI Governance</div>
+  <div class="s-title">Human-in-the-Loop <em>Governance</em></div>
+  <div class="s-lead">La IA asiste; el humano define, valida, audita y aprueba. Este framework mitiga automation bias, alucinaciones, código caja negra y dependencia excesiva del modelo.</div>
+
+  <div class="hitl-flow">
+    <div class="hitl-step"><div class="hitl-step-num">01</div><h4>Humano define</h4><p>Spec · criterios · arquitectura</p><p class="risk-module">P01</p></div>
+    <div class="hitl-step"><div class="hitl-step-num">02</div><h4>IA asiste</h4><p>Borradores bajo spec humana</p><p class="risk-module">P01–P04</p></div>
+    <div class="hitl-step"><div class="hitl-step-num">03</div><h4>Humano valida</h4><p>Tests · OWASP · revisión</p><p class="risk-module">P02 · P03</p></div>
+    <div class="hitl-step"><div class="hitl-step-num">04</div><h4>Humano aprueba</h4><p>Merge · ética · entrega</p><p class="risk-module">P04–P06</p></div>
+  </div>
+
+  <div class="hitl-principle">
+    <p><strong>Accountability:</strong> El ingeniero humano es responsable legal y técnico del artefacto. Documentación completa: <a href="governance.html">Gobernanza y catálogo de riesgos IA →</a></p>
   </div>
 </section>
 
@@ -108,1172 +135,1284 @@
 
 <!-- ═══ CÓMO USAR ═══ -->
 <section id="como-usar" class="section">
-  <div class="s-eyebrow">Antes de empezar</div>
-  <div class="s-title">Cómo usar esta <em>guía</em></div>
-  <div class="s-lead">Esta guía se ejecuta en orden secuencial. Cada paso corresponde a un momento específico del flujo de trabajo con IA. No avances al siguiente paso hasta completar la verificación del anterior.</div>
-
+  <div class="s-eyebrow">Protocolo de ejecución</div>
+  <div class="s-title">Flujo del <em>framework</em></div>
+  <div class="s-lead">Ejecuta P01→P06 en orden. Cada módulo produce evidencia (EVID-P0N) que alimenta la evaluación ISO 25010. No avances si la validación técnica del módulo actual no está completa.</div>
   <div class="alert alert-info">
     <div class="alert-icon"><i data-lucide="info" class="icon-md"></i></div>
-    <p><strong>Principio fundamental:</strong> La inteligencia artificial es una herramienta de apoyo, no un sustituto del razonamiento profesional. El desarrollador o estudiante es siempre el responsable técnico, ético y legal del código que produce, sin importar cómo fue generado.</p>
+    <p><strong>Principio de responsabilidad:</strong> El ingeniero humano es accountable del artefacto entregado. La IA es un acelerador bajo supervisión — Reglamento UE Art. 14, NIST GOVERN.</p>
   </div>
-
   <div class="onboard-table-wrap">
     <table class="dt">
-      <thead><tr><th>Paso</th><th>Cuándo ejecutarlo</th><th>Duración</th><th>Riesgo mitigado</th></tr></thead>
+      <thead><tr><th>Módulo</th><th>Fase</th><th>Duración</th><th>Entregable</th><th>ISO / OWASP</th></tr></thead>
       <tbody>
-        <tr><td class="td-step" data-step="1">01 — Definición</td><td>Antes de abrir la IA</td><td>5–10 min</td><td>Dependencia cognitiva</td></tr>
-        <tr><td class="td-step" data-step="2">02 — Validación</td><td>Al recibir el output</td><td>10–20 min</td><td>Alucinaciones · Código incorrecto</td></tr>
-        <tr><td class="td-step" data-step="3">03 — Seguridad</td><td>Antes de integrar al proyecto</td><td>10–15 min</td><td>Vulnerabilidades · Datos sensibles</td></tr>
-        <tr><td class="td-step" data-step="4">04 — Supervisión</td><td>Durante todo el proceso</td><td>Continuo</td><td>Sesgo de automatización</td></tr>
-        <tr><td class="td-step" data-step="5">05 — Ética</td><td>Antes de entregar</td><td>5 min</td><td>Fraude · Propiedad intelectual</td></tr>
-        <tr><td class="td-step" data-step="6">06 — Pensamiento</td><td>Al finalizar la sesión</td><td>5–10 min</td><td>Dependencia cognitiva acumulada</td></tr>
+        <tr><td class="td-step" data-step="1">P01 Definición</td><td>Pre-IA</td><td>15–30 min</td><td>Spec + threat model</td><td>Adecuación · Fiabilidad</td></tr>
+        <tr><td class="td-step" data-step="2">P02 Validación</td><td>Post-output</td><td>20–45 min</td><td>Review + test plan</td><td>Fiabilidad · Mantenibilidad</td></tr>
+        <tr><td class="td-step" data-step="3">P03 Seguridad</td><td>Pre-merge</td><td>20–40 min</td><td>Informe OWASP</td><td>Seguridad · OWASP</td></tr>
+        <tr><td class="td-step" data-step="4">P04 Supervisión</td><td>Continuo</td><td>Continuo</td><td>ADR + log</td><td>Mantenibilidad</td></tr>
+        <tr><td class="td-step" data-step="5">P05 Ética</td><td>Pre-entrega</td><td>10–20 min</td><td>Declaración IA</td><td>Autenticidad</td></tr>
+        <tr><td class="td-step" data-step="6">P06 Pensamiento</td><td>Post-sesión</td><td>10–15 min</td><td>Autoevaluación</td><td>Analizabilidad</td></tr>
       </tbody>
     </table>
   </div>
-
-  <div class="alert alert-warn">
-    <div class="alert-icon"><i data-lucide="alert-triangle" class="icon-md"></i></div>
-    <p><strong>Nota:</strong> Los prompts incluidos son plantillas estructuradas. Las palabras en <em class="pv">[corchetes]</em> deben reemplazarse con información específica de tu proyecto antes de enviarlos.</p>
-  </div>
+  <p class="fw-trace"><a href="framework.html#matriz">Matriz de trazabilidad completa →</a></p>
 </section>
 
 <div class="divider-text"><span>Los 6 pasos metodológicos</span></div>
 
-<!-- ═══════════════ PASO 1 ═══════════════ -->
-<section id="paso1" class="section">
-<div class="s-eyebrow">Paso 1 de 6</div>
+<!-- ═══ MÓDULO P01 ═══ -->
+<section id="paso1" class="section fw-module">
+<div class="s-eyebrow">Módulo 1 de 6 · P01-DEF</div>
 <div class="paso-card" data-step="1">
   <div class="paso-head">
     <div class="paso-num-badge" data-step="1">01</div>
     <div class="paso-head-info">
-      <h3>Definición del Propósito</h3>
-      <p>Antes de abrir cualquier herramienta de IA, define con claridad qué problema resolverás y cuál será tu aporte intelectual propio.</p>
+      <h3>Definición del propósito y especificación</h3>
+      <p>Establecer trazabilidad requisito→diseño antes de cualquier generación de código asistida.</p>
     </div>
   </div>
   <div class="paso-body">
-    <div class="tags">
-      <span class="tag tag-risk">Dependencia cognitiva</span>
-      <span class="tag tag-iso">ISO 25010 — Fiabilidad</span>
-      <span class="tag tag-norm">NIST AI RMF — GOVERN 1.1</span>
-    </div>
-    <div class="norm-strip">
-      <div class="norm-pill"><strong>ISO/IEC 25010</strong> — Fiabilidad · Funcionalidad</div>
-      <div class="norm-pill"><strong>NIST AI RMF</strong> — GOVERN: Accountability</div>
-      <div class="norm-pill"><strong>Reglamento UE 2024/1689</strong> — Art. 14</div>
-    </div>
-    <div class="cb">
-      <div class="cb-label">¿Por qué es obligatorio?</div>
-      <p>El mayor riesgo documentado es la delegación del problema completo a la IA sin elaborar primero un razonamiento propio. El 46,2% de los estudiantes encuestados en Cúcuta usa la IA para generar el código completo de sus ejercicios. Este paso interrumpe ese patrón antes de que comience.</p>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Instrucciones de ejecución</div>
-      <ol class="nsteps">
-        <li><span><strong>Enuncia el problema con tus propias palabras</strong> antes de redactar cualquier prompt. Escribe qué necesitas resolver, cuáles son los requerimientos y cuáles las restricciones.</span></li>
-        <li><span><strong>Identifica qué partes resolverás tú</strong> y cuáles apoyará la IA. La IA acelera tu trabajo, no reemplaza tu razonamiento.</span></li>
-        <li><span><strong>Establece criterios de aceptación previos:</strong> define al menos 3 condiciones concretas de funcionamiento antes de ver el output.</span></li>
-        <li><span><strong>Registra tu propósito en el prompt inicial</strong> incluyendo contexto, lenguaje, restricciones y resultado esperado.</span></li>
-        <li><span><strong>Revisa si hay datos sensibles.</strong> Si el problema involucra datos de usuarios o credenciales, usa datos ficticios en el prompt.</span></li>
-      </ol>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Prompts estructurados</div>
-      <div class="accordion">
-        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>Prompt 1A — Definición de alcance antes de pedir código</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body open"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p1)"></span><span class="prompt-title">prompt · definición-alcance</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Voy a pedirte ayuda con programación, pero primero ayúdame a delimitar el alcance.
-
-El contexto de mi tarea es: <span class="pv">[describe el ejercicio o requerimiento]</span>
-El lenguaje es: <span class="pv">[Python / JavaScript / Java / etc.]</span>
-Lo que ya tengo resuelto: <span class="pv">[describe lo que ya pensaste o intentaste]</span>
-Lo que necesito que me ayudes: <span class="pv">[sé preciso, no pidas todo el código completo]</span>
-
-Antes de generar código, explícame: ¿cuál sería la estrategia lógica? ¿Qué estructura usarías y por qué? Quiero entender el enfoque antes de ver la implementación.</div>
-        </div></div>
+    <div class="fw-module-grid">
+<div class="fw-block">
+  <div class="fw-block-label">01 · Objetivo</div>
+  <div class="fw-block-body"><p>Desarrollar la capacidad de elaborar especificaciones técnicas verificables que delimiten el alcance humano vs. asistido por IA, alineadas con completitud y pertinencia funcional (ISO 25010).</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">02 · Riesgo mitigado</div>
+  <div class="fw-block-body"><p>Dependencia cognitiva por delegación del problema completo; soluciones genéricas que violan pertinencia funcional; ausencia de criterios de aceptación medibles.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">03 · Estándares</div>
+  <div class="fw-block-body"><div class="fw-standards"><span class="fw-std fw-std-iso">ISO 25010 · Adecuación</span><span class="fw-std fw-std-iso">ISO 25010 · Fiabilidad</span><span class="fw-std fw-std-eng">SOLID · SRP (alcance)</span><span class="fw-std fw-std-eng">Clean Code · nombres/significado</span><span class="fw-std fw-std-iso">NIST AI RMF · GOVERN 1.1</span></div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">04 · Prompt engineering</div>
+  <div class="fw-block-body"><p class="fw-technique">Chain-of-Thought + Meta-prompting + Reflection</p><span class="fw-technique-tag">CoT</span><span class="fw-technique-tag">Meta-prompt</span><span class="fw-technique-tag">Reflection</span></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">05 · Prompts avanzados</div>
+  <div class="fw-block-body">
+<div class="accordion">
+  <button class="acc-trigger open" onclick="toggleAcc(this)" aria-expanded="true">
+    <span class="acc-label">Especificación técnica con razonamiento explícito (CoT)</span>
+    <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
+  </button>
+  <div class="acc-body open">
+    <p class="fw-prompt-tier"><strong>ID:</strong> P01-ADV-001 · <strong>Técnica:</strong> CoT · Meta-prompting</p>
+    <div class="prompt-block" data-step="1">
+      <div class="prompt-header">
+        <div class="prompt-tag"><span class="dot"></span><span class="prompt-title">prompt · p01-adv-001</span></div>
+        <button type="button" class="copy-btn" onclick="copyP(this)">Copiar</button>
       </div>
-      <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 1B — Validación del entendimiento del problema</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p1)"></span><span class="prompt-title">prompt · validación-entendimiento</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Antes de darme una solución, necesito verificar que entiendo el problema.
+      <div class="prompt-body">Actúa como arquitecto de software senior. NO generes código.
 
-Mi interpretación del requerimiento: <span class="pv">[escribe con tus palabras lo que crees que pide]</span>
+## Contexto del sistema
+- Dominio: <span class="pv">[ej. gestión académica, e-commerce, IoT]</span>
+- Stack permitido: <span class="pv">[lenguaje, framework, BD]</span>
+- Restricciones normativas: <span class="pv">[Ley 1581, licencias, etc.]</span>
+- Enunciado del problema (versión del estudiante/desarrollador):
+<span class="pv">[pegar enunciado en sus propias palabras]</span>
 
-Mis criterios de éxito:
-1. <span class="pv">[criterio 1]</span>
-2. <span class="pv">[criterio 2]</span>
-3. <span class="pv">[criterio 3]</span>
+## Instrucción (Chain-of-Thought obligatorio)
+Responde en fases numeradas. En cada fase muestra tu razonamiento antes de la conclusión.
 
-¿Hay aspectos que no estoy considerando? ¿Hay casos borde antes de implementar?</div>
-        </div></div>
+### Fase 1 — Análisis del problema
+1. Identifica actores, entradas, salidas y límites del sistema.
+2. Lista ambigüedades del enunciado y preguntas que deben resolverse ANTES de codificar.
+3. Propón 3 criterios de aceptación medibles (formato: dado/cuando/entonces o métrica numérica).
+
+### Fase 2 — Diseño conceptual (sin código)
+1. Compara 2 enfoques algorítmicos/arquitectónicos (ventajas, trade-offs, complejidad estimada O(n)).
+2. Señala qué principios SOLID aplican y cuál componente violaría SRP si se mezcla.
+3. Identifica 5 casos borde (vacío, null, overflow, concurrencia, fallo de red).
+
+### Fase 3 — Meta-reflexión (Reflection)
+1. ¿Qué partes DEBE resolver el humano sin IA y por qué?
+2. ¿Qué riesgos de alucinación tendría un LLM si pidiera código directo?
+3. Entregable: tabla Markdown | Requisito | Tipo (RF/RNF) | Criterio verificación | ISO 25010 |
+
+## Formato de salida
+Solo Markdown estructurado. Sin código fuente.</div>
+    </div>
+  </div>
+</div>
+<div class="accordion">
+  <button class="acc-trigger" onclick="toggleAcc(this)" aria-expanded="false">
+    <span class="acc-label">Threat modeling ligero pre-implementación</span>
+    <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
+  </button>
+  <div class="acc-body">
+    <p class="fw-prompt-tier"><strong>ID:</strong> P01-ADV-002 · <strong>Técnica:</strong> Tree-of-thoughts · Adversarial</p>
+    <div class="prompt-block" data-step="1">
+      <div class="prompt-header">
+        <div class="prompt-tag"><span class="dot"></span><span class="prompt-title">prompt · p01-adv-002</span></div>
+        <button type="button" class="copy-btn" onclick="copyP(this)">Copiar</button>
       </div>
-      <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 1C — Diseño antes del código</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p1)"></span><span class="prompt-title">prompt · diseño-previo</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Necesito resolver: <span class="pv">[descripción del problema]</span>
+      <div class="prompt-body">Rol: analista de seguridad en fase de diseño (OWASP ASVS nivel 1).
 
-No me generes código todavía. Primero explícame:
-1. ¿Qué patrón o enfoque algorítmico aplicarías y por qué?
-2. ¿Ventajas y desventajas de ese enfoque frente a otras alternativas?
-3. ¿Qué estructura de datos sería la más adecuada?
-4. ¿Qué casos borde debo considerar?
+Problema definido:
+<span class="pv">[resumen de spec P01-ADV-001]</span>
 
-Cuando confirme que entiendo el enfoque, avanzamos con la implementación.</div>
-        </div></div>
-      </div>
+## Tree-of-thoughts (3 ramas)
+Para cada amenaza STRIDE relevante, desarrolla 3 ramas:
+- Rama A: explotación más probable
+- Rama B: impacto en confidencialidad/integridad
+- Rama C: control mitigador en diseño (sin código)
+
+## Salida requerida
+1. Diagrama textual de flujo de datos (entrada → proceso → almacenamiento)
+2. Tabla | Amenaza | OWASP 2021 | Control diseño | Evidencia futura |
+3. Lista de datos que NUNCA deben enviarse a un LLM en prompts posteriores
+
+No implementar. Solo diseño defensivo.</div>
     </div>
-    <div class="cb">
-      <div class="cb-label">Criterios de verificación ISO 25010</div>
-      <div class="iso-table-wrap"><table class="iso-t">
-        <thead><tr><th>Característica ISO</th><th>Criterio verificable</th><th>Estado</th></tr></thead>
-        <tbody>
-          <tr><td class="attr">Fiabilidad — Madurez</td><td>El propósito está documentado antes de iniciar la sesión</td><td class="check">✓ / ✗</td></tr>
-          <tr><td class="attr">Funcionalidad — Completitud</td><td>Los criterios de aceptación están definidos antes de ver el output</td><td class="check">✓ / ✗</td></tr>
-          <tr><td class="attr">Mantenibilidad — Analizabilidad</td><td>Se identificó qué partes resuelve el desarrollador y cuáles la IA</td><td class="check">✓ / ✗</td></tr>
-          <tr><td class="attr">Seguridad — Confidencialidad</td><td>No se incluyeron datos sensibles reales en el prompt</td><td class="check">✓ / ✗</td></tr>
-        </tbody>
-      </table></div>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Lista de verificación</div>
-      <ul class="checklist">
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Escribí el problema con mis propias palabras antes de abrir la IA</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Definí al menos 3 criterios de aceptación previos</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Identifiqué qué parte resuelvo yo y qué parte apoya la IA</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>El prompt no contiene datos sensibles o credenciales reales</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Pedí la estrategia lógica antes de pedir el código</span></li>
-      </ul>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Rúbrica de evaluación</div>
-      <div class="rubrica-wrap"><table class="rub-t">
-        <thead><tr><th>Criterio</th><th>Logrado</th><th>En proceso</th><th>No logrado</th></tr></thead>
-        <tbody>
-          <tr><td>Definición del problema</td><td><span class="lvl lvl-ok">✓ OK</span> Problema claro y específico antes de consultar</td><td><span class="lvl lvl-mid">~ Parcial</span></td><td><span class="lvl lvl-no">✗ No</span> Delegó definición a la IA</td></tr>
-          <tr><td>Criterios previos</td><td><span class="lvl lvl-ok">✓ OK</span> 3+ criterios documentados</td><td><span class="lvl lvl-mid">~ Parcial</span> 1–2 informales</td><td><span class="lvl lvl-no">✗ No</span> Sin criterios</td></tr>
-          <tr><td>Delimitación del uso</td><td><span class="lvl lvl-ok">✓ OK</span> Claro qué resuelve él y qué la IA</td><td><span class="lvl lvl-mid">~ Parcial</span> Límite difuso</td><td><span class="lvl lvl-no">✗ No</span> IA decide todo</td></tr>
-        </tbody>
-      </table></div>
+  </div>
+</div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">06 · Resultado esperado</div>
+  <div class="fw-block-body"><p>Documento de especificación (1–3 páginas) con requisitos RF/RNF, criterios de aceptación medibles, delimitación humano/IA y tabla de trazabilidad ISO.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">07 · Validación técnica</div>
+  <div class="fw-block-body"><ul>
+<li>Existen ≥3 criterios de aceptación cuantificables o verificables por test</li>
+<li>Tabla de trazabilidad requisito → característica ISO 25010 completada</li>
+<li>Threat model ligero con ≥3 amenazas y controles de diseño</li>
+<li>Ningún dato real/sensible en borradores de prompt</li>
+</ul></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">08 · Métricas</div>
+  <div class="fw-block-body"><div class="fw-metrics"><div class="fw-metric"><div class="fw-metric-val">≥3</div><div class="fw-metric-label">Criterios de aceptación</div></div><div class="fw-metric"><div class="fw-metric-val">100%</div><div class="fw-metric-label">Requisitos con ID único</div></div><div class="fw-metric"><div class="fw-metric-val">0</div><div class="fw-metric-label">Datos sensibles en prompts</div></div></div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">09 · Auditoría</div>
+  <div class="fw-block-body"><ul>
+<li>¿El estudiante puede explicar el problema sin leer el output de la IA?</li>
+<li>¿Los requisitos son verificables con prueba automatizada o inspección?</li>
+<li>¿Se documentó qué decisiones son humanas vs. asistidas?</li>
+</ul></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">10 · Evidencia</div>
+  <div class="fw-block-body"><div class="fw-evidence">EVID-P01: spec-v1.md · threat-model.md · checklist-pre-IA.pdf · commit hash o fecha en bitácora</div><p class="fw-trace" style="margin-top:12px">ISO: <a href="iso-evaluation.html">Preguntas adec_*, fiab_*</a></p></div>
+</div>
     </div>
   </div>
 </div>
 </section>
 
-<!-- ═══ PASO 2 ═══ -->
-<section id="paso2" class="section">
-<div class="s-eyebrow">Paso 2 de 6</div>
+<!-- ═══
+<!-- ═══
+<!-- ═══
+<!-- ═══ MÓDULO P02 ═══ -->
+<section id="paso2" class="section fw-module">
+<div class="s-eyebrow">Módulo 2 de 6 · P02-VAL</div>
 <div class="paso-card" data-step="2">
   <div class="paso-head">
     <div class="paso-num-badge" data-step="2">02</div>
     <div class="paso-head-info">
-      <h3>Validación Técnica del Output</h3>
-      <p>Antes de usar cualquier código generado por IA, verifícalo línea a línea. Nunca asumas que el output es correcto.</p>
+      <h3>Validación técnica del output</h3>
+      <p>Verificación sistemática del código generado: corrección, pruebas, complejidad y alineación con la spec.</p>
     </div>
   </div>
   <div class="paso-body">
-    <div class="tags">
-      <span class="tag tag-risk">Alucinaciones de APIs</span>
-      <span class="tag tag-risk">Código incorrecto no detectado</span>
-      <span class="tag tag-iso">ISO 25010 — Fiabilidad · Mantenibilidad</span>
-      <span class="tag tag-norm">NIST AI RMF — MEASURE 2.5</span>
-    </div>
-    <div class="norm-strip">
-      <div class="norm-pill"><strong>ISO/IEC 25010</strong> — Fiabilidad: Tolerancia a fallos · Mantenibilidad: Analizabilidad</div>
-      <div class="norm-pill"><strong>NIST AI RMF</strong> — MEASURE: Evaluación del rendimiento</div>
-    </div>
-    <div class="cb">
-      <div class="cb-label">¿Por qué es obligatorio?</div>
-      <p>Los LLM generan código con naturaleza probabilística. El 69,2% de los estudiantes encuestados en Cúcuta reportó errores no detectados en código IA, y el 100% de los desarrolladores experimentó vulnerabilidades o errores no auditados. La validación técnica es el control de calidad mínimo que garantiza la fiabilidad del software.</p>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Instrucciones de ejecución</div>
-      <ol class="nsteps">
-        <li><span><strong>Lee el código completo antes de ejecutarlo.</strong> Identifica cada función, variable y flujo lógico. Si no puedes explicar una línea, comprénde la antes de usarla.</span></li>
-        <li><span><strong>Verifica la existencia de métodos y librerías</strong> en la documentación oficial del lenguaje o framework.</span></li>
-        <li><span><strong>Ejecuta pruebas con casos que tú construyas:</strong> caso feliz, valores nulos, valores extremos y un caso de error esperado.</span></li>
-        <li><span><strong>Escribe al menos una prueba unitaria manual</strong> que valide la lógica central del código generado.</span></li>
-        <li><span><strong>Usa un prompt de validación cruzada</strong> pidiendo a la IA que critique su propio output.</span></li>
-      </ol>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Prompts estructurados</div>
-      <div class="accordion">
-        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>Prompt 2A — Revisión crítica del código generado</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body open"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p2)"></span><span class="prompt-title">prompt · revisión-crítica</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Revisa críticamente el siguiente código que generaste:
-
-<span class="pv">[pega el código a revisar]</span>
-
-Analiza:
-1. ¿Existe algún método o clase que no exista en la versión estándar de <span class="pv">[lenguaje/librería]</span>?
-2. ¿Hay condiciones de borde o errores que el código no maneja?
-3. ¿Hay lógica que podría producir resultados incorrectos con entradas atípicas (nulos, vacíos, extremos)?
-4. ¿Qué partes tienen mayor probabilidad de fallar en producción?
-
-Sé crítico. No justifiques los errores, identifícalos.</div>
-        </div></div>
+    <div class="fw-module-grid">
+<div class="fw-block">
+  <div class="fw-block-label">01 · Objetivo</div>
+  <div class="fw-block-body"><p>Instaurar validación basada en evidencia (tests, revisión estática, ejecución) que detecte alucinaciones, APIs inexistentes y regresiones antes de integrar.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">02 · Riesgo mitigado</div>
+  <div class="fw-block-body"><p>Alucinaciones de APIs/librerías; código que compila pero falla en casos borde; deuda técnica invisible; falsa sensación de corrección.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">03 · Estándares</div>
+  <div class="fw-block-body"><div class="fw-standards"><span class="fw-std fw-std-iso">ISO 25010 · Fiabilidad</span><span class="fw-std fw-std-iso">ISO 25010 · Mantenibilidad</span><span class="fw-std fw-std-owasp">OWASP A03 Injection</span><span class="fw-std fw-std-eng">Clean Code · funciones pequeñas</span><span class="fw-std fw-std-eng">Testing · pirámide de pruebas</span></div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">04 · Prompt engineering</div>
+  <div class="fw-block-body"><p class="fw-technique">Self-consistency + Few-shot + Reflection</p><span class="fw-technique-tag">Self-consistency</span><span class="fw-technique-tag">Few-shot</span><span class="fw-technique-tag">Reflection</span></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">05 · Prompts avanzados</div>
+  <div class="fw-block-body">
+<div class="accordion">
+  <button class="acc-trigger open" onclick="toggleAcc(this)" aria-expanded="true">
+    <span class="acc-label">Auditoría de corrección con self-consistency</span>
+    <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
+  </button>
+  <div class="acc-body open">
+    <p class="fw-prompt-tier"><strong>ID:</strong> P02-ADV-001 · <strong>Técnica:</strong> Self-consistency · CoT</p>
+    <div class="prompt-block" data-step="2">
+      <div class="prompt-header">
+        <div class="prompt-tag"><span class="dot"></span><span class="prompt-title">prompt · p02-adv-001</span></div>
+        <button type="button" class="copy-btn" onclick="copyP(this)">Copiar</button>
       </div>
-      <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 2B — Generación de casos de prueba</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p2)"></span><span class="prompt-title">prompt · casos-de-prueba</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Para el siguiente código: <span class="pv">[código]</span>
+      <div class="prompt-body">Eres revisor de código senior. El siguiente código fue generado con asistencia de IA.
 
-Genera casos de prueba que yo ejecute manualmente:
-1. Al menos 2 casos de funcionamiento esperado (caso feliz)
-2. Al menos 2 casos con entradas inválidas o extremas
-3. Al menos 1 caso de error controlado
+## Artefactos
+```<span class="pv">[lenguaje]</span>
+<span class="pv">[pegar código]</span>
+```
 
-Para cada caso: entrada exacta, resultado esperado y criterio que pruebas.
-No generes código de pruebas automáticas. Los ejecutaré manualmente.</div>
-        </div></div>
-      </div>
-      <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 2C — Explicación línea a línea</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p2)"></span><span class="prompt-title">prompt · comprensión-código</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Explícame este código bloque por bloque: <span class="pv">[código]</span>
+Especificación de referencia (P01):
+<span class="pv">[criterios de aceptación]</span>
 
-Para cada sección explica:
-- Qué hace exactamente ese bloque
-- Por qué se tomó esa decisión de implementación
-- Qué pasaría si ese bloque fallara o se eliminara
-- Si hay una forma alternativa de hacer lo mismo
+## Procedimiento Self-consistency (3 pasadas independientes)
+Realiza TRES revisiones separadas (Pass A, B, C). En cada pass:
+1. Verifica alineación con cada criterio de aceptación (tabla ✓/✗/parcial + evidencia).
+2. Detecta APIs, imports o métodos potencialmente alucinados (indica cómo verificar en documentación oficial).
+3. Estima complejidad ciclomática por función (baja/media/alta) y señala funciones > 10 de complejidad.
 
-Necesito entender completamente el código antes de integrarlo.</div>
-        </div></div>
-      </div>
+## Consenso
+Fusiona las 3 pasadas: lista solo hallazgos confirmados en ≥2 passes.
+Prioriza: Critical / High / Medium / Low.
+
+## Salida
+Markdown: Resumen ejecutivo · Tabla de hallazgos · Casos de prueba faltantes (mín. 8: 2 happy, 3 borde, 2 error, 1 seguridad)</div>
     </div>
-    <div class="cb">
-      <div class="cb-label">Lista de verificación</div>
-      <ul class="checklist">
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Leí el código completo antes de ejecutarlo por primera vez</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Verifiqué en documentación oficial que todos los métodos existen</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Ejecuté al menos un caso de prueba que yo diseñé</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Probé al menos un caso con entrada inválida o extrema</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Puedo explicar con mis palabras qué hace cada bloque del código</span></li>
-      </ul>
+  </div>
+</div>
+<div class="accordion">
+  <button class="acc-trigger" onclick="toggleAcc(this)" aria-expanded="false">
+    <span class="acc-label">Anti black-box: explicación forzada (Reflection)</span>
+    <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
+  </button>
+  <div class="acc-body">
+    <p class="fw-prompt-tier"><strong>ID:</strong> P02-ADV-002 · <strong>Técnica:</strong> Reflection · Few-shot</p>
+    <div class="prompt-block" data-step="2">
+      <div class="prompt-header">
+        <div class="prompt-tag"><span class="dot"></span><span class="prompt-title">prompt · p02-adv-002</span></div>
+        <button type="button" class="copy-btn" onclick="copyP(this)">Copiar</button>
+      </div>
+      <div class="prompt-body">El siguiente código fue generado con IA. El desarrollador DEBE poder defenderlo oralmente.
+
+```<span class="pv">[código]</span>```
+
+## Reflection (sin simplificar)
+1. Explica el flujo de control en lenguaje natural (máx. 15 líneas).
+2. Para cada función pública: precondición, postcondición, efectos secundarios.
+3. Identifica 3 líneas que el desarrollador DEBE entender sin IA — si no puede, el código es black-box.
+4. Propón refactor mínimo para reducir complejidad ciclomática > 10.
+
+## Few-shot de salida
+| Función | CC | ¿Explicable? | Acción |
+|---------|----|--------------|--------|
+
+Prohibido: "el código es correcto" sin evidencia.</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">06 · Resultado esperado</div>
+  <div class="fw-block-body"><p>Informe de revisión con hallazgos consensuados, suite mínima de casos de prueba y registro de APIs verificadas.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">07 · Validación técnica</div>
+  <div class="fw-block-body"><ul>
+<li>Código ejecutado localmente sin errores en happy path</li>
+<li>≥80% de criterios P01 verificados con evidencia</li>
+<li>Lista de APIs validadas contra documentación oficial</li>
+<li>Complejidad ciclomática documentada para funciones críticas</li>
+</ul></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">08 · Métricas</div>
+  <div class="fw-block-body"><div class="fw-metrics"><div class="fw-metric"><div class="fw-metric-val">≥2/3</div><div class="fw-metric-label">Passes con consenso</div></div><div class="fw-metric"><div class="fw-metric-val">≥8</div><div class="fw-metric-label">Casos de prueba definidos</div></div><div class="fw-metric"><div class="fw-metric-val">0</div><div class="fw-metric-label">Critical sin mitigar</div></div></div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">09 · Auditoría</div>
+  <div class="fw-block-body"><ul>
+<li>¿Cada hallazgo Critical tiene test o fix asociado?</li>
+<li>¿Se probó al menos un caso borde no contemplado por la IA?</li>
+<li>¿El desarrollador explica el código línea crítica sin leer comentarios IA?</li>
+</ul></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">10 · Evidencia</div>
+  <div class="fw-block-body"><div class="fw-evidence">EVID-P02: review-report.md · test-plan.md · salida de tests · captura ejecución</div><p class="fw-trace" style="margin-top:12px">ISO: <a href="iso-evaluation.html">fiab_*, mant_*</a></p></div>
+</div>
     </div>
   </div>
 </div>
 </section>
 
-<!-- ═══ PASO 3 ═══ -->
-<section id="paso3" class="section">
-<div class="s-eyebrow">Paso 3 de 6</div>
+<!-- ═══
+<!-- ═══
+<!-- ═══
+<!-- ═══ MÓDULO P03 ═══ -->
+<section id="paso3" class="section fw-module">
+<div class="s-eyebrow">Módulo 3 de 6 · P03-SEC</div>
 <div class="paso-card" data-step="3">
   <div class="paso-head">
     <div class="paso-num-badge" data-step="3">03</div>
     <div class="paso-head-info">
-      <h3>Revisión de Seguridad</h3>
-      <p>Todo código que interactúe con datos, usuarios o redes debe auditarse explícitamente antes de integrarse.</p>
+      <h3>Auditoría de seguridad y cumplimiento</h3>
+      <p>Evaluación OWASP Top 10, protección de datos y controles antes de merge o entrega.</p>
     </div>
   </div>
   <div class="paso-body">
-    <div class="tags">
-      <span class="tag tag-risk">Vulnerabilidades de seguridad</span>
-      <span class="tag tag-risk">Exposición de datos sensibles</span>
-      <span class="tag tag-iso">ISO 25010 — Seguridad</span>
-      <span class="tag tag-norm">Ley 1581/2012 · NIST AI RMF</span>
-    </div>
-    <div class="norm-strip">
-      <div class="norm-pill"><strong>ISO/IEC 25010</strong> — Confidencialidad · Integridad · No-Repudio</div>
-      <div class="norm-pill"><strong>Ley 1581 de 2012</strong> — Protección de datos Colombia</div>
-      <div class="norm-pill"><strong>NIST AI RMF</strong> — MAP: Identificación de riesgos</div>
-      <div class="norm-pill"><strong>Reglamento UE 2024/1689</strong> — Art. 9</div>
-    </div>
-    <div class="cb">
-      <div class="cb-label">¿Por qué es obligatorio?</div>
-      <p>Los modelos se entrenaron con código que contiene patrones inseguros documentados. Sandoval et al. (2023) reporta que el 36% de las vulnerabilidades en código IA proviene del propio modelo. El 84,6% de los desarrolladores en Cúcuta nunca usa código IA directamente en componentes de seguridad, evidenciando una conciencia del riesgo que debe traducirse en protocolo explícito.</p>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Instrucciones de ejecución</div>
-      <ol class="nsteps">
-        <li><span><strong>Clasifica el tipo de dato:</strong> datos personales, credenciales, información financiera o de salud. Aplica el nivel de revisión más exigente si aplica.</span></li>
-        <li><span><strong>Revisa las 5 vulnerabilidades más comunes:</strong> inyección SQL, credenciales hardcodeadas, ausencia de validación de entradas, exposición en logs y cifrado obsoleto.</span></li>
-        <li><span><strong>Verifica cumplimiento con Ley 1581/2012</strong> si el código maneja datos personales de ciudadanos colombianos.</span></li>
-        <li><span><strong>Usa el prompt de auditoría de seguridad</strong> para obtener segunda opinión de la IA sobre su propio output.</span></li>
-        <li><span><strong>Documenta el resultado de la revisión</strong> especificando qué se revisó, qué se encontró y qué se corrigió.</span></li>
-      </ol>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Prompts estructurados</div>
-      <div class="accordion">
-        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>Prompt 3A — Auditoría de seguridad completa</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body open"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p3)"></span><span class="prompt-title">prompt · auditoría-seguridad</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Realiza una auditoría de seguridad del siguiente código.
-Contexto: <span class="pv">[describe qué hace el código y en qué entorno se usará]</span>
-
-<span class="pv">[pega el código]</span>
-
-Revisa:
-1. ¿Hay riesgo de inyección (SQL, HTML, comandos) en las entradas?
-2. ¿Hay credenciales o tokens hardcodeados?
-3. ¿El código valida y sanitiza correctamente las entradas?
-4. ¿Hay información sensible expuesta en logs o mensajes de error?
-5. ¿Las funciones de cifrado son seguras y vigentes?
-6. ¿Aplica el principio de mínimo privilegio?
-
-Para cada hallazgo indica nivel de riesgo (alto/medio/bajo) y la corrección específica.</div>
-        </div></div>
+    <div class="fw-module-grid">
+<div class="fw-block">
+  <div class="fw-block-label">01 · Objetivo</div>
+  <div class="fw-block-body"><p>Aplicar auditoría de seguridad estructurada al código asistido por IA, mapeando hallazgos a OWASP e ISO 25010 Seguridad/Protección.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">02 · Riesgo mitigado</div>
+  <div class="fw-block-body"><p>Vulnerabilidades OWASP (inyección, XSS, secrets); exposición de PII en logs; dependencias con CVEs críticos.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">03 · Estándares</div>
+  <div class="fw-block-body"><div class="fw-standards"><span class="fw-std fw-std-owasp">OWASP Top 10 2021</span><span class="fw-std fw-std-iso">ISO 25010 · Seguridad</span><span class="fw-std fw-std-iso">ISO 25010 · Protección</span><span class="fw-std fw-std-iso">Ley 1581 / GDPR</span><span class="fw-std fw-std-eng">CWE/SANS Top 25</span></div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">04 · Prompt engineering</div>
+  <div class="fw-block-body"><p class="fw-technique">Adversarial prompting + Tree-of-thoughts</p><span class="fw-technique-tag">Adversarial</span><span class="fw-technique-tag">ToT</span><span class="fw-technique-tag">CoT</span></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">05 · Prompts avanzados</div>
+  <div class="fw-block-body">
+<div class="accordion">
+  <button class="acc-trigger open" onclick="toggleAcc(this)" aria-expanded="true">
+    <span class="acc-label">Auditoría OWASP adversarial (rol atacante)</span>
+    <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
+  </button>
+  <div class="acc-body open">
+    <p class="fw-prompt-tier"><strong>ID:</strong> P03-ADV-001 · <strong>Técnica:</strong> Adversarial · ToT</p>
+    <div class="prompt-block" data-step="3">
+      <div class="prompt-header">
+        <div class="prompt-tag"><span class="dot"></span><span class="prompt-title">prompt · p03-adv-001</span></div>
+        <button type="button" class="copy-btn" onclick="copyP(this)">Copiar</button>
       </div>
-      <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 3B — Verificación de protección de datos</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p3)"></span><span class="prompt-title">prompt · cumplimiento-normativo</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Este código maneja datos personales: <span class="pv">[tipo: nombres, correos, identificaciones, etc.]</span>
+      <div class="prompt-body">Modo dual obligatorio:
 
-<span class="pv">[código]</span>
+## Rol 1 — Desarrollador defensor
+Describe brevemente el sistema y el código:
+<span class="pv">[contexto + código o rutas críticas]</span>
 
-Analiza si cumple con los principios básicos de protección de datos:
-1. Minimización: ¿Solo se recolectan datos estrictamente necesarios?
-2. Integridad: ¿Los datos están protegidos contra modificación no autorizada?
-3. Confidencialidad: ¿No son accesibles para usuarios no autorizados?
-4. ¿Hay algún punto donde los datos quedan expuestos sin conocimiento del usuario?
+## Rol 2 — Atacante (Adversarial)
+Asume que el código fue escrito por un LLM optimista. Intenta explotar:
+- A01 Broken Access Control
+- A02 Cryptographic Failures
+- A03 Injection (SQL/NoSQL/OS)
+- A05 Security Misconfiguration
+- A06 Vulnerable Components
+- A07 Auth failures
+- A09 Logging failures
 
-Indica modificaciones concretas para mejorar el cumplimiento.</div>
-        </div></div>
-      </div>
-      <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 3C — Revisión de componentes de autenticación</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p3)"></span><span class="prompt-title">prompt · autenticación-segura</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Este código implementa <span class="pv">[autenticación / autorización / manejo de sesiones]</span>:
+Por cada categoría OWASP aplicable:
+1. Vector de ataque concreto (payload ejemplo, NO ejecutar)
+2. Línea o módulo vulnerable
+3. Severidad CVSS estimada (baja/media/alta/crítica)
+4. Remediación con patrón seguro (parametrización, CSP, etc.)
 
-<span class="pv">[código]</span>
+## Rol 3 — Auditor neutro
+Consolida en matriz | OWASP | Hallazgo | ISO 25010 | Fix | Estado |
 
-Revisa:
-1. ¿Se usan librerías de seguridad recomendadas para <span class="pv">[lenguaje/framework]</span>?
-2. ¿Hay vectores de ataque conocidos que este código no mitiga?
-3. ¿Las contraseñas se almacenan con hash+sal, no en texto plano?
-4. ¿Hay control de intentos fallidos y sesiones expiradas?
-5. ¿Qué pasaría si un atacante manipula directamente los parámetros de entrada?
-
-Dame el nivel de riesgo general y las 3 correcciones más urgentes.</div>
-        </div></div>
-      </div>
+Prohibido: consejos genéricos sin referencia al código subido.</div>
     </div>
-    <div class="cb">
-      <div class="cb-label">Lista de verificación</div>
-      <ul class="checklist">
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Clasifiqué el tipo de dato que maneja el código</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Revisé que no haya credenciales o tokens directamente en el código</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Verifiqué que las entradas del usuario se validan antes de usarse</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Confirmé que los mensajes de error no exponen información interna</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Apliqué el prompt de auditoría y documenté los hallazgos</span></li>
-      </ul>
+  </div>
+</div>
+<div class="accordion">
+  <button class="acc-trigger" onclick="toggleAcc(this)" aria-expanded="false">
+    <span class="acc-label">SBOM y deuda de dependencias (Few-shot)</span>
+    <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
+  </button>
+  <div class="acc-body">
+    <p class="fw-prompt-tier"><strong>ID:</strong> P03-ADV-002 · <strong>Técnica:</strong> Few-shot · CoT</p>
+    <div class="prompt-block" data-step="3">
+      <div class="prompt-header">
+        <div class="prompt-tag"><span class="dot"></span><span class="prompt-title">prompt · p03-adv-002</span></div>
+        <button type="button" class="copy-btn" onclick="copyP(this)">Copiar</button>
+      </div>
+      <div class="prompt-body">Analiza dependencias del proyecto para amplificación de deuda técnica y CVEs.
+
+## Input
+- Gestor: <span class="pv">[npm / pip / maven / gradle]</span>
+- Salida de audit: <span class="pv">[pegar npm audit / pip-audit / equivalente]</span>
+- lockfile presente: <span class="pv">[sí/no]</span>
+
+## CoT
+1. Clasifica dependencias: directas vs transitivas.
+2. Señala paquetes con mantenimiento dudoso o typosquatting risk.
+3. Mapea CVEs a OWASP A06.
+
+## Salida
+Tabla | Paquete | Versión | CVE | Severidad | Acción (update/pin/replace) | ISO impacto |</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">06 · Resultado esperado</div>
+  <div class="fw-block-body"><p>Informe de auditoría OWASP con matriz de hallazgos, remediaciones priorizadas y verificación de dependencias (npm audit / pip-audit).</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">07 · Validación técnica</div>
+  <div class="fw-block-body"><ul>
+<li>Matriz OWASP con ≥5 categorías evaluadas explícitamente</li>
+<li>0 secretos hardcodeados (grep + revisión manual)</li>
+<li>Dependencias: 0 vulnerabilidades Critical abiertas</li>
+<li>Datos personales: principios Ley 1581 documentados</li>
+</ul></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">08 · Métricas</div>
+  <div class="fw-block-body"><div class="fw-metrics"><div class="fw-metric"><div class="fw-metric-val">0</div><div class="fw-metric-label">Secrets en repo</div></div><div class="fw-metric"><div class="fw-metric-val">0</div><div class="fw-metric-label">CVE Critical</div></div><div class="fw-metric"><div class="fw-metric-val">100%</div><div class="fw-metric-label">OWASP aplicables cubiertos</div></div></div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">09 · Auditoría</div>
+  <div class="fw-block-body"><ul>
+<li>¿Cada hallazgo High+ tiene ticket o commit de fix?</li>
+<li>¿Se ejecutó herramienta SAST o audit de dependencias?</li>
+<li>¿Logs y errores no exponen PII?</li>
+</ul></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">10 · Evidencia</div>
+  <div class="fw-block-body"><div class="fw-evidence">EVID-P03: owasp-audit.md · npm-audit.txt · lista de redacción de secrets</div><p class="fw-trace" style="margin-top:12px">ISO: <a href="iso-evaluation.html">seg_*, prot_*</a></p></div>
+</div>
     </div>
   </div>
 </div>
 </section>
 
-<!-- ═══ PASO 4 ═══ -->
-<section id="paso4" class="section">
-<div class="s-eyebrow">Paso 4 de 6</div>
+<!-- ═══
+<!-- ═══
+<!-- ═══
+<!-- ═══ MÓDULO P04 ═══ -->
+<section id="paso4" class="section fw-module">
+<div class="s-eyebrow">Módulo 4 de 6 · P04-SUP</div>
 <div class="paso-card" data-step="4">
   <div class="paso-head">
     <div class="paso-num-badge" data-step="4">04</div>
     <div class="paso-head-info">
-      <h3>Supervisión Humana Activa</h3>
-      <p>Mantén el control de las decisiones técnicas durante todo el proceso. La IA propone, tú decides.</p>
+      <h3>Supervisión humana y trazabilidad de decisiones</h3>
+      <p>Registro de decisiones técnicas, ADRs y control del sesgo de automatización.</p>
     </div>
   </div>
   <div class="paso-body">
-    <div class="tags">
-      <span class="tag tag-risk">Sesgo de automatización</span>
-      <span class="tag tag-risk">Delegación de decisiones críticas</span>
-      <span class="tag tag-iso">ISO 25010 — Mantenibilidad</span>
-      <span class="tag tag-norm">Reglamento UE 2024/1689 — Art. 14</span>
-    </div>
-    <div class="norm-strip">
-      <div class="norm-pill"><strong>Reglamento UE 2024/1689</strong> — Art. 14: Supervisión humana</div>
-      <div class="norm-pill"><strong>ISO/IEC 25010</strong> — Mantenibilidad: Modificabilidad</div>
-      <div class="norm-pill"><strong>NIST AI RMF</strong> — MANAGE: Control humano</div>
-    </div>
-    <div class="cb">
-      <div class="cb-label">¿Por qué es obligatorio?</div>
-      <p>El sesgo de automatización es la tendencia cognitiva a aceptar sugerencias de un sistema automático sin pensamiento crítico. En software con IA este sesgo es especialmente peligroso porque los modelos generan respuestas con alta confianza superficial incluso cuando están equivocados. El profesional es siempre el responsable último del código que integra.</p>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Instrucciones de ejecución</div>
-      <ol class="nsteps">
-        <li><span><strong>Toma siempre la decisión de arquitectura tú mismo.</strong> La estructura general, el patrón de diseño y la organización de módulos deben ser decisiones tuyas.</span></li>
-        <li><span><strong>Cuestiona activamente cada sugerencia:</strong> ¿por qué eligió esta solución y no otra? ¿Existe una alternativa más simple o segura?</span></li>
-        <li><span><strong>No aceptes la primera respuesta sin cuestionarla.</strong> Pide al menos una alternativa y evalúa cuál se adapta mejor a tu contexto real.</span></li>
-        <li><span><strong>Documenta las decisiones técnicas importantes.</strong> Registra por qué usaste el código IA tal como está o con modificaciones.</span></li>
-        <li><span><strong>Establece puntos de control periódicos.</strong> Si más del 60% del código fue generado por IA, activa una revisión crítica del proceso.</span></li>
-      </ol>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Prompts estructurados</div>
-      <div class="accordion">
-        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>👁 Prompt 4A — Solicitud de alternativas para decisión informada</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body open"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p4)"></span><span class="prompt-title">prompt · alternativas-técnicas</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Para el problema de <span class="pv">[describe el problema]</span>, me propusiste: <span class="pv">[solución propuesta]</span>
-
-Antes de adoptarla, dame al menos 2 enfoques diferentes con:
-- Rendimiento y eficiencia
-- Facilidad de mantenimiento futuro
-- Complejidad de implementación
-- Adecuación para <span class="pv">[equipo pequeño / entorno académico / producción]</span>
-
-Yo decidiré cuál adoptar después de ver las opciones.</div>
-        </div></div>
+    <div class="fw-module-grid">
+<div class="fw-block">
+  <div class="fw-block-label">01 · Objetivo</div>
+  <div class="fw-block-body"><p>Garantizar supervisión humana efectiva (UE Art. 14) documentando alternativas evaluadas y decisiones finales sobre código asistido.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">02 · Riesgo mitigado</div>
+  <div class="fw-block-body"><p>Sesgo de automatización; delegación de decisiones arquitectónicas; imposibilidad de auditar quién decidió qué.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">03 · Estándares</div>
+  <div class="fw-block-body"><div class="fw-standards"><span class="fw-std fw-std-iso">Reglamento UE · Art. 14</span><span class="fw-std fw-std-iso">ISO 25010 · Mantenibilidad</span><span class="fw-std fw-std-eng">SOLID · DIP/OCP</span><span class="fw-std fw-std-eng">ADR (Architecture Decision Records)</span><span class="fw-std fw-std-iso">NIST AI RMF · MANAGE</span></div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">04 · Prompt engineering</div>
+  <div class="fw-block-body"><p class="fw-technique">Reflection prompting + Meta-prompting</p><span class="fw-technique-tag">Reflection</span><span class="fw-technique-tag">Meta-prompt</span></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">05 · Prompts avanzados</div>
+  <div class="fw-block-body">
+<div class="accordion">
+  <button class="acc-trigger open" onclick="toggleAcc(this)" aria-expanded="true">
+    <span class="acc-label">ADR asistido con reflexión de alternativas</span>
+    <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
+  </button>
+  <div class="acc-body open">
+    <p class="fw-prompt-tier"><strong>ID:</strong> P04-ADV-001 · <strong>Técnica:</strong> Reflection · CoT</p>
+    <div class="prompt-block" data-step="4">
+      <div class="prompt-header">
+        <div class="prompt-tag"><span class="dot"></span><span class="prompt-title">prompt · p04-adv-001</span></div>
+        <button type="button" class="copy-btn" onclick="copyP(this)">Copiar</button>
       </div>
-      <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>👁 Prompt 4B — Justificación de decisión técnica propia</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p4)"></span><span class="prompt-title">prompt · validación-decisión</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Tomé la decisión de usar <span class="pv">[describe tu decisión técnica]</span> para resolver <span class="pv">[el problema]</span>.
+      <div class="prompt-body">Genera un Architecture Decision Record (ADR) en formato estándar.
 
-Mi contexto específico es: <span class="pv">[lenguaje, tamaño del proyecto, requisitos, equipo]</span>
+## Decisión pendiente
+<span class="pv">[ej. elegir Redis vs PostgreSQL para cola, ORM vs SQL raw]</span>
 
-¿Hay alguna razón técnica por la que esta decisión podría ser incorrecta en mi contexto? Si la hay, ¿qué criterio debería considerar?
+## Contexto
+<span class="pv">[restricciones del proyecto]</span>
 
-No me cambies la decisión. Ayúdame a evaluarla críticamente.</div>
-        </div></div>
-      </div>
-      <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>👁 Prompt 4C — Revisión de coherencia arquitectural</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p4)"></span><span class="prompt-title">prompt · coherencia-arquitectura</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Mi arquitectura es: <span class="pv">[describe la estructura de tu proyecto]</span>
-La definí con base en: <span class="pv">[tus criterios de diseño propios]</span>
+## Instrucción Reflection
+Antes de recomendar:
+1. Enumera 3 alternativas con pros/contras técnicos (rendimiento, mantenibilidad, seguridad, costo).
+2. Para cada alternativa, indica qué principio SOLID favorece o compromete.
+3. Declara explícitamente: "Como supervisor humano, rechazo/reviso la sugerencia X porque..."
+4. Registra qué fragmentos fueron propuestos por IA vs. formulados por el humano.
 
-He usado IA para implementar componentes específicos dentro de esta arquitectura.
-
-¿Hay algún componente que la IA haya implementado de una manera incompatible con mi arquitectura, o que introduzca dependencias no planificadas?
-
-Dame un diagnóstico de coherencia arquitectural.</div>
-        </div></div>
-      </div>
+## Formato ADR
+- Estado: Propuesto | Aceptado
+- Consecuencias positivas/negativas
+- Métricas de validación post-implementación
+- Enlace a evidencia ISO (mantenibilidad, flexibilidad)</div>
     </div>
-    <div class="cb">
-      <div class="cb-label">Lista de verificación</div>
-      <ul class="checklist">
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>La arquitectura general fue definida por mí, no delegada a la IA</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Evalué al menos una alternativa antes de adoptar la solución de la IA</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Puedo defender técnicamente cada decisión de diseño del proyecto</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Documenté brevemente las decisiones técnicas más importantes</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Los componentes IA son coherentes con mi diseño original</span></li>
-      </ul>
+  </div>
+</div>
+<div class="accordion">
+  <button class="acc-trigger" onclick="toggleAcc(this)" aria-expanded="false">
+    <span class="acc-label">Log de supervisión continua (meta-prompt)</span>
+    <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
+  </button>
+  <div class="acc-body">
+    <p class="fw-prompt-tier"><strong>ID:</strong> P04-ADV-002 · <strong>Técnica:</strong> Meta-prompt</p>
+    <div class="prompt-block" data-step="4">
+      <div class="prompt-header">
+        <div class="prompt-tag"><span class="dot"></span><span class="prompt-title">prompt · p04-adv-002</span></div>
+        <button type="button" class="copy-btn" onclick="copyP(this)">Copiar</button>
+      </div>
+      <div class="prompt-body">Genera plantilla de log de supervisión para sesión de desarrollo con IA.
+
+## Formato por entrada
+| Timestamp | Prompt ID | Fragmento IA/humano | Decisión humana | Evidencia (commit/test) |
+
+Incluye 5 entradas de ejemplo realistas y reglas:
+- Ningún merge sin fila de validación P02
+- Ningún secret en prompt
+- Vendor/modelo documentado (mitigar vendor dependence)
+
+Salida: Markdown listo para docs/supervision-log.md</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">06 · Resultado esperado</div>
+  <div class="fw-block-body"><p>ADR firmado con alternativas descartadas, rol humano explícito y plan de validación post-decisión.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">07 · Validación técnica</div>
+  <div class="fw-block-body"><ul>
+<li>≥3 alternativas documentadas con trade-offs</li>
+<li>Decisión final atribuida a responsable humano nombrado</li>
+<li>Métrica de seguimiento definida (plazo ≤ 2 semanas)</li>
+</ul></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">08 · Métricas</div>
+  <div class="fw-block-body"><div class="fw-metrics"><div class="fw-metric"><div class="fw-metric-val">≥3</div><div class="fw-metric-label">Alternativas evaluadas</div></div><div class="fw-metric"><div class="fw-metric-val">1</div><div class="fw-metric-label">ADR por decisión mayor</div></div><div class="fw-metric"><div class="fw-metric-val">100%</div><div class="fw-metric-label">Decisiones con owner humano</div></div></div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">09 · Auditoría</div>
+  <div class="fw-block-body"><ul>
+<li>¿El ADR existe antes del merge de la decisión?</li>
+<li>¿Se puede reconstruir el hilo IA→humano→código?</li>
+</ul></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">10 · Evidencia</div>
+  <div class="fw-block-body"><div class="fw-evidence">EVID-P04: docs/adr/NNNN-titulo.md · log-supervision.md</div><p class="fw-trace" style="margin-top:12px">ISO: <a href="iso-evaluation.html">mant_*, flex_*</a></p></div>
+</div>
     </div>
   </div>
 </div>
 </section>
 
-<!-- ═══ PASO 5 ═══ -->
-<section id="paso5" class="section">
-<div class="s-eyebrow">Paso 5 de 6</div>
+<!-- ═══
+<!-- ═══
+<!-- ═══
+<!-- ═══ MÓDULO P05 ═══ -->
+<section id="paso5" class="section fw-module">
+<div class="s-eyebrow">Módulo 5 de 6 · P05-ETH</div>
 <div class="paso-card" data-step="5">
   <div class="paso-head">
     <div class="paso-num-badge" data-step="5">05</div>
     <div class="paso-head-info">
-      <h3>Uso Ético y Declaración de Autoría</h3>
-      <p>Declara el uso de IA en tu trabajo de forma transparente. La honestidad sobre el proceso es un requisito ético y profesional.</p>
+      <h3>Ética, autoría y cumplimiento académico</h3>
+      <p>Transparencia de uso de IA, PI, licencias y declaración formal de autoría.</p>
     </div>
   </div>
   <div class="paso-body">
-    <div class="tags">
-      <span class="tag tag-risk">Fraude académico</span>
-      <span class="tag tag-risk">Violación de propiedad intelectual</span>
-      <span class="tag tag-iso">ISO 25010 — Seguridad · Fiabilidad</span>
-      <span class="tag tag-norm">Ley 23/1982 · CONPES 4144</span>
-    </div>
-    <div class="norm-strip">
-      <div class="norm-pill"><strong>Ley 23 de 1982</strong> — Derechos de autor Colombia</div>
-      <div class="norm-pill"><strong>CONPES 4144 de 2025</strong> — Ética en IA</div>
-      <div class="norm-pill"><strong>Reglamento UE 2024/1689</strong> — Art. 52: Transparencia</div>
-      <div class="norm-pill"><strong>IEEE 7000</strong> — Diseño ético</div>
-    </div>
-    <div class="cb">
-      <div class="cb-label">¿Por qué es obligatorio?</div>
-      <p>Presentar como propio un trabajo generado principalmente por IA constituye deshonestidad académica. El código IA puede incorporar fragmentos con licencias de código abierto sin atribución. La transparencia no es debilidad: es indicador de madurez profesional. El 84,6% de los desarrolladores en Cúcuta no tiene lineamientos éticos formales para datos de clientes.</p>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Instrucciones de ejecución</div>
-      <ol class="nsteps">
-        <li><span><strong>Registra qué partes usaron IA:</strong> sección de código, documentación o análisis asistido, especificando qué herramienta y para qué propósito.</span></li>
-        <li><span><strong>Incluye una declaración de uso de IA</strong> en tus entregas académicas y proyectos profesionales.</span></li>
-        <li><span><strong>Verifica las licencias del código generado.</strong> El código IA puede reproducir fragmentos bajo licencias MIT, GPL, Apache.</span></li>
-        <li><span><strong>No uses IA para generar datos ficticios de investigación.</strong> Es falsedad en documento con consecuencias legales y académicas.</span></li>
-        <li><span><strong>Aplica el principio de proporcionalidad:</strong> el razonamiento, análisis y conclusiones deben ser elaboración propia; la IA apoya en formato y redacción.</span></li>
-      </ol>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Prompts estructurados</div>
-      <div class="accordion">
-        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>️ Prompt 5A — Generación de declaración de uso de IA</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body open"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p5)"></span><span class="prompt-title">prompt · declaración-autoría</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Ayúdame a redactar una declaración de uso de IA para mi trabajo.
-
-El trabajo es: <span class="pv">[tesis / proyecto de aula / documentación técnica]</span>
-Herramientas usadas: <span class="pv">[ChatGPT / GitHub Copilot / Gemini / Claude]</span>
-Las usé para: <span class="pv">[corrección de redacción / generación de código de ejemplo / búsqueda / formateo]</span>
-Partes exclusivamente mías: <span class="pv">[análisis, conclusiones, metodología, diseño]</span>
-
-Redacta una declaración honesta, clara y de no más de 150 palabras.</div>
-        </div></div>
+    <div class="fw-module-grid">
+<div class="fw-block">
+  <div class="fw-block-label">01 · Objetivo</div>
+  <div class="fw-block-body"><p>Asegurar autenticidad, transparencia y cumplimiento de políticas institucionales y Ley 23/1982 sobre autoría y licencias.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">02 · Riesgo mitigado</div>
+  <div class="fw-block-body"><p>Fraude académico; violación de licencias open source; plagio de código generado sin atribución.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">03 · Estándares</div>
+  <div class="fw-block-body"><div class="fw-standards"><span class="fw-std fw-std-iso">ISO 25010 · Autenticidad</span><span class="fw-std fw-std-iso">Ley 23 / PI</span><span class="fw-std fw-std-iso">IEEE 7000</span><span class="fw-std fw-std-iso">CONPES 4144</span><span class="fw-std fw-std-eng">Licencias OSS (MIT, GPL, etc.)</span></div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">04 · Prompt engineering</div>
+  <div class="fw-block-body"><p class="fw-technique">Meta-prompting + Chain-of-Thought</p><span class="fw-technique-tag">Meta-prompt</span><span class="fw-technique-tag">CoT</span></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">05 · Prompts avanzados</div>
+  <div class="fw-block-body">
+<div class="accordion">
+  <button class="acc-trigger open" onclick="toggleAcc(this)" aria-expanded="true">
+    <span class="acc-label">Declaración de autoría y licencias (meta-prompt institucional)</span>
+    <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
+  </button>
+  <div class="acc-body open">
+    <p class="fw-prompt-tier"><strong>ID:</strong> P05-ADV-001 · <strong>Técnica:</strong> Meta-prompt · CoT</p>
+    <div class="prompt-block" data-step="5">
+      <div class="prompt-header">
+        <div class="prompt-tag"><span class="dot"></span><span class="prompt-title">prompt · p05-adv-001</span></div>
+        <button type="button" class="copy-btn" onclick="copyP(this)">Copiar</button>
       </div>
-      <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>️ Prompt 5B — Revisión ética del proyecto</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p5)"></span><span class="prompt-title">prompt · revisión-ética</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Mi proyecto de software: <span class="pv">[describe qué hace el sistema]</span>
-Manejará datos de: <span class="pv">[estudiantes / clientes / empleados]</span>
+      <div class="prompt-body">Plantilla para declaración formal de entrega académica/profesional.
 
-Quiero una revisión ética:
-1. ¿Hay implicaciones éticas no consideradas en el diseño?
-2. ¿Los datos de los usuarios se tratan con la privacidad que merecen?
-3. ¿El sistema podría generar discriminación o sesgo hacia algún grupo?
-4. ¿Hay decisiones automatizadas que deberían requerir supervisión humana?
+## Datos del proyecto
+- Autor humano: <span class="pv">[nombre]</span>
+- Herramientas IA: <span class="pv">[ChatGPT, Copilot, Claude, etc.]</span>
+- Porcentaje estimado asistencia IA: <span class="pv">[rango justificado]</span>
 
-Dame un diagnóstico con las recomendaciones más importantes.</div>
-        </div></div>
-      </div>
-      <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>️ Prompt 5C — Análisis de sesgos del sistema</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p5)"></span><span class="prompt-title">prompt · análisis-sesgos</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Mi sistema <span class="pv">[descripción]</span> usa datos: <span class="pv">[tipo de datos de entrada]</span>
+## CoT — Desglose de autoría
+Para cada componente del repositorio:
+1. ¿Fue diseñado por humano, generado por IA, o híbrido?
+2. ¿Hubo revisión línea a línea? (sí/no + alcance)
+3. ¿Licencia de dependencias compatible con entrega institucional?
 
-Parte de la lógica fue generada con IA. Verifica si reproduce sesgos no intencionales:
-1. ¿Los datos de entrada representan de forma desigual a distintos grupos?
-2. ¿La lógica produce resultados sistemáticamente diferentes para distintos perfiles sin justificación?
-3. ¿Qué grupos podrían verse perjudicados de forma desproporcionada?
-4. ¿Qué mecanismos de corrección humana debería incluir el sistema?</div>
-        </div></div>
-      </div>
+## Salida
+Documento "Declaración de Uso de IA" con:
+- Secciones obligatorias universidad
+- Tabla de componentes y autoría
+- Riesgos éticos residuales y mitigación
+- Firma y fecha
+
+NO minimizar el uso de IA. Transparencia completa.</div>
     </div>
-    <div class="cb">
-      <div class="cb-label">Lista de verificación</div>
-      <ul class="checklist">
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Tengo registro de qué partes usaron IA y para qué</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Incluí o prepararé una declaración de uso de IA en mi entrega</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>No hay datos de investigación ficticios generados por IA</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Revisé las implicaciones éticas del sistema para sus usuarios</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>El análisis y conclusiones del trabajo son de mi propio razonamiento</span></li>
-      </ul>
+  </div>
+</div>
+<div class="accordion">
+  <button class="acc-trigger" onclick="toggleAcc(this)" aria-expanded="false">
+    <span class="acc-label">Matriz de compatibilidad de licencias OSS</span>
+    <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
+  </button>
+  <div class="acc-body">
+    <p class="fw-prompt-tier"><strong>ID:</strong> P05-ADV-002 · <strong>Técnica:</strong> CoT · Few-shot</p>
+    <div class="prompt-block" data-step="5">
+      <div class="prompt-header">
+        <div class="prompt-tag"><span class="dot"></span><span class="prompt-title">prompt · p05-adv-002</span></div>
+        <button type="button" class="copy-btn" onclick="copyP(this)">Copiar</button>
+      </div>
+      <div class="prompt-body">Analiza licencias de dependencias y código generado.
+
+## Input
+<span class="pv">[package.json / requirements.txt / lista manual]</span>
+
+## CoT
+1. Identifica licencias (MIT, Apache-2.0, GPL, AGPL, etc.).
+2. Evalúa compatibilidad con entrega académica/comercial del proyecto.
+3. Señala riesgos de copyleft y obligaciones de atribución.
+
+## Salida
+Matriz | Componente | Licencia | Compatible | Acción requerida |</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">06 · Resultado esperado</div>
+  <div class="fw-block-body"><p>Declaración de uso de IA firmada, tabla de licencias de dependencias y verificación de compatibilidad OSS.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">07 · Validación técnica</div>
+  <div class="fw-block-body"><ul>
+<li>Declaración incluye herramientas, prompts tipo y nivel de asistencia</li>
+<li>Licencias de terceros inventariadas (SPDX o equivalente)</li>
+<li>Política académica citada y cumplida</li>
+</ul></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">08 · Métricas</div>
+  <div class="fw-block-body"><div class="fw-metrics"><div class="fw-metric"><div class="fw-metric-val">100%</div><div class="fw-metric-label">Componentes con autoría</div></div><div class="fw-metric"><div class="fw-metric-val">100%</div><div class="fw-metric-label">Deps con licencia</div></div><div class="fw-metric"><div class="fw-metric-val">1</div><div class="fw-metric-label">Declaración firmada</div></div></div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">09 · Auditoría</div>
+  <div class="fw-block-body"><ul>
+<li>¿La declaración coincide con el historial git y ADRs?</li>
+<li>¿Hay código sin revisión humana declarado como propio?</li>
+</ul></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">10 · Evidencia</div>
+  <div class="fw-block-body"><div class="fw-evidence">EVID-P05: declaracion-ia.pdf · LICENSES.md · SBOM si aplica</div><p class="fw-trace" style="margin-top:12px">ISO: <a href="iso-evaluation.html">seg_* (autenticidad)</a></p></div>
+</div>
     </div>
   </div>
 </div>
 </section>
 
-<!-- ═══ PASO 6 ═══ -->
-<section id="paso6" class="section">
-<div class="s-eyebrow">Paso 6 de 6</div>
+<!-- ═══
+<!-- ═══
+<!-- ═══
+<!-- ═══ MÓDULO P06 ═══ -->
+<section id="paso6" class="section fw-module">
+<div class="s-eyebrow">Módulo 6 de 6 · P06-CRT</div>
 <div class="paso-card" data-step="6">
   <div class="paso-head">
     <div class="paso-num-badge" data-step="6">06</div>
     <div class="paso-head-info">
-      <h3>Preservación del Pensamiento Crítico</h3>
-      <p>Al finalizar cada sesión, reflexiona sobre lo que aprendiste y lo que delegaste. Tu capacidad de razonamiento propio es tu activo más valioso.</p>
+      <h3>Preservación del pensamiento crítico</h3>
+      <p>Autoevaluación cognitiva, brechas de conocimiento y plan de práctica autónoma.</p>
     </div>
   </div>
   <div class="paso-body">
-    <div class="tags">
-      <span class="tag tag-risk">Dependencia cognitiva acumulada</span>
-      <span class="tag tag-risk">Erosión de competencias técnicas</span>
-      <span class="tag tag-iso">ISO 25010 — Mantenibilidad</span>
-      <span class="tag tag-norm">CONPES 4144 · IEEE 7000</span>
-    </div>
-    <div class="norm-strip">
-      <div class="norm-pill"><strong>CONPES 4144 de 2025</strong> — Talento digital y capacidades humanas</div>
-      <div class="norm-pill"><strong>IEEE 7000</strong> — Bienestar humano en diseño de sistemas</div>
-      <div class="norm-pill"><strong>ISO/IEC 25010</strong> — Mantenibilidad: Analizabilidad</div>
-    </div>
-    <div class="cb">
-      <div class="cb-label">¿Por qué es obligatorio?</div>
-      <p>La dependencia cognitiva es un proceso acumulativo. El 53,8% de los estudiantes en Cúcuta tiene dificultades con ejercicios de mediana complejidad sin IA, y el 61,5% se autocalifica con dependencia moderada. Este paso es el mecanismo de autoevaluación que interrumpe esa espiral antes de consolidarse como hábito permanente.</p>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Instrucciones de ejecución</div>
-      <ol class="nsteps">
-        <li><span><strong>Ejecuta la reflexión al finalizar cada sesión,</strong> no al final del proyecto. Dedica 5 minutos a responder las preguntas del prompt de autoevaluación.</span></li>
-        <li><span><strong>Identifica qué habilidades ejercitaste</strong> y cuáles delegaste completamente a la IA.</span></li>
-        <li><span><strong>Practica sin IA al menos una vez por semana.</strong> Elige un ejercicio que puedas resolver solo. Esto mantiene activas tus capacidades de razonamiento autónomo.</span></li>
-        <li><span><strong>Lleva un registro de tu índice de dependencia</strong> por proyecto en escala 1–4. Si sube consistentemente, activa una revisión de tus hábitos.</span></li>
-        <li><span><strong>Comparte y discute el código con pares sin la IA presente.</strong> La capacidad de explicar código en conversaciones humanas es el indicador más honesto de comprensión real.</span></li>
-      </ol>
-    </div>
-    <div class="cb">
-      <div class="cb-label">Prompts estructurados</div>
-      <div class="accordion">
-        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>Prompt 6A — Autoevaluación al cierre de sesión</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body open"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p6)"></span><span class="prompt-title">prompt · autoevaluación-sesión</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Al finalizar esta sesión, quiero hacer una autoevaluación de mi uso de IA.
-
-Trabajé en: <span class="pv">[describe la tarea]</span>
-
-Respóndeme honestamente:
-1. ¿Qué partes pude haber resuelto por mi cuenta sin IA?
-2. ¿Entiendo completamente todo lo que produjimos juntos?
-3. ¿Hay conceptos que la IA usó que no conocía y debo estudiar?
-4. ¿Si tuviera que reproducir esto mañana sin IA, podría hacerlo?
-5. ¿Hay habilidades que estoy dejando de practicar porque la IA las resuelve?
-
-El objetivo es identificar oportunidades de aprendizaje propio.</div>
-        </div></div>
+    <div class="fw-module-grid">
+<div class="fw-block">
+  <div class="fw-block-label">01 · Objetivo</div>
+  <div class="fw-block-body"><p>Contrarrestar dependencia cognitiva mediante reflexión estructurada y plan de mejora de competencias técnicas verificables.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">02 · Riesgo mitigado</div>
+  <div class="fw-block-body"><p>Erosión de competencias; incapacidad de resolver problemas medios sin IA; atrofia de debugging autónomo.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">03 · Estándares</div>
+  <div class="fw-block-body"><div class="fw-standards"><span class="fw-std fw-std-iso">ISO 25010 · Analizabilidad</span><span class="fw-std fw-std-iso">CONPES 4144 · talento digital</span><span class="fw-std fw-std-iso">IEEE 7000 · bienestar</span><span class="fw-std fw-std-eng">Deliberate practice (ciencia aprendizaje)</span></div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">04 · Prompt engineering</div>
+  <div class="fw-block-body"><p class="fw-technique">Reflection prompting + Few-shot</p><span class="fw-technique-tag">Reflection</span><span class="fw-technique-tag">Few-shot</span></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">05 · Prompts avanzados</div>
+  <div class="fw-block-body">
+<div class="accordion">
+  <button class="acc-trigger open" onclick="toggleAcc(this)" aria-expanded="true">
+    <span class="acc-label">Autoevaluación cognitiva con plan de cierre de brechas</span>
+    <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
+  </button>
+  <div class="acc-body open">
+    <p class="fw-prompt-tier"><strong>ID:</strong> P06-ADV-001 · <strong>Técnica:</strong> Reflection · Few-shot</p>
+    <div class="prompt-block" data-step="6">
+      <div class="prompt-header">
+        <div class="prompt-tag"><span class="dot"></span><span class="prompt-title">prompt · p06-adv-001</span></div>
+        <button type="button" class="copy-btn" onclick="copyP(this)">Copiar</button>
       </div>
-      <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 6B — Plan de práctica autónoma</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p6)"></span><span class="prompt-title">prompt · ejercicio-autónomo</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">He estado usando IA en tareas de <span class="pv">[tipo de tareas]</span>. Quiero verificar que mis habilidades están activas con un ejercicio sin IA.
+      <div class="prompt-body">Cierra la sesión de desarrollo con IA con una autoevaluación honesta.
 
-Dame un ejercicio de dificultad <span class="pv">[básica / media / avanzada]</span> sobre <span class="pv">[tema específico]</span> que:
-1. No requiera instalaciones complejas
-2. Pueda completarse en 20–30 minutos
-3. Tenga un resultado verificable que yo mismo pueda comprobar
+## Few-shot (ejemplo de formato esperado)
+| Competencia | Sin IA (1-5) | Con IA (1-5) | Brecha |
+| Autenticación JWT | 2 | 4 | Alta |
+| Tests unitarios | 3 | 5 | Media |
 
-Solo dame el ejercicio. No me des la solución todavía.</div>
-        </div></div>
-      </div>
-      <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 6C — Identificación de brechas de conocimiento</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
-        <div class="acc-body"><div class="prompt-block">
-          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p6)"></span><span class="prompt-title">prompt · brechas-conocimiento</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
-          <div class="prompt-body">Hay conceptos que la IA usó en esta sesión que no comprendo del todo: <span class="pv">[lista los conceptos]</span>
+## Tu sesión
+Tareas realizadas: <span class="pv">[lista]</span>
+Lo que delegaste a IA: <span class="pv">[lista]</span>
 
-Para cada uno dame:
-1. Explicación breve en lenguaje simple: qué es y para qué sirve
-2. Recurso de referencia donde pueda estudiarlo (documentación oficial, libro)
-3. Un ejercicio mínimo para practicar ese concepto sin IA
+## Reflection obligatoria
+1. ¿Qué concepto no podrías explicar en una defensa oral sin mirar la IA?
+2. Define 2 ejercicios SIN IA para la próxima semana (tiempo, recurso, criterio éxito).
+3. ¿Cómo cambiaría tu prompt inicial (P01) la próxima vez?
 
-El objetivo es convertir la brecha en un plan de estudio propio.</div>
-        </div></div>
-      </div>
+## Salida
+Plan de práctica 7 días + riesgo cognitivo residual (bajo/medio/alto)</div>
     </div>
-    <div class="cb">
-      <div class="cb-label">Lista de verificación</div>
-      <ul class="checklist">
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Realicé la autoevaluación de la sesión antes de cerrar</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Identifiqué al menos un concepto nuevo que debo estudiar por mi cuenta</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Puedo explicar todo el trabajo de la sesión sin apoyo de la IA</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Esta semana practiqué al menos un ejercicio sin IA</span></li>
-        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Mi índice de dependencia no aumentó respecto a la sesión anterior</span></li>
-      </ul>
+  </div>
+</div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">06 · Resultado esperado</div>
+  <div class="fw-block-body"><p>Registro de autoevaluación, plan de práctica sin IA y acciones de mejora en prompts P01.</p></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">07 · Validación técnica</div>
+  <div class="fw-block-body"><ul>
+<li>Tabla de competencias completada con honestidad</li>
+<li>≥2 ejercicios autónomos programados con fecha</li>
+<li>Revisión de al menos 1 prompt anterior para mejora</li>
+</ul></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">08 · Métricas</div>
+  <div class="fw-block-body"><div class="fw-metrics"><div class="fw-metric"><div class="fw-metric-val">≤2</div><div class="fw-metric-label">Brechas altas sin plan</div></div><div class="fw-metric"><div class="fw-metric-val">≥2</div><div class="fw-metric-label">Ejercicios autónomos/semana</div></div><div class="fw-metric"><div class="fw-metric-val">1</div><div class="fw-metric-label">Registro por sesión</div></div></div></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">09 · Auditoría</div>
+  <div class="fw-block-body"><ul>
+<li>¿El plan es específico y medible, no genérico?</li>
+<li>¿Hay seguimiento en la sesión siguiente?</li>
+</ul></div>
+</div>
+<div class="fw-block">
+  <div class="fw-block-label">10 · Evidencia</div>
+  <div class="fw-block-body"><div class="fw-evidence">EVID-P06: autoeval-sesion-YYYYMMDD.md · plan-practica.md</div><p class="fw-trace" style="margin-top:12px">ISO: <a href="iso-evaluation.html">mant_* (analizabilidad)</a></p></div>
+</div>
     </div>
   </div>
 </div>
 </section>
 
-<div class="divider-text"><span>Evaluación de calidad ISO/IEC 25010</span></div>
+<!-- ═══
+<!-- ═══
+<!-- ═══
 
-<!-- ═══════════════════════════════════════════
-     ISO 25010 — EVALUACIÓN COMPLETA
-═══════════════════════════════════════════ -->
-<section id="iso-eval" class="iso-eval-section">
-  <div class="iso-eval-intro">
-    <div class="s-eyebrow">ISO/IEC 25010:2023 — SQuaRE</div>
-    <h2>Evaluación de Calidad del Software</h2>
-    <p>Instrumento de autoevaluación basado en el estándar internacional ISO/IEC 25010:2023. Evalúa el código generado con asistencia de IA contra las 9 características de calidad del producto software. Para cada pregunta selecciona la opción que mejor describe el estado actual de tu proyecto. Al finalizar obtendrás un diagnóstico de cumplimiento por característica.</p>
-    <div class="eval-legend">
-      <span><span class="dot-legend" style="background:var(--status-success)"></span> Cumple completamente (4 pts)</span>
-      <span><span class="dot-legend" style="background:#5a8f29"></span> Cumple mayormente (3 pts)</span>
+<div class="divider-text"><span>Capa de aseguramiento · ISO 25010</span></div>
+<section id="iso-eval" class="section iso-eval-section">
+  <div class="s-eyebrow">Integración framework → ISO</div>
+  <div class="s-title">Evaluación de calidad <em>SQuaRE</em></div>
+  <div class="s-lead">Los entregables EVID-P01…P06 alimentan esta autoevaluación. Responde tras completar los módulos aplicables.</div>
+<div class="eval-intro">
+    <h2 style="margin-bottom: var(--sp-lg);">Cómo usar esta evaluación</h2>
+    <p style="margin-bottom: var(--sp-lg);">
+      Para cada pregunta, selecciona la opción que mejor describe el estado actual de tu proyecto. Las opciones van de "Cumple completamente" (4 puntos) a "No cumple" (1 punto). Al finalizar, obtendrás un diagnóstico de cumplimiento por característica.
+    </p>
+    <div style="display: flex; gap: var(--sp-lg); flex-wrap: wrap; font-size: 0.9rem; color: var(--text-secondary);">
+      <span>✓ Cumple completamente (4 pts)</span>
+      <span>~ Cumple mayormente (3 pts)</span>
       <span><span class="dot-legend" style="background:var(--status-warning)"></span> Cumple parcialmente (2 pts)</span>
-      <span><span class="dot-legend" style="background:var(--status-error)"></span> No cumple (1 pt)</span>
+      <span>✗ No cumple (1 pt)</span>
     </div>
   </div>
 
   <!-- SCORE DASHBOARD -->
-  <div class="score-dashboard">
+  <div class="score-dashboard" style="margin-bottom: var(--sp-2xl);">
     <div class="score-card">
       <div class="score-big" id="totalScore">—</div>
       <div class="score-sub">Puntaje total</div>
-      <div class="score-bar-wrap"><div class="score-bar-fill" id="totalFill"></div></div>
+      <div class="score-bar"><div class="score-bar-fill" id="totalFill" style="width: 0%"></div></div>
     </div>
     <div class="score-card">
       <div class="score-big" id="totalPct">—</div>
-      <div class="score-sub">Nivel de cumplimiento</div>
-      <div class="score-bar-wrap"><div class="score-bar-fill" id="pctFill"></div></div>
+      <div class="score-sub">Cumplimiento</div>
+      <div class="score-bar"><div class="score-bar-fill" id="pctFill" style="width: 0%"></div></div>
     </div>
     <div class="score-card">
       <div class="score-big" id="totalResp">0</div>
-      <div class="score-sub">Preguntas respondidas de 27</div>
-      <div class="score-bar-wrap"><div class="score-bar-fill" id="respFill"></div></div>
+      <div class="score-sub">Respondidas / 27</div>
+      <div class="score-bar"><div class="score-bar-fill" id="respFill" style="width: 0%"></div></div>
     </div>
   </div>
 
-  <!-- CARACTERÍSTICA 1: ADECUACIÓN FUNCIONAL -->
-  <div id="iso-adec" class="iso-char-card">
-    <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon"><i data-lucide="target" class="icon-lg"></i></div>
-      <div class="iso-char-info">
-        <div class="iso-char-name">1. Adecuación Funcional</div>
-        <div class="iso-char-sub">Grado en que el software provee funciones que satisfacen necesidades declaradas e implícitas</div>
+  <div class="divider"></div>
+
+  <!-- CHARACTERISTICS -->
+  <section style="margin-bottom: var(--sp-3xl);">
+    
+    <!-- CHAR 1 -->
+    <div class="iso-char-card">
+      <div class="iso-char-head" onclick="toggleChar(this)">
+        <div class="iso-char-icon"><i data-lucide="target" class="icon-lg"></i></div>
+        <div style="flex: 1;">
+          <div class="iso-char-name">1. Adecuación Funcional</div>
+          <div class="iso-char-sub">Grado en que el software provee funciones que satisfacen necesidades declaradas</div>
+        </div>
+        <div class="iso-char-score">
+          <div class="iso-char-pct" data-char="adec">—</div>
+        </div>
       </div>
-      <div class="iso-char-score">
-        <div class="iso-char-pct" data-char="adec">—</div>
-        <div class="iso-char-label">cumplimiento</div>
-        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#5b9cf6;width:0%"></div></div>
+      <div class="iso-char-body">
+        <div class="q-row" data-char="adec">
+          <div class="q-text"><strong>Completitud Funcional:</strong> El código generado implementa todas las funcionalidades definidas en los requisitos sin omitir ninguna.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="adec_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="adec_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="adec_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="adec_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="adec">
+          <div class="q-text"><strong>Corrección Funcional:</strong> Los resultados del código son exactos y precisos para todos los casos de uso definidos.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="adec_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="adec_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="adec_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="adec_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="adec">
+          <div class="q-text"><strong>Pertinencia Funcional:</strong> Las funcionalidades son relevantes para el problema; no incluye funciones innecesarias que aumenten complejidad.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="adec_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="adec_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="adec_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="adec_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="iso-char-body" style="display:none">
-      <div class="iso-sub-list">
-        <span class="iso-sub">Completitud Funcional</span>
-        <span class="iso-sub">Corrección Funcional</span>
-        <span class="iso-sub">Pertinencia Funcional</span>
-      </div>
-      <div class="q-row" data-char="adec">
-        <div class="q-text"><strong>Completitud Funcional:</strong> El código generado por IA implementa <em>todas</em> las funcionalidades definidas en los requisitos del proyecto, sin omitir ninguna función especificada previamente.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="adec_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="adec_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="adec_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="adec_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+
+    <!-- CHAR 2 -->
+    <div class="iso-char-card">
+      <div class="iso-char-head" onclick="toggleChar(this)">
+        <div class="iso-char-icon"><i data-lucide="zap" class="icon-lg"></i></div>
+        <div style="flex: 1;">
+          <div class="iso-char-name">2. Eficiencia de Desempeño</div>
+          <div class="iso-char-sub">Desempeño relativo a la cantidad de recursos usados</div>
+        </div>
+        <div class="iso-char-score">
+          <div class="iso-char-pct" data-char="efic">—</div>
         </div>
       </div>
-      <div class="q-row" data-char="adec">
-        <div class="q-text"><strong>Corrección Funcional:</strong> Los resultados del código generado por IA son exactos y precisos para todos los casos de uso definidos; los cálculos, transformaciones y respuestas producen los valores esperados correctamente.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="adec_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="adec_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="adec_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="adec_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+      <div class="iso-char-body">
+        <div class="q-row" data-char="efic">
+          <div class="q-text"><strong>Comportamiento Temporal:</strong> El código responde dentro de tiempos aceptables para el contexto de uso.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="efic_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="efic_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="efic_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="efic_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
         </div>
-      </div>
-      <div class="q-row" data-char="adec">
-        <div class="q-text"><strong>Pertinencia Funcional:</strong> Las funcionalidades que la IA implementó son pertinentes y relevantes para el problema que se resuelve; no incluye funciones innecesarias que aumenten complejidad sin aportar valor.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="adec_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="adec_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="adec_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="adec_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        <div class="q-row" data-char="efic">
+          <div class="q-text"><strong>Utilización de Recursos:</strong> El código hace uso eficiente de memoria, CPU, y almacenamiento sin consumo innecesario.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="efic_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="efic_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="efic_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="efic_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="efic">
+          <div class="q-text"><strong>Capacidad:</strong> El sistema maneja el volumen máximo esperado de datos sin degradación del desempeño.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="efic_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="efic_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="efic_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="efic_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- CHAR 3 -->
+    <div class="iso-char-card">
+      <div class="iso-char-head" onclick="toggleChar(this)">
+        <div class="iso-char-icon"><i data-lucide="link-2" class="icon-lg"></i></div>
+        <div style="flex: 1;">
+          <div class="iso-char-name">3. Compatibilidad</div>
+          <div class="iso-char-sub">Grado en que comparte entorno e intercambia información con otros sistemas</div>
+        </div>
+        <div class="iso-char-score">
+          <div class="iso-char-pct" data-char="compat">—</div>
+        </div>
+      </div>
+      <div class="iso-char-body">
+        <div class="q-row" data-char="compat">
+          <div class="q-text"><strong>Coexistencia:</strong> El código coexiste correctamente con otros componentes sin generar conflictos o interferencias.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="compat_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="compat_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="compat_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="compat_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="compat">
+          <div class="q-text"><strong>Interoperabilidad:</strong> Los módulos son interoperables con APIs externas, servicios de terceros y protocolos requeridos.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="compat_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="compat_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="compat_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="compat_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="compat">
+          <div class="q-text"><strong>Compatibilidad de dependencias:</strong> No introduce conflictos con librerías, frameworks o herramientas existentes.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="compat_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="compat_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="compat_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="compat_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAR 4 -->
+    <div class="iso-char-card">
+      <div class="iso-char-head" onclick="toggleChar(this)">
+        <div class="iso-char-icon"><i data-lucide="monitor" class="icon-lg"></i></div>
+        <div style="flex: 1;">
+          <div class="iso-char-name">4. Capacidad de Interacción</div>
+          <div class="iso-char-sub">Grado en que puede ser usado con efectividad, eficiencia y satisfacción</div>
+        </div>
+        <div class="iso-char-score">
+          <div class="iso-char-pct" data-char="inter">—</div>
+        </div>
+      </div>
+      <div class="iso-char-body">
+        <div class="q-row" data-char="inter">
+          <div class="q-text"><strong>Usabilidad:</strong> El sistema es intuitivo; los usuarios pueden aprender a usarlo sin capacitación extensa.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="inter_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="inter_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="inter_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="inter_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="inter">
+          <div class="q-text"><strong>Protección ante errores:</strong> Valida entradas, solicita confirmación antes de operaciones irreversibles, presenta mensajes claros.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="inter_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="inter_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="inter_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="inter_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="inter">
+          <div class="q-text"><strong>Accesibilidad:</strong> Es accesible para diferentes perfiles de usuario; se describe a sí mismo claramente.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="inter_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="inter_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="inter_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="inter_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAR 5 -->
+    <div class="iso-char-card">
+      <div class="iso-char-head" onclick="toggleChar(this)">
+        <div class="iso-char-icon"><i data-lucide="shield" class="icon-lg"></i></div>
+        <div style="flex: 1;">
+          <div class="iso-char-name">5. Fiabilidad</div>
+          <div class="iso-char-sub">Grado en que realiza funciones especificadas sin fallos por un periodo determinado</div>
+        </div>
+        <div class="iso-char-score">
+          <div class="iso-char-pct" data-char="fiab">—</div>
+        </div>
+      </div>
+      <div class="iso-char-body">
+        <div class="q-row" data-char="fiab">
+          <div class="q-text"><strong>Ausencia de fallos:</strong> El código opera sin crashes, comportamientos inesperados ni errores silenciosos.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="fiab_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="fiab_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="fiab_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="fiab_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="fiab">
+          <div class="q-text"><strong>Disponibilidad y tolerancia a fallos:</strong> El sistema está disponible cuando se necesita; los errores se manejan controladamente.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="fiab_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="fiab_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="fiab_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="fiab_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="fiab">
+          <div class="q-text"><strong>Recuperabilidad:</strong> Se recupera correctamente después de fallos; restaura el estado previo y protege la integridad de datos.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="fiab_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="fiab_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="fiab_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="fiab_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAR 6 -->
+    <div class="iso-char-card">
+      <div class="iso-char-head" onclick="toggleChar(this)">
+        <div class="iso-char-icon"><i data-lucide="lock" class="icon-lg"></i></div>
+        <div style="flex: 1;">
+          <div class="iso-char-name">6. Seguridad</div>
+          <div class="iso-char-sub">Grado en que protege información, datos y acceso no autorizado</div>
+        </div>
+        <div class="iso-char-score">
+          <div class="iso-char-pct" data-char="seg">—</div>
+        </div>
+      </div>
+      <div class="iso-char-body">
+        <div class="q-row" data-char="seg">
+          <div class="q-text"><strong>Confidencialidad e integridad:</strong> Los datos son accesibles solo para usuarios autorizados; no expone información sensible.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="seg_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="seg_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="seg_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="seg_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="seg">
+          <div class="q-text"><strong>No-repudio y responsabilidad:</strong> Las operaciones críticas quedan registradas de forma trazable y auditable.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="seg_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="seg_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="seg_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="seg_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="seg">
+          <div class="q-text"><strong>Autenticidad y resistencia:</strong> Verifica identidad de acceso; resiste ataques comunes (SQL injection, XSS, fuerza bruta).</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="seg_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="seg_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="seg_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="seg_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAR 7 -->
+    <div class="iso-char-card">
+      <div class="iso-char-head" onclick="toggleChar(this)">
+        <div class="iso-char-icon"><i data-lucide="wrench" class="icon-lg"></i></div>
+        <div style="flex: 1;">
+          <div class="iso-char-name">7. Mantenibilidad</div>
+          <div class="iso-char-sub">Grado de efectividad para ser modificado por mantenedores previstos</div>
+        </div>
+        <div class="iso-char-score">
+          <div class="iso-char-pct" data-char="mant">—</div>
+        </div>
+      </div>
+      <div class="iso-char-body">
+        <div class="q-row" data-char="mant">
+          <div class="q-text"><strong>Modularidad y reusabilidad:</strong> Los módulos son independientes con bajo acoplamiento; pueden modificarse sin afectar otros componentes.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="mant_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="mant_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="mant_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="mant_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="mant">
+          <div class="q-text"><strong>Analizabilidad:</strong> El código es legible, está comentado, y el flujo lógico es comprensible sin necesidad de la IA que lo generó.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="mant_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="mant_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="mant_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="mant_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="mant">
+          <div class="q-text"><strong>Capacidad de ser modificado y probado:</strong> Puede extenderse con nuevos requisitos; puede probarse unitaria e integradamente.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="mant_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="mant_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="mant_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="mant_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAR 8 -->
+    <div class="iso-char-card">
+      <div class="iso-char-head" onclick="toggleChar(this)">
+        <div class="iso-char-icon"><i data-lucide="layers" class="icon-lg"></i></div>
+        <div style="flex: 1;">
+          <div class="iso-char-name">8. Flexibilidad</div>
+          <div class="iso-char-sub">Grado en que puede adaptarse a cambios de requisitos o entornos</div>
+        </div>
+        <div class="iso-char-score">
+          <div class="iso-char-pct" data-char="flex">—</div>
+        </div>
+      </div>
+      <div class="iso-char-body">
+        <div class="q-row" data-char="flex">
+          <div class="q-text"><strong>Adaptabilidad:</strong> Puede adaptarse a nuevos requisitos sin refactorizaciones mayores ni reescrituras completas.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="flex_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="flex_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="flex_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="flex_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="flex">
+          <div class="q-text"><strong>Escalabilidad:</strong> Puede escalar para mayor carga de usuarios, datos o transacciones sin cambios arquitecturales profundos.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="flex_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="flex_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="flex_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="flex_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="flex">
+          <div class="q-text"><strong>Instalabilidad y reemplazabilidad:</strong> Puede instalarse/desinstalarse correctamente; los componentes pueden reemplazarse por versiones mejores.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="flex_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="flex_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="flex_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="flex_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAR 9 -->
+    <div class="iso-char-card">
+      <div class="iso-char-head" onclick="toggleChar(this)">
+        <div class="iso-char-icon"><i data-lucide="alert-triangle" class="icon-lg"></i></div>
+        <div style="flex: 1;">
+          <div class="iso-char-name">9. Protección (Safety)</div>
+          <div class="iso-char-sub">Grado en que mitiga el riesgo de daño a personas, datos o sistemas</div>
+        </div>
+        <div class="iso-char-score">
+          <div class="iso-char-pct" data-char="prot">—</div>
+        </div>
+      </div>
+      <div class="iso-char-body">
+        <div class="q-row" data-char="prot">
+          <div class="q-text"><strong>Restricción operativa:</strong> Implementa controles que evitan operar en condiciones no autorizadas o peligrosas.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="prot_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="prot_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="prot_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="prot_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="prot">
+          <div class="q-text"><strong>Protección ante fallos:</strong> Ante un fallo, el sistema pasa a un estado seguro conocido; advierte a usuarios antes de acciones peligrosas.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="prot_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="prot_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="prot_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="prot_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+        <div class="q-row" data-char="prot">
+          <div class="q-text"><strong>Integración segura:</strong> Las integraciones con sistemas externos usan interfaces seguras validadas; un fallo externo no compromete el sistema.</div>
+          <div class="q-options">
+            <label class="q-opt"><input type="radio" name="prot_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
+            <label class="q-opt"><input type="radio" name="prot_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
+            <label class="q-opt"><input type="radio" name="prot_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
+            <label class="q-opt"><input type="radio" name="prot_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+<!-- BUTTONS -->
+  <div class="eval-buttons">
+    <button class="eval-btn" onclick="calcScore()">Calcular resultado</button>
+    <button class="reset-btn" onclick="resetEval()">Reiniciar evaluación</button>
   </div>
 
-  <!-- CARACTERÍSTICA 2: EFICIENCIA DE DESEMPEÑO -->
-  <div id="iso-efic" class="iso-char-card">
-    <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon"><i data-lucide="zap" class="icon-lg"></i></div>
-      <div class="iso-char-info">
-        <div class="iso-char-name">2. Eficiencia de Desempeño</div>
-        <div class="iso-char-sub">Desempeño relativo a la cantidad de recursos usados bajo condiciones establecidas</div>
-      </div>
-      <div class="iso-char-score">
-        <div class="iso-char-pct" data-char="efic">—</div>
-        <div class="iso-char-label">cumplimiento</div>
-        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#10b981;width:0%"></div></div>
-      </div>
-    </div>
-    <div class="iso-char-body" style="display:none">
-      <div class="iso-sub-list">
-        <span class="iso-sub">Comportamiento Temporal</span>
-        <span class="iso-sub">Utilización de Recursos</span>
-        <span class="iso-sub">Capacidad</span>
-      </div>
-      <div class="q-row" data-char="efic">
-        <div class="q-text"><strong>Comportamiento Temporal:</strong> El código generado por IA responde dentro de los tiempos de respuesta aceptables para el contexto de uso; las operaciones no generan esperas perceptibles que afecten la experiencia del usuario o el flujo del sistema.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="efic_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="efic_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="efic_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="efic_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="efic">
-        <div class="q-text"><strong>Utilización de Recursos:</strong> El código IA hace uso eficiente de los recursos del sistema — memoria, CPU, ancho de banda y almacenamiento — sin consumo innecesario o ineficiencias estructurales introducidas por el modelo.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="efic_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="efic_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="efic_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="efic_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="efic">
-        <div class="q-text"><strong>Capacidad:</strong> El sistema puede manejar el volumen máximo esperado de datos, usuarios concurrentes y transacciones sin degradación del desempeño ni errores de capacidad excedida.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="efic_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="efic_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="efic_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="efic_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CARACTERÍSTICA 3: COMPATIBILIDAD -->
-  <div id="iso-compat" class="iso-char-card">
-    <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon"><i data-lucide="link-2" class="icon-lg"></i></div>
-      <div class="iso-char-info">
-        <div class="iso-char-name">3. Compatibilidad</div>
-        <div class="iso-char-sub">Grado en que puede compartir entorno e intercambiar información con otros sistemas</div>
-      </div>
-      <div class="iso-char-score">
-        <div class="iso-char-pct" data-char="compat">—</div>
-        <div class="iso-char-label">cumplimiento</div>
-        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#f59e0b;width:0%"></div></div>
-      </div>
-    </div>
-    <div class="iso-char-body" style="display:none">
-      <div class="iso-sub-list">
-        <span class="iso-sub">Coexistencia</span>
-        <span class="iso-sub">Interoperabilidad</span>
-      </div>
-      <div class="q-row" data-char="compat">
-        <div class="q-text"><strong>Coexistencia:</strong> El código generado por IA coexiste correctamente con los demás componentes del sistema sin generar conflictos, interferencias o incompatibilidades con el entorno de ejecución existente.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="compat_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="compat_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="compat_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="compat_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="compat">
-        <div class="q-text"><strong>Interoperabilidad con APIs externas:</strong> Los módulos generados por IA son interoperables con las APIs, servicios externos y sistemas de terceros requeridos por el proyecto, usando los protocolos y formatos correctos.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="compat_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="compat_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="compat_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="compat_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="compat">
-        <div class="q-text"><strong>Compatibilidad con librerías existentes:</strong> El código IA no introduce conflictos de versiones, dependencias circulares ni incompatibilidades con las librerías, frameworks o herramientas ya presentes en el proyecto.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="compat_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="compat_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="compat_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="compat_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CARACTERÍSTICA 4: CAPACIDAD DE INTERACCIÓN -->
-  <div id="iso-inter" class="iso-char-card">
-    <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon"><i data-lucide="monitor" class="icon-lg"></i></div>
-      <div class="iso-char-info">
-        <div class="iso-char-name">4. Capacidad de Interacción</div>
-        <div class="iso-char-sub">Grado en que puede ser usado por usuarios para lograr sus objetivos con efectividad, eficiencia y satisfacción</div>
-      </div>
-      <div class="iso-char-score">
-        <div class="iso-char-pct" data-char="inter">—</div>
-        <div class="iso-char-label">cumplimiento</div>
-        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#06b6d4;width:0%"></div></div>
-      </div>
-    </div>
-    <div class="iso-char-body" style="display:none">
-      <div class="iso-sub-list">
-        <span class="iso-sub">Reconocibilidad</span><span class="iso-sub">Aprendizabilidad</span><span class="iso-sub">Operabilidad</span><span class="iso-sub">Protección ante errores</span><span class="iso-sub">Involucración</span><span class="iso-sub">Inclusividad</span><span class="iso-sub">Asistencia al usuario</span><span class="iso-sub">Auto-descriptividad</span>
-      </div>
-      <div class="q-row" data-char="inter">
-        <div class="q-text"><strong>Reconocibilidad y Aprendizabilidad:</strong> El sistema generado con asistencia de IA es intuitivo: los usuarios pueden reconocer si es adecuado para sus necesidades y aprender a usarlo sin necesidad de capacitación extensa ni documentación excesiva.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="inter_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="inter_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="inter_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="inter_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="inter">
-        <div class="q-text"><strong>Protección ante errores del usuario:</strong> El sistema protege al usuario de cometer errores graves durante su uso: valida entradas, solicita confirmación antes de operaciones irreversibles y presenta mensajes de error claros y accionables.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="inter_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="inter_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="inter_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="inter_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="inter">
-        <div class="q-text"><strong>Inclusividad y Auto-descriptividad:</strong> El sistema es accesible para diferentes perfiles de usuario, no hace suposiciones restrictivas sobre el conocimiento técnico del usuario, y se describe a sí mismo de manera que el usuario entiende en qué estado se encuentra y qué puede hacer.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="inter_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="inter_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="inter_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="inter_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CARACTERÍSTICA 5: FIABILIDAD -->
-  <div id="iso-fiab" class="iso-char-card">
-    <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon"><i data-lucide="shield" class="icon-lg"></i></div>
-      <div class="iso-char-info">
-        <div class="iso-char-name">5. Fiabilidad</div>
-        <div class="iso-char-sub">Grado en que realiza funciones especificadas bajo condiciones establecidas por un periodo de tiempo determinado</div>
-      </div>
-      <div class="iso-char-score">
-        <div class="iso-char-pct" data-char="fiab">—</div>
-        <div class="iso-char-label">cumplimiento</div>
-        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#8b5cf6;width:0%"></div></div>
-      </div>
-    </div>
-    <div class="iso-char-body" style="display:none">
-      <div class="iso-sub-list">
-        <span class="iso-sub">Ausencia de Fallos</span><span class="iso-sub">Disponibilidad</span><span class="iso-sub">Tolerancia a Fallos</span><span class="iso-sub">Recuperabilidad</span>
-      </div>
-      <div class="q-row" data-char="fiab">
-        <div class="q-text"><strong>Ausencia de Fallos:</strong> El código generado por IA opera sin fallos, crashes ni comportamientos inesperados bajo condiciones normales de uso; no produce resultados incorrectos silenciosos ni errores no controlados que interrumpan la ejecución del sistema.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="fiab_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="fiab_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="fiab_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="fiab_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="fiab">
-        <div class="q-text"><strong>Disponibilidad y Tolerancia a Fallos:</strong> El sistema está disponible cuando los usuarios lo necesitan sin interrupciones no planificadas; cuando ocurren errores, el sistema los maneja de forma controlada sin propagarlos a otros componentes críticos.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="fiab_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="fiab_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="fiab_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="fiab_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="fiab">
-        <div class="q-text"><strong>Recuperabilidad:</strong> El sistema se recupera correctamente después de un fallo o error inesperado: restaura el estado previo al error, protege la integridad de los datos y retoma la operación normal sin intervención manual en los casos previstos.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="fiab_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="fiab_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="fiab_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="fiab_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CARACTERÍSTICA 6: SEGURIDAD -->
-  <div id="iso-seg" class="iso-char-card">
-    <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon"><i data-lucide="lock" class="icon-lg"></i></div>
-      <div class="iso-char-info">
-        <div class="iso-char-name">6. Seguridad</div>
-        <div class="iso-char-sub">Grado en que protege la información y los datos de accesos no autorizados y garantiza la autenticidad</div>
-      </div>
-      <div class="iso-char-score">
-        <div class="iso-char-pct" data-char="seg">—</div>
-        <div class="iso-char-label">cumplimiento</div>
-        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#f43f5e;width:0%"></div></div>
-      </div>
-    </div>
-    <div class="iso-char-body" style="display:none">
-      <div class="iso-sub-list">
-        <span class="iso-sub">Confidencialidad</span><span class="iso-sub">Integridad</span><span class="iso-sub">No-Repudio</span><span class="iso-sub">Responsabilidad</span><span class="iso-sub">Autenticidad</span><span class="iso-sub">Resistencia</span>
-      </div>
-      <div class="q-row" data-char="seg">
-        <div class="q-text"><strong>Confidencialidad e Integridad:</strong> El código generado por IA garantiza que los datos solo son accesibles para usuarios autorizados, no expone información sensible en logs ni mensajes de error, y previene modificaciones no autorizadas de los datos que maneja.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="seg_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="seg_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="seg_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="seg_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="seg">
-        <div class="q-text"><strong>No-Repudio y Responsabilidad:</strong> Las operaciones críticas del sistema quedan registradas de forma trazable para garantizar que ninguna acción pueda negarse; existe un registro auditable de quién hizo qué y cuándo en el sistema.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="seg_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="seg_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="seg_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="seg_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="seg">
-        <div class="q-text"><strong>Autenticidad y Resistencia:</strong> El sistema verifica la identidad de los actores que acceden a recursos protegidos, y resiste ataques como inyección SQL, cross-site scripting, fuerza bruta y otras amenazas documentadas relevantes para el contexto de la aplicación.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="seg_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="seg_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="seg_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="seg_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CARACTERÍSTICA 7: MANTENIBILIDAD -->
-  <div id="iso-mant" class="iso-char-card">
-    <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon"><i data-lucide="wrench" class="icon-lg"></i></div>
-      <div class="iso-char-info">
-        <div class="iso-char-name">7. Mantenibilidad</div>
-        <div class="iso-char-sub">Grado de efectividad y eficiencia con la que puede ser modificado por mantenedores previstos</div>
-      </div>
-      <div class="iso-char-score">
-        <div class="iso-char-pct" data-char="mant">—</div>
-        <div class="iso-char-label">cumplimiento</div>
-        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#f97316;width:0%"></div></div>
-      </div>
-    </div>
-    <div class="iso-char-body" style="display:none">
-      <div class="iso-sub-list">
-        <span class="iso-sub">Modularidad</span><span class="iso-sub">Reusabilidad</span><span class="iso-sub">Analizabilidad</span><span class="iso-sub">Capacidad de ser Modificado</span><span class="iso-sub">Capacidad de ser Probado</span>
-      </div>
-      <div class="q-row" data-char="mant">
-        <div class="q-text"><strong>Modularidad y Reusabilidad:</strong> Los módulos del sistema generados con IA son independientes con acoplamiento bajo y cohesión alta, de manera que puedan modificarse o reemplazarse sin afectar otros componentes; los componentes bien construidos son candidatos a reusarse en otros contextos.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="mant_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="mant_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="mant_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="mant_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="mant">
-        <div class="q-text"><strong>Analizabilidad:</strong> Es posible identificar y diagnosticar la causa de un fallo en el código IA sin requerir asistencia de la herramienta que lo generó; el código es legible, está comentado adecuadamente y su flujo lógico es comprensible para el equipo.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="mant_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="mant_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="mant_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="mant_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="mant">
-        <div class="q-text"><strong>Capacidad de ser Modificado y Probado:</strong> El código generado por IA puede modificarse y extenderse con nuevos requisitos sin efectos secundarios no intencionales; y puede ser probado de forma unitaria e integrada para verificar que los cambios no introducen regresiones.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="mant_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="mant_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="mant_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="mant_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CARACTERÍSTICA 8: FLEXIBILIDAD -->
-  <div id="iso-flex" class="iso-char-card">
-    <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon"><i data-lucide="layers" class="icon-lg"></i></div>
-      <div class="iso-char-info">
-        <div class="iso-char-name">8. Flexibilidad</div>
-        <div class="iso-char-sub">Grado en que puede adaptarse a cambios de requisitos, contextos o entornos de uso</div>
-      </div>
-      <div class="iso-char-score">
-        <div class="iso-char-pct" data-char="flex">—</div>
-        <div class="iso-char-label">cumplimiento</div>
-        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#84cc16;width:0%"></div></div>
-      </div>
-    </div>
-    <div class="iso-char-body" style="display:none">
-      <div class="iso-sub-list">
-        <span class="iso-sub">Adaptabilidad</span><span class="iso-sub">Escalabilidad</span><span class="iso-sub">Instalabilidad</span><span class="iso-sub">Reemplazabilidad</span>
-      </div>
-      <div class="q-row" data-char="flex">
-        <div class="q-text"><strong>Adaptabilidad:</strong> El código generado por IA puede adaptarse a nuevos requisitos, cambios en el entorno o variaciones en los casos de uso sin requerir refactorizaciones mayores ni reescrituras completas de la lógica central.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="flex_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="flex_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="flex_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="flex_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="flex">
-        <div class="q-text"><strong>Escalabilidad:</strong> El sistema puede escalar para manejar mayor carga de usuarios, datos o transacciones sin cambios arquitecturales profundos; el código IA no introduce cuellos de botella que impidan el crecimiento futuro del sistema.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="flex_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="flex_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="flex_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="flex_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="flex">
-        <div class="q-text"><strong>Instalabilidad y Reemplazabilidad:</strong> El software puede instalarse y desinstalarse correctamente en los entornos objetivo definidos; los componentes generados por IA pueden reemplazarse por versiones mejoradas o alternativas sin afectar al resto del sistema.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="flex_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="flex_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="flex_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="flex_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CARACTERÍSTICA 9: PROTECCIÓN (SAFETY) -->
-  <div id="iso-prot" class="iso-char-card">
-    <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon"><i data-lucide="alert-triangle" class="icon-lg"></i></div>
-      <div class="iso-char-info">
-        <div class="iso-char-name">9. Protección (Safety)</div>
-        <div class="iso-char-sub">Grado en que mitiga el riesgo de daño a personas, bienes, software, hardware o entorno</div>
-      </div>
-      <div class="iso-char-score">
-        <div class="iso-char-pct" data-char="prot">—</div>
-        <div class="iso-char-label">cumplimiento</div>
-        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#ec4899;width:0%"></div></div>
-      </div>
-    </div>
-    <div class="iso-char-body" style="display:none">
-      <div class="iso-sub-list">
-        <span class="iso-sub">Restricción Operativa</span><span class="iso-sub">Identificación de Riesgos</span><span class="iso-sub">Protección ante Fallos</span><span class="iso-sub">Advertencia de Peligro</span><span class="iso-sub">Integración Segura</span>
-      </div>
-      <div class="q-row" data-char="prot">
-        <div class="q-text"><strong>Restricción Operativa e Identificación de Riesgos:</strong> El sistema implementa controles que evitan operar en condiciones no autorizadas o peligrosas; identifica situaciones de riesgo potencial antes de que ocurran fallos e impide la ejecución de operaciones que puedan causar daño a datos, usuarios o sistemas externos.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="prot_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="prot_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="prot_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="prot_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="prot">
-        <div class="q-text"><strong>Protección ante Fallos y Advertencia de Peligro:</strong> Ante un fallo del sistema, el código IA garantiza que el sistema pase a un estado seguro conocido; el sistema advierte a los usuarios antes de que realicen acciones potencialmente peligrosas o irreversibles para sus datos.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="prot_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="prot_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="prot_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="prot_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-      <div class="q-row" data-char="prot">
-        <div class="q-text"><strong>Integración Segura:</strong> Los componentes generados por IA que interactúan con sistemas externos lo hacen a través de interfaces seguras y validadas; las integraciones están diseñadas para que un fallo en el sistema externo no comprometa la integridad ni la seguridad del sistema principal.</div>
-        <div class="q-options">
-          <label class="q-opt"><input type="radio" name="prot_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
-          <label class="q-opt"><input type="radio" name="prot_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
-          <label class="q-opt"><input type="radio" name="prot_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
-          <label class="q-opt"><input type="radio" name="prot_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- BOTONES DE ACCIÓN -->
-  <button class="eval-btn" onclick="calcScore()">Calcular resultado de evaluación</button>
-  <button class="reset-btn" onclick="resetEval()">Reiniciar evaluación</button>
-
-  <!-- RESULTADO -->
+  <!-- RESULT -->
   <div class="eval-result" id="evalResult">
     <div class="result-header">
       <h3>Diagnóstico de Calidad ISO/IEC 25010</h3>
       <div class="result-score-big" id="resultBig">—</div>
-      <div style="font-size:13px;color:var(--text-3)" id="resultLabel">—</div>
+      <div style="font-size: 0.95rem; color: var(--text-secondary);" id="resultLabel">—</div>
     </div>
     <div class="result-grid" id="resultGrid"></div>
-    <div style="margin-top:24px;padding:16px;background:var(--bg-3);border:1px solid var(--border);border-radius:var(--r);font-size:13px;color:var(--text-3)" id="resultRec"></div>
+    <div style="margin-top: var(--sp-lg); padding: var(--sp-lg); background: var(--bg-base); border: 1px solid var(--border-light); border-radius: var(--radius-md); font-size: 0.9rem; color: var(--text-secondary);" id="resultRec"></div>
   </div>
+
+
 </section>
 
-<div class="divider-text"><span>Resumen y normativa</span></div>
-
-<!-- ═══ TABLA COMPARATIVA ═══ -->
+<div class="divider-text"><span>Síntesis</span></div>
 <section id="comparativa" class="section">
-  <div class="s-eyebrow">Síntesis general</div>
-  <div class="s-title">Tabla comparativa <em>de los 6 pasos</em></div>
-  <div class="s-lead">Resumen integrado de la metodología con riesgos, normas y productos verificables por paso.</div>
+  <div class="s-eyebrow">Trazabilidad</div>
+  <div class="s-title">Matriz <em>módulo → entregable → estándar</em></div>
   <div class="comp-table-wrap">
     <table class="comp-t">
-      <thead><tr><th>Paso</th><th>Momento</th><th>Riesgo mitigado</th><th>ISO 25010</th><th>Marco normativo</th><th>Producto verificable</th></tr></thead>
+      <thead><tr><th>Módulo</th><th>Momento</th><th>Entregable</th><th>ISO 25010</th><th>OWASP / Norma</th></tr></thead>
       <tbody>
-        <tr><td style="font-weight:600;color:var(--p1)">1 — Definición</td><td>Antes de abrir la IA</td><td>Dependencia cognitiva</td><td>Fiabilidad · Funcionalidad</td><td>NIST AI RMF — GOVERN 1.1</td><td>Documento de propósito y criterios</td></tr>
-        <tr><td style="font-weight:600;color:var(--p2)">2 — Validación</td><td>Al recibir el output</td><td>Alucinaciones · Código incorrecto</td><td>Fiabilidad · Mantenibilidad</td><td>NIST AI RMF — MEASURE 2.5</td><td>Casos de prueba ejecutados</td></tr>
-        <tr><td style="font-weight:600;color:var(--p3)">3 — Seguridad</td><td>Antes de integrar</td><td>Vulnerabilidades · Datos sensibles</td><td>Seguridad — Confidencialidad</td><td>Ley 1581/2012 · UE Art. 9</td><td>Informe de auditoría</td></tr>
-        <tr><td style="font-weight:600;color:var(--p4)">4 — Supervisión</td><td>Durante el proceso</td><td>Sesgo de automatización</td><td>Mantenibilidad — Modificabilidad</td><td>Reglamento UE 2024/1689 — Art. 14</td><td>Registro de decisiones técnicas</td></tr>
-        <tr><td style="font-weight:600;color:var(--p5)">5 — Ética</td><td>Antes de entregar</td><td>Fraude · Violación de PI</td><td>Seguridad — Autenticidad</td><td>Ley 23/1982 · CONPES 4144</td><td>Declaración formal de uso de IA</td></tr>
-        <tr><td style="font-weight:600;color:var(--p6)">6 — Pensamiento</td><td>Al finalizar sesión</td><td>Dependencia cognitiva acumulada</td><td>Mantenibilidad — Analizabilidad</td><td>CONPES 4144 · IEEE 7000</td><td>Registro de autoevaluación</td></tr>
+        <tr><td class="td-step" data-step="1">P01</td><td>Pre-IA</td><td>spec-v1.md · threat-model</td><td>Adecuación · Fiabilidad</td><td>NIST GOVERN</td></tr>
+        <tr><td class="td-step" data-step="2">P02</td><td>Post-output</td><td>review-report · tests</td><td>Fiabilidad · Mantenibilidad</td><td>A03 Injection</td></tr>
+        <tr><td class="td-step" data-step="3">P03</td><td>Pre-merge</td><td>owasp-audit.md</td><td>Seguridad · Protección</td><td>OWASP Top 10</td></tr>
+        <tr><td class="td-step" data-step="4">P04</td><td>Continuo</td><td>ADR · log-supervisión</td><td>Mantenibilidad</td><td>UE Art. 14</td></tr>
+        <tr><td class="td-step" data-step="5">P05</td><td>Pre-entrega</td><td>declaración-ia.pdf</td><td>Autenticidad</td><td>Ley 23 · CONPES</td></tr>
+        <tr><td class="td-step" data-step="6">P06</td><td>Post-sesión</td><td>autoeval · plan práctica</td><td>Analizabilidad</td><td>IEEE 7000</td></tr>
       </tbody>
     </table>
   </div>
+  <p class="fw-trace"><a href="framework.html#matriz">Ver matriz de trazabilidad extendida →</a></p>
 </section>
 
 <!-- ═══ NORMATIVA ═══ -->

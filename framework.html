@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Arquitectura del framework metodológico para desarrollo, validación y auditoría de software asistido por IA.">
+  <title>Arquitectura del Framework — IA en Desarrollo</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/framework.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header class="header">
+  <div class="header-content">
+    <a href="index.html" class="header-logo">
+      <span class="header-logo-mark" aria-hidden="true"></span>
+      <span>Framework IA · Ingeniería TIC</span>
+    </a>
+    <nav class="header-nav" aria-label="Principal">
+      <a href="index.html">Inicio</a>
+      <a href="framework.html" aria-current="page">Arquitectura</a>
+      <a href="governance.html">Gobernanza</a>
+      <a href="pasos.html">Módulos</a>
+      <a href="iso-evaluation.html">Evaluación ISO</a>
+      <a href="normativa.html">Normativa</a>
+      <a href="guide_IA.html">Handbook</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" aria-label="Cambiar tema">
+        <i data-lucide="sun-moon" class="icon-md"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="main-container">
+
+  <nav class="breadcrumb" aria-label="Ruta">
+    <a href="index.html">Inicio</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Arquitectura del framework</span>
+  </nav>
+
+  <section class="hero">
+    <p class="fw-hero-badge">FRAMEWORK · v2.0 · 2025</p>
+    <h1>Arquitectura metodológica <em>integrada</em></h1>
+    <p class="hero-lead">
+      Este documento define cómo se conectan los seis módulos operativos, la evaluación ISO/IEC 25010, la auditoría OWASP y los prompts de ingeniería avanzada. No es una colección de plantillas: es un sistema de gobernanza técnica para software asistido por IA.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Gobernanza Human-in-the-Loop</h2>
+    <p class="section-lead">Modelo operativo obligatorio: ningún output de IA se integra sin validación y aprobación humana documentada.</p>
+    <p><a href="governance.html">Documento completo de gobernanza y riesgos IA →</a></p>
+  </section>
+
+  <section class="section">
+    <h2>Capas del framework</h2>
+    <p class="section-lead">Tres capas interdependientes. Ningún módulo opera de forma aislada.</p>
+
+    <div class="fw-arch">
+      <div class="fw-arch-col">
+        <h4><i data-lucide="layers"></i> Capa 1 — Gobernanza</h4>
+        <ul>
+          <li>NIST AI RMF (GOVERN, MAP, MEASURE, MANAGE)</li>
+          <li>Reglamento UE 2024/1689 (supervisión humana)</li>
+          <li>CONPES 4144 · ética estatal</li>
+          <li>Declaración de uso de IA (Paso 5)</li>
+        </ul>
+      </div>
+      <div class="fw-arch-col">
+        <h4><i data-lucide="cpu"></i> Capa 2 — Ingeniería</h4>
+        <ul>
+          <li>6 módulos operativos (P01–P06)</li>
+          <li>Prompt engineering avanzado (CoT, reflexión, adversarial)</li>
+          <li>SOLID · Clean Code · patrones de diseño</li>
+          <li>Testing · complejidad · deuda técnica</li>
+        </ul>
+      </div>
+      <div class="fw-arch-col">
+        <h4><i data-lucide="clipboard-check"></i> Capa 3 — Aseguramiento</h4>
+        <ul>
+          <li>ISO/IEC 25010:2023 (9 características)</li>
+          <li>OWASP Top 10 (auditoría Paso 3)</li>
+          <li>Métricas por módulo</li>
+          <li>Evidencia y trazabilidad</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="matriz">
+    <h2>Matriz de trazabilidad</h2>
+    <p class="section-lead">Cada módulo alimenta métricas ISO y controles OWASP. Los prompts están diseñados para producir evidencia auditable, no respuestas genéricas.</p>
+
+    <div class="trace-matrix-wrap">
+      <table class="trace-matrix">
+        <thead>
+          <tr>
+            <th>Módulo</th>
+            <th>Momento</th>
+            <th>ISO 25010 (principal)</th>
+            <th>OWASP / Seguridad</th>
+            <th>Técnica de prompt</th>
+            <th>Evaluación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>P01</strong> Definición</td>
+            <td>Pre-IA</td>
+            <td>Adecuación funcional · Fiabilidad</td>
+            <td>—</td>
+            <td>CoT + Meta-prompting</td>
+            <td class="cell-yes"><a href="iso-evaluation.html#iso-adec">adec</a> · <a href="iso-evaluation.html#iso-fiab">fiab</a></td>
+          </tr>
+          <tr>
+            <td><strong>P02</strong> Validación</td>
+            <td>Post-output</td>
+            <td>Fiabilidad · Mantenibilidad</td>
+            <td>A03 Injection (validación inputs)</td>
+            <td>Self-consistency + Few-shot</td>
+            <td class="cell-yes"><a href="iso-evaluation.html#iso-fiab">fiab</a> · <a href="iso-evaluation.html#iso-mant">mant</a></td>
+          </tr>
+          <tr>
+            <td><strong>P03</strong> Seguridad</td>
+            <td>Pre-integración</td>
+            <td>Seguridad · Protección</td>
+            <td>OWASP Top 10 completo</td>
+            <td>Adversarial + Tree-of-thoughts</td>
+            <td class="cell-yes"><a href="iso-evaluation.html#iso-seg">seg</a> · <a href="iso-evaluation.html#iso-prot">prot</a></td>
+          </tr>
+          <tr>
+            <td><strong>P04</strong> Supervisión</td>
+            <td>Continuo</td>
+            <td>Mantenibilidad · Flexibilidad</td>
+            <td>A04 Insecure Design</td>
+            <td>Reflection prompting</td>
+            <td class="cell-yes"><a href="iso-evaluation.html#iso-mant">mant</a> · <a href="iso-evaluation.html#iso-flex">flex</a></td>
+          </tr>
+          <tr>
+            <td><strong>P05</strong> Ética</td>
+            <td>Pre-entrega</td>
+            <td>Seguridad (autenticidad)</td>
+            <td>A01 Broken Access (autoría)</td>
+            <td>Meta-prompting + CoT</td>
+            <td class="cell-yes"><a href="iso-evaluation.html#iso-seg">seg</a></td>
+          </tr>
+          <tr>
+            <td><strong>P06</strong> Pensamiento crítico</td>
+            <td>Post-sesión</td>
+            <td>Mantenibilidad (analizabilidad)</td>
+            <td>—</td>
+            <td>Reflection + Few-shot</td>
+            <td class="cell-yes"><a href="iso-evaluation.html#iso-mant">mant</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Anatomía de un módulo (P01–P06)</h2>
+    <p class="section-lead">Cada módulo en el handbook sigue esta estructura de diez bloques. Garantiza profundidad técnica y evidencia para auditoría académica o profesional.</p>
+
+    <ol class="nsteps">
+      <li><span><strong>Objetivo metodológico</strong> — Qué capacidad de ingeniería se desarrolla o protege.</span></li>
+      <li><span><strong>Riesgo mitigado</strong> — Riesgo técnico, cognitivo, ético o normativo con referencia empírica cuando aplique.</span></li>
+      <li><span><strong>Estándares</strong> — ISO 25010, OWASP, SOLID, Clean Code, NIST, normativa aplicable.</span></li>
+      <li><span><strong>Técnica de prompt engineering</strong> — CoT, few-shot, reflexión, self-consistency, adversarial o tree-of-thoughts.</span></li>
+      <li><span><strong>Prompt avanzado</strong> — Plantilla profesional con fases, restricciones y formato de salida estructurado.</span></li>
+      <li><span><strong>Resultado esperado</strong> — Artefacto concreto (spec, informe, matriz, tests).</span></li>
+      <li><span><strong>Validación técnica</strong> — Criterios verificables antes de continuar.</span></li>
+      <li><span><strong>Métricas</strong> — Indicadores cuantificables o umbrales.</span></li>
+      <li><span><strong>Auditoría</strong> — Preguntas de control y cruce con ISO/OWASP.</span></li>
+      <li><span><strong>Evidencia</strong> — Qué documentar para trazabilidad (commit, ADR, checklist firmado).</span></li>
+    </ol>
+
+    <p style="margin-top: var(--sp-6);">
+      <a href="pasos.html" class="btn btn-primary">Abrir módulos operativos</a>
+      <a href="guide_IA.html#paso1" class="btn btn-secondary">Handbook completo</a>
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>OWASP Top 10 — integración en P03</h2>
+    <p class="section-lead">El módulo de seguridad mapea cada categoría OWASP 2021 a controles verificables y prompts adversariales.</p>
+
+    <div class="owasp-grid">
+      <div class="owasp-item">
+        <h5>A01 — Broken Access Control</h5>
+        <p>Validar autorización en cada endpoint; negar por defecto.</p>
+        <p class="fw-trace">Prompt P03-ADV · Paso 5 (autoría)</p>
+      </div>
+      <div class="owasp-item">
+        <h5>A02 — Cryptographic Failures</h5>
+        <p>Algoritmos, gestión de claves, datos en tránsito/reposo.</p>
+        <p class="fw-trace">ISO: Seguridad · Confidencialidad</p>
+      </div>
+      <div class="owasp-item">
+        <h5>A03 — Injection</h5>
+        <p>SQL/NoSQL/command injection; parametrización y sanitización.</p>
+        <p class="fw-trace">P02 validación · P03 auditoría</p>
+      </div>
+      <div class="owasp-item">
+        <h5>A04 — Insecure Design</h5>
+        <p>Amenazas en diseño; threat modeling ligero.</p>
+        <p class="fw-trace">P01 definición · P04 supervisión</p>
+      </div>
+      <div class="owasp-item">
+        <h5>A05 — Security Misconfiguration</h5>
+        <p>Headers, CORS, permisos por defecto, secrets en repos.</p>
+        <p class="fw-trace">Checklist P03</p>
+      </div>
+      <div class="owasp-item">
+        <h5>A06 — Vulnerable Components</h5>
+        <p>SBOM, npm audit, CVEs en dependencias.</p>
+        <p class="fw-trace">Métrica: 0 critical/high sin mitigar</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-bottom">
+      Framework metodológico · Universidad Libre Cúcuta · Ing. TIC · 2025
+    </div>
+  </div>
+</footer>
+
+<button type="button" class="scroll-top" id="scrollTop" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i data-lucide="arrow-up" class="icon-md"></i>
+</button>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
