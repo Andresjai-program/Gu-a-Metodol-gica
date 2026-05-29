@@ -5,316 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Evaluación interactiva de calidad de software basada en ISO/IEC 25010:2023.">
   <title>Evaluación ISO 25010 — Guía Metodológica</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
-  <style>
-    .eval-intro {
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(124, 58, 237, 0.08));
-      border: 1px solid rgba(37, 99, 235, 0.15);
-      border-radius: var(--radius-lg);
-      padding: var(--sp-2xl);
-      margin-bottom: var(--sp-2xl);
-    }
-    
-    .score-dashboard {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: var(--sp-lg);
-      margin-bottom: var(--sp-2xl);
-    }
-    
-    .score-card {
-      background: var(--bg-alt);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: var(--sp-lg);
-      text-align: center;
-    }
-    
-    .score-big {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      line-height: 1;
-      margin-bottom: var(--sp-sm);
-    }
-    
-    .score-sub {
-      font-size: 0.85rem;
-      color: var(--text-tertiary);
-    }
-    
-    .score-bar {
-      height: 4px;
-      background: var(--bg-hover);
-      border-radius: 99px;
-      overflow: hidden;
-      margin-top: var(--sp-md);
-    }
-    
-    .score-bar-fill {
-      height: 100%;
-      background: var(--accent-primary);
-      transition: width 0.6s ease;
-      border-radius: 99px;
-    }
-    
-    .iso-char-card {
-      background: var(--bg-alt);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      margin-bottom: var(--sp-lg);
-      overflow: hidden;
-      transition: border-color 0.2s;
-    }
-    
-    .iso-char-card:hover {
-      border-color: var(--border-default);
-    }
-    
-    .iso-char-head {
-      padding: var(--sp-lg);
-      display: flex;
-      align-items: center;
-      gap: var(--sp-lg);
-      border-bottom: 1px solid var(--border-light);
-      cursor: pointer;
-      background: var(--bg-alt);
-      transition: background 0.2s;
-    }
-    
-    .iso-char-head:hover {
-      background: var(--bg-hover);
-    }
-    
-    .iso-char-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      flex-shrink: 0;
-      background: rgba(37, 99, 235, 0.1);
-    }
-    
-    .iso-char-name {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: var(--sp-sm);
-    }
-    
-    .iso-char-sub {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
-    
-    .iso-char-score {
-      text-align: right;
-      flex-shrink: 0;
-    }
-    
-    .iso-char-pct {
-      font-family: var(--font-mono);
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--accent-primary);
-      line-height: 1;
-    }
-    
-    .iso-char-body {
-      display: none;
-      padding: var(--sp-xl);
-    }
-    
-    .iso-char-body.open {
-      display: block;
-    }
-    
-    .q-row {
-      padding: var(--sp-lg) 0;
-      border-bottom: 1px solid var(--border-light);
-    }
-    
-    .q-row:last-child {
-      border-bottom: none;
-    }
-    
-    .q-text {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: var(--sp-lg);
-    }
-    
-    .q-text strong {
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-    
-    .q-options {
-      display: flex;
-      gap: var(--sp-md);
-      flex-wrap: wrap;
-    }
-    
-    .q-opt {
-      position: relative;
-      cursor: pointer;
-    }
-    
-    .q-opt input {
-      position: absolute;
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    
-    .q-opt label {
-      display: flex;
-      align-items: center;
-      gap: var(--sp-sm);
-      background: var(--bg-hover);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      padding: 8px 14px;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all 0.15s;
-      user-select: none;
-    }
-    
-    .q-opt label:hover {
-      border-color: var(--border-default);
-      color: var(--text-primary);
-    }
-    
-    .q-opt input:checked + label {
-      border-color: var(--accent-primary);
-      background: rgba(37, 99, 235, 0.08);
-      color: var(--accent-primary);
-      font-weight: 500;
-    }
-    
-    .q-opt-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      border: 1.5px solid currentColor;
-      transition: all 0.15s;
-    }
-    
-    .q-opt input:checked + label .q-opt-dot {
-      background: currentColor;
-    }
-    
-    .eval-result {
-      margin-top: var(--sp-2xl);
-      background: var(--bg-alt);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: var(--sp-2xl);
-      display: none;
-    }
-    
-    .eval-result.show {
-      display: block;
-    }
-    
-    .result-header {
-      text-align: center;
-      margin-bottom: var(--sp-2xl);
-    }
-    
-    .result-header h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: var(--sp-md);
-    }
-    
-    .result-score-big {
-      font-size: 3.5rem;
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: var(--sp-base);
-    }
-    
-    .result-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: var(--sp-lg);
-      margin-bottom: var(--sp-lg);
-    }
-    
-    .result-item {
-      background: var(--bg-base);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      padding: var(--sp-lg);
-      text-align: center;
-    }
-    
-    .result-item-name {
-      font-size: 0.8rem;
-      color: var(--text-tertiary);
-      margin-bottom: var(--sp-sm);
-    }
-    
-    .result-item-val {
-      font-family: var(--font-mono);
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--accent-primary);
-    }
-    
-    .eval-buttons {
-      display: flex;
-      gap: var(--sp-lg);
-      margin-bottom: var(--sp-2xl);
-    }
-    
-    .eval-btn {
-      flex: 1;
-      padding: var(--sp-lg) var(--sp-2xl);
-      background: var(--accent-primary);
-      color: white;
-      border: none;
-      border-radius: var(--radius-lg);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .eval-btn:hover {
-      background: var(--accent-primary-hover);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-    
-    .reset-btn {
-      flex: 1;
-      padding: var(--sp-lg) var(--sp-2xl);
-      background: var(--bg-alt);
-      color: var(--text-secondary);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .reset-btn:hover {
-      border-color: var(--border-default);
-      color: var(--text-primary);
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 </head>
 <body>
 
@@ -323,16 +18,19 @@
 <!-- HEADER -->
 <header class="header">
   <div class="header-content">
-    <div class="header-logo">
-      <span></span>
-      <span>Guía Metodológica</span>
-    </div>
+    <a href="index.html" class="header-logo"><span class="header-logo-mark" aria-hidden="true"></span><span>Guía Metodológica</span></a>
     <nav class="header-nav">
       <a href="index.html">Inicio</a>
       <a href="pasos.html">Los 6 Pasos</a>
-      <a href="iso-evaluation.html">Evaluación</a>
+      <a href="iso-evaluation.html" aria-current="page">Evaluación ISO 25010</a>
       <a href="normativa.html">Normativa</a>
+          <a href="guide_IA.html">Guía completa</a>
     </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" aria-label="Cambiar tema">
+        <i data-lucide="sun-moon" class="icon-md"></i>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -342,15 +40,13 @@
   <!-- BREADCRUMB -->
   <div class="breadcrumb">
     <a href="index.html">Inicio</a>
-    <span>/</span>
+    <span class="breadcrumb-sep" aria-hidden="true">/</span>
     <span>Evaluación ISO 25010</span>
   </div>
 
   <!-- HERO -->
   <section class="hero" style="margin-bottom: var(--sp-2xl);">
-    <div class="hero-eyebrow">
-      <span>●</span>
-      <span>Autoevaluación</span>
+    <div class="hero-eyebrow"><span>Autoevaluación</span>
     </div>
     
     <h1>ISO/IEC 25010:2023 <em>SQuaRE</em></h1>
@@ -369,7 +65,7 @@
     <div style="display: flex; gap: var(--sp-lg); flex-wrap: wrap; font-size: 0.9rem; color: var(--text-secondary);">
       <span>✓ Cumple completamente (4 pts)</span>
       <span>~ Cumple mayormente (3 pts)</span>
-      <span>⚠ Cumple parcialmente (2 pts)</span>
+      <span><span class="dot-legend" style="background:var(--status-warning)"></span> Cumple parcialmente (2 pts)</span>
       <span>✗ No cumple (1 pt)</span>
     </div>
   </div>
@@ -401,7 +97,7 @@
     <!-- CHAR 1 -->
     <div class="iso-char-card">
       <div class="iso-char-head" onclick="toggleChar(this)">
-        <div class="iso-char-icon">🎯</div>
+        <div class="iso-char-icon"><i data-lucide="target" class="icon-lg"></i></div>
         <div style="flex: 1;">
           <div class="iso-char-name">1. Adecuación Funcional</div>
           <div class="iso-char-sub">Grado en que el software provee funciones que satisfacen necesidades declaradas</div>
@@ -444,7 +140,7 @@
     <!-- CHAR 2 -->
     <div class="iso-char-card">
       <div class="iso-char-head" onclick="toggleChar(this)">
-        <div class="iso-char-icon">⚡</div>
+        <div class="iso-char-icon"><i data-lucide="zap" class="icon-lg"></i></div>
         <div style="flex: 1;">
           <div class="iso-char-name">2. Eficiencia de Desempeño</div>
           <div class="iso-char-sub">Desempeño relativo a la cantidad de recursos usados</div>
@@ -487,7 +183,7 @@
     <!-- CHAR 3 -->
     <div class="iso-char-card">
       <div class="iso-char-head" onclick="toggleChar(this)">
-        <div class="iso-char-icon">🔗</div>
+        <div class="iso-char-icon"><i data-lucide="link-2" class="icon-lg"></i></div>
         <div style="flex: 1;">
           <div class="iso-char-name">3. Compatibilidad</div>
           <div class="iso-char-sub">Grado en que comparte entorno e intercambia información con otros sistemas</div>
@@ -530,7 +226,7 @@
     <!-- CHAR 4 -->
     <div class="iso-char-card">
       <div class="iso-char-head" onclick="toggleChar(this)">
-        <div class="iso-char-icon">🖥️</div>
+        <div class="iso-char-icon"><i data-lucide="monitor" class="icon-lg"></i></div>
         <div style="flex: 1;">
           <div class="iso-char-name">4. Capacidad de Interacción</div>
           <div class="iso-char-sub">Grado en que puede ser usado con efectividad, eficiencia y satisfacción</div>
@@ -573,7 +269,7 @@
     <!-- CHAR 5 -->
     <div class="iso-char-card">
       <div class="iso-char-head" onclick="toggleChar(this)">
-        <div class="iso-char-icon">🛡️</div>
+        <div class="iso-char-icon"><i data-lucide="shield" class="icon-lg"></i></div>
         <div style="flex: 1;">
           <div class="iso-char-name">5. Fiabilidad</div>
           <div class="iso-char-sub">Grado en que realiza funciones especificadas sin fallos por un periodo determinado</div>
@@ -616,7 +312,7 @@
     <!-- CHAR 6 -->
     <div class="iso-char-card">
       <div class="iso-char-head" onclick="toggleChar(this)">
-        <div class="iso-char-icon">🔐</div>
+        <div class="iso-char-icon"><i data-lucide="lock" class="icon-lg"></i></div>
         <div style="flex: 1;">
           <div class="iso-char-name">6. Seguridad</div>
           <div class="iso-char-sub">Grado en que protege información, datos y acceso no autorizado</div>
@@ -659,7 +355,7 @@
     <!-- CHAR 7 -->
     <div class="iso-char-card">
       <div class="iso-char-head" onclick="toggleChar(this)">
-        <div class="iso-char-icon">🔧</div>
+        <div class="iso-char-icon"><i data-lucide="wrench" class="icon-lg"></i></div>
         <div style="flex: 1;">
           <div class="iso-char-name">7. Mantenibilidad</div>
           <div class="iso-char-sub">Grado de efectividad para ser modificado por mantenedores previstos</div>
@@ -702,7 +398,7 @@
     <!-- CHAR 8 -->
     <div class="iso-char-card">
       <div class="iso-char-head" onclick="toggleChar(this)">
-        <div class="iso-char-icon">🌿</div>
+        <div class="iso-char-icon"><i data-lucide="layers" class="icon-lg"></i></div>
         <div style="flex: 1;">
           <div class="iso-char-name">8. Flexibilidad</div>
           <div class="iso-char-sub">Grado en que puede adaptarse a cambios de requisitos o entornos</div>
@@ -745,7 +441,7 @@
     <!-- CHAR 9 -->
     <div class="iso-char-card">
       <div class="iso-char-head" onclick="toggleChar(this)">
-        <div class="iso-char-icon">⚠️</div>
+        <div class="iso-char-icon"><i data-lucide="alert-triangle" class="icon-lg"></i></div>
         <div style="flex: 1;">
           <div class="iso-char-name">9. Protección (Safety)</div>
           <div class="iso-char-sub">Grado en que mitiga el riesgo de daño a personas, datos o sistemas</div>
@@ -825,127 +521,9 @@
   </div>
 </footer>
 
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button type="button" class="scroll-top" id="scrollTop" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i data-lucide="arrow-up" class="icon-md"></i></button>
 
-<script>
-const CHARS = ['adec','efic','compat','inter','fiab','seg','mant','flex','prot'];
-const CHAR_NAMES = {
-  adec: 'Adecuación Funcional',
-  efic: 'Eficiencia Desempeño',
-  compat: 'Compatibilidad',
-  inter: 'Cap. Interacción',
-  fiab: 'Fiabilidad',
-  seg: 'Seguridad',
-  mant: 'Mantenibilidad',
-  flex: 'Flexibilidad',
-  prot: 'Protección'
-};
-
-function toggleChar(head) {
-  const body = head.nextElementSibling;
-  body.classList.toggle('open');
-}
-
-function getCharScore(char) {
-  const rows = document.querySelectorAll(`.q-row[data-char="${char}"]`);
-  let total = 0, answered = 0;
-  rows.forEach((_, i) => {
-    const sel = document.querySelector(`input[name="${char}_${i+1}"]:checked`);
-    if (sel) {
-      total += parseInt(sel.value);
-      answered++;
-    }
-  });
-  return { total, answered, max: rows.length * 4, questions: rows.length };
-}
-
-function updateDashboard() {
-  let totalAnswered = 0, totalScore = 0, totalMax = 0;
-  CHARS.forEach(c => {
-    const s = getCharScore(c);
-    totalAnswered += s.answered;
-    totalScore += s.total;
-    totalMax += s.max;
-    const pct = s.answered > 0 ? Math.round((s.total / (s.answered * 4)) * 100) : 0;
-    const el = document.querySelector(`.iso-char-pct[data-char="${c}"]`);
-    if (el) {
-      el.textContent = s.answered === s.questions ? pct + '%' : `${s.answered}/${s.questions}`;
-    }
-  });
-  const overallPct = totalAnswered > 0 ? Math.round((totalScore / (totalAnswered * 4)) * 100) : 0;
-  document.getElementById('totalResp').textContent = totalAnswered;
-  document.getElementById('respFill').style.width = (totalAnswered / 27) * 100 + '%';
-  if (totalAnswered > 0) {
-    document.getElementById('totalScore').textContent = totalScore + '/' + (totalAnswered * 4);
-    document.getElementById('totalPct').textContent = overallPct + '%';
-    document.getElementById('totalFill').style.width = overallPct + '%';
-    document.getElementById('pctFill').style.width = overallPct + '%';
-  }
-}
-
-function calcScore() {
-  const unanswered = [];
-  let totalScore = 0, totalMax = 0;
-  CHARS.forEach(c => {
-    const rows = document.querySelectorAll(`.q-row[data-char="${c}"]`);
-    rows.forEach((_, i) => {
-      const sel = document.querySelector(`input[name="${c}_${i+1}"]:checked`);
-      if (!sel) unanswered.push(`${CHAR_NAMES[c]} — Q${i+1}`);
-      else { totalScore += parseInt(sel.value); totalMax += 4; }
-    });
-  });
-  if (unanswered.length > 0) {
-    alert('Por favor responde todas las 27 preguntas antes de calcular.');
-    return;
-  }
-  const pct = Math.round((totalScore / totalMax) * 100);
-  let label = '', color = '';
-  if (pct >= 85) { label = 'Excelente cumplimiento'; color = '#10b981'; }
-  else if (pct >= 70) { label = 'Buen cumplimiento'; color = '#3b82f6'; }
-  else if (pct >= 55) { label = 'Cumplimiento parcial'; color = '#f59e0b'; }
-  else { label = 'Requiere mejoras'; color = '#ef4444'; }
-  document.getElementById('resultBig').textContent = pct + '%';
-  document.getElementById('resultBig').style.color = color;
-  document.getElementById('resultLabel').textContent = label + ' · ' + totalScore + '/' + totalMax + ' puntos';
-  const grid = document.getElementById('resultGrid');
-  grid.innerHTML = CHARS.map(c => {
-    const s = getCharScore(c);
-    const cp = Math.round((s.total / s.max) * 100);
-    return `<div class="result-item"><div class="result-item-name">${CHAR_NAMES[c]}</div><div class="result-item-val" style="color: var(--accent-primary)">${cp}%</div></div>`;
-  }).join('');
-  const weakest = CHARS.filter(c => { const s = getCharScore(c); return (s.total/s.max) < 0.6; }).map(c => CHAR_NAMES[c]);
-  document.getElementById('resultRec').innerHTML = weakest.length > 0
-    ? `<strong>Áreas de mejora:</strong> ${weakest.join(', ')}. Revisa los pasos metodológicos y aplica validaciones adicionales.`
-    : `<strong style="color: var(--status-success)">✓ Excelente resultado.</strong> Tu proyecto muestra alto cumplimiento ISO 25010.`;
-  document.getElementById('evalResult').classList.add('show');
-  document.getElementById('evalResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function resetEval() {
-  document.querySelectorAll('input[type="radio"]').forEach(i => i.checked = false);
-  document.getElementById('evalResult').classList.remove('show');
-  CHARS.forEach(c => {
-    const el = document.querySelector(`.iso-char-pct[data-char="${c}"]`);
-    if (el) el.textContent = '—';
-  });
-  document.getElementById('totalScore').textContent = '—';
-  document.getElementById('totalPct').textContent = '—';
-  document.getElementById('totalResp').textContent = '0';
-  document.getElementById('totalFill').style.width = '0%';
-  document.getElementById('pctFill').style.width = '0%';
-  document.getElementById('respFill').style.width = '0%';
-}
-
-function updateProgress() {
-  const scrolled = window.scrollY;
-  const total = document.body.scrollHeight - window.innerHeight;
-  const pct = total > 0 ? (scrolled / total) * 100 : 0;
-  document.getElementById('progress-bar').style.width = pct + '%';
-  document.getElementById('scrollTop').classList.toggle('visible', scrolled > 400);
-}
-
-window.addEventListener('scroll', updateProgress);
-</script>
-
+<script src="assets/app.js"></script>
+<script src="assets/iso-eval.js"></script>
 </body>
 </html>

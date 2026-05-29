@@ -6,2178 +6,24 @@
 <meta name="description" content="Guía metodológica integral para integración ética, segura y verificable de IA en desarrollo de software. Basada en ISO/IEC 25010, NIST AI RMF y regulaciones internacionales.">
 <meta name="theme-color" content="#ffffff">
 <title>Integración de IA en Desarrollo — Guía Metodológica Oficial</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-/* ════════════════════════════════════════════════════
-   DESIGN SYSTEM v2.0 — Professional Documentation
-════════════════════════════════════════════════════ */
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 
-:root {
-  /* COLOR PALETTE — Professional & Institutional */
-  --bg-base:    #ffffff;
-  --bg-alt:     #f8f9fb;
-  --bg-hover:   #f3f4f7;
-  --bg-active:  #eff0f4;
-  
-  --text-primary:    #0f111e;
-  --text-secondary:  #5a6473;
-  --text-tertiary:   #8891a0;
-  --text-disabled:   #c0c5d0;
-  
-  --border-light:    #e8eaef;
-  --border-default:  #d8dce5;
-  --border-strong:   #c0c5d0;
-  
-  --accent-primary:   #2563eb;
-  --accent-primary-hover: #1d4ed8;
-  --accent-secondary: #7c3aed;
-  --accent-tertiary:  #059669;
-  
-  --status-success: #10b981;
-  --status-warning: #f59e0b;
-  --status-error:   #ef4444;
-  --status-info:    #3b82f6;
-  
-  /* TYPOGRAPHY */
-  --font-sans:  'Inter', 'IBM Plex Sans', system-ui, sans-serif;
-  --font-mono:  'JetBrains Mono', monospace;
-  --font-serif: 'IBM Plex Sans', system-ui, sans-serif;
-  
-  /* SIZING & SPACING */
-  --sp-xs:  4px;
-  --sp-sm:  8px;
-  --sp-md:  12px;
-  --sp-base: 16px;
-  --sp-lg:  24px;
-  --sp-xl:  32px;
-  --sp-2xl: 48px;
-  --sp-3xl: 64px;
-  
-  /* RADIUS — Subtle, professional */
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-  
-  /* SHADOWS — Soft, minimal */
-  --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-  
-  /* Z-INDEX HIERARCHY */
-  --z-sticky: 10;
-  --z-fixed:  100;
-  --z-modal:  1000;
-}
-
-/* DARK MODE (optional) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-base:    #0f1119;
-    --bg-alt:     #16171f;
-    --bg-hover:   #1e1f2b;
-    --bg-active:  #262735;
-    
-    --text-primary:    #f3f4f7;
-    --text-secondary:  #c0c5d0;
-    --text-tertiary:   #8891a0;
-    --text-disabled:   #5a6473;
-    
-    --border-light:    #2a2d38;
-    --border-default:  #36394a;
-    --border-strong:   #45485a;
-    
-    --accent-primary:   #3b82f6;
-    --accent-primary-hover: #60a5fa;
-  }
-}
-
-/* ════════════════════════════════════════════════════
-   RESET & BASE STYLES
-════════════════════════════════════════════════════ */
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  background: var(--bg-base);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  line-height: 1.6;
-  letter-spacing: -0.01em;
-  overflow-x: hidden;
-}
-
-/* Typography base */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-}
-
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
-h5 { font-size: 1.125rem; }
-h6 { font-size: 1rem; }
-
-p { margin-bottom: 1em; color: var(--text-secondary); }
-a { color: var(--accent-primary); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-/* ════════════════════════════════════════════════════
-   LAYOUT STRUCTURE
-════════════════════════════════════════════════════ */
-
-.shell {
-  display: grid;
-  grid-template-columns: 1fr;
-  min-height: 100vh;
-  background: var(--bg-base);
-}
-
-.sidebar {
-  display: none;
-}
-
-.main {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: var(--sp-3xl) var(--sp-xl);
-  background: var(--bg-base);
-}
-
-@media (min-width: 1024px) {
-  .shell {
-    grid-template-columns: 280px 1fr;
-  }
-  
-  .sidebar {
-    display: flex;
-    flex-direction: column;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    background: var(--bg-alt);
-    border-right: 1px solid var(--border-light);
-    padding: var(--sp-xl) 0;
-  }
-  
-  .main {
-    padding: var(--sp-3xl) var(--sp-2xl);
-  }
-}
-
-/* ════════════════════════════════════════════════════
-   SIDEBAR NAVIGATION
-════════════════════════════════════════════════════ */
-
-.sb-header {
-  padding: 0 var(--sp-lg) var(--sp-lg);
-  border-bottom: 1px solid var(--border-light);
-  margin-bottom: var(--sp-lg);
-}
-
-.sb-eyebrow {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-tertiary);
-  margin-bottom: var(--sp-sm);
-}
-
-.sb-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  line-height: 1.4;
-}
-
-.sb-meta {
-  margin-top: var(--sp-md);
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-  line-height: 1.5;
-}
-
-.sb-nav {
-  flex: 1;
-  padding: 0;
-}
-
-.sb-group {
-  margin: 0;
-}
-
-.sb-group-label {
-  padding: var(--sp-md) var(--sp-lg);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-tertiary);
-}
-
-.sb-link {
-  display: block;
-  padding: 8px var(--sp-lg);
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  border-left: 3px solid transparent;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.sb-link:hover {
-  color: var(--text-primary);
-  background: var(--bg-hover);
-  border-left-color: var(--accent-primary);
-}
-
-.sb-link.active {
-  color: var(--accent-primary);
-  background: rgba(37, 99, 235, 0.08);
-  border-left-color: var(--accent-primary);
-  font-weight: 500;
-}
-
-.sb-footer {
-  padding: var(--sp-lg);
-  border-top: 1px solid var(--border-light);
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-}
-
-/* ════════════════════════════════════════════════════
-   HERO SECTION
-════════════════════════════════════════════════════ */
-
-.hero {
-  margin-bottom: var(--sp-3xl);
-}
-
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-sm);
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(37, 99, 235, 0.2);
-  color: var(--accent-primary);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  padding: 6px 12px;
-  border-radius: var(--radius-xl);
-  margin-bottom: var(--sp-lg);
-}
-
-.hero h1 {
-  font-size: 3rem;
-  line-height: 1.1;
-  color: var(--text-primary);
-  margin-bottom: var(--sp-base);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.hero h1 em {
-  font-style: italic;
-  color: var(--accent-primary);
-  font-weight: 700;
-}
-
-.hero-lead {
-  font-size: 1.125rem;
-  color: var(--text-secondary);
-  max-width: 700px;
-  line-height: 1.8;
-  margin-bottom: var(--sp-2xl);
-  font-weight: 400;
-}
-
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--sp-lg);
-  margin-bottom: var(--sp-2xl);
-}
-
-.stat-card {
-  padding: var(--sp-lg);
-  background: var(--bg-alt);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  transition: all 0.2s;
-}
-
-.stat-card:hover {
-  border-color: var(--border-default);
-  background: var(--bg-hover);
-}
-
-.stat-num {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1;
-  margin-bottom: var(--sp-sm);
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-
-/* ════════════════════════════════════════════════════
-   SECTION STYLING
-════════════════════════════════════════════════════ */
-
-.section {
-  margin-bottom: var(--sp-3xl);
-}
-
-.divider {
-  height: 1px;
-  background: var(--border-light);
-  margin: var(--sp-2xl) 0;
-}
-
-.divider-text {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-base);
-  margin: var(--sp-2xl) 0;
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 500;
-}
-
-.divider-text::before,
-.divider-text::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border-light);
-}
-
-.s-eyebrow {
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-tertiary);
-  margin-bottom: var(--sp-md);
-}
-
-.s-title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: var(--sp-md);
-}
-
-.s-title em {
-  font-style: italic;
-  color: var(--accent-primary);
-}
-
-.s-lead {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  max-width: 750px;
-  line-height: 1.8;
-  margin-bottom: var(--sp-xl);
-}
-
-/* ════════════════════════════════════════════════════
-   PASO CARD — Improved
-════════════════════════════════════════════════════ */
-
-.paso-card {
-  background: var(--bg-base);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  margin-bottom: var(--sp-2xl);
-  overflow: hidden;
-  transition: all 0.2s;
-}
-
-.paso-card:hover {
-  border-color: var(--border-default);
-  box-shadow: var(--shadow-sm);
-}
-
-.paso-head {
-  padding: var(--sp-xl) var(--sp-2xl);
-  display: flex;
-  align-items: flex-start;
-  gap: var(--sp-lg);
-  border-bottom: 1px solid var(--border-light);
-  background: var(--bg-alt);
-}
-
-.paso-num-badge {
-  width: 50px;
-  height: 50px;
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 1.25rem;
-  font-weight: 600;
-  flex-shrink: 0;
-  background: rgba(37, 99, 235, 0.1);
-  color: var(--accent-primary);
-}
-
-.paso-head-info h3 {
-  font-size: 1.5rem;
-  color: var(--text-primary);
-  margin-bottom: var(--sp-sm);
-}
-
-.paso-head-info p {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-.paso-body {
-  padding: var(--sp-2xl);
-}
-
-/* ════════════════════════════════════════════════════
-   ALERT & CALLOUT BOXES
-════════════════════════════════════════════════════ */
-
-.alert {
-  display: flex;
-  gap: var(--sp-lg);
-  padding: var(--sp-lg);
-  border-radius: var(--radius-lg);
-  margin-bottom: var(--sp-lg);
-  border-left: 4px solid;
-  background: var(--bg-alt);
-}
-
-.alert-info {
-  border-left-color: var(--accent-primary);
-  background: rgba(37, 99, 235, 0.05);
-}
-
-.alert-warn {
-  border-left-color: var(--status-warning);
-  background: rgba(245, 158, 11, 0.05);
-}
-
-.alert-icon {
-  flex-shrink: 0;
-  font-size: 1.25rem;
-  line-height: 1.6;
-}
-
-.alert p {
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin: 0;
-}
-
-.alert strong {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-/* ════════════════════════════════════════════════════
-   TAGS & BADGES
-════════════════════════════════════════════════════ */
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-md);
-  margin-bottom: var(--sp-lg);
-}
-
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-sm);
-  font-size: 0.85rem;
-  font-weight: 500;
-  padding: 4px 10px;
-  border-radius: var(--radius-xl);
-  background: var(--bg-hover);
-  border: 1px solid var(--border-light);
-  color: var(--text-secondary);
-}
-
-.tag-risk {
-  background: rgba(239, 68, 68, 0.08);
-  border-color: rgba(239, 68, 68, 0.2);
-  color: #dc2626;
-}
-
-.tag-iso {
-  background: rgba(37, 99, 235, 0.08);
-  border-color: rgba(37, 99, 235, 0.2);
-  color: var(--accent-primary);
-}
-
-.tag-norm {
-  background: rgba(124, 58, 237, 0.08);
-  border-color: rgba(124, 58, 237, 0.2);
-  color: #7c3aed;
-}
-
-.tag-green {
-  background: rgba(16, 185, 129, 0.08);
-  border-color: rgba(16, 185, 129, 0.2);
-  color: #059669;
-}
-
-/* ════════════════════════════════════════════════════
-   CONTENT BLOCKS & TEXT UTILITIES
-════════════════════════════════════════════════════ */
-
-.cb {
-  margin-bottom: var(--sp-xl);
-}
-
-.cb-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-tertiary);
-  margin-bottom: var(--sp-md);
-  display: flex;
-  align-items: center;
-  gap: var(--sp-sm);
-}
-
-.cb-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border-light);
-}
-
-.cb p {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.8;
-  margin-bottom: var(--sp-base);
-}
-
-/* ════════════════════════════════════════════════════
-   TABLES
-════════════════════════════════════════════════════ */
-
-.dt, .iso-t, .comp-t, .rub-t {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.95rem;
-}
-
-.dt thead th,
-.iso-t th,
-.comp-t th,
-.rub-t th {
-  padding: 12px var(--sp-base);
-  background: var(--bg-alt);
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-align: left;
-  color: var(--text-tertiary);
-  border-bottom: 1px solid var(--border-light);
-}
-
-.dt tbody td,
-.iso-t td,
-.comp-t td,
-.rub-t td {
-  padding: 12px var(--sp-base);
-  border-bottom: 1px solid var(--border-light);
-  color: var(--text-secondary);
-  vertical-align: top;
-}
-
-.dt tbody tr:hover td,
-.comp-t tr:hover td {
-  background: var(--bg-hover);
-}
-
-.dt tbody tr:last-child td,
-.iso-t tr:last-child td,
-.comp-t tr:last-child td,
-.rub-t tr:last-child td {
-  border-bottom: none;
-}
-
-.td-step {
-  font-weight: 600;
-  color: var(--text-primary);
-  white-space: nowrap;
-}
-
-.attr {
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.check {
-  font-family: var(--font-mono);
-  color: var(--status-success);
-  font-weight: 600;
-}
-
-/* ════════════════════════════════════════════════════
-   NUMBERED LISTS
-════════════════════════════════════════════════════ */
-
-.nsteps {
-  list-style: none;
-  counter-reset: nsteps-counter;
-  margin-bottom: var(--sp-lg);
-}
-
-.nsteps li {
-  counter-increment: nsteps-counter;
-  display: flex;
-  gap: var(--sp-base);
-  margin-bottom: var(--sp-base);
-  align-items: flex-start;
-}
-
-.nsteps li::before {
-  content: counter(nsteps-counter);
-  min-width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(37, 99, 235, 0.1);
-  border: 1px solid rgba(37, 99, 235, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--accent-primary);
-  flex-shrink: 0;
-  margin-top: 2px;
-  font-family: var(--font-mono);
-}
-
-.nsteps li span {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.8;
-  padding-top: 2px;
-}
-
-.nsteps li strong {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-/* ════════════════════════════════════════════════════
-   PROMPT BLOCKS
-════════════════════════════════════════════════════ */
-
-.prompt-block {
-  background: var(--bg-alt);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  margin-bottom: var(--sp-base);
-}
-
-.prompt-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px var(--sp-base);
-  background: var(--bg-hover);
-  border-bottom: 1px solid var(--border-light);
-}
-
-.prompt-tag {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-sm);
-}
-
-.prompt-tag .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-primary);
-}
-
-.prompt-title {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text-tertiary);
-  font-weight: 500;
-}
-
-.copy-btn {
-  background: transparent;
-  border: 1px solid var(--border-light);
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  padding: 4px 12px;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: var(--font-mono);
-}
-
-.copy-btn:hover {
-  color: var(--text-primary);
-  border-color: var(--border-default);
-  background: var(--bg-hover);
-}
-
-.copy-btn.ok {
-  color: var(--status-success);
-  border-color: rgba(16, 185, 129, 0.3);
-}
-
-.prompt-body {
-  padding: var(--sp-lg);
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.8;
-  white-space: pre-wrap;
-  word-break: break-word;
-  background: var(--bg-base);
-  overflow-x: auto;
-}
-
-.pv {
-  color: var(--status-warning);
-  font-weight: 500;
-}
-
-/* ════════════════════════════════════════════════════
-   ACCORDION
-════════════════════════════════════════════════════ */
-
-.accordion {
-  margin-bottom: var(--sp-md);
-}
-
-.acc-trigger {
-  width: 100%;
-  background: var(--bg-alt);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 12px var(--sp-base);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  transition: all 0.2s;
-  text-align: left;
-}
-
-.acc-trigger:hover {
-  color: var(--text-primary);
-  border-color: var(--border-default);
-  background: var(--bg-hover);
-}
-
-.acc-trigger.open {
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  border-color: var(--border-default);
-  color: var(--text-primary);
-  background: var(--bg-hover);
-}
-
-.acc-arrow {
-  font-size: 0.75rem;
-  color: var(--text-tertiary);
-  transition: transform 0.2s;
-  flex-shrink: 0;
-}
-
-.acc-trigger.open .acc-arrow {
-  transform: rotate(180deg);
-}
-
-.acc-body {
-  display: none;
-  border: 1px solid var(--border-light);
-  border-top: none;
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  overflow: hidden;
-}
-
-.acc-body.open {
-  display: block;
-}
-
-/* ════════════════════════════════════════════════════
-   CHECKLISTS
-════════════════════════════════════════════════════ */
-
-.checklist {
-  list-style: none;
-  margin-bottom: var(--sp-lg);
-}
-
-.cl-item {
-  display: flex;
-  gap: var(--sp-md);
-  align-items: flex-start;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border-light);
-  cursor: pointer;
-  transition: background 0.1s;
-}
-
-.cl-item:last-child {
-  border-bottom: none;
-}
-
-.cl-box {
-  width: 18px;
-  height: 18px;
-  border-radius: var(--radius-md);
-  border: 2px solid var(--border-default);
-  flex-shrink: 0;
-  margin-top: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s;
-}
-
-.cl-box.done {
-  background: var(--status-success);
-  border-color: var(--status-success);
-}
-
-.cl-box.done::after {
-  content: '✓';
-  font-size: 12px;
-  color: white;
-  font-weight: 700;
-}
-
-.cl-item span {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  padding-top: 1px;
-}
-
-.cl-item.checked span {
-  text-decoration: line-through;
-  color: var(--text-tertiary);
-}
-
-/* ════════════════════════════════════════════════════
-   ISO 25010 EVALUATION
-════════════════════════════════════════════════════ */
-
-.iso-eval-intro {
-  background: var(--bg-alt);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-2xl);
-  margin-bottom: var(--sp-xl);
-}
-
-.iso-eval-intro h2 {
-  font-size: 2rem;
-  color: var(--text-primary);
-  margin-bottom: var(--sp-md);
-}
-
-.iso-eval-intro p {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.8;
-}
-
-/* Score Dashboard */
-.score-dashboard {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--sp-lg);
-  margin-bottom: var(--sp-xl);
-}
-
-.score-card {
-  background: var(--bg-alt);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-lg);
-  text-align: center;
-}
-
-.score-big {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--accent-primary);
-  line-height: 1;
-  margin-bottom: var(--sp-sm);
-}
-
-.score-sub {
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-}
-
-.score-bar-wrap {
-  height: 3px;
-  background: var(--bg-hover);
-  border-radius: 99px;
-  overflow: hidden;
-  margin-top: var(--sp-base);
-}
-
-.score-bar-fill {
-  height: 100%;
-  background: var(--accent-primary);
-  width: 0%;
-  transition: width 0.6s ease;
-  border-radius: 99px;
-}
-
-/* ISO Characteristic Card */
-.iso-char-card {
-  background: var(--bg-base);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  margin-bottom: var(--sp-lg);
-  overflow: hidden;
-  transition: border-color 0.2s;
-}
-
-.iso-char-card:hover {
-  border-color: var(--border-default);
-}
-
-.iso-char-head {
-  padding: var(--sp-lg);
-  display: flex;
-  align-items: center;
-  gap: var(--sp-lg);
-  border-bottom: 1px solid var(--border-light);
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-.iso-char-head:hover {
-  background: var(--bg-hover);
-}
-
-.iso-char-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  flex-shrink: 0;
-  background: rgba(37, 99, 235, 0.1);
-}
-
-.iso-char-info {
-  flex: 1;
-}
-
-.iso-char-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 2px;
-}
-
-.iso-char-sub {
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-}
-
-.iso-char-score {
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.iso-char-pct {
-  font-family: var(--font-mono);
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: var(--accent-primary);
-  line-height: 1;
-}
-
-.iso-char-label {
-  font-size: 0.8rem;
-  color: var(--text-tertiary);
-}
-
-.iso-char-bar {
-  width: 80px;
-  height: 3px;
-  background: var(--bg-hover);
-  border-radius: 99px;
-  overflow: hidden;
-  margin-top: 4px;
-}
-
-.iso-char-fill {
-  height: 100%;
-  border-radius: 99px;
-  transition: width 0.5s ease;
-  background: var(--accent-primary);
-}
-
-.iso-char-body {
-  padding: var(--sp-xl);
-  display: none;
-}
-
-.iso-char-body[style*="display: block"] {
-  display: block;
-}
-
-.iso-sub-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-md);
-  margin-bottom: var(--sp-lg);
-}
-
-.iso-sub {
-  background: var(--bg-hover);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 4px 10px;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-}
-
-/* Question row */
-.q-row {
-  padding: var(--sp-lg) 0;
-  border-bottom: 1px solid var(--border-light);
-}
-
-.q-row:last-child {
-  border-bottom: none;
-}
-
-.q-text {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: var(--sp-lg);
-}
-
-.q-text strong {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.q-options {
-  display: flex;
-  gap: var(--sp-md);
-  flex-wrap: wrap;
-}
-
-.q-opt {
-  position: relative;
-  cursor: pointer;
-}
-
-.q-opt input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.q-opt label {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-sm);
-  background: var(--bg-alt);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 7px 14px;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all 0.15s;
-  user-select: none;
-}
-
-.q-opt label:hover {
-  border-color: var(--border-default);
-  color: var(--text-primary);
-  background: var(--bg-hover);
-}
-
-.q-opt input:checked + label {
-  border-color: var(--accent-primary);
-  background: rgba(37, 99, 235, 0.08);
-  color: var(--accent-primary);
-  font-weight: 500;
-}
-
-.q-opt:nth-child(1) input:checked + label {
-  border-color: var(--status-success);
-  background: rgba(16, 185, 129, 0.08);
-  color: var(--status-success);
-}
-
-.q-opt:nth-child(2) input:checked + label {
-  border-color: #84cc16;
-  background: rgba(132, 204, 22, 0.08);
-  color: #84cc16;
-}
-
-.q-opt:nth-child(3) input:checked + label {
-  border-color: var(--status-warning);
-  background: rgba(245, 158, 11, 0.08);
-  color: var(--status-warning);
-}
-
-.q-opt:nth-child(4) input:checked + label {
-  border-color: var(--status-error);
-  background: rgba(239, 68, 68, 0.08);
-  color: var(--status-error);
-}
-
-.q-opt-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  border: 1.5px solid currentColor;
-  transition: all 0.15s;
-}
-
-.q-opt input:checked + label .q-opt-dot {
-  background: currentColor;
-}
-
-/* Eval result */
-.eval-result {
-  margin-top: var(--sp-xl);
-  background: var(--bg-alt);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-2xl);
-  display: none;
-}
-
-.eval-result.show {
-  display: block;
-}
-
-.result-header {
-  text-align: center;
-  margin-bottom: var(--sp-xl);
-}
-
-.result-header h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: var(--sp-md);
-}
-
-.result-score-big {
-  font-size: 4rem;
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: var(--sp-base);
-}
-
-.result-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: var(--sp-lg);
-  margin-bottom: var(--sp-lg);
-}
-
-.result-item {
-  background: var(--bg-base);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: var(--sp-base);
-}
-
-.result-item-name {
-  font-size: 0.8rem;
-  color: var(--text-tertiary);
-  margin-bottom: var(--sp-sm);
-}
-
-.result-item-val {
-  font-family: var(--font-mono);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--accent-primary);
-}
-
-.eval-btn,
-.reset-btn {
-  font-family: var(--font-sans);
-  border: none;
-  border-radius: var(--radius-lg);
-  padding: 12px var(--sp-lg);
-  cursor: pointer;
-  transition: all 0.2s;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  margin-top: var(--sp-lg);
-  width: 100%;
-}
-
-.eval-btn {
-  background: var(--accent-primary);
-  color: white;
-  font-size: 1rem;
-}
-
-.eval-btn:hover {
-  background: var(--accent-primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.eval-btn:active {
-  transform: translateY(0);
-}
-
-.reset-btn {
-  background: var(--bg-hover);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-light);
-  font-size: 0.95rem;
-  margin-top: var(--sp-base);
-}
-
-.reset-btn:hover {
-  border-color: var(--border-default);
-  color: var(--text-primary);
-}
-
-/* ════════════════════════════════════════════════════
-   NORM PILLS & CARDS
-════════════════════════════════════════════════════ */
-
-.norm-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-md);
-  margin-bottom: var(--sp-lg);
-}
-
-.norm-pill {
-  background: var(--bg-hover);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 6px 12px;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-}
-
-.norm-pill strong {
-  color: var(--text-primary);
-  font-weight: 600;
-  margin-right: var(--sp-sm);
-}
-
-.norm-card {
-  background: var(--bg-base);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-lg);
-  margin-bottom: var(--sp-base);
-  display: flex;
-  gap: var(--sp-lg);
-}
-
-.norm-badge {
-  min-width: 90px;
-  padding: var(--sp-md);
-  background: var(--bg-alt);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--accent-primary);
-  text-align: center;
-  height: fit-content;
-  flex-shrink: 0;
-}
-
-.norm-content h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: var(--sp-sm);
-}
-
-.norm-content p {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-
-.norm-content .norm-steps {
-  margin-top: var(--sp-md);
-  font-size: 0.85rem;
-  color: var(--accent-primary);
-  font-weight: 500;
-}
-
-/* ════════════════════════════════════════════════════
-   RÚBRICA DE EVALUACIÓN
-════════════════════════════════════════════════════ */
-
-.rubrica-wrap {
-  background: var(--bg-base);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  margin-bottom: var(--sp-lg);
-}
-
-.lvl {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: var(--radius-md);
-  background: var(--bg-hover);
-  border: 1px solid var(--border-light);
-}
-
-.lvl-ok {
-  background: rgba(16, 185, 129, 0.1);
-  color: var(--status-success);
-  border-color: rgba(16, 185, 129, 0.2);
-}
-
-.lvl-mid {
-  background: rgba(245, 158, 11, 0.1);
-  color: var(--status-warning);
-  border-color: rgba(245, 158, 11, 0.2);
-}
-
-.lvl-no {
-  background: rgba(239, 68, 68, 0.1);
-  color: var(--status-error);
-  border-color: rgba(239, 68, 68, 0.2);
-}
-
-/* ════════════════════════════════════════════════════
-   FOOTER & UTILITIES
-════════════════════════════════════════════════════ */
-
-.page-footer {
-  margin-top: var(--sp-3xl);
-  padding-top: var(--sp-xl);
-  border-top: 1px solid var(--border-light);
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-  line-height: 1.8;
-}
-
-.page-footer strong {
-  color: var(--text-secondary);
-  font-weight: 600;
-}
-
-/* Scroll to top button */
-#progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  width: 0%;
-  background: var(--accent-primary);
-  z-index: 1000;
-  transition: width 0.1s linear;
-}
-
-.scroll-top {
-  position: fixed;
-  bottom: var(--sp-lg);
-  right: var(--sp-lg);
-  width: 42px;
-  height: 42px;
-  background: var(--bg-alt);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 1rem;
-  color: var(--text-secondary);
-  opacity: 0;
-  transition: all 0.3s;
-  z-index: 100;
-  box-shadow: var(--shadow-md);
-}
-
-.scroll-top:hover {
-  color: var(--text-primary);
-  border-color: var(--border-default);
-  background: var(--bg-hover);
-}
-
-.scroll-top.vis {
-  opacity: 1;
-}
-
-/* ════════════════════════════════════════════════════
-   RESPONSIVE DESIGN
-════════════════════════════════════════════════════ */
-
-@media (max-width: 1024px) {
-  .shell {
-    grid-template-columns: 1fr;
-  }
-  
-  .sidebar {
-    display: none;
-  }
-  
-  .main {
-    padding: var(--sp-2xl) var(--sp-lg);
-  }
-  
-  h1 {
-    font-size: 2.2rem;
-  }
-  
-  .hero-stats {
-    grid-template-columns: 1fr 1fr;
-  }
-  
-  .score-dashboard {
-    grid-template-columns: 1fr;
-  }
-  
-  .result-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  
-  .paso-head {
-    flex-direction: column;
-    gap: var(--sp-base);
-  }
-}
-
-@media (max-width: 768px) {
-  .main {
-    padding: var(--sp-xl) var(--sp-base);
-  }
-  
-  h1 {
-    font-size: 1.75rem;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
-  
-  h3 {
-    font-size: 1.25rem;
-  }
-  
-  .hero-lead {
-    font-size: 1rem;
-  }
-  
-  .hero-stats {
-    grid-template-columns: 1fr;
-    gap: var(--sp-base);
-  }
-  
-  .stat-card {
-    padding: var(--sp-base);
-  }
-  
-  .paso-head {
-    padding: var(--sp-lg);
-  }
-  
-  .paso-body {
-    padding: var(--sp-lg);
-  }
-  
-  .iso-char-head {
-    flex-direction: column;
-    gap: var(--sp-base);
-  }
-  
-  .iso-char-score {
-    text-align: left;
-  }
-  
-  .q-options {
-    flex-direction: column;
-  }
-  
-  .q-opt label {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .result-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .norm-card {
-    flex-direction: column;
-  }
-  
-  .norm-badge {
-    min-width: auto;
-  }
-  
-  .scroll-top {
-    width: 38px;
-    height: 38px;
-    font-size: 0.9rem;
-  }
-}
-
-/* ═══ SECTION WRAPPER ═══ */
-.section { margin-bottom: 80px; }
-
-/* ═══════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════ */
-.hero { margin-bottom: 72px; }
-
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: var(--sp-2);
-  background: var(--blue-dim); border: 1px solid var(--blue-glow);
-  color: var(--blue); font-size: 11px; font-weight: 500;
-  letter-spacing: .06em; padding: 5px 12px; border-radius: 99px;
-  margin-bottom: var(--sp-6);
-}
-.hero-eyebrow span { width: 5px; height: 5px; background: var(--blue); border-radius: 50%; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
-
-.hero h1 {
-  font-family: var(--serif); font-weight: 300; font-size: 44px;
-  line-height: 1.1; margin-bottom: var(--sp-4); color: var(--white);
-  letter-spacing: -.02em;
-}
-.hero h1 em { font-style: italic; color: var(--blue); }
-.hero-lead {
-  font-size: 16px; color: var(--text-2); max-width: 620px;
-  line-height: 1.75; margin-bottom: var(--sp-8);
-}
-
-.hero-stats {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3);
-  margin-bottom: var(--sp-8);
-}
-.stat-card {
-  background: var(--bg-2); border: 1px solid var(--border);
-  border-radius: var(--r-md); padding: var(--sp-4) var(--sp-5);
-  transition: border-color .2s;
-}
-.stat-card:hover { border-color: var(--border-2); }
-.stat-num { font-family: var(--serif); font-size: 30px; font-weight: 600; color: var(--white); line-height: 1; }
-.stat-label { font-size: 11.5px; color: var(--text-3); margin-top: 4px; line-height: 1.4; }
-
-/* ═══ DIVIDER ═══ */
-.divider { height: 1px; background: var(--border); margin: 56px 0; }
-.divider-text {
-  display: flex; align-items: center; gap: var(--sp-4); margin: 56px 0;
-}
-.divider-text::before, .divider-text::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-.divider-text span { font-size: 11px; color: var(--text-3); white-space: nowrap; letter-spacing: .1em; text-transform: uppercase; }
-
-/* ═══ SECTION HEADER ═══ */
-.s-eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); margin-bottom: var(--sp-2); }
-.s-title { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: var(--sp-3); letter-spacing: -.02em; }
-.s-title em { font-style: italic; }
-.s-lead { font-size: 14.5px; color: var(--text-2); max-width: 640px; line-height: 1.7; margin-bottom: var(--sp-8); }
-
-/* ═══ ONBOARDING TABLE ═══ */
-.onboard-table-wrap {
-  background: var(--bg-2); border: 1px solid var(--border);
-  border-radius: var(--r-md); overflow: hidden; margin-bottom: var(--sp-6);
-}
-.dt { width: 100%; border-collapse: collapse; font-size: 13px; }
-.dt thead th {
-  padding: 10px var(--sp-4); background: var(--bg-3);
-  font-size: 10.5px; font-weight: 600; letter-spacing: .08em;
-  text-transform: uppercase; color: var(--text-3);
-  text-align: left; border-bottom: 1px solid var(--border);
-}
-.dt tbody td {
-  padding: 11px var(--sp-4); border-bottom: 1px solid var(--border);
-  color: var(--text-2); vertical-align: top; font-size: 13px;
-}
-.dt tbody tr:last-child td { border-bottom: none; }
-.dt tbody tr:hover td { background: rgba(255,255,255,.015); }
-.td-step { font-weight: 600; white-space: nowrap; }
-
-/* ═══ ALERT ═══ */
-.alert {
-  display: flex; gap: var(--sp-4); padding: var(--sp-4) var(--sp-5);
-  border-radius: var(--r); margin-bottom: var(--sp-5); font-size: 13.5px;
-}
-.alert-info  { background: var(--blue-dim); border: 1px solid rgba(91,156,246,.2); }
-.alert-warn  { background: var(--am-dim);   border: 1px solid rgba(245,158,11,.2); }
-.alert-icon  { flex-shrink: 0; font-size: 15px; line-height: 1.65; }
-.alert p     { color: var(--text-2); line-height: 1.65; margin: 0; }
-.alert strong { color: var(--text); }
-
-/* ═══════════════════════════════════════════
-   PASO CARD
-═══════════════════════════════════════════ */
-.paso-card {
-  background: var(--bg-2); border: 1px solid var(--border);
-  border-radius: var(--r-lg); margin-bottom: 48px; overflow: hidden;
-  transition: border-color .2s;
-}
-.paso-card:hover { border-color: var(--border-2); }
-
-.paso-head {
-  padding: var(--sp-8) var(--sp-10);
-  display: flex; align-items: flex-start; gap: var(--sp-5);
-  border-bottom: 1px solid var(--border);
-}
-.paso-num-badge {
-  width: 48px; height: 48px; border-radius: var(--r);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--mono); font-size: 15px; font-weight: 500;
-  flex-shrink: 0; letter-spacing: .05em;
-}
-.paso-head-info h3 {
-  font-family: var(--serif); font-size: 22px; font-weight: 300;
-  color: var(--white); margin-bottom: 4px; letter-spacing: -.01em;
-}
-.paso-head-info p { font-size: 13.5px; color: var(--text-3); line-height: 1.5; }
-
-.paso-body { padding: var(--sp-8) var(--sp-10); }
-
-/* ═══ TAGS ROW ═══ */
-.tags { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-6); }
-.tag {
-  display: inline-flex; align-items: center; gap: var(--sp-2);
-  font-size: 11px; font-weight: 500; padding: 3px 10px;
-  border-radius: 99px;
-}
-.tag-risk    { background: var(--rose-dim); border: 1px solid rgba(244,63,94,.2);  color: #fb7185; }
-.tag-iso     { background: var(--blue-dim); border: 1px solid rgba(91,156,246,.2); color: var(--blue); }
-.tag-norm    { background: var(--violet-dim); border: 1px solid rgba(139,92,246,.2); color: #a78bfa; }
-.tag-green   { background: var(--em-dim); border: 1px solid rgba(16,185,129,.2); color: #34d399; }
-
-/* ═══ NORM PILLS ═══ */
-.norm-strip { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-6); }
-.norm-pill {
-  background: var(--bg-3); border: 1px solid var(--border);
-  border-radius: var(--r-sm); padding: 5px 11px; font-size: 12px; color: var(--text-3);
-}
-.norm-pill strong { color: var(--text-2); font-weight: 500; }
-
-/* ═══ CONTENT BLOCK ═══ */
-.cb { margin-bottom: var(--sp-8); }
-.cb-label {
-  font-size: 10.5px; font-weight: 600; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--text-3); margin-bottom: var(--sp-3);
-  display: flex; align-items: center; gap: var(--sp-2);
-}
-.cb-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-.cb p { font-size: 14px; color: var(--text-2); line-height: 1.75; margin-bottom: var(--sp-3); }
-
-/* ═══ NUMBERED STEPS ═══ */
-.nsteps { list-style: none; counter-reset: ns; }
-.nsteps li {
-  counter-increment: ns; display: flex; gap: var(--sp-4);
-  margin-bottom: var(--sp-4); align-items: flex-start;
-}
-.nsteps li::before {
-  content: counter(ns);
-  min-width: 24px; height: 24px; border-radius: 50%;
-  background: var(--bg-4); border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 600; color: var(--text-3);
-  flex-shrink: 0; margin-top: 2px; font-family: var(--mono);
-}
-.nsteps li span { font-size: 13.5px; color: var(--text-2); line-height: 1.7; }
-.nsteps li strong { color: var(--text); }
-
-/* ═══ PROMPT BLOCK ═══ */
-.prompt-block {
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: var(--r-md); overflow: hidden; margin-bottom: var(--sp-3);
-}
-.prompt-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 9px var(--sp-4); background: var(--bg-3);
-  border-bottom: 1px solid var(--border);
-}
-.prompt-tag { display: flex; align-items: center; gap: var(--sp-2); }
-.prompt-tag .dot { width: 6px; height: 6px; border-radius: 50%; }
-.prompt-title { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
-.copy-btn {
-  background: var(--bg-4); border: 1px solid var(--border);
-  color: var(--text-3); font-size: 11px; padding: 3px 11px;
-  border-radius: var(--r-sm); cursor: pointer; transition: all .15s;
-  font-family: var(--mono);
-}
-.copy-btn:hover { color: var(--text); border-color: var(--border-2); }
-.copy-btn.ok { color: var(--emerald); border-color: rgba(16,185,129,.3); }
-.prompt-body {
-  padding: var(--sp-5) var(--sp-5); font-family: var(--mono);
-  font-size: 12.5px; color: #8ba5d6; line-height: 1.8; white-space: pre-wrap; word-break: break-word;
-}
-.pv { color: var(--amber); }
-
-/* ═══ ACCORDION ═══ */
-.accordion { margin-bottom: var(--sp-2); }
-.acc-trigger {
-  width: 100%; background: var(--bg-3); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 11px var(--sp-4);
-  display: flex; align-items: center; justify-content: space-between;
-  cursor: pointer; font-family: var(--font); font-size: 13px;
-  font-weight: 500; color: var(--text-2); transition: all .15s;
-  text-align: left;
-}
-.acc-trigger:hover { color: var(--text); border-color: var(--border-2); }
-.acc-trigger.open { border-radius: var(--r) var(--r) 0 0; border-color: var(--border-2); color: var(--text); }
-.acc-arrow { font-size: 10px; color: var(--text-3); transition: transform .2s; flex-shrink: 0; }
-.acc-trigger.open .acc-arrow { transform: rotate(180deg); }
-.acc-body { display: none; border: 1px solid var(--border-2); border-top: none; border-radius: 0 0 var(--r) var(--r); overflow: hidden; }
-.acc-body.open { display: block; }
-
-/* ═══ SECTION WRAPPER ═══ */
-.section { margin-bottom: 80px; }
-
-/* ═══════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════ */
-.hero { margin-bottom: 72px; }
-
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: var(--sp-2);
-  background: var(--blue-dim); border: 1px solid var(--blue-glow);
-  color: var(--blue); font-size: 11px; font-weight: 500;
-  letter-spacing: .06em; padding: 5px 12px; border-radius: 99px;
-  margin-bottom: var(--sp-6);
-}
-.hero-eyebrow span { width: 5px; height: 5px; background: var(--blue); border-radius: 50%; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
-
-.hero h1 {
-  font-family: var(--serif); font-weight: 300; font-size: 44px;
-  line-height: 1.1; margin-bottom: var(--sp-4); color: var(--white);
-  letter-spacing: -.02em;
-}
-.hero h1 em { font-style: italic; color: var(--blue); }
-.hero-lead {
-  font-size: 16px; color: var(--text-2); max-width: 620px;
-  line-height: 1.75; margin-bottom: var(--sp-8);
-}
-
-.hero-stats {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3);
-  margin-bottom: var(--sp-8);
-}
-.stat-card {
-  background: var(--bg-2); border: 1px solid var(--border);
-  border-radius: var(--r-md); padding: var(--sp-4) var(--sp-5);
-  transition: border-color .2s;
-}
-.stat-card:hover { border-color: var(--border-2); }
-.stat-num { font-family: var(--serif); font-size: 30px; font-weight: 600; color: var(--white); line-height: 1; }
-.stat-label { font-size: 11.5px; color: var(--text-3); margin-top: 4px; line-height: 1.4; }
-
-/* ═══ DIVIDER ═══ */
-.divider { height: 1px; background: var(--border); margin: 56px 0; }
-.divider-text {
-  display: flex; align-items: center; gap: var(--sp-4); margin: 56px 0;
-}
-.divider-text::before, .divider-text::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-.divider-text span { font-size: 11px; color: var(--text-3); white-space: nowrap; letter-spacing: .1em; text-transform: uppercase; }
-
-/* ═══ SECTION HEADER ═══ */
-.s-eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); margin-bottom: var(--sp-2); }
-.s-title { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: var(--sp-3); letter-spacing: -.02em; }
-.s-title em { font-style: italic; }
-.s-lead { font-size: 14.5px; color: var(--text-2); max-width: 640px; line-height: 1.7; margin-bottom: var(--sp-8); }
-
-/* ═══ ONBOARDING TABLE ═══ */
-.onboard-table-wrap {
-  background: var(--bg-2); border: 1px solid var(--border);
-  border-radius: var(--r-md); overflow: hidden; margin-bottom: var(--sp-6);
-}
-.dt { width: 100%; border-collapse: collapse; font-size: 13px; }
-.dt thead th {
-  padding: 10px var(--sp-4); background: var(--bg-3);
-  font-size: 10.5px; font-weight: 600; letter-spacing: .08em;
-  text-transform: uppercase; color: var(--text-3);
-  text-align: left; border-bottom: 1px solid var(--border);
-}
-.dt tbody td {
-  padding: 11px var(--sp-4); border-bottom: 1px solid var(--border);
-  color: var(--text-2); vertical-align: top; font-size: 13px;
-}
-.dt tbody tr:last-child td { border-bottom: none; }
-.dt tbody tr:hover td { background: rgba(255,255,255,.015); }
-.td-step { font-weight: 600; white-space: nowrap; }
-
-/* ═══ ALERT ═══ */
-.alert {
-  display: flex; gap: var(--sp-4); padding: var(--sp-4) var(--sp-5);
-  border-radius: var(--r); margin-bottom: var(--sp-5); font-size: 13.5px;
-}
-.alert-info  { background: var(--blue-dim); border: 1px solid rgba(91,156,246,.2); }
-.alert-warn  { background: var(--am-dim);   border: 1px solid rgba(245,158,11,.2); }
-.alert-icon  { flex-shrink: 0; font-size: 15px; line-height: 1.65; }
-.alert p     { color: var(--text-2); line-height: 1.65; margin: 0; }
-.alert strong { color: var(--text); }
-
-/* ═══════════════════════════════════════════
-   PASO CARD
-═══════════════════════════════════════════ */
-.paso-card {
-  background: var(--bg-2); border: 1px solid var(--border);
-  border-radius: var(--r-lg); margin-bottom: 48px; overflow: hidden;
-  transition: border-color .2s;
-}
-.paso-card:hover { border-color: var(--border-2); }
-
-.paso-head {
-  padding: var(--sp-8) var(--sp-10);
-  display: flex; align-items: flex-start; gap: var(--sp-5);
-  border-bottom: 1px solid var(--border);
-}
-.paso-num-badge {
-  width: 48px; height: 48px; border-radius: var(--r);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--mono); font-size: 15px; font-weight: 500;
-  flex-shrink: 0; letter-spacing: .05em;
-}
-.paso-head-info h3 {
-  font-family: var(--serif); font-size: 22px; font-weight: 300;
-  color: var(--white); margin-bottom: 4px; letter-spacing: -.01em;
-}
-.paso-head-info p { font-size: 13.5px; color: var(--text-3); line-height: 1.5; }
-
-.paso-body { padding: var(--sp-8) var(--sp-10); }
-
-/* ═══ TAGS ROW ═══ */
-.tags { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-6); }
-.tag {
-  display: inline-flex; align-items: center; gap: var(--sp-2);
-  font-size: 11px; font-weight: 500; padding: 3px 10px;
-  border-radius: 99px;
-}
-.tag-risk    { background: var(--rose-dim); border: 1px solid rgba(244,63,94,.2);  color: #fb7185; }
-.tag-iso     { background: var(--blue-dim); border: 1px solid rgba(91,156,246,.2); color: var(--blue); }
-.tag-norm    { background: var(--violet-dim); border: 1px solid rgba(139,92,246,.2); color: #a78bfa; }
-.tag-green   { background: var(--em-dim); border: 1px solid rgba(16,185,129,.2); color: #34d399; }
-
-/* ═══ NORM PILLS ═══ */
-.norm-strip { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-6); }
-.norm-pill {
-  background: var(--bg-3); border: 1px solid var(--border);
-  border-radius: var(--r-sm); padding: 5px 11px; font-size: 12px; color: var(--text-3);
-}
-.norm-pill strong { color: var(--text-2); font-weight: 500; }
-
-/* ═══ CONTENT BLOCK ═══ */
-.cb { margin-bottom: var(--sp-8); }
-.cb-label {
-  font-size: 10.5px; font-weight: 600; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--text-3); margin-bottom: var(--sp-3);
-  display: flex; align-items: center; gap: var(--sp-2);
-}
-.cb-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-.cb p { font-size: 14px; color: var(--text-2); line-height: 1.75; margin-bottom: var(--sp-3); }
-
-/* ═══ NUMBERED STEPS ═══ */
-.nsteps { list-style: none; counter-reset: ns; }
-.nsteps li {
-  counter-increment: ns; display: flex; gap: var(--sp-4);
-  margin-bottom: var(--sp-4); align-items: flex-start;
-}
-.nsteps li::before {
-  content: counter(ns);
-  min-width: 24px; height: 24px; border-radius: 50%;
-  background: var(--bg-4); border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 600; color: var(--text-3);
-  flex-shrink: 0; margin-top: 2px; font-family: var(--mono);
-}
-.nsteps li span { font-size: 13.5px; color: var(--text-2); line-height: 1.7; }
-.nsteps li strong { color: var(--text); }
-
-/* ═══ PROMPT BLOCK ═══ */
-.prompt-block {
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: var(--r-md); overflow: hidden; margin-bottom: var(--sp-3);
-}
-.prompt-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 9px var(--sp-4); background: var(--bg-3);
-  border-bottom: 1px solid var(--border);
-}
-.prompt-tag { display: flex; align-items: center; gap: var(--sp-2); }
-.prompt-tag .dot { width: 6px; height: 6px; border-radius: 50%; }
-.prompt-title { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
-.copy-btn {
-  background: var(--bg-4); border: 1px solid var(--border);
-  color: var(--text-3); font-size: 11px; padding: 3px 11px;
-  border-radius: var(--r-sm); cursor: pointer; transition: all .15s;
-  font-family: var(--mono);
-}
-.copy-btn:hover { color: var(--text); border-color: var(--border-2); }
-.copy-btn.ok { color: var(--emerald); border-color: rgba(16,185,129,.3); }
-.prompt-body {
-  padding: var(--sp-5) var(--sp-5); font-family: var(--mono);
-  font-size: 12.5px; color: #8ba5d6; line-height: 1.8; white-space: pre-wrap; word-break: break-word;
-}
-.pv { color: var(--amber); }
-
-/* ═══ ACCORDION ═══ */
-.accordion { margin-bottom: var(--sp-2); }
-.acc-trigger {
-  width: 100%; background: var(--bg-3); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 11px var(--sp-4);
-  display: flex; align-items: center; justify-content: space-between;
-  cursor: pointer; font-family: var(--font); font-size: 13px;
-  font-weight: 500; color: var(--text-2); transition: all .15s;
-  text-align: left;
-}
-.acc-trigger:hover { color: var(--text); border-color: var(--border-2); }
-.acc-trigger.open { border-radius: var(--r) var(--r) 0 0; border-color: var(--border-2); color: var(--text); }
-.acc-arrow { font-size: 10px; color: var(--text-3); transition: transform .2s; flex-shrink: 0; }
-.acc-trigger.open .acc-arrow { transform: rotate(180deg); }
-.acc-body { display: none; border: 1px solid var(--border-2); border-top: none; border-radius: 0 0 var(--r) var(--r); overflow: hidden; }
-.acc-body.open { display: block; }
-
-/* ═══════════════════════════════════════════
-   ISO 25010 EVALUATION — MAIN FEATURE
-═══════════════════════════════════════════ */
-.iso-eval-section { margin-bottom: 80px; }
-
-.iso-eval-intro {
-  background: linear-gradient(135deg, rgba(91,156,246,.06), rgba(139,92,246,.06));
-  border: 1px solid rgba(91,156,246,.15);
-  border-radius: var(--r-lg); padding: var(--sp-8) var(--sp-10);
-  margin-bottom: var(--sp-8);
-}
-.iso-eval-intro h2 { font-family: var(--serif); font-size: 26px; font-weight: 300; color: var(--white); margin-bottom: var(--sp-3); }
-.iso-eval-intro p { font-size: 14px; color: var(--text-2); line-height: 1.7; }
-
-/* Score Dashboard */
-.score-dashboard {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4);
-  margin-bottom: var(--sp-8);
-}
-.score-card {
-  background: var(--bg-2); border: 1px solid var(--border);
-  border-radius: var(--r-md); padding: var(--sp-5); text-align: center;
-}
-.score-big { font-family: var(--serif); font-size: 36px; font-weight: 600; color: var(--white); line-height: 1; margin-bottom: var(--sp-1); }
-.score-sub { font-size: 11.5px; color: var(--text-3); }
-.score-bar-wrap { height: 4px; background: var(--bg-4); border-radius: 99px; overflow: hidden; margin-top: var(--sp-3); }
-.score-bar-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--violet)); width: 0%; transition: width .6s ease; border-radius: 99px; }
-
-/* ISO Characteristic Card */
-.iso-char-card {
-  background: var(--bg-2); border: 1px solid var(--border);
-  border-radius: var(--r-lg); margin-bottom: var(--sp-5);
-  overflow: hidden; transition: border-color .2s;
-}
-.iso-char-card:hover { border-color: var(--border-2); }
-
-.iso-char-head {
-  padding: var(--sp-5) var(--sp-8);
-  display: flex; align-items: center; gap: var(--sp-5);
-  border-bottom: 1px solid var(--border); cursor: pointer;
-  transition: background .15s;
-}
-.iso-char-head:hover { background: rgba(255,255,255,.02); }
-.iso-char-icon {
-  width: 40px; height: 40px; border-radius: var(--r);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; flex-shrink: 0;
-}
-.iso-char-info { flex: 1; }
-.iso-char-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-.iso-char-sub { font-size: 11.5px; color: var(--text-3); }
-.iso-char-score {
-  text-align: right; flex-shrink: 0;
-}
-.iso-char-pct { font-family: var(--mono); font-size: 20px; font-weight: 500; color: var(--white); line-height: 1; }
-.iso-char-label { font-size: 10px; color: var(--text-3); }
-.iso-char-bar { width: 80px; height: 3px; background: var(--bg-4); border-radius: 99px; overflow: hidden; margin-top: 4px; }
-.iso-char-fill { height: 100%; border-radius: 99px; transition: width .5s ease; }
-
-.iso-char-body { padding: var(--sp-6) var(--sp-8); }
-
-.iso-sub-list { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-5); }
-.iso-sub { background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 3px 10px; font-size: 11.5px; color: var(--text-3); }
-
-/* Question row */
-.q-row {
-  padding: var(--sp-4) 0; border-bottom: 1px solid var(--border);
-}
-.q-row:last-child { border-bottom: none; }
-.q-text { font-size: 13.5px; color: var(--text-2); line-height: 1.6; margin-bottom: var(--sp-3); }
-.q-text strong { color: var(--text); font-weight: 500; }
-.q-options { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
-.q-opt {
-  position: relative; cursor: pointer;
-}
-.q-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
-.q-opt label {
-  display: flex; align-items: center; gap: var(--sp-2);
-  background: var(--bg-3); border: 1px solid var(--border);
-  border-radius: var(--r-sm); padding: 6px 14px;
-  font-size: 12px; color: var(--text-3); cursor: pointer;
-  transition: all .15s; user-select: none;
-}
-.q-opt input:checked + label { border-color: var(--blue); background: var(--blue-dim); color: var(--blue); }
-.q-opt:nth-child(1) input:checked + label { border-color: #34d399; background: var(--em-dim); color: #34d399; }
-.q-opt:nth-child(2) input:checked + label { border-color: #a3e635; background: rgba(163,230,53,.1); color: #a3e635; }
-.q-opt:nth-child(3) input:checked + label { border-color: var(--amber); background: var(--am-dim); color: var(--amber); }
-.q-opt:nth-child(4) input:checked + label { border-color: var(--rose); background: var(--rose-dim); color: var(--rose); }
-.q-opt label:hover { border-color: var(--border-2); color: var(--text-2); }
-.q-opt-dot { width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid currentColor; transition: all .15s; }
-.q-opt input:checked + label .q-opt-dot { background: currentColor; }
-
-/* Eval result */
-.eval-result {
-  margin-top: var(--sp-8); background: var(--bg-2); border: 1px solid var(--border);
-  border-radius: var(--r-lg); padding: var(--sp-8); display: none;
-}
-.eval-result.show { display: block; }
-.result-header { text-align: center; margin-bottom: var(--sp-8); }
-.result-header h3 { font-family: var(--serif); font-size: 22px; font-weight: 300; color: var(--white); margin-bottom: var(--sp-2); }
-.result-score-big { font-family: var(--serif); font-size: 64px; font-weight: 600; line-height: 1; margin-bottom: var(--sp-2); }
-.result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
-.result-item { background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--r); padding: var(--sp-4); }
-.result-item-name { font-size: 11.5px; color: var(--text-3); margin-bottom: var(--sp-1); }
-.result-item-val { font-family: var(--mono); font-size: 18px; font-weight: 500; }
-.eval-btn {
-  width: 100%; background: var(--blue); color: var(--white);
-  border: none; border-radius: var(--r); padding: 12px var(--sp-6);
-  font-family: var(--font); font-size: 14px; font-weight: 600;
-  cursor: pointer; transition: all .2s; margin-top: var(--sp-6);
-  letter-spacing: .02em;
-}
-.eval-btn:hover { background: #4a8ef0; transform: translateY(-1px); }
-.eval-btn:active { transform: translateY(0); }
-.reset-btn {
-  background: var(--bg-3); color: var(--text-2); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 10px var(--sp-6);
-  font-family: var(--font); font-size: 13px; cursor: pointer;
-  transition: all .15s; margin-top: var(--sp-3); width: 100%;
-}
-.reset-btn:hover { border-color: var(--border-2); color: var(--text); }
-
-/* ═══ COMPARATIVE TABLE ═══ */
-.comp-table-wrap { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; }
-.comp-t { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-.comp-t th { padding: 10px var(--sp-4); background: var(--bg-3); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); border-bottom: 1px solid var(--border); text-align: left; }
-.comp-t td { padding: 11px var(--sp-4); border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: top; font-size: 12.5px; }
-.comp-t tr:last-child td { border-bottom: none; }
-.comp-t tr:hover td { background: rgba(255,255,255,.015); }
-
-/* ═══ NORM SECTION ═══ */
-.norm-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--sp-5) var(--sp-6); margin-bottom: var(--sp-3); display: flex; gap: var(--sp-5); }
-.norm-badge { min-width: 80px; padding: var(--sp-2) var(--sp-3); background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--r-sm); font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--blue); text-align: center; height: fit-content; flex-shrink: 0; }
-.norm-content h4 { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-.norm-content p { font-size: 12.5px; color: var(--text-3); line-height: 1.65; }
-.norm-content .norm-steps { margin-top: var(--sp-2); font-size: 11.5px; color: var(--blue); }
-
-/* ═══ FOOTER ═══ */
-.page-footer {
-  margin-top: 80px; padding-top: var(--sp-8);
-  border-top: 1px solid var(--border);
-  font-size: 12px; color: var(--text-3); line-height: 1.7;
-}
-.page-footer strong { color: var(--text-2); }
-
-/* ═══ SCROLL TO TOP ═══ */
-.scroll-top {
-  position: fixed; bottom: var(--sp-6); right: var(--sp-6);
-  width: 38px; height: 38px; background: var(--bg-3);
-  border: 1px solid var(--border); border-radius: var(--r);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; font-size: 14px; color: var(--text-3);
-  opacity: 0; transition: all .3s; z-index: 100;
-  box-shadow: var(--shadow);
-}
-.scroll-top:hover { color: var(--text); border-color: var(--border-2); }
-.scroll-top.vis { opacity: 1; }
-
-/* ═══ RESPONSIVE ═══ */
-@media (max-width: 1024px) {
-  .shell { grid-template-columns: 220px 1fr; }
-  .main { padding: var(--sp-10) var(--sp-10); }
-}
-@media (max-width: 768px) {
-  .shell { grid-template-columns: 1fr; }
-  .sidebar { display: none; }
-  .main { padding: var(--sp-8) var(--sp-5); }
-  .hero h1 { font-size: 32px; }
-  .hero-stats { grid-template-columns: 1fr 1fr; }
-  .score-dashboard { grid-template-columns: 1fr; }
-  .result-grid { grid-template-columns: 1fr 1fr; }
-  .paso-head { flex-direction: column; }
-  .paso-body { padding: var(--sp-6); }
-}
-</style>
 </head>
 <body>
 
 <div id="progress-bar"></div>
+
+
+<nav class="doc-mobile-nav" aria-label="Secciones">
+  <a href="#intro">Inicio</a>
+  <a href="#paso1">Pasos</a>
+  <a href="#iso-eval">ISO</a>
+  <a href="#normativa">Normativa</a>
+</nav>
 
 <div class="shell">
 
@@ -2225,6 +71,10 @@ a:hover { text-decoration: underline; }
   </div>
 
   <div class="sb-footer">
+    <button type="button" class="theme-toggle" style="width:100%;margin-bottom:var(--sp-3)" aria-label="Cambiar tema">
+      <i data-lucide="sun-moon" class="icon-sm"></i>
+      <span style="margin-left:8px;font-size:12px">Tema claro / oscuro</span>
+    </button>
     <div>Andres F. Jaimes Carrillo</div>
     <div>Dir: PhD. Jesús Álvarez G.</div>
     <div class="sb-progress-wrap">
@@ -2263,7 +113,7 @@ a:hover { text-decoration: underline; }
   <div class="s-lead">Esta guía se ejecuta en orden secuencial. Cada paso corresponde a un momento específico del flujo de trabajo con IA. No avances al siguiente paso hasta completar la verificación del anterior.</div>
 
   <div class="alert alert-info">
-    <div class="alert-icon">ℹ️</div>
+    <div class="alert-icon"><i data-lucide="info" class="icon-md"></i></div>
     <p><strong>Principio fundamental:</strong> La inteligencia artificial es una herramienta de apoyo, no un sustituto del razonamiento profesional. El desarrollador o estudiante es siempre el responsable técnico, ético y legal del código que produce, sin importar cómo fue generado.</p>
   </div>
 
@@ -2271,19 +121,19 @@ a:hover { text-decoration: underline; }
     <table class="dt">
       <thead><tr><th>Paso</th><th>Cuándo ejecutarlo</th><th>Duración</th><th>Riesgo mitigado</th></tr></thead>
       <tbody>
-        <tr><td class="td-step" style="color:var(--p1)">01 — Definición</td><td>Antes de abrir la IA</td><td>5–10 min</td><td>Dependencia cognitiva</td></tr>
-        <tr><td class="td-step" style="color:var(--p2)">02 — Validación</td><td>Al recibir el output</td><td>10–20 min</td><td>Alucinaciones · Código incorrecto</td></tr>
-        <tr><td class="td-step" style="color:var(--p3)">03 — Seguridad</td><td>Antes de integrar al proyecto</td><td>10–15 min</td><td>Vulnerabilidades · Datos sensibles</td></tr>
-        <tr><td class="td-step" style="color:var(--p4)">04 — Supervisión</td><td>Durante todo el proceso</td><td>Continuo</td><td>Sesgo de automatización</td></tr>
-        <tr><td class="td-step" style="color:var(--p5)">05 — Ética</td><td>Antes de entregar</td><td>5 min</td><td>Fraude · Propiedad intelectual</td></tr>
-        <tr><td class="td-step" style="color:var(--p6)">06 — Pensamiento</td><td>Al finalizar la sesión</td><td>5–10 min</td><td>Dependencia cognitiva acumulada</td></tr>
+        <tr><td class="td-step" data-step="1">01 — Definición</td><td>Antes de abrir la IA</td><td>5–10 min</td><td>Dependencia cognitiva</td></tr>
+        <tr><td class="td-step" data-step="2">02 — Validación</td><td>Al recibir el output</td><td>10–20 min</td><td>Alucinaciones · Código incorrecto</td></tr>
+        <tr><td class="td-step" data-step="3">03 — Seguridad</td><td>Antes de integrar al proyecto</td><td>10–15 min</td><td>Vulnerabilidades · Datos sensibles</td></tr>
+        <tr><td class="td-step" data-step="4">04 — Supervisión</td><td>Durante todo el proceso</td><td>Continuo</td><td>Sesgo de automatización</td></tr>
+        <tr><td class="td-step" data-step="5">05 — Ética</td><td>Antes de entregar</td><td>5 min</td><td>Fraude · Propiedad intelectual</td></tr>
+        <tr><td class="td-step" data-step="6">06 — Pensamiento</td><td>Al finalizar la sesión</td><td>5–10 min</td><td>Dependencia cognitiva acumulada</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="alert alert-warn">
-    <div class="alert-icon">⚠️</div>
-    <p><strong>Nota:</strong> Los prompts incluidos son plantillas estructuradas. Las palabras en <em style="color:var(--amber); font-family:var(--mono); font-size:12px">[corchetes]</em> deben reemplazarse con información específica de tu proyecto antes de enviarlos.</p>
+    <div class="alert-icon"><i data-lucide="alert-triangle" class="icon-md"></i></div>
+    <p><strong>Nota:</strong> Los prompts incluidos son plantillas estructuradas. Las palabras en <em class="pv">[corchetes]</em> deben reemplazarse con información específica de tu proyecto antes de enviarlos.</p>
   </div>
 </section>
 
@@ -2292,9 +142,9 @@ a:hover { text-decoration: underline; }
 <!-- ═══════════════ PASO 1 ═══════════════ -->
 <section id="paso1" class="section">
 <div class="s-eyebrow">Paso 1 de 6</div>
-<div class="paso-card">
+<div class="paso-card" data-step="1">
   <div class="paso-head">
-    <div class="paso-num-badge" style="background:var(--p1d);color:var(--p1)">01</div>
+    <div class="paso-num-badge" data-step="1">01</div>
     <div class="paso-head-info">
       <h3>Definición del Propósito</h3>
       <p>Antes de abrir cualquier herramienta de IA, define con claridad qué problema resolverás y cuál será tu aporte intelectual propio.</p>
@@ -2302,7 +152,7 @@ a:hover { text-decoration: underline; }
   </div>
   <div class="paso-body">
     <div class="tags">
-      <span class="tag tag-risk">⚠ Dependencia cognitiva</span>
+      <span class="tag tag-risk">Dependencia cognitiva</span>
       <span class="tag tag-iso">ISO 25010 — Fiabilidad</span>
       <span class="tag tag-norm">NIST AI RMF — GOVERN 1.1</span>
     </div>
@@ -2328,7 +178,7 @@ a:hover { text-decoration: underline; }
     <div class="cb">
       <div class="cb-label">Prompts estructurados</div>
       <div class="accordion">
-        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>🎯 Prompt 1A — Definición de alcance antes de pedir código</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>Prompt 1A — Definición de alcance antes de pedir código</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body open"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p1)"></span><span class="prompt-title">prompt · definición-alcance</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Voy a pedirte ayuda con programación, pero primero ayúdame a delimitar el alcance.
@@ -2342,7 +192,7 @@ Antes de generar código, explícame: ¿cuál sería la estrategia lógica? ¿Qu
         </div></div>
       </div>
       <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🎯 Prompt 1B — Validación del entendimiento del problema</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 1B — Validación del entendimiento del problema</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p1)"></span><span class="prompt-title">prompt · validación-entendimiento</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Antes de darme una solución, necesito verificar que entiendo el problema.
@@ -2358,7 +208,7 @@ Mis criterios de éxito:
         </div></div>
       </div>
       <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🎯 Prompt 1C — Diseño antes del código</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 1C — Diseño antes del código</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p1)"></span><span class="prompt-title">prompt · diseño-previo</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Necesito resolver: <span class="pv">[descripción del problema]</span>
@@ -2413,9 +263,9 @@ Cuando confirme que entiendo el enfoque, avanzamos con la implementación.</div>
 <!-- ═══ PASO 2 ═══ -->
 <section id="paso2" class="section">
 <div class="s-eyebrow">Paso 2 de 6</div>
-<div class="paso-card">
+<div class="paso-card" data-step="2">
   <div class="paso-head">
-    <div class="paso-num-badge" style="background:var(--p2d);color:var(--p2)">02</div>
+    <div class="paso-num-badge" data-step="2">02</div>
     <div class="paso-head-info">
       <h3>Validación Técnica del Output</h3>
       <p>Antes de usar cualquier código generado por IA, verifícalo línea a línea. Nunca asumas que el output es correcto.</p>
@@ -2423,8 +273,8 @@ Cuando confirme que entiendo el enfoque, avanzamos con la implementación.</div>
   </div>
   <div class="paso-body">
     <div class="tags">
-      <span class="tag tag-risk">⚠ Alucinaciones de APIs</span>
-      <span class="tag tag-risk">⚠ Código incorrecto no detectado</span>
+      <span class="tag tag-risk">Alucinaciones de APIs</span>
+      <span class="tag tag-risk">Código incorrecto no detectado</span>
       <span class="tag tag-iso">ISO 25010 — Fiabilidad · Mantenibilidad</span>
       <span class="tag tag-norm">NIST AI RMF — MEASURE 2.5</span>
     </div>
@@ -2449,7 +299,7 @@ Cuando confirme que entiendo el enfoque, avanzamos con la implementación.</div>
     <div class="cb">
       <div class="cb-label">Prompts estructurados</div>
       <div class="accordion">
-        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>🔍 Prompt 2A — Revisión crítica del código generado</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>Prompt 2A — Revisión crítica del código generado</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body open"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p2)"></span><span class="prompt-title">prompt · revisión-crítica</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Revisa críticamente el siguiente código que generaste:
@@ -2466,7 +316,7 @@ Sé crítico. No justifiques los errores, identifícalos.</div>
         </div></div>
       </div>
       <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🔍 Prompt 2B — Generación de casos de prueba</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 2B — Generación de casos de prueba</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p2)"></span><span class="prompt-title">prompt · casos-de-prueba</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Para el siguiente código: <span class="pv">[código]</span>
@@ -2481,7 +331,7 @@ No generes código de pruebas automáticas. Los ejecutaré manualmente.</div>
         </div></div>
       </div>
       <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🔍 Prompt 2C — Explicación línea a línea</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 2C — Explicación línea a línea</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p2)"></span><span class="prompt-title">prompt · comprensión-código</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Explícame este código bloque por bloque: <span class="pv">[código]</span>
@@ -2513,9 +363,9 @@ Necesito entender completamente el código antes de integrarlo.</div>
 <!-- ═══ PASO 3 ═══ -->
 <section id="paso3" class="section">
 <div class="s-eyebrow">Paso 3 de 6</div>
-<div class="paso-card">
+<div class="paso-card" data-step="3">
   <div class="paso-head">
-    <div class="paso-num-badge" style="background:var(--p3d);color:var(--p3)">03</div>
+    <div class="paso-num-badge" data-step="3">03</div>
     <div class="paso-head-info">
       <h3>Revisión de Seguridad</h3>
       <p>Todo código que interactúe con datos, usuarios o redes debe auditarse explícitamente antes de integrarse.</p>
@@ -2523,8 +373,8 @@ Necesito entender completamente el código antes de integrarlo.</div>
   </div>
   <div class="paso-body">
     <div class="tags">
-      <span class="tag tag-risk">⚠ Vulnerabilidades de seguridad</span>
-      <span class="tag tag-risk">⚠ Exposición de datos sensibles</span>
+      <span class="tag tag-risk">Vulnerabilidades de seguridad</span>
+      <span class="tag tag-risk">Exposición de datos sensibles</span>
       <span class="tag tag-iso">ISO 25010 — Seguridad</span>
       <span class="tag tag-norm">Ley 1581/2012 · NIST AI RMF</span>
     </div>
@@ -2551,7 +401,7 @@ Necesito entender completamente el código antes de integrarlo.</div>
     <div class="cb">
       <div class="cb-label">Prompts estructurados</div>
       <div class="accordion">
-        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>🔒 Prompt 3A — Auditoría de seguridad completa</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>Prompt 3A — Auditoría de seguridad completa</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body open"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p3)"></span><span class="prompt-title">prompt · auditoría-seguridad</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Realiza una auditoría de seguridad del siguiente código.
@@ -2571,7 +421,7 @@ Para cada hallazgo indica nivel de riesgo (alto/medio/bajo) y la corrección esp
         </div></div>
       </div>
       <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🔒 Prompt 3B — Verificación de protección de datos</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 3B — Verificación de protección de datos</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p3)"></span><span class="prompt-title">prompt · cumplimiento-normativo</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Este código maneja datos personales: <span class="pv">[tipo: nombres, correos, identificaciones, etc.]</span>
@@ -2588,7 +438,7 @@ Indica modificaciones concretas para mejorar el cumplimiento.</div>
         </div></div>
       </div>
       <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🔒 Prompt 3C — Revisión de componentes de autenticación</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 3C — Revisión de componentes de autenticación</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p3)"></span><span class="prompt-title">prompt · autenticación-segura</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Este código implementa <span class="pv">[autenticación / autorización / manejo de sesiones]</span>:
@@ -2623,9 +473,9 @@ Dame el nivel de riesgo general y las 3 correcciones más urgentes.</div>
 <!-- ═══ PASO 4 ═══ -->
 <section id="paso4" class="section">
 <div class="s-eyebrow">Paso 4 de 6</div>
-<div class="paso-card">
+<div class="paso-card" data-step="4">
   <div class="paso-head">
-    <div class="paso-num-badge" style="background:var(--p4d);color:var(--p4)">04</div>
+    <div class="paso-num-badge" data-step="4">04</div>
     <div class="paso-head-info">
       <h3>Supervisión Humana Activa</h3>
       <p>Mantén el control de las decisiones técnicas durante todo el proceso. La IA propone, tú decides.</p>
@@ -2633,8 +483,8 @@ Dame el nivel de riesgo general y las 3 correcciones más urgentes.</div>
   </div>
   <div class="paso-body">
     <div class="tags">
-      <span class="tag tag-risk">⚠ Sesgo de automatización</span>
-      <span class="tag tag-risk">⚠ Delegación de decisiones críticas</span>
+      <span class="tag tag-risk">Sesgo de automatización</span>
+      <span class="tag tag-risk">Delegación de decisiones críticas</span>
       <span class="tag tag-iso">ISO 25010 — Mantenibilidad</span>
       <span class="tag tag-norm">Reglamento UE 2024/1689 — Art. 14</span>
     </div>
@@ -2660,7 +510,7 @@ Dame el nivel de riesgo general y las 3 correcciones más urgentes.</div>
     <div class="cb">
       <div class="cb-label">Prompts estructurados</div>
       <div class="accordion">
-        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>👁 Prompt 4A — Solicitud de alternativas para decisión informada</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>👁 Prompt 4A — Solicitud de alternativas para decisión informada</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body open"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p4)"></span><span class="prompt-title">prompt · alternativas-técnicas</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Para el problema de <span class="pv">[describe el problema]</span>, me propusiste: <span class="pv">[solución propuesta]</span>
@@ -2675,7 +525,7 @@ Yo decidiré cuál adoptar después de ver las opciones.</div>
         </div></div>
       </div>
       <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>👁 Prompt 4B — Justificación de decisión técnica propia</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>👁 Prompt 4B — Justificación de decisión técnica propia</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p4)"></span><span class="prompt-title">prompt · validación-decisión</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Tomé la decisión de usar <span class="pv">[describe tu decisión técnica]</span> para resolver <span class="pv">[el problema]</span>.
@@ -2688,7 +538,7 @@ No me cambies la decisión. Ayúdame a evaluarla críticamente.</div>
         </div></div>
       </div>
       <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>👁 Prompt 4C — Revisión de coherencia arquitectural</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>👁 Prompt 4C — Revisión de coherencia arquitectural</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p4)"></span><span class="prompt-title">prompt · coherencia-arquitectura</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Mi arquitectura es: <span class="pv">[describe la estructura de tu proyecto]</span>
@@ -2719,9 +569,9 @@ Dame un diagnóstico de coherencia arquitectural.</div>
 <!-- ═══ PASO 5 ═══ -->
 <section id="paso5" class="section">
 <div class="s-eyebrow">Paso 5 de 6</div>
-<div class="paso-card">
+<div class="paso-card" data-step="5">
   <div class="paso-head">
-    <div class="paso-num-badge" style="background:var(--p5d);color:var(--p5)">05</div>
+    <div class="paso-num-badge" data-step="5">05</div>
     <div class="paso-head-info">
       <h3>Uso Ético y Declaración de Autoría</h3>
       <p>Declara el uso de IA en tu trabajo de forma transparente. La honestidad sobre el proceso es un requisito ético y profesional.</p>
@@ -2729,8 +579,8 @@ Dame un diagnóstico de coherencia arquitectural.</div>
   </div>
   <div class="paso-body">
     <div class="tags">
-      <span class="tag tag-risk">⚠ Fraude académico</span>
-      <span class="tag tag-risk">⚠ Violación de propiedad intelectual</span>
+      <span class="tag tag-risk">Fraude académico</span>
+      <span class="tag tag-risk">Violación de propiedad intelectual</span>
       <span class="tag tag-iso">ISO 25010 — Seguridad · Fiabilidad</span>
       <span class="tag tag-norm">Ley 23/1982 · CONPES 4144</span>
     </div>
@@ -2757,7 +607,7 @@ Dame un diagnóstico de coherencia arquitectural.</div>
     <div class="cb">
       <div class="cb-label">Prompts estructurados</div>
       <div class="accordion">
-        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>⚖️ Prompt 5A — Generación de declaración de uso de IA</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>️ Prompt 5A — Generación de declaración de uso de IA</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body open"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p5)"></span><span class="prompt-title">prompt · declaración-autoría</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Ayúdame a redactar una declaración de uso de IA para mi trabajo.
@@ -2771,7 +621,7 @@ Redacta una declaración honesta, clara y de no más de 150 palabras.</div>
         </div></div>
       </div>
       <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>⚖️ Prompt 5B — Revisión ética del proyecto</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>️ Prompt 5B — Revisión ética del proyecto</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p5)"></span><span class="prompt-title">prompt · revisión-ética</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Mi proyecto de software: <span class="pv">[describe qué hace el sistema]</span>
@@ -2787,7 +637,7 @@ Dame un diagnóstico con las recomendaciones más importantes.</div>
         </div></div>
       </div>
       <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>⚖️ Prompt 5C — Análisis de sesgos del sistema</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>️ Prompt 5C — Análisis de sesgos del sistema</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p5)"></span><span class="prompt-title">prompt · análisis-sesgos</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Mi sistema <span class="pv">[descripción]</span> usa datos: <span class="pv">[tipo de datos de entrada]</span>
@@ -2817,9 +667,9 @@ Parte de la lógica fue generada con IA. Verifica si reproduce sesgos no intenci
 <!-- ═══ PASO 6 ═══ -->
 <section id="paso6" class="section">
 <div class="s-eyebrow">Paso 6 de 6</div>
-<div class="paso-card">
+<div class="paso-card" data-step="6">
   <div class="paso-head">
-    <div class="paso-num-badge" style="background:var(--p6d);color:var(--p6)">06</div>
+    <div class="paso-num-badge" data-step="6">06</div>
     <div class="paso-head-info">
       <h3>Preservación del Pensamiento Crítico</h3>
       <p>Al finalizar cada sesión, reflexiona sobre lo que aprendiste y lo que delegaste. Tu capacidad de razonamiento propio es tu activo más valioso.</p>
@@ -2827,8 +677,8 @@ Parte de la lógica fue generada con IA. Verifica si reproduce sesgos no intenci
   </div>
   <div class="paso-body">
     <div class="tags">
-      <span class="tag tag-risk">⚠ Dependencia cognitiva acumulada</span>
-      <span class="tag tag-risk">⚠ Erosión de competencias técnicas</span>
+      <span class="tag tag-risk">Dependencia cognitiva acumulada</span>
+      <span class="tag tag-risk">Erosión de competencias técnicas</span>
       <span class="tag tag-iso">ISO 25010 — Mantenibilidad</span>
       <span class="tag tag-norm">CONPES 4144 · IEEE 7000</span>
     </div>
@@ -2854,7 +704,7 @@ Parte de la lógica fue generada con IA. Verifica si reproduce sesgos no intenci
     <div class="cb">
       <div class="cb-label">Prompts estructurados</div>
       <div class="accordion">
-        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>🧠 Prompt 6A — Autoevaluación al cierre de sesión</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>Prompt 6A — Autoevaluación al cierre de sesión</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body open"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p6)"></span><span class="prompt-title">prompt · autoevaluación-sesión</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Al finalizar esta sesión, quiero hacer una autoevaluación de mi uso de IA.
@@ -2872,7 +722,7 @@ El objetivo es identificar oportunidades de aprendizaje propio.</div>
         </div></div>
       </div>
       <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🧠 Prompt 6B — Plan de práctica autónoma</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 6B — Plan de práctica autónoma</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p6)"></span><span class="prompt-title">prompt · ejercicio-autónomo</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">He estado usando IA en tareas de <span class="pv">[tipo de tareas]</span>. Quiero verificar que mis habilidades están activas con un ejercicio sin IA.
@@ -2886,7 +736,7 @@ Solo dame el ejercicio. No me des la solución todavía.</div>
         </div></div>
       </div>
       <div class="accordion">
-        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🧠 Prompt 6C — Identificación de brechas de conocimiento</span><span class="acc-arrow">▼</span></button>
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>Prompt 6C — Identificación de brechas de conocimiento</span><span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span></button>
         <div class="acc-body"><div class="prompt-block">
           <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p6)"></span><span class="prompt-title">prompt · brechas-conocimiento</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
           <div class="prompt-body">Hay conceptos que la IA usó en esta sesión que no comprendo del todo: <span class="pv">[lista los conceptos]</span>
@@ -2924,11 +774,11 @@ El objetivo es convertir la brecha en un plan de estudio propio.</div>
     <div class="s-eyebrow">ISO/IEC 25010:2023 — SQuaRE</div>
     <h2>Evaluación de Calidad del Software</h2>
     <p>Instrumento de autoevaluación basado en el estándar internacional ISO/IEC 25010:2023. Evalúa el código generado con asistencia de IA contra las 9 características de calidad del producto software. Para cada pregunta selecciona la opción que mejor describe el estado actual de tu proyecto. Al finalizar obtendrás un diagnóstico de cumplimiento por característica.</p>
-    <div style="margin-top:16px;display:flex;gap:24px;flex-wrap:wrap;font-size:12px;color:var(--text-3)">
-      <span style="color:#34d399">● Cumple completamente (4 pts)</span>
-      <span style="color:#a3e635">● Cumple mayormente (3 pts)</span>
-      <span style="color:var(--amber)">● Cumple parcialmente (2 pts)</span>
-      <span style="color:var(--rose)">● No cumple (1 pt)</span>
+    <div class="eval-legend">
+      <span><span class="dot-legend" style="background:var(--status-success)"></span> Cumple completamente (4 pts)</span>
+      <span><span class="dot-legend" style="background:#5a8f29"></span> Cumple mayormente (3 pts)</span>
+      <span><span class="dot-legend" style="background:var(--status-warning)"></span> Cumple parcialmente (2 pts)</span>
+      <span><span class="dot-legend" style="background:var(--status-error)"></span> No cumple (1 pt)</span>
     </div>
   </div>
 
@@ -2954,7 +804,7 @@ El objetivo es convertir la brecha en un plan de estudio propio.</div>
   <!-- CARACTERÍSTICA 1: ADECUACIÓN FUNCIONAL -->
   <div id="iso-adec" class="iso-char-card">
     <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon" style="background:rgba(91,156,246,.1);font-size:20px">🎯</div>
+      <div class="iso-char-icon"><i data-lucide="target" class="icon-lg"></i></div>
       <div class="iso-char-info">
         <div class="iso-char-name">1. Adecuación Funcional</div>
         <div class="iso-char-sub">Grado en que el software provee funciones que satisfacen necesidades declaradas e implícitas</div>
@@ -3004,7 +854,7 @@ El objetivo es convertir la brecha en un plan de estudio propio.</div>
   <!-- CARACTERÍSTICA 2: EFICIENCIA DE DESEMPEÑO -->
   <div id="iso-efic" class="iso-char-card">
     <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon" style="background:rgba(16,185,129,.1);font-size:20px">⚡</div>
+      <div class="iso-char-icon"><i data-lucide="zap" class="icon-lg"></i></div>
       <div class="iso-char-info">
         <div class="iso-char-name">2. Eficiencia de Desempeño</div>
         <div class="iso-char-sub">Desempeño relativo a la cantidad de recursos usados bajo condiciones establecidas</div>
@@ -3054,7 +904,7 @@ El objetivo es convertir la brecha en un plan de estudio propio.</div>
   <!-- CARACTERÍSTICA 3: COMPATIBILIDAD -->
   <div id="iso-compat" class="iso-char-card">
     <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon" style="background:rgba(245,158,11,.1);font-size:20px">🔗</div>
+      <div class="iso-char-icon"><i data-lucide="link-2" class="icon-lg"></i></div>
       <div class="iso-char-info">
         <div class="iso-char-name">3. Compatibilidad</div>
         <div class="iso-char-sub">Grado en que puede compartir entorno e intercambiar información con otros sistemas</div>
@@ -3103,7 +953,7 @@ El objetivo es convertir la brecha en un plan de estudio propio.</div>
   <!-- CARACTERÍSTICA 4: CAPACIDAD DE INTERACCIÓN -->
   <div id="iso-inter" class="iso-char-card">
     <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon" style="background:rgba(6,182,212,.1);font-size:20px">🖥️</div>
+      <div class="iso-char-icon"><i data-lucide="monitor" class="icon-lg"></i></div>
       <div class="iso-char-info">
         <div class="iso-char-name">4. Capacidad de Interacción</div>
         <div class="iso-char-sub">Grado en que puede ser usado por usuarios para lograr sus objetivos con efectividad, eficiencia y satisfacción</div>
@@ -3151,7 +1001,7 @@ El objetivo es convertir la brecha en un plan de estudio propio.</div>
   <!-- CARACTERÍSTICA 5: FIABILIDAD -->
   <div id="iso-fiab" class="iso-char-card">
     <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon" style="background:rgba(139,92,246,.1);font-size:20px">🛡️</div>
+      <div class="iso-char-icon"><i data-lucide="shield" class="icon-lg"></i></div>
       <div class="iso-char-info">
         <div class="iso-char-name">5. Fiabilidad</div>
         <div class="iso-char-sub">Grado en que realiza funciones especificadas bajo condiciones establecidas por un periodo de tiempo determinado</div>
@@ -3199,7 +1049,7 @@ El objetivo es convertir la brecha en un plan de estudio propio.</div>
   <!-- CARACTERÍSTICA 6: SEGURIDAD -->
   <div id="iso-seg" class="iso-char-card">
     <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon" style="background:rgba(244,63,94,.1);font-size:20px">🔐</div>
+      <div class="iso-char-icon"><i data-lucide="lock" class="icon-lg"></i></div>
       <div class="iso-char-info">
         <div class="iso-char-name">6. Seguridad</div>
         <div class="iso-char-sub">Grado en que protege la información y los datos de accesos no autorizados y garantiza la autenticidad</div>
@@ -3247,7 +1097,7 @@ El objetivo es convertir la brecha en un plan de estudio propio.</div>
   <!-- CARACTERÍSTICA 7: MANTENIBILIDAD -->
   <div id="iso-mant" class="iso-char-card">
     <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon" style="background:rgba(249,115,22,.1);font-size:20px">🔧</div>
+      <div class="iso-char-icon"><i data-lucide="wrench" class="icon-lg"></i></div>
       <div class="iso-char-info">
         <div class="iso-char-name">7. Mantenibilidad</div>
         <div class="iso-char-sub">Grado de efectividad y eficiencia con la que puede ser modificado por mantenedores previstos</div>
@@ -3295,7 +1145,7 @@ El objetivo es convertir la brecha en un plan de estudio propio.</div>
   <!-- CARACTERÍSTICA 8: FLEXIBILIDAD -->
   <div id="iso-flex" class="iso-char-card">
     <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon" style="background:rgba(163,230,53,.1);font-size:20px">🌿</div>
+      <div class="iso-char-icon"><i data-lucide="layers" class="icon-lg"></i></div>
       <div class="iso-char-info">
         <div class="iso-char-name">8. Flexibilidad</div>
         <div class="iso-char-sub">Grado en que puede adaptarse a cambios de requisitos, contextos o entornos de uso</div>
@@ -3343,7 +1193,7 @@ El objetivo es convertir la brecha en un plan de estudio propio.</div>
   <!-- CARACTERÍSTICA 9: PROTECCIÓN (SAFETY) -->
   <div id="iso-prot" class="iso-char-card">
     <div class="iso-char-head" onclick="toggleChar(this)">
-      <div class="iso-char-icon" style="background:rgba(236,72,153,.1);font-size:20px">⚠️</div>
+      <div class="iso-char-icon"><i data-lucide="alert-triangle" class="icon-lg"></i></div>
       <div class="iso-char-info">
         <div class="iso-char-name">9. Protección (Safety)</div>
         <div class="iso-char-sub">Grado en que mitiga el riesgo de daño a personas, bienes, software, hardware o entorno</div>
@@ -3451,175 +1301,12 @@ El objetivo es convertir la brecha en un plan de estudio propio.</div>
 </main>
 </div>
 
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button class="scroll-top" id="scrollTop" type="button" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i data-lucide="arrow-up" class="icon-md"></i></button>
 
-<script>
-/* ═══ SCROLL PROGRESS ═══ */
-function updateProgress() {
-  const scrolled = window.scrollY;
-  const total = document.body.scrollHeight - window.innerHeight;
-  const pct = total > 0 ? (scrolled / total) * 100 : 0;
-  document.getElementById('progress-bar').style.width = pct + '%';
-  document.getElementById('sbFill').style.width = pct + '%';
-  document.getElementById('readPct').textContent = Math.round(pct) + '%';
-  document.getElementById('scrollTop').classList.toggle('vis', scrolled > 400);
-}
-window.addEventListener('scroll', updateProgress);
-
-/* ═══ SCROLLSPY ═══ */
-const sections = document.querySelectorAll('section[id]');
-const links = document.querySelectorAll('.sb-link');
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      links.forEach(l => {
-        l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id);
-      });
-    }
-  });
-}, { rootMargin: '-25% 0px -65% 0px' });
-sections.forEach(s => obs.observe(s));
-
-/* ═══ ACCORDION ═══ */
-function toggleAcc(btn) {
-  btn.classList.toggle('open');
-  const body = btn.nextElementSibling;
-  body.classList.toggle('open');
-}
-
-/* ═══ COPY PROMPT ═══ */
-function copyP(btn) {
-  const text = btn.closest('.prompt-block').querySelector('.prompt-body').innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = '✓ copiado';
-    btn.classList.add('ok');
-    setTimeout(() => { btn.textContent = 'copiar'; btn.classList.remove('ok'); }, 2200);
-  });
-}
-
-/* ═══ CHECKLIST ═══ */
-function toggleCl(li) {
-  li.querySelector('.cl-box').classList.toggle('done');
-  li.classList.toggle('checked');
-}
-
-/* ═══ ISO CHAR TOGGLE ═══ */
-function toggleChar(head) {
-  const body = head.nextElementSibling;
-  const isOpen = body.style.display !== 'none';
-  body.style.display = isOpen ? 'none' : 'block';
-}
-
-/* ═══ ISO SCORE CALCULATION ═══ */
-const CHARS = ['adec','efic','compat','inter','fiab','seg','mant','flex','prot'];
-const CHAR_NAMES = {
-  adec: 'Adecuación Funcional', efic: 'Eficiencia Desempeño',
-  compat: 'Compatibilidad', inter: 'Capacidad Interacción',
-  fiab: 'Fiabilidad', seg: 'Seguridad',
-  mant: 'Mantenibilidad', flex: 'Flexibilidad', prot: 'Protección'
-};
-const CHAR_COLORS = {
-  adec:'#5b9cf6', efic:'#10b981', compat:'#f59e0b', inter:'#06b6d4',
-  fiab:'#8b5cf6', seg:'#f43f5e', mant:'#f97316', flex:'#84cc16', prot:'#ec4899'
-};
-
-function getCharScore(char) {
-  const rows = document.querySelectorAll(`.q-row[data-char="${char}"]`);
-  let total = 0, answered = 0;
-  rows.forEach((_, i) => {
-    const sel = document.querySelector(`input[name="${char}_${i+1}"]:checked`);
-    if (sel) { total += parseInt(sel.value); answered++; }
-  });
-  return { total, answered, max: rows.length * 4, questions: rows.length };
-}
-
-function updateDashboard() {
-  let totalAnswered = 0, totalScore = 0, totalMax = 0;
-  CHARS.forEach(c => {
-    const s = getCharScore(c);
-    totalAnswered += s.answered;
-    totalScore += s.total;
-    totalMax += s.max;
-    const pct = s.answered > 0 ? Math.round((s.total / (s.answered * 4)) * 100) : 0;
-    const el = document.querySelector(`.iso-char-pct[data-char="${c}"]`);
-    if (el) {
-      el.textContent = s.answered === s.questions ? pct + '%' : `${s.answered}/${s.questions}`;
-      const fill = el.closest('.iso-char-score').querySelector('.iso-char-fill');
-      if (fill) fill.style.width = pct + '%';
-    }
-  });
-  const overallPct = totalAnswered > 0 ? Math.round((totalScore / (totalAnswered * 4)) * 100) : 0;
-  document.getElementById('totalResp').textContent = totalAnswered;
-  document.getElementById('respFill').style.width = (totalAnswered / 27) * 100 + '%';
-  if (totalAnswered > 0) {
-    document.getElementById('totalScore').textContent = totalScore + '/' + (totalAnswered * 4);
-    document.getElementById('totalPct').textContent = overallPct + '%';
-    document.getElementById('totalFill').style.width = overallPct + '%';
-    document.getElementById('pctFill').style.width = overallPct + '%';
-  }
-}
-
-document.querySelectorAll('.q-opt input').forEach(inp => {
-  inp.addEventListener('change', updateDashboard);
-});
-
-function calcScore() {
-  const unanswered = [];
-  let totalScore = 0, totalMax = 0;
-  CHARS.forEach(c => {
-    const rows = document.querySelectorAll(`.q-row[data-char="${c}"]`);
-    rows.forEach((_, i) => {
-      const sel = document.querySelector(`input[name="${c}_${i+1}"]:checked`);
-      if (!sel) unanswered.push(`${CHAR_NAMES[c]} — Pregunta ${i+1}`);
-      else { totalScore += parseInt(sel.value); totalMax += 4; }
-    });
-  });
-  if (unanswered.length > 0) {
-    alert(`Por favor responde todas las preguntas antes de calcular.\n\nPendientes:\n• ${unanswered.slice(0,5).join('\n• ')}${unanswered.length > 5 ? '\n• (y ' + (unanswered.length - 5) + ' más...)' : ''}`);
-    return;
-  }
-  const pct = Math.round((totalScore / totalMax) * 100);
-  let label = '', color = '';
-  if (pct >= 85) { label = 'Excelente cumplimiento'; color = '#34d399'; }
-  else if (pct >= 70) { label = 'Buen cumplimiento'; color = '#a3e635'; }
-  else if (pct >= 55) { label = 'Cumplimiento parcial'; color = '#f59e0b'; }
-  else { label = 'Requiere mejoras significativas'; color = '#f43f5e'; }
-  document.getElementById('resultBig').textContent = pct + '%';
-  document.getElementById('resultBig').style.color = color;
-  document.getElementById('resultLabel').textContent = label + ' · ' + totalScore + '/' + totalMax + ' puntos';
-  const grid = document.getElementById('resultGrid');
-  grid.innerHTML = CHARS.map(c => {
-    const s = getCharScore(c);
-    const cp = Math.round((s.total / s.max) * 100);
-    return `<div class="result-item"><div class="result-item-name">${CHAR_NAMES[c]}</div><div class="result-item-val" style="color:${CHAR_COLORS[c]}">${cp}%</div></div>`;
-  }).join('');
-  const weakest = CHARS.filter(c => { const s = getCharScore(c); return (s.total/s.max) < 0.6; }).map(c => CHAR_NAMES[c]);
-  document.getElementById('resultRec').innerHTML = weakest.length > 0
-    ? `<strong style="color:var(--text-2)">Áreas prioritarias de mejora:</strong> ${weakest.join(', ')}. Revisa los pasos metodológicos correspondientes y aplica los prompts de auditoría y validación indicados en cada sección.`
-    : `<strong style="color:#34d399">✓ Excelente resultado.</strong> Tu proyecto muestra un alto nivel de cumplimiento ISO/IEC 25010. Continúa aplicando la metodología de forma sistemática en cada nuevo ciclo de desarrollo.`;
-  document.getElementById('evalResult').classList.add('show');
-  document.getElementById('evalResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function resetEval() {
-  document.querySelectorAll('.q-opt input').forEach(i => i.checked = false);
-  document.getElementById('evalResult').classList.remove('show');
-  CHARS.forEach(c => {
-    const el = document.querySelector(`.iso-char-pct[data-char="${c}"]`);
-    if (el) { el.textContent = '—'; const fill = el.closest('.iso-char-score').querySelector('.iso-char-fill'); if (fill) fill.style.width = '0%'; }
-  });
-  document.getElementById('totalScore').textContent = '—';
-  document.getElementById('totalPct').textContent = '—';
-  document.getElementById('totalResp').textContent = '0';
-  document.getElementById('totalFill').style.width = '0%';
-  document.getElementById('pctFill').style.width = '0%';
-  document.getElementById('respFill').style.width = '0%';
-}
-</script>
+<script src="assets/app.js"></script>
+<script src="assets/iso-eval.js"></script>
 </body>
 </html>
-HTMLEOF
-echo "Listo: $(wc -l < /home/claude/guia_v2.html) líneas"
 Output
 
 Command argument is 132_247 bytes, exceeding the 100_000-byte per-argument limit. For large content, pipe via stdin or use a file-write API instead of embedding the content inline in the command. Argument preview: 'cat > /home/claude/guia_v2.html << \'HTMLEOF\'\n<!DOCTYPE html>\n<html lang="es">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>Guía Metodológ'

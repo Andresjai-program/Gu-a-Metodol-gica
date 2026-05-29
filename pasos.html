@@ -5,239 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Los 6 pasos metodológicos para integración responsable de IA en desarrollo de software.">
   <title>Los 6 Pasos — Guía Metodológica</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
-  <style>
-    .paso-content {
-      margin-top: var(--sp-xl);
-    }
-    
-    .paso-section {
-      margin-bottom: var(--sp-3xl);
-    }
-    
-    .content-block {
-      margin-bottom: var(--sp-2xl);
-    }
-    
-    .content-block-label {
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-tertiary);
-      margin-bottom: var(--sp-lg);
-      display: flex;
-      align-items: center;
-      gap: var(--sp-md);
-    }
-    
-    .content-block-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border-light);
-    }
-    
-    .checklist {
-      list-style: none;
-      margin-bottom: var(--sp-lg);
-    }
-    
-    .checklist li {
-      padding: var(--sp-md) 0;
-      border-bottom: 1px solid var(--border-light);
-      display: flex;
-      align-items: center;
-      gap: var(--sp-md);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .checklist li:hover {
-      background: var(--bg-alt);
-      padding-left: var(--sp-md);
-    }
-    
-    .checklist li:last-child {
-      border-bottom: none;
-    }
-    
-    .checklist-box {
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--border-default);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: all 0.2s;
-    }
-    
-    .checklist li.checked .checklist-box {
-      background: var(--accent-primary);
-      border-color: var(--accent-primary);
-      color: white;
-    }
-    
-    .norm-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--sp-sm);
-      background: var(--bg-alt);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      padding: var(--sp-sm) var(--sp-base);
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-bottom: var(--sp-sm);
-      margin-right: var(--sp-sm);
-    }
-    
-    .norm-pill strong {
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-    
-    .prompt-block {
-      background: var(--bg-alt);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      margin-bottom: var(--sp-lg);
-    }
-    
-    .prompt-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: var(--sp-base);
-      background: var(--bg-hover);
-      border-bottom: 1px solid var(--border-light);
-    }
-    
-    .prompt-title {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--text-tertiary);
-      font-weight: 500;
-    }
-    
-    .copy-btn {
-      background: transparent;
-      border: 1px solid var(--border-light);
-      color: var(--text-secondary);
-      font-size: 0.8rem;
-      padding: 6px 12px;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: var(--font-mono);
-    }
-    
-    .copy-btn:hover {
-      color: var(--text-primary);
-      border-color: var(--border-default);
-      background: var(--bg-hover);
-    }
-    
-    .copy-btn.ok {
-      color: var(--status-success);
-      border-color: var(--status-success);
-    }
-    
-    .prompt-body {
-      padding: var(--sp-lg);
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      white-space: pre-wrap;
-      word-break: break-word;
-      background: var(--bg-base);
-      overflow-x: auto;
-    }
-    
-    .pv {
-      color: var(--status-warning);
-      font-weight: 500;
-    }
-    
-    .numbered-list {
-      list-style: none;
-      counter-reset: paso-num;
-    }
-    
-    .numbered-list li {
-      counter-increment: paso-num;
-      display: flex;
-      gap: var(--sp-lg);
-      margin-bottom: var(--sp-lg);
-    }
-    
-    .numbered-list li::before {
-      content: counter(paso-num);
-      min-width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--accent-primary);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 0.85rem;
-      flex-shrink: 0;
-    }
-    
-    .numbered-list li > div {
-      flex: 1;
-      padding-top: 2px;
-    }
-    
-    .step-text {
-      color: var(--text-secondary);
-      line-height: 1.75;
-    }
-    
-    .step-text strong {
-      color: var(--text-primary);
-    }
-
-    .paso-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--sp-md);
-      margin-bottom: var(--sp-lg);
-    }
-    
-    .paso-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--sp-sm);
-      padding: var(--sp-sm) var(--sp-base);
-      border-radius: 99px;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-    
-    .paso-tag-risk {
-      background: rgba(239, 68, 68, 0.1);
-      color: #ef4444;
-    }
-    
-    .paso-tag-iso {
-      background: rgba(37, 99, 235, 0.1);
-      color: var(--accent-primary);
-    }
-    
-    .paso-tag-norm {
-      background: rgba(124, 58, 237, 0.1);
-      color: #7c3aed;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 </head>
 <body>
 
@@ -246,16 +18,19 @@
 <!-- HEADER -->
 <header class="header">
   <div class="header-content">
-    <div class="header-logo">
-      <span></span>
-      <span>Guía Metodológica</span>
-    </div>
+    <a href="index.html" class="header-logo"><span class="header-logo-mark" aria-hidden="true"></span><span>Guía Metodológica</span></a>
     <nav class="header-nav">
       <a href="index.html">Inicio</a>
-      <a href="pasos.html">Los 6 Pasos</a>
+      <a href="pasos.html" aria-current="page">Los 6 pasos</a>
       <a href="iso-evaluation.html">Evaluación</a>
       <a href="normativa.html">Normativa</a>
+          <a href="guide_IA.html">Guía completa</a>
     </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" aria-label="Cambiar tema">
+        <i data-lucide="sun-moon" class="icon-md"></i>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -265,15 +40,13 @@
   <!-- BREADCRUMB -->
   <div class="breadcrumb">
     <a href="index.html">Inicio</a>
-    <span>/</span>
+    <span class="breadcrumb-sep" aria-hidden="true">/</span>
     <span>Los 6 Pasos</span>
   </div>
 
   <!-- HERO -->
   <section class="hero" style="margin-bottom: var(--sp-3xl);">
-    <div class="hero-eyebrow">
-      <span>●</span>
-      <span>Metodología de integración</span>
+    <div class="hero-eyebrow"><span>Metodología de integración</span>
     </div>
     
     <h1>Los 6 pasos <em>fundamentales</em></h1>
@@ -285,9 +58,9 @@
 
   <!-- PASO 1 -->
   <section class="paso-section">
-    <div class="paso-card" id="paso1">
+    <article class="paso-card" data-step="1" id="paso1">
       <div class="paso-head">
-        <div class="paso-num-badge">01</div>
+        <div class="paso-num-badge" data-step="1">01</div>
         <div class="paso-head-info">
           <h3>Definición de Propósito</h3>
           <p>Antes de abrir la IA, define explícitamente qué quieres resolver y cómo sabrás que lo lograste.</p>
@@ -295,10 +68,10 @@
       </div>
       
       <div class="paso-body">
-        <div class="paso-tags">
-          <span class="paso-tag paso-tag-risk">⚠ Dependencia cognitiva</span>
-          <span class="paso-tag paso-tag-iso">ISO 25010 — Funcionalidad</span>
-          <span class="paso-tag paso-tag-norm">NIST AI RMF — GOVERN</span>
+        <div class="tags">
+          <span class="tag tag-risk">Dependencia cognitiva</span>
+          <span class="tag tag-iso">ISO 25010 — Funcionalidad</span>
+          <span class="tag tag-norm">NIST AI RMF — GOVERN</span>
         </div>
 
         <div class="content-block">
@@ -310,7 +83,7 @@
 
         <div class="content-block">
           <div class="content-block-label">Instrucciones de ejecución</div>
-          <ol class="numbered-list">
+          <ol class="nsteps">
             <li><div class="step-text"><strong>Escribe el problema en una única frase clara.</strong> No incluyas soluciones ni tecnologías aún. Ej: "Necesito procesar archivos CSV de 500MB sin ocupar más de 512MB de RAM".</span></div></li>
             <li><div class="step-text"><strong>Define 3 criterios de éxito verificables.</strong> Que no sean subjetivos: "La aplicación es rápida" no sirve. "Procesa 100 registros/segundo en hardware de 2020" sí.</div></li>
             <li><div class="step-text"><strong>Especifica restricciones explícitas:</strong> tecnologías permitidas, dependencias prohibidas, regulaciones que aplican (datos personales, código abierto, etc.).</div></li>
@@ -323,15 +96,15 @@
           
           <div class="accordion">
             <button class="acc-trigger" onclick="toggleAcc(this)">
-              <span>🎯 Prompt 1A — Definición de problema</span>
-              <span class="acc-arrow">▼</span>
+              <span>Prompt 1A — Definición de problema</span>
+              <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
             </button>
             <div class="acc-body">
               <div class="acc-content">
                 <div class="prompt-block">
                   <div class="prompt-header">
                     <span class="prompt-title">prompt · definición-problema</span>
-                    <button class="copy-btn" onclick="copyPrompt(this)">copiar</button>
+                    <button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>
                   </div>
                   <div class="prompt-body">Quiero que me ayudes a definir un problema de programación antes de empezar a codificar.
 
@@ -352,15 +125,15 @@ El objetivo es que cuando codifiquemos, tengamos claridad y no desviaciones.</di
 
           <div class="accordion">
             <button class="acc-trigger" onclick="toggleAcc(this)">
-              <span>📋 Prompt 1B — Especificación de requisitos</span>
-              <span class="acc-arrow">▼</span>
+              <span>Prompt 1B — Especificación de requisitos</span>
+              <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
             </button>
             <div class="acc-body">
               <div class="acc-content">
                 <div class="prompt-block">
                   <div class="prompt-header">
                     <span class="prompt-title">prompt · especificación-requisitos</span>
-                    <button class="copy-btn" onclick="copyPrompt(this)">copiar</button>
+                    <button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>
                   </div>
                   <div class="prompt-body">Basándote en este problema:
 
@@ -392,14 +165,14 @@ Formato: Simple, máx 2 páginas. Sé específico con números, no con adjetivos
           </ul>
         </div>
       </div>
-    </div>
+    </article>
   </section>
 
   <!-- PASO 2 -->
   <section class="paso-section">
-    <div class="paso-card" id="paso2">
+    <article class="paso-card" data-step="2" id="paso2">
       <div class="paso-head">
-        <div class="paso-num-badge">02</div>
+        <div class="paso-num-badge" data-step="2">02</div>
         <div class="paso-head-info">
           <h3>Validación de Outputs</h3>
           <p>Todo lo que la IA produce debe ejecutarse, probarse y revisarse. Las alucinaciones son reales.</p>
@@ -407,10 +180,10 @@ Formato: Simple, máx 2 páginas. Sé específico con números, no con adjetivos
       </div>
       
       <div class="paso-body">
-        <div class="paso-tags">
-          <span class="paso-tag paso-tag-risk">⚠ Alucinaciones · Código defectuoso</span>
-          <span class="paso-tag paso-tag-iso">ISO 25010 — Fiabilidad</span>
-          <span class="paso-tag paso-tag-norm">NIST AI RMF — MEASURE</span>
+        <div class="tags">
+          <span class="tag tag-risk">Alucinaciones · Código defectuoso</span>
+          <span class="tag tag-iso">ISO 25010 — Fiabilidad</span>
+          <span class="tag tag-norm">NIST AI RMF — MEASURE</span>
         </div>
 
         <div class="content-block">
@@ -422,7 +195,7 @@ Formato: Simple, máx 2 páginas. Sé específico con números, no con adjetivos
 
         <div class="content-block">
           <div class="content-block-label">Instrucciones de ejecución</div>
-          <ol class="numbered-list">
+          <ol class="nsteps">
             <li><div class="step-text"><strong>Ejecuta el código.</strong> Antes que nada, corre la solución con el dataset de prueba que creaste en el Paso 1.</div></li>
             <li><div class="step-text"><strong>Escribe casos de prueba unitarios</strong> que cubran al menos los criterios de éxito y casos edge (valores límite, entradas vacías, etc.).</div></li>
             <li><div class="step-text"><strong>Revisa la lógica línea por línea:</strong> ¿Hay índices fuera de rango? ¿Conversiones de tipo incorrectas? ¿Manejo de excepciones?</div></li>
@@ -441,14 +214,14 @@ Formato: Simple, máx 2 páginas. Sé específico con números, no con adjetivos
           </ul>
         </div>
       </div>
-    </div>
+    </article>
   </section>
 
   <!-- PASO 3 -->
   <section class="paso-section">
-    <div class="paso-card" id="paso3">
+    <article class="paso-card" data-step="3" id="paso3">
       <div class="paso-head">
-        <div class="paso-num-badge">03</div>
+        <div class="paso-num-badge" data-step="3">03</div>
         <div class="paso-head-info">
           <h3>Auditoría de Seguridad</h3>
           <p>Antes de integrar el código, verifica que no expone datos, tiene vulnerabilidades conocidas o viola regulaciones.</p>
@@ -456,10 +229,10 @@ Formato: Simple, máx 2 páginas. Sé específico con números, no con adjetivos
       </div>
       
       <div class="paso-body">
-        <div class="paso-tags">
-          <span class="paso-tag paso-tag-risk">⚠ Vulnerabilidades · Exposición de datos</span>
-          <span class="paso-tag paso-tag-iso">ISO 25010 — Seguridad</span>
-          <span class="paso-tag paso-tag-norm">Ley 1581/2012 · UE Art. 9</span>
+        <div class="tags">
+          <span class="tag tag-risk">Vulnerabilidades · Exposición de datos</span>
+          <span class="tag tag-iso">ISO 25010 — Seguridad</span>
+          <span class="tag tag-norm">Ley 1581/2012 · UE Art. 9</span>
         </div>
 
         <div class="content-block">
@@ -482,14 +255,14 @@ Formato: Simple, máx 2 páginas. Sé específico con números, no con adjetivos
           </ul>
         </div>
       </div>
-    </div>
+    </article>
   </section>
 
   <!-- PASO 4 -->
   <section class="paso-section">
-    <div class="paso-card" id="paso4">
+    <article class="paso-card" data-step="4" id="paso4">
       <div class="paso-head">
-        <div class="paso-num-badge">04</div>
+        <div class="paso-num-badge" data-step="4">04</div>
         <div class="paso-head-info">
           <h3>Supervisión Activa</h3>
           <p>Mantén registro explícito de qué fue generado por IA, en qué contexto, por quién y cuándo.</p>
@@ -497,10 +270,10 @@ Formato: Simple, máx 2 páginas. Sé específico con números, no con adjetivos
       </div>
       
       <div class="paso-body">
-        <div class="paso-tags">
-          <span class="paso-tag paso-tag-risk">⚠ Sesgo de automatización</span>
-          <span class="paso-tag paso-tag-iso">ISO 25010 — Mantenibilidad</span>
-          <span class="paso-tag paso-tag-norm">Reglamento UE 2024/1689 Art. 14</span>
+        <div class="tags">
+          <span class="tag tag-risk">Sesgo de automatización</span>
+          <span class="tag tag-iso">ISO 25010 — Mantenibilidad</span>
+          <span class="tag tag-norm">Reglamento UE 2024/1689 Art. 14</span>
         </div>
 
         <div class="content-block">
@@ -513,7 +286,7 @@ Formato: Simple, máx 2 páginas. Sé específico con números, no con adjetivos
         <div class="content-block">
           <div class="content-block-label">Qué registrar</div>
           <p><strong>Para cada sesión de trabajo con IA:</strong></p>
-          <ol class="numbered-list">
+          <ol class="nsteps">
             <li><div class="step-text"><strong>Timestamp:</strong> Fecha y hora exacta</div></li>
             <li><div class="step-text"><strong>Qué solicitaste:</strong> El prompt o problema específico</div></li>
             <li><div class="step-text"><strong>Qué recibiste:</strong> Linajes aproximados de código generado vs. escrito por ti</div></li>
@@ -564,14 +337,14 @@ Notas:</div>
           </ul>
         </div>
       </div>
-    </div>
+    </article>
   </section>
 
   <!-- PASO 5 -->
   <section class="paso-section">
-    <div class="paso-card" id="paso5">
+    <article class="paso-card" data-step="5" id="paso5">
       <div class="paso-head">
-        <div class="paso-num-badge">05</div>
+        <div class="paso-num-badge" data-step="5">05</div>
         <div class="paso-head-info">
           <h3>Declaración Ética</h3>
           <p>Declara explícitamente el uso de IA. Verifica que no cometiste fraude ni violaste derechos.</p>
@@ -579,10 +352,10 @@ Notas:</div>
       </div>
       
       <div class="paso-body">
-        <div class="paso-tags">
-          <span class="paso-tag paso-tag-risk">⚠ Fraude · Violación de PI</span>
-          <span class="paso-tag paso-tag-iso">ISO 25010 — Autenticidad</span>
-          <span class="paso-tag paso-tag-norm">Ley 23/1982 · CONPES 4144</span>
+        <div class="tags">
+          <span class="tag tag-risk">Fraude · Violación de PI</span>
+          <span class="tag tag-iso">ISO 25010 — Autenticidad</span>
+          <span class="tag tag-norm">Ley 23/1982 · CONPES 4144</span>
         </div>
 
         <div class="content-block">
@@ -594,7 +367,7 @@ Notas:</div>
 
         <div class="content-block">
           <div class="content-block-label">Qué verificar antes de entregar</div>
-          <ol class="numbered-list">
+          <ol class="nsteps">
             <li><div class="step-text"><strong>¿Usé IA?</strong> Identifica exactamente dónde y en qué medida. No es todo o nada; puede ser: "IA para boilerplate, humano para lógica crítica".</div></li>
             <li><div class="step-text"><strong>¿Violé derechos de autor?</strong> Si usaste código de GitHub/Stack Overflow, verifica licencia. Si el modelo generó código que coincide palabra-por-palabra con código existente, eso es sospechoso.</div></li>
             <li><div class="step-text"><strong>¿Hay plagio?</strong> Plagio no es usar IA; es presentar trabajo ajeno como propio sin citar. Si usaste IA y lo declaras, no hay plagio.</div></li>
@@ -657,14 +430,14 @@ Firma: ________________  Fecha: ________________</div>
           </ul>
         </div>
       </div>
-    </div>
+    </article>
   </section>
 
   <!-- PASO 6 -->
   <section class="paso-section">
-    <div class="paso-card" id="paso6">
+    <article class="paso-card" data-step="6" id="paso6">
       <div class="paso-head">
-        <div class="paso-num-badge">06</div>
+        <div class="paso-num-badge" data-step="6">06</div>
         <div class="paso-head-info">
           <h3>Preservación del Pensamiento Crítico</h3>
           <p>Al finalizar sesión, reflexiona sobre lo que aprendiste, lo que delegaste, y practica sin IA.</p>
@@ -672,10 +445,10 @@ Firma: ________________  Fecha: ________________</div>
       </div>
       
       <div class="paso-body">
-        <div class="paso-tags">
-          <span class="paso-tag paso-tag-risk">⚠ Dependencia cognitiva acumulada</span>
-          <span class="paso-tag paso-tag-iso">ISO 25010 — Analizabilidad</span>
-          <span class="paso-tag paso-tag-norm">CONPES 4144 · IEEE 7000</span>
+        <div class="tags">
+          <span class="tag tag-risk">Dependencia cognitiva acumulada</span>
+          <span class="tag tag-iso">ISO 25010 — Analizabilidad</span>
+          <span class="tag tag-norm">CONPES 4144 · IEEE 7000</span>
         </div>
 
         <div class="content-block">
@@ -687,7 +460,7 @@ Firma: ________________  Fecha: ________________</div>
 
         <div class="content-block">
           <div class="content-block-label">Instrucciones de ejecución</div>
-          <ol class="numbered-list">
+          <ol class="nsteps">
             <li><div class="step-text"><strong>Ejecuta la reflexión al finalizar cada sesión,</strong> no al final del proyecto. Dedica 5 minutos a responder las preguntas del prompt de autoevaluación.</div></li>
             <li><div class="step-text"><strong>Identifica qué habilidades ejercitaste</strong> y cuáles delegaste completamente a la IA.</div></li>
             <li><div class="step-text"><strong>Practica sin IA al menos una vez por semana.</strong> Elige un ejercicio que puedas resolver solo. Esto mantiene activas tus capacidades de razonamiento autónomo.</div></li>
@@ -700,15 +473,15 @@ Firma: ________________  Fecha: ________________</div>
           
           <div class="accordion">
             <button class="acc-trigger" onclick="toggleAcc(this)">
-              <span>🧠 Prompt 6A — Autoevaluación al cierre</span>
-              <span class="acc-arrow">▼</span>
+              <span>Prompt 6A — Autoevaluación al cierre</span>
+              <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
             </button>
             <div class="acc-body">
               <div class="acc-content">
                 <div class="prompt-block">
                   <div class="prompt-header">
                     <span class="prompt-title">prompt · autoevaluación-sesión</span>
-                    <button class="copy-btn" onclick="copyPrompt(this)">copiar</button>
+                    <button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>
                   </div>
                   <div class="prompt-body">Al finalizar esta sesión, quiero hacer una autoevaluación de mi uso de IA.
 
@@ -729,15 +502,15 @@ El objetivo es identificar oportunidades de aprendizaje propio.</div>
 
           <div class="accordion">
             <button class="acc-trigger" onclick="toggleAcc(this)">
-              <span>🧠 Prompt 6B — Plan de práctica autónoma</span>
-              <span class="acc-arrow">▼</span>
+              <span>Prompt 6B — Plan de práctica autónoma</span>
+              <span class="acc-arrow" aria-hidden="true"><i data-lucide="chevron-down" class="icon-sm"></i></span>
             </button>
             <div class="acc-body">
               <div class="acc-content">
                 <div class="prompt-block">
                   <div class="prompt-header">
                     <span class="prompt-title">prompt · ejercicio-autónomo</span>
-                    <button class="copy-btn" onclick="copyPrompt(this)">copiar</button>
+                    <button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>
                   </div>
                   <div class="prompt-body">He estado usando IA en tareas de <span class="pv">[tipo de tareas]</span>. Quiero verificar que mis habilidades están activas con un ejercicio sin IA.
 
@@ -764,7 +537,7 @@ Solo dame el ejercicio. No me des la solución todavía.</div>
           </ul>
         </div>
       </div>
-    </div>
+    </article>
   </section>
 
   <div class="divider"></div>
@@ -806,43 +579,9 @@ Solo dame el ejercicio. No me des la solución todavía.</div>
 </footer>
 
 <!-- SCROLL TO TOP -->
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button type="button" class="scroll-top" id="scrollTop" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i data-lucide="arrow-up" class="icon-md"></i></button>
 
 <!-- SCRIPTS -->
-<script>
-function updateProgress() {
-  const scrolled = window.scrollY;
-  const total = document.body.scrollHeight - window.innerHeight;
-  const pct = total > 0 ? (scrolled / total) * 100 : 0;
-  document.getElementById('progress-bar').style.width = pct + '%';
-  document.getElementById('scrollTop').classList.toggle('visible', scrolled > 400);
-}
-
-window.addEventListener('scroll', updateProgress);
-
-function toggleAcc(btn) {
-  btn.classList.toggle('open');
-  btn.nextElementSibling.classList.toggle('open');
-}
-
-function copyPrompt(btn) {
-  const text = btn.closest('.prompt-block').querySelector('.prompt-body').innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = '✓ copiado';
-    btn.classList.add('ok');
-    setTimeout(() => {
-      btn.textContent = 'copiar';
-      btn.classList.remove('ok');
-    }, 2000);
-  });
-}
-
-function toggleCheck(event) {
-  if (event.target.closest('.checklist-box') || event.target.closest('span')) {
-    event.currentTarget.closest('li').classList.toggle('checked');
-  }
-}
-</script>
-
+<script src="assets/app.js"></script>
 </body>
 </html>

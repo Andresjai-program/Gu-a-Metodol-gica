@@ -5,106 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Marco normativo y estándares aplicados en la guía metodológica.">
   <title>Normativa y Estándares — Guía Metodológica</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
-  <style>
-    .norm-card {
-      background: var(--bg-base);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: var(--sp-xl);
-      margin-bottom: var(--sp-2xl);
-      display: flex;
-      gap: var(--sp-xl);
-      transition: all 0.2s;
-    }
-    
-    .norm-card:hover {
-      border-color: var(--border-default);
-      box-shadow: var(--shadow-sm);
-      transform: translateY(-2px);
-    }
-    
-    .norm-badge {
-      min-width: 100px;
-      padding: var(--sp-lg);
-      background: var(--bg-alt);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--accent-primary);
-      text-align: center;
-      height: fit-content;
-      flex-shrink: 0;
-    }
-    
-    .norm-content {
-      flex: 1;
-    }
-    
-    .norm-content h3 {
-      margin-bottom: var(--sp-sm);
-      color: var(--text-primary);
-    }
-    
-    .norm-content p {
-      margin-bottom: var(--sp-lg);
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-    }
-    
-    .norm-content p:last-child {
-      margin-bottom: 0;
-    }
-    
-    .norm-steps {
-      font-size: 0.9rem;
-      color: var(--accent-primary);
-      font-weight: 600;
-      padding-top: var(--sp-lg);
-      border-top: 1px solid var(--border-light);
-    }
-    
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: var(--sp-2xl);
-      background: var(--bg-base);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-    
-    .comparison-table th {
-      background: var(--bg-alt);
-      padding: var(--sp-lg);
-      text-align: left;
-      font-weight: 600;
-      border-bottom: 1px solid var(--border-light);
-      color: var(--text-primary);
-      font-size: 0.95rem;
-    }
-    
-    .comparison-table td {
-      padding: var(--sp-lg);
-      border-bottom: 1px solid var(--border-light);
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-    
-    .comparison-table tr:last-child td {
-      border-bottom: none;
-    }
-    
-    .comparison-table tbody tr:hover {
-      background: var(--bg-alt);
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 </head>
 <body>
 
@@ -113,16 +18,19 @@
 <!-- HEADER -->
 <header class="header">
   <div class="header-content">
-    <div class="header-logo">
-      <span></span>
-      <span>Guía Metodológica</span>
-    </div>
+    <a href="index.html" class="header-logo"><span class="header-logo-mark" aria-hidden="true"></span><span>Guía Metodológica</span></a>
     <nav class="header-nav">
       <a href="index.html">Inicio</a>
       <a href="pasos.html">Los 6 Pasos</a>
       <a href="iso-evaluation.html">Evaluación</a>
-      <a href="normativa.html">Normativa</a>
+      <a href="normativa.html" aria-current="page">Normativa</a>
+          <a href="guide_IA.html">Guía completa</a>
     </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" aria-label="Cambiar tema">
+        <i data-lucide="sun-moon" class="icon-md"></i>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -132,15 +40,13 @@
   <!-- BREADCRUMB -->
   <div class="breadcrumb">
     <a href="index.html">Inicio</a>
-    <span>/</span>
+    <span class="breadcrumb-sep" aria-hidden="true">/</span>
     <span>Normativa</span>
   </div>
 
   <!-- HERO -->
   <section class="hero" style="margin-bottom: var(--sp-3xl);">
-    <div class="hero-eyebrow">
-      <span>●</span>
-      <span>Marco normativo</span>
+    <div class="hero-eyebrow"><span>Marco normativo</span>
     </div>
     
     <h1>Estándares y regulaciones <em>aplicados</em></h1>
@@ -468,19 +374,8 @@
   </div>
 </footer>
 
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button type="button" class="scroll-top" id="scrollTop" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i data-lucide="arrow-up" class="icon-md"></i></button>
 
-<script>
-function updateProgress() {
-  const scrolled = window.scrollY;
-  const total = document.body.scrollHeight - window.innerHeight;
-  const pct = total > 0 ? (scrolled / total) * 100 : 0;
-  document.getElementById('progress-bar').style.width = pct + '%';
-  document.getElementById('scrollTop').classList.toggle('visible', scrolled > 400);
-}
-
-window.addEventListener('scroll', updateProgress);
-</script>
-
+<script src="assets/app.js"></script>
 </body>
 </html>
