@@ -212,7 +212,7 @@
 
 .fw-arch-col {
   padding: var(--sp-5);
-  background: var(--bg-base);
+  background: var(--surface);
 }
 
 .fw-arch-col h4 {
@@ -239,7 +239,7 @@
 /* OWASP mapping */
 .owasp-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
   gap: var(--sp-4);
   margin: var(--sp-6) 0;
 }
@@ -278,7 +278,7 @@
 
 .hitl-step {
   padding: var(--sp-6);
-  background: var(--bg-base);
+  background: var(--surface);
   text-align: center;
 }
 
@@ -363,17 +363,52 @@
   color: var(--accent);
 }
 
-@media (max-width: 900px) {
-  .hitl-flow { grid-template-columns: 1fr 1fr; }
+/* ─── Responsive (mobile-first) ─── */
+.hitl-flow {
+  grid-template-columns: 1fr;
 }
 
-@media (max-width: 768px) {
+.fw-arch {
+  grid-template-columns: 1fr;
+}
+
+.fw-block {
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+}
+
+.risk-register {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 640px) {
+  .hitl-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
   .fw-block {
-    grid-template-columns: 1fr;
-    gap: var(--sp-2);
+    grid-template-columns: minmax(140px, 200px) 1fr;
+    gap: var(--sp-6);
   }
 
-  .fw-arch { grid-template-columns: 1fr; }
+  .fw-arch {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
-  .hitl-flow { grid-template-columns: 1fr; }
+@media (min-width: 1024px) {
+  .hitl-flow {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .fw-arch {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .fw-block {
+    grid-template-columns: 200px 1fr;
+  }
 }

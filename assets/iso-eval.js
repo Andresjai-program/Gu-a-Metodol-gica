@@ -1,9 +1,10 @@
 /**
- * Evaluación ISO/IEC 25010 — lógica de puntuación
+ * Evaluación ISO/IEC 25010 — puntuación + persistencia local
  */
 (function () {
   'use strict';
 
+  const STORAGE_KEY = 'guia-iso-eval';
   const CHARS = ['adec', 'efic', 'compat', 'inter', 'fiab', 'seg', 'mant', 'flex', 'prot'];
 
   const CHAR_NAMES = {
@@ -33,6 +34,40 @@
   }
 
   window.getCharScore = getCharScore;
+
+  function saveAnswers() {
+    const data = {};
+    document.querySelectorAll('.q-opt input[type="radio"]:checked').forEach((inp) => {
+      data[inp.name] = inp.value;
+    });
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch { /* ignore */ }
+  }
+
+  function restoreAnswers() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      Object.keys(data).forEach((name) => {
+        const inp = document.querySelector(
+          'input[name="' + name + '"][value="' + data[name] + '"]'
+        );
+        if (inp) inp.checked = true;
+      });
+    } catch { /* ignore */ }
+  }
+
+  function openAllCharacteristics() {
+    document.querySelectorAll('.iso-char-body').forEach((body) => {
+      body.classList.add('open');
+      body.style.display = 'block';
+    });
+    document.querySelectorAll('.iso-char-head').forEach((head) => {
+      head.setAttribute('aria-expanded', 'true');
+    });
+  }
 
   window.updateDashboard = function updateDashboard() {
     let totalAnswered = 0;
@@ -71,6 +106,8 @@
       if (totalFill) totalFill.style.width = overallPct + '%';
       if (pctFill) pctFill.style.width = overallPct + '%';
     }
+
+    saveAnswers();
   };
 
   window.calcScore = function calcScore() {
@@ -157,8 +194,8 @@
         weakest.length > 0
           ? '<strong>Áreas prioritarias de mejora:</strong> ' +
             weakest.join(', ') +
-            '. Revisa los pasos metodológicos correspondientes y aplica los prompts de auditoría indicados en cada sección.'
-          : '<strong>Excelente resultado.</strong> Tu proyecto muestra un alto nivel de cumplimiento ISO/IEC 25010. Continúa aplicando la metodología de forma sistemática en cada nuevo ciclo de desarrollo.';
+            '. Revisa los módulos del handbook y registra evidencias en <a href="evidencias.html">Registro de evidencias</a>.'
+          : '<strong>Excelente resultado.</strong> Tu proyecto muestra un alto nivel de cumplimiento ISO/IEC 25010.';
     }
 
     if (evalResult) {
@@ -168,9 +205,15 @@
   };
 
   window.resetEval = function resetEval() {
+    if (!confirm('¿Reiniciar todas las respuestas de la evaluación?')) return;
+
     document.querySelectorAll('.q-opt input').forEach((i) => {
       i.checked = false;
     });
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch { /* ignore */ }
+
     const evalResult = document.getElementById('evalResult');
     if (evalResult) evalResult.classList.remove('show');
 
@@ -199,8 +242,15 @@
   };
 
   document.addEventListener('DOMContentLoaded', () => {
+    if (!document.querySelector('.q-row')) return;
+
+    openAllCharacteristics();
+    restoreAnswers();
+
     document.querySelectorAll('.q-opt input').forEach((inp) => {
       inp.addEventListener('change', updateDashboard);
     });
+
+    updateDashboard();
   });
 })();

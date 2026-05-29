@@ -3,224 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Framework metodológico para desarrollo, validación y auditoría de software asistido por IA. ISO/IEC 25010, OWASP, NIST AI RMF.">
-  <meta name="theme-color" content="#ffffff">
-  <title>Framework IA — Desarrollo y auditoría de software</title>
+  <meta name="description" content="Framework metodológico para desarrollo, validación y auditoría de software asistido por IA.">
+  <meta name="theme-color" content="#f8f9fb">
+  <title>Inicio — IA Governance Framework</title>
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="stylesheet" href="assets/framework.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="assets/theme-init.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <link rel="stylesheet" href="assets/shell.css">
+  <link rel="stylesheet" href="assets/responsive.css">
+  <style>body[data-page]:not(.platform-ready){visibility:hidden}</style>
 </head>
-<body>
+<body data-page="index">
 
 <div id="progress-bar" role="progressbar" aria-label="Progreso de lectura"></div>
 
-<header class="header">
-  <div class="header-content">
-    <a href="index.html" class="header-logo">
-      <span class="header-logo-mark" aria-hidden="true"></span>
-      <span>Framework IA · Ingeniería TIC</span>
-    </a>
-    <nav class="header-nav" aria-label="Principal">
-      <a href="index.html" aria-current="page">Inicio</a>
-      <a href="framework.html">Arquitectura</a>
-      <a href="governance.html">Gobernanza</a>
-      <a href="pasos.html">Módulos P01–P06</a>
-      <a href="iso-evaluation.html">Evaluación ISO</a>
-      <a href="guide_IA.html">Handbook</a>
-    </nav>
-    <div class="header-actions">
-      <button type="button" class="theme-toggle" aria-label="Cambiar tema">
-        <i data-lucide="sun-moon" class="icon-md"></i>
-      </button>
-    </div>
-  </div>
-</header>
+<main class="main-container" data-platform-content>
 
-<main class="main-container">
-
-  <section class="hero">
-    <p class="fw-hero-badge">Framework metodológico · v2.0 · 2025</p>
-    <h1>Desarrollo, validación y auditoría de <em>software asistido por IA</em></h1>
+  <section class="hero" id="objetivos">
+    <p class="fw-hero-badge">Framework metodológico · v2.0 · 2026</p>
+    <h1>IA Governance <em>Framework</em></h1>
     <p class="hero-lead">
-      Plataforma institucional para Ingeniería TIC: seis módulos operativos con prompts de ingeniería avanzada (CoT, adversarial, self-consistency), trazabilidad ISO/IEC 25010, auditoría OWASP y evidencia documental verificable.
-    </p>
-    <div class="hero-stats">
-      <div class="stat-card">
-        <div class="stat-num">6</div>
-        <div class="stat-label">Módulos P01–P06</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">10</div>
-        <div class="stat-label">Bloques por módulo</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">9</div>
-        <div class="stat-label">Características ISO 25010</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">27</div>
-        <div class="stat-label">Métricas de evaluación</div>
-      </div>
-    </div>
-    <div class="btn-group">
-      <a href="framework.html" class="btn btn-primary">Arquitectura del framework</a>
-      <a href="guide_IA.html#paso1" class="btn btn-secondary">Handbook completo</a>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section class="section">
-    <header class="section-header">
-      <p class="section-eyebrow">Gobernanza</p>
-      <h2>Human-in-the-Loop</h2>
-      <p class="section-lead">
-        La IA acelera; el ingeniero humano define, valida, audita y aprueba. Mitigamos automation bias, alucinaciones, código caja negra, vulnerabilidades ocultas y amplificación de deuda técnica.
-      </p>
-    </header>
-    <p>
-      <a href="governance.html" class="btn btn-primary">Catálogo de riesgos y modelo HITL</a>
+      Plataforma institucional de ingeniería y gobernanza de software asistido por IA. Selecciona un módulo del menú lateral o las tarjetas siguientes — cada sección vive en su propia página.
     </p>
   </section>
 
-  <hr class="divider">
-
-  <section class="section">
+  <section class="section hub-grid-section">
     <header class="section-header">
-      <p class="section-eyebrow">Qué es este framework</p>
-      <h2>No es una colección de prompts</h2>
-      <p class="section-lead">
-        Es un sistema integrado de gobernanza técnica: cada módulo produce entregables (EVID-P0N) que alimentan la evaluación ISO, la auditoría OWASP y la defensa académica o profesional del artefacto de software.
-      </p>
+      <p class="section-eyebrow">Acceso rápido</p>
+      <h2>Documentación del framework</h2>
+      <p class="section-lead">No es una landing única: cada área tiene contenido dedicado y navegación propia.</p>
     </header>
 
-    <div class="fw-arch">
-      <div class="fw-arch-col">
-        <h4><i data-lucide="git-branch"></i> Flujo</h4>
-        <ul>
-          <li>P01 → Spec + threat model</li>
-          <li>P02 → Review + tests</li>
-          <li>P03 → Informe OWASP</li>
-          <li>P04 → ADR + supervisión</li>
-          <li>P05 → Declaración ética</li>
-          <li>P06 → Autoevaluación cognitiva</li>
-        </ul>
-      </div>
-      <div class="fw-arch-col">
-        <h4><i data-lucide="brain"></i> Prompt engineering</h4>
-        <ul>
-          <li>Chain-of-Thought estructurado</li>
-          <li>Self-consistency en validación</li>
-          <li>Adversarial en seguridad</li>
-          <li>Reflection y meta-prompting</li>
-          <li>Tree-of-thoughts en diseño</li>
-        </ul>
-      </div>
-      <div class="fw-arch-col">
-        <h4><i data-lucide="shield-check"></i> Estándares</h4>
-        <ul>
-          <li>ISO/IEC 25010:2023</li>
-          <li>OWASP Top 10 2021</li>
-          <li>SOLID · Clean Code</li>
-          <li>NIST AI RMF · UE AI Act</li>
-          <li>Normativa colombiana</li>
-        </ul>
-      </div>
+    <div class="hub-grid">
+      <a href="guide_IA.html" class="hub-card hub-card--primary">
+        <i data-lucide="book-open" class="icon-lg"></i>
+        <h3>Handbook metodológico</h3>
+        <p>Protocolo P01–P06, prompts avanzados y bloques de auditoría.</p>
+        <span class="hub-card-cta">Abrir handbook →</span>
+      </a>
+      <a href="framework.html" class="hub-card">
+        <i data-lucide="layers" class="icon-lg"></i>
+        <h3>Arquitectura</h3>
+        <p>Capas del framework, matriz de trazabilidad y OWASP.</p>
+        <span class="hub-card-cta">Ver arquitectura →</span>
+      </a>
+      <a href="governance.html" class="hub-card">
+        <i data-lucide="users" class="icon-lg"></i>
+        <h3>Gobernanza HITL</h3>
+        <p>Human-in-the-Loop y catálogo de riesgos de IA.</p>
+        <span class="hub-card-cta">Ver gobernanza →</span>
+      </a>
+      <a href="iso-evaluation.html" class="hub-card">
+        <i data-lucide="clipboard-check" class="icon-lg"></i>
+        <h3>Evaluación ISO 25010</h3>
+        <p>27 preguntas, cálculo automático y diagnóstico por característica.</p>
+        <span class="hub-card-cta">Iniciar evaluación →</span>
+      </a>
+      <a href="evidencias.html" class="hub-card">
+        <i data-lucide="folder-up" class="icon-lg"></i>
+        <h3>Registro de evidencias</h3>
+        <p>Adjunta archivos y documenta entregables EVID-P01–P06.</p>
+        <span class="hub-card-cta">Gestionar evidencias →</span>
+      </a>
+      <a href="guide_IA.html#paso1" class="hub-card">
+        <i data-lucide="play" class="icon-lg"></i>
+        <h3>Iniciar P01</h3>
+        <p>Comienza el protocolo en el módulo de definición.</p>
+        <span class="hub-card-cta">Módulo P01 →</span>
+      </a>
     </div>
   </section>
 
-  <hr class="divider">
-
-  <section class="section">
+  <section class="section" id="framework">
     <header class="section-header">
-      <p class="section-eyebrow">Audiencia</p>
-      <h2>Diseñado para contextos exigentes</h2>
+      <p class="section-eyebrow">Resumen</p>
+      <h2>Qué incluye el framework</h2>
     </header>
-    <ul class="risk-list">
-      <li>
-        <span class="risk-icon"><i data-lucide="graduation-cap" class="icon-lg"></i></span>
-        <div>
-          <h4>Estudiantes Ingeniería TIC</h4>
-          <p>Metodología defendible ante jurados, con evidencia y declaración de uso de IA.</p>
-        </div>
-      </li>
-      <li>
-        <span class="risk-icon"><i data-lucide="code-2" class="icon-lg"></i></span>
-        <div>
-          <h4>Desarrolladores</h4>
-          <p>Validación técnica, deuda técnica, complejidad y seguridad antes de merge.</p>
-        </div>
-      </li>
-      <li>
-        <span class="risk-icon"><i data-lucide="clipboard-list" class="icon-lg"></i></span>
-        <div>
-          <h4>Auditoría y calidad</h4>
-          <p>Métricas ISO, controles OWASP y trazabilidad requisito→código→prueba.</p>
-        </div>
-      </li>
-      <li>
-        <span class="risk-icon"><i data-lucide="scale" class="icon-lg"></i></span>
-        <div>
-          <h4>Gobernanza IA</h4>
-          <p>Supervisión humana, transparencia y alineación NIST / Reglamento UE.</p>
-        </div>
-      </li>
+    <ul class="hub-checklist">
+      <li><strong>6 módulos</strong> operativos (P01–P06) con 10 bloques cada uno</li>
+      <li><strong>ISO/IEC 25010</strong> — evaluación interactiva con puntaje calculado</li>
+      <li><strong>OWASP</strong> y trazabilidad requisito → código → prueba</li>
+      <li><strong>Evidencias</strong> documentales verificables por módulo</li>
     </ul>
-  </section>
-
-  <hr class="divider">
-
-  <section class="section">
-    <header class="section-header">
-      <p class="section-eyebrow">Recursos</p>
-      <h2>Navegación del framework</h2>
-    </header>
-    <div class="grid grid-2">
-      <a href="framework.html" class="card" style="text-decoration:none;color:inherit">
-        <h4>Arquitectura y trazabilidad</h4>
-        <p style="font-size:var(--text-sm)">Matriz módulo ↔ ISO ↔ OWASP. Anatomía de los 10 bloques.</p>
-      </a>
-      <a href="pasos.html" class="card" style="text-decoration:none;color:inherit">
-        <h4>Módulos P01–P06 (resumen)</h4>
-        <p style="font-size:var(--text-sm)">Vista rápida con enlace al handbook detallado.</p>
-      </a>
-      <a href="iso-evaluation.html" class="card" style="text-decoration:none;color:inherit">
-        <h4>Evaluación ISO 25010</h4>
-        <p style="font-size:var(--text-sm)">27 preguntas · dashboard · diagnóstico por característica.</p>
-      </a>
-      <a href="guide_IA.html" class="card" style="text-decoration:none;color:inherit">
-        <h4>Handbook integral</h4>
-        <p style="font-size:var(--text-sm)">Todos los módulos, prompts avanzados y evaluación en una página.</p>
-      </a>
-    </div>
-  </section>
-
-  <section class="section cta-block">
-    <h2>Iniciar protocolo P01</h2>
-    <p class="section-lead">No abras el asistente de IA hasta completar la especificación y el threat model ligero.</p>
-    <div class="btn-group" style="justify-content:center">
-      <a href="guide_IA.html#paso1" class="btn btn-primary">Módulo P01 — Definición</a>
-      <a href="iso-evaluation.html" class="btn btn-secondary">Evaluación ISO</a>
-    </div>
+    <p style="margin-top:var(--sp-6)">
+      <a href="framework.html" class="btn btn-secondary">Leer arquitectura completa</a>
+    </p>
   </section>
 
 </main>
-
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-bottom">
-      Framework metodológico · Universidad Libre Cúcuta · Ing. TIC · Andrés Felipe Jaimes Carrillo · 2025
-    </div>
-  </div>
-</footer>
 
 <button type="button" class="scroll-top" id="scrollTop" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <i data-lucide="arrow-up" class="icon-md"></i>
 </button>
 
+<script src="assets/nav.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

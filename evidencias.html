@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script src="assets/theme-init.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Registro de evidencias documentales EVID-P01 a P06 del framework metodológico.">
+  <title>Evidencias — IA Governance Framework</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/framework.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <link rel="stylesheet" href="assets/shell.css">
+  <link rel="stylesheet" href="assets/responsive.css">
+  <style>body[data-page]:not(.platform-ready){visibility:hidden}</style>
+</head>
+<body data-page="evidence">
+
+<div id="progress-bar"></div>
+
+<main class="main-container" data-platform-content>
+
+  <section class="hero">
+    <p class="fw-hero-badge">TRAZABILIDAD · EVID-P01–P06</p>
+    <h1>Registro de <em>evidencias</em></h1>
+    <p class="hero-lead">
+      Documenta y adjunta los entregables de cada módulo. Los datos se guardan en tu navegador (localStorage e IndexedDB). Puedes exportar el registro para auditoría o jurado.
+    </p>
+  </section>
+
+  <div class="evidence-toolbar card">
+    <label class="evidence-field">
+      <span>Nombre del proyecto</span>
+      <input type="text" id="evidenceProject" placeholder="Ej. Sistema de gestión académica">
+    </label>
+    <div class="evidence-stats-wrap">
+      <span class="evidence-stats-label">Registros por módulo</span>
+      <div id="evidenceStats" class="evidence-stats"></div>
+    </div>
+    <button type="button" class="btn btn-secondary" id="exportEvidence">Exportar JSON</button>
+  </div>
+
+  <div class="evidence-layout">
+    <section class="card evidence-form-card">
+      <h2>Agregar evidencia</h2>
+      <p class="section-lead" style="margin-bottom:var(--sp-6)">Vincula archivos, notas o enlaces a un módulo del protocolo.</p>
+      <form id="evidenceForm" class="evidence-form">
+        <label class="evidence-field">
+          <span>Módulo</span>
+          <select name="module" required>
+            <option value="P01">P01 — Definición</option>
+            <option value="P02">P02 — Validación</option>
+            <option value="P03">P03 — Seguridad</option>
+            <option value="P04">P04 — Supervisión</option>
+            <option value="P05">P05 — Ética</option>
+            <option value="P06">P06 — Pensamiento crítico</option>
+          </select>
+        </label>
+        <label class="evidence-field">
+          <span>Título</span>
+          <input type="text" name="title" required placeholder="Ej. spec-v1.md completada">
+        </label>
+        <label class="evidence-field">
+          <span>Descripción</span>
+          <textarea name="description" rows="3" placeholder="Qué demuestra esta evidencia"></textarea>
+        </label>
+        <label class="evidence-field">
+          <span>Enlace externo (opcional)</span>
+          <input type="url" name="url" placeholder="https:// repositorio, drive, etc.">
+        </label>
+        <label class="evidence-field">
+          <span>Archivos (máx. 8 MB c/u)</span>
+          <input type="file" name="files" multiple accept=".pdf,.md,.txt,.doc,.docx,.png,.jpg,.json,.zip">
+        </label>
+        <button type="submit" class="btn btn-primary btn-block">Registrar evidencia</button>
+        <p id="evidenceFormMsg" class="evidence-form-msg" role="status"></p>
+      </form>
+    </section>
+
+    <section class="evidence-list-section">
+      <div class="evidence-list-header">
+        <h2>Evidencias registradas</h2>
+        <select id="evidenceModuleFilter" aria-label="Filtrar por módulo">
+          <option value="">Todos los módulos</option>
+        </select>
+      </div>
+      <p id="evidenceEmpty" class="evidence-empty" hidden>Aún no hay evidencias. Usa el formulario para agregar la primera.</p>
+      <div id="evidenceList" class="evidence-list"></div>
+    </section>
+  </div>
+
+</main>
+<button type="button" class="scroll-top" id="scrollTop" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i data-lucide="arrow-up" class="icon-md"></i>
+</button>
+
+<script src="assets/nav.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/evidence.js"></script>
+<script>
+document.getElementById('exportEvidence')?.addEventListener('click', function () {
+  var meta = window.GuiaEvidence && window.GuiaEvidence.loadMeta();
+  if (!meta) return;
+  var blob = new Blob([JSON.stringify(meta, null, 2)], { type: 'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'evidencias-' + (meta.project || 'proyecto') + '.json';
+  a.click();
+});
+</script>
+</body>
+</html>

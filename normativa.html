@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script src="assets/theme-init.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Marco normativo y estándares aplicados en la guía metodológica.">
@@ -10,42 +11,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <link rel="stylesheet" href="assets/shell.css">
+  <link rel="stylesheet" href="assets/responsive.css">
+  <style>body[data-page]:not(.platform-ready){visibility:hidden}</style>
 </head>
-<body>
+<body data-page="handbook">
 
 <div id="progress-bar"></div>
 
 <!-- HEADER -->
-<header class="header">
-  <div class="header-content">
-    <a href="index.html" class="header-logo"><span class="header-logo-mark" aria-hidden="true"></span><span>Guía Metodológica</span></a>
-    <nav class="header-nav">
-      <a href="index.html">Inicio</a>
-      <a href="framework.html">Arquitectura</a>
-      <a href="governance.html">Gobernanza</a>
-      <a href="pasos.html">Módulos</a>
-      <a href="iso-evaluation.html">Evaluación ISO</a>
-      <a href="normativa.html" aria-current="page">Normativa</a>
-          <a href="guide_IA.html">Guía completa</a>
-    </nav>
-    <div class="header-actions">
-      <button type="button" class="theme-toggle" aria-label="Cambiar tema">
-        <i data-lucide="sun-moon" class="icon-md"></i>
-      </button>
-    </div>
-  </div>
-</header>
-
 <!-- MAIN -->
-<main class="main-container">
+<main class="main-container" data-platform-content>
 
   <!-- BREADCRUMB -->
-  <div class="breadcrumb">
-    <a href="index.html">Inicio</a>
-    <span class="breadcrumb-sep" aria-hidden="true">/</span>
-    <span>Normativa</span>
-  </div>
-
   <!-- HERO -->
   <section class="hero" style="margin-bottom: var(--sp-3xl);">
     <div class="hero-eyebrow"><span>Marco normativo</span>
@@ -354,30 +332,9 @@
 </main>
 
 <!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-main">
-      <div class="footer-section">
-        <h4>Navegación</h4>
-        <p><a href="index.html">Inicio</a><br><a href="pasos.html">Los 6 Pasos</a><br><a href="iso-evaluation.html">Evaluación</a></p>
-      </div>
-      <div class="footer-section">
-        <h4>Autoría</h4>
-        <p>Andrés Felipe Jaimes Carrillo<br>Universidad Libre · Cúcuta<br>Ing. en TIC · 2025</p>
-      </div>
-      <div class="footer-section">
-        <h4>Fundamento</h4>
-        <p>Todas las secciones están fundadas en normas internacionales vigentes. Consulta normativa para referencias completas.</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <strong>Actualización:</strong> 29 de mayo de 2025
-    </div>
-  </div>
-</footer>
-
 <button type="button" class="scroll-top" id="scrollTop" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i data-lucide="arrow-up" class="icon-md"></i></button>
 
+<script src="assets/nav.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

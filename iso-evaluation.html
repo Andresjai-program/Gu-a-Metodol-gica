@@ -1,53 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script src="assets/theme-init.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Evaluación interactiva de calidad de software basada en ISO/IEC 25010:2023.">
-  <title>Evaluación ISO 25010 — Guía Metodológica</title>
+  <title>Evaluación ISO 25010 — IA Governance Framework</title>
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="stylesheet" href="assets/framework.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <link rel="stylesheet" href="assets/shell.css">
+  <link rel="stylesheet" href="assets/responsive.css">
+  <style>body[data-page]:not(.platform-ready){visibility:hidden}</style>
 </head>
-<body>
+<body data-page="iso">
 
 <div id="progress-bar"></div>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="header-content">
-    <a href="index.html" class="header-logo"><span class="header-logo-mark" aria-hidden="true"></span><span>Guía Metodológica</span></a>
-    <nav class="header-nav">
-      <a href="index.html">Inicio</a>
-      <a href="framework.html">Arquitectura</a>
-      <a href="governance.html">Gobernanza</a>
-      <a href="pasos.html">Módulos</a>
-      <a href="iso-evaluation.html" aria-current="page">Evaluación ISO</a>
-      <a href="normativa.html">Normativa</a>
-          <a href="guide_IA.html">Guía completa</a>
-    </nav>
-    <div class="header-actions">
-      <button type="button" class="theme-toggle" aria-label="Cambiar tema">
-        <i data-lucide="sun-moon" class="icon-md"></i>
-      </button>
-    </div>
-  </div>
-</header>
+<main class="main-container" data-platform-content>
 
-<!-- MAIN -->
-<main class="main-container">
-
-  <!-- BREADCRUMB -->
-  <div class="breadcrumb">
-    <a href="index.html">Inicio</a>
-    <span class="breadcrumb-sep" aria-hidden="true">/</span>
-    <span>Evaluación ISO 25010</span>
-  </div>
-
-  <!-- HERO -->
   <section class="hero" style="margin-bottom: var(--sp-2xl);">
     <div class="hero-eyebrow"><span>Autoevaluación</span>
     </div>
@@ -74,7 +48,7 @@
   </div>
 
   <!-- SCORE DASHBOARD -->
-  <div class="score-dashboard" style="margin-bottom: var(--sp-2xl);">
+  <div class="score-dashboard" id="metricas" style="margin-bottom: var(--sp-2xl);">
     <div class="score-card">
       <div class="score-big" id="totalScore">—</div>
       <div class="score-sub">Puntaje total</div>
@@ -93,6 +67,10 @@
   </div>
 
   <div class="divider"></div>
+
+  <p class="eval-hint" style="font-size:var(--text-sm);color:var(--text-tertiary);margin-bottom:var(--sp-6)">
+    Las 9 características están expandidas abajo. Haz clic en cada opción; el puntaje se actualiza en tiempo real. Al finalizar, pulsa <strong>Calcular resultado</strong>.
+  </p>
 
   <!-- CHARACTERISTICS -->
   <section style="margin-bottom: var(--sp-3xl);">
@@ -113,28 +91,28 @@
         <div class="q-row" data-char="adec">
           <div class="q-text"><strong>Completitud Funcional:</strong> El código generado implementa todas las funcionalidades definidas en los requisitos sin omitir ninguna.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="adec_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="adec_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="adec_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="adec_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="adec_1" value="4" id="adec_1_v4" onchange="updateDashboard()"><label for="adec_1_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="adec_1" value="3" id="adec_1_v3" onchange="updateDashboard()"><label for="adec_1_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="adec_1" value="2" id="adec_1_v2" onchange="updateDashboard()"><label for="adec_1_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="adec_1" value="1" id="adec_1_v1" onchange="updateDashboard()"><label for="adec_1_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="adec">
           <div class="q-text"><strong>Corrección Funcional:</strong> Los resultados del código son exactos y precisos para todos los casos de uso definidos.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="adec_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="adec_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="adec_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="adec_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="adec_2" value="4" id="adec_2_v4" onchange="updateDashboard()"><label for="adec_2_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="adec_2" value="3" id="adec_2_v3" onchange="updateDashboard()"><label for="adec_2_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="adec_2" value="2" id="adec_2_v2" onchange="updateDashboard()"><label for="adec_2_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="adec_2" value="1" id="adec_2_v1" onchange="updateDashboard()"><label for="adec_2_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="adec">
           <div class="q-text"><strong>Pertinencia Funcional:</strong> Las funcionalidades son relevantes para el problema; no incluye funciones innecesarias que aumenten complejidad.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="adec_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="adec_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="adec_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="adec_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="adec_3" value="4" id="adec_3_v4" onchange="updateDashboard()"><label for="adec_3_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="adec_3" value="3" id="adec_3_v3" onchange="updateDashboard()"><label for="adec_3_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="adec_3" value="2" id="adec_3_v2" onchange="updateDashboard()"><label for="adec_3_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="adec_3" value="1" id="adec_3_v1" onchange="updateDashboard()"><label for="adec_3_v1">No cumple</label></span>
           </div>
         </div>
       </div>
@@ -156,28 +134,28 @@
         <div class="q-row" data-char="efic">
           <div class="q-text"><strong>Comportamiento Temporal:</strong> El código responde dentro de tiempos aceptables para el contexto de uso.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="efic_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="efic_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="efic_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="efic_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="efic_1" value="4" id="efic_1_v4" onchange="updateDashboard()"><label for="efic_1_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="efic_1" value="3" id="efic_1_v3" onchange="updateDashboard()"><label for="efic_1_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="efic_1" value="2" id="efic_1_v2" onchange="updateDashboard()"><label for="efic_1_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="efic_1" value="1" id="efic_1_v1" onchange="updateDashboard()"><label for="efic_1_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="efic">
           <div class="q-text"><strong>Utilización de Recursos:</strong> El código hace uso eficiente de memoria, CPU, y almacenamiento sin consumo innecesario.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="efic_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="efic_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="efic_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="efic_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="efic_2" value="4" id="efic_2_v4" onchange="updateDashboard()"><label for="efic_2_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="efic_2" value="3" id="efic_2_v3" onchange="updateDashboard()"><label for="efic_2_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="efic_2" value="2" id="efic_2_v2" onchange="updateDashboard()"><label for="efic_2_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="efic_2" value="1" id="efic_2_v1" onchange="updateDashboard()"><label for="efic_2_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="efic">
           <div class="q-text"><strong>Capacidad:</strong> El sistema maneja el volumen máximo esperado de datos sin degradación del desempeño.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="efic_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="efic_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="efic_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="efic_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="efic_3" value="4" id="efic_3_v4" onchange="updateDashboard()"><label for="efic_3_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="efic_3" value="3" id="efic_3_v3" onchange="updateDashboard()"><label for="efic_3_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="efic_3" value="2" id="efic_3_v2" onchange="updateDashboard()"><label for="efic_3_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="efic_3" value="1" id="efic_3_v1" onchange="updateDashboard()"><label for="efic_3_v1">No cumple</label></span>
           </div>
         </div>
       </div>
@@ -199,28 +177,28 @@
         <div class="q-row" data-char="compat">
           <div class="q-text"><strong>Coexistencia:</strong> El código coexiste correctamente con otros componentes sin generar conflictos o interferencias.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="compat_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="compat_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="compat_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="compat_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="compat_1" value="4" id="compat_1_v4" onchange="updateDashboard()"><label for="compat_1_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="compat_1" value="3" id="compat_1_v3" onchange="updateDashboard()"><label for="compat_1_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="compat_1" value="2" id="compat_1_v2" onchange="updateDashboard()"><label for="compat_1_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="compat_1" value="1" id="compat_1_v1" onchange="updateDashboard()"><label for="compat_1_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="compat">
           <div class="q-text"><strong>Interoperabilidad:</strong> Los módulos son interoperables con APIs externas, servicios de terceros y protocolos requeridos.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="compat_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="compat_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="compat_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="compat_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="compat_2" value="4" id="compat_2_v4" onchange="updateDashboard()"><label for="compat_2_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="compat_2" value="3" id="compat_2_v3" onchange="updateDashboard()"><label for="compat_2_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="compat_2" value="2" id="compat_2_v2" onchange="updateDashboard()"><label for="compat_2_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="compat_2" value="1" id="compat_2_v1" onchange="updateDashboard()"><label for="compat_2_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="compat">
           <div class="q-text"><strong>Compatibilidad de dependencias:</strong> No introduce conflictos con librerías, frameworks o herramientas existentes.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="compat_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="compat_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="compat_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="compat_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="compat_3" value="4" id="compat_3_v4" onchange="updateDashboard()"><label for="compat_3_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="compat_3" value="3" id="compat_3_v3" onchange="updateDashboard()"><label for="compat_3_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="compat_3" value="2" id="compat_3_v2" onchange="updateDashboard()"><label for="compat_3_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="compat_3" value="1" id="compat_3_v1" onchange="updateDashboard()"><label for="compat_3_v1">No cumple</label></span>
           </div>
         </div>
       </div>
@@ -242,28 +220,28 @@
         <div class="q-row" data-char="inter">
           <div class="q-text"><strong>Usabilidad:</strong> El sistema es intuitivo; los usuarios pueden aprender a usarlo sin capacitación extensa.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="inter_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="inter_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="inter_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="inter_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="inter_1" value="4" id="inter_1_v4" onchange="updateDashboard()"><label for="inter_1_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="inter_1" value="3" id="inter_1_v3" onchange="updateDashboard()"><label for="inter_1_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="inter_1" value="2" id="inter_1_v2" onchange="updateDashboard()"><label for="inter_1_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="inter_1" value="1" id="inter_1_v1" onchange="updateDashboard()"><label for="inter_1_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="inter">
           <div class="q-text"><strong>Protección ante errores:</strong> Valida entradas, solicita confirmación antes de operaciones irreversibles, presenta mensajes claros.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="inter_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="inter_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="inter_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="inter_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="inter_2" value="4" id="inter_2_v4" onchange="updateDashboard()"><label for="inter_2_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="inter_2" value="3" id="inter_2_v3" onchange="updateDashboard()"><label for="inter_2_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="inter_2" value="2" id="inter_2_v2" onchange="updateDashboard()"><label for="inter_2_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="inter_2" value="1" id="inter_2_v1" onchange="updateDashboard()"><label for="inter_2_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="inter">
           <div class="q-text"><strong>Accesibilidad:</strong> Es accesible para diferentes perfiles de usuario; se describe a sí mismo claramente.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="inter_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="inter_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="inter_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="inter_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="inter_3" value="4" id="inter_3_v4" onchange="updateDashboard()"><label for="inter_3_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="inter_3" value="3" id="inter_3_v3" onchange="updateDashboard()"><label for="inter_3_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="inter_3" value="2" id="inter_3_v2" onchange="updateDashboard()"><label for="inter_3_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="inter_3" value="1" id="inter_3_v1" onchange="updateDashboard()"><label for="inter_3_v1">No cumple</label></span>
           </div>
         </div>
       </div>
@@ -285,28 +263,28 @@
         <div class="q-row" data-char="fiab">
           <div class="q-text"><strong>Ausencia de fallos:</strong> El código opera sin crashes, comportamientos inesperados ni errores silenciosos.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="fiab_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="fiab_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="fiab_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="fiab_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="fiab_1" value="4" id="fiab_1_v4" onchange="updateDashboard()"><label for="fiab_1_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="fiab_1" value="3" id="fiab_1_v3" onchange="updateDashboard()"><label for="fiab_1_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="fiab_1" value="2" id="fiab_1_v2" onchange="updateDashboard()"><label for="fiab_1_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="fiab_1" value="1" id="fiab_1_v1" onchange="updateDashboard()"><label for="fiab_1_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="fiab">
           <div class="q-text"><strong>Disponibilidad y tolerancia a fallos:</strong> El sistema está disponible cuando se necesita; los errores se manejan controladamente.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="fiab_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="fiab_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="fiab_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="fiab_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="fiab_2" value="4" id="fiab_2_v4" onchange="updateDashboard()"><label for="fiab_2_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="fiab_2" value="3" id="fiab_2_v3" onchange="updateDashboard()"><label for="fiab_2_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="fiab_2" value="2" id="fiab_2_v2" onchange="updateDashboard()"><label for="fiab_2_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="fiab_2" value="1" id="fiab_2_v1" onchange="updateDashboard()"><label for="fiab_2_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="fiab">
           <div class="q-text"><strong>Recuperabilidad:</strong> Se recupera correctamente después de fallos; restaura el estado previo y protege la integridad de datos.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="fiab_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="fiab_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="fiab_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="fiab_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="fiab_3" value="4" id="fiab_3_v4" onchange="updateDashboard()"><label for="fiab_3_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="fiab_3" value="3" id="fiab_3_v3" onchange="updateDashboard()"><label for="fiab_3_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="fiab_3" value="2" id="fiab_3_v2" onchange="updateDashboard()"><label for="fiab_3_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="fiab_3" value="1" id="fiab_3_v1" onchange="updateDashboard()"><label for="fiab_3_v1">No cumple</label></span>
           </div>
         </div>
       </div>
@@ -328,28 +306,28 @@
         <div class="q-row" data-char="seg">
           <div class="q-text"><strong>Confidencialidad e integridad:</strong> Los datos son accesibles solo para usuarios autorizados; no expone información sensible.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="seg_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="seg_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="seg_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="seg_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="seg_1" value="4" id="seg_1_v4" onchange="updateDashboard()"><label for="seg_1_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="seg_1" value="3" id="seg_1_v3" onchange="updateDashboard()"><label for="seg_1_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="seg_1" value="2" id="seg_1_v2" onchange="updateDashboard()"><label for="seg_1_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="seg_1" value="1" id="seg_1_v1" onchange="updateDashboard()"><label for="seg_1_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="seg">
           <div class="q-text"><strong>No-repudio y responsabilidad:</strong> Las operaciones críticas quedan registradas de forma trazable y auditable.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="seg_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="seg_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="seg_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="seg_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="seg_2" value="4" id="seg_2_v4" onchange="updateDashboard()"><label for="seg_2_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="seg_2" value="3" id="seg_2_v3" onchange="updateDashboard()"><label for="seg_2_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="seg_2" value="2" id="seg_2_v2" onchange="updateDashboard()"><label for="seg_2_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="seg_2" value="1" id="seg_2_v1" onchange="updateDashboard()"><label for="seg_2_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="seg">
           <div class="q-text"><strong>Autenticidad y resistencia:</strong> Verifica identidad de acceso; resiste ataques comunes (SQL injection, XSS, fuerza bruta).</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="seg_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="seg_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="seg_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="seg_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="seg_3" value="4" id="seg_3_v4" onchange="updateDashboard()"><label for="seg_3_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="seg_3" value="3" id="seg_3_v3" onchange="updateDashboard()"><label for="seg_3_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="seg_3" value="2" id="seg_3_v2" onchange="updateDashboard()"><label for="seg_3_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="seg_3" value="1" id="seg_3_v1" onchange="updateDashboard()"><label for="seg_3_v1">No cumple</label></span>
           </div>
         </div>
       </div>
@@ -371,28 +349,28 @@
         <div class="q-row" data-char="mant">
           <div class="q-text"><strong>Modularidad y reusabilidad:</strong> Los módulos son independientes con bajo acoplamiento; pueden modificarse sin afectar otros componentes.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="mant_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="mant_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="mant_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="mant_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="mant_1" value="4" id="mant_1_v4" onchange="updateDashboard()"><label for="mant_1_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="mant_1" value="3" id="mant_1_v3" onchange="updateDashboard()"><label for="mant_1_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="mant_1" value="2" id="mant_1_v2" onchange="updateDashboard()"><label for="mant_1_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="mant_1" value="1" id="mant_1_v1" onchange="updateDashboard()"><label for="mant_1_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="mant">
           <div class="q-text"><strong>Analizabilidad:</strong> El código es legible, está comentado, y el flujo lógico es comprensible sin necesidad de la IA que lo generó.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="mant_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="mant_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="mant_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="mant_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="mant_2" value="4" id="mant_2_v4" onchange="updateDashboard()"><label for="mant_2_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="mant_2" value="3" id="mant_2_v3" onchange="updateDashboard()"><label for="mant_2_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="mant_2" value="2" id="mant_2_v2" onchange="updateDashboard()"><label for="mant_2_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="mant_2" value="1" id="mant_2_v1" onchange="updateDashboard()"><label for="mant_2_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="mant">
           <div class="q-text"><strong>Capacidad de ser modificado y probado:</strong> Puede extenderse con nuevos requisitos; puede probarse unitaria e integradamente.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="mant_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="mant_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="mant_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="mant_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="mant_3" value="4" id="mant_3_v4" onchange="updateDashboard()"><label for="mant_3_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="mant_3" value="3" id="mant_3_v3" onchange="updateDashboard()"><label for="mant_3_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="mant_3" value="2" id="mant_3_v2" onchange="updateDashboard()"><label for="mant_3_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="mant_3" value="1" id="mant_3_v1" onchange="updateDashboard()"><label for="mant_3_v1">No cumple</label></span>
           </div>
         </div>
       </div>
@@ -414,28 +392,28 @@
         <div class="q-row" data-char="flex">
           <div class="q-text"><strong>Adaptabilidad:</strong> Puede adaptarse a nuevos requisitos sin refactorizaciones mayores ni reescrituras completas.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="flex_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="flex_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="flex_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="flex_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="flex_1" value="4" id="flex_1_v4" onchange="updateDashboard()"><label for="flex_1_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="flex_1" value="3" id="flex_1_v3" onchange="updateDashboard()"><label for="flex_1_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="flex_1" value="2" id="flex_1_v2" onchange="updateDashboard()"><label for="flex_1_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="flex_1" value="1" id="flex_1_v1" onchange="updateDashboard()"><label for="flex_1_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="flex">
           <div class="q-text"><strong>Escalabilidad:</strong> Puede escalar para mayor carga de usuarios, datos o transacciones sin cambios arquitecturales profundos.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="flex_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="flex_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="flex_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="flex_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="flex_2" value="4" id="flex_2_v4" onchange="updateDashboard()"><label for="flex_2_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="flex_2" value="3" id="flex_2_v3" onchange="updateDashboard()"><label for="flex_2_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="flex_2" value="2" id="flex_2_v2" onchange="updateDashboard()"><label for="flex_2_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="flex_2" value="1" id="flex_2_v1" onchange="updateDashboard()"><label for="flex_2_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="flex">
           <div class="q-text"><strong>Instalabilidad y reemplazabilidad:</strong> Puede instalarse/desinstalarse correctamente; los componentes pueden reemplazarse por versiones mejores.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="flex_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="flex_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="flex_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="flex_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="flex_3" value="4" id="flex_3_v4" onchange="updateDashboard()"><label for="flex_3_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="flex_3" value="3" id="flex_3_v3" onchange="updateDashboard()"><label for="flex_3_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="flex_3" value="2" id="flex_3_v2" onchange="updateDashboard()"><label for="flex_3_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="flex_3" value="1" id="flex_3_v1" onchange="updateDashboard()"><label for="flex_3_v1">No cumple</label></span>
           </div>
         </div>
       </div>
@@ -457,28 +435,28 @@
         <div class="q-row" data-char="prot">
           <div class="q-text"><strong>Restricción operativa:</strong> Implementa controles que evitan operar en condiciones no autorizadas o peligrosas.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="prot_1" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="prot_1" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="prot_1" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="prot_1" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="prot_1" value="4" id="prot_1_v4" onchange="updateDashboard()"><label for="prot_1_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="prot_1" value="3" id="prot_1_v3" onchange="updateDashboard()"><label for="prot_1_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="prot_1" value="2" id="prot_1_v2" onchange="updateDashboard()"><label for="prot_1_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="prot_1" value="1" id="prot_1_v1" onchange="updateDashboard()"><label for="prot_1_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="prot">
           <div class="q-text"><strong>Protección ante fallos:</strong> Ante un fallo, el sistema pasa a un estado seguro conocido; advierte a usuarios antes de acciones peligrosas.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="prot_2" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="prot_2" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="prot_2" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="prot_2" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="prot_2" value="4" id="prot_2_v4" onchange="updateDashboard()"><label for="prot_2_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="prot_2" value="3" id="prot_2_v3" onchange="updateDashboard()"><label for="prot_2_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="prot_2" value="2" id="prot_2_v2" onchange="updateDashboard()"><label for="prot_2_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="prot_2" value="1" id="prot_2_v1" onchange="updateDashboard()"><label for="prot_2_v1">No cumple</label></span>
           </div>
         </div>
         <div class="q-row" data-char="prot">
           <div class="q-text"><strong>Integración segura:</strong> Las integraciones con sistemas externos usan interfaces seguras validadas; un fallo externo no compromete el sistema.</div>
           <div class="q-options">
-            <label class="q-opt"><input type="radio" name="prot_3" value="4" onchange="updateDashboard()"><label>Cumple completamente</label></label>
-            <label class="q-opt"><input type="radio" name="prot_3" value="3" onchange="updateDashboard()"><label>Cumple mayormente</label></label>
-            <label class="q-opt"><input type="radio" name="prot_3" value="2" onchange="updateDashboard()"><label>Parcialmente</label></label>
-            <label class="q-opt"><input type="radio" name="prot_3" value="1" onchange="updateDashboard()"><label>No cumple</label></label>
+            <span class="q-opt"><input type="radio" name="prot_3" value="4" id="prot_3_v4" onchange="updateDashboard()"><label for="prot_3_v4">Cumple completamente</label></span>
+            <span class="q-opt"><input type="radio" name="prot_3" value="3" id="prot_3_v3" onchange="updateDashboard()"><label for="prot_3_v3">Cumple mayormente</label></span>
+            <span class="q-opt"><input type="radio" name="prot_3" value="2" id="prot_3_v2" onchange="updateDashboard()"><label for="prot_3_v2">Parcialmente</label></span>
+            <span class="q-opt"><input type="radio" name="prot_3" value="1" id="prot_3_v1" onchange="updateDashboard()"><label for="prot_3_v1">No cumple</label></span>
           </div>
         </div>
       </div>
@@ -506,26 +484,9 @@
 </main>
 
 <!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-main">
-      <div class="footer-section">
-        <h4>Evaluación</h4>
-        <p><a href="pasos.html">Volver a pasos</a><br><a href="normativa.html">Ver estándares</a></p>
-      </div>
-      <div class="footer-section">
-        <h4>Estándar</h4>
-        <p>ISO/IEC 25010:2023<br>Calidad del Software · SQuaRE</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      Evaluación interactiva · Guía Metodológica 2025
-    </div>
-  </div>
-</footer>
-
 <button type="button" class="scroll-top" id="scrollTop" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i data-lucide="arrow-up" class="icon-md"></i></button>
 
+<script src="assets/nav.js"></script>
 <script src="assets/app.js"></script>
 <script src="assets/iso-eval.js"></script>
 </body>

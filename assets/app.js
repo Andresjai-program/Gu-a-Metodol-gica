@@ -1,10 +1,11 @@
 /**
- * Guía Metodológica — scripts compartidos
+ * Guía Metodológica — scripts compartidos + sistema de tema
  */
 (function () {
   'use strict';
 
   const STORAGE_THEME = 'guia-theme';
+  const META_COLORS = { light: '#f8f9fb', dark: '#161b24' };
 
   function getStoredTheme() {
     try {
@@ -18,13 +19,46 @@
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
-  function applyTheme(theme) {
-    const resolved = theme === 'dark' || theme === 'light' ? theme : getSystemTheme();
-    document.documentElement.setAttribute('data-theme', resolved);
+  function resolveTheme(preference) {
+    if (preference === 'dark' || preference === 'light') return preference;
+    return getSystemTheme();
+  }
+
+  function updateMetaTheme(theme) {
+    let meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'theme-color';
+      document.head.appendChild(meta);
+    }
+    meta.content = META_COLORS[theme] || META_COLORS.light;
+  }
+
+  function updateThemeIcons(theme) {
     document.querySelectorAll('.theme-toggle').forEach((btn) => {
-      btn.setAttribute('aria-label', resolved === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro');
-      btn.setAttribute('title', resolved === 'dark' ? 'Modo claro' : 'Modo oscuro');
+      const isDark = theme === 'dark';
+      btn.setAttribute('aria-label', isDark ? 'Activar modo claro' : 'Activar modo oscuro');
+      btn.setAttribute('title', isDark ? 'Modo claro' : 'Modo oscuro');
+      btn.setAttribute('aria-pressed', String(isDark));
     });
+  }
+
+  function applyTheme(theme) {
+    const resolved = resolveTheme(theme);
+    document.documentElement.setAttribute('data-theme', resolved);
+    updateMetaTheme(resolved);
+    updateThemeIcons(resolved);
+    document.documentElement.style.colorScheme = resolved;
+  }
+
+  function setTheme(theme, persist) {
+    const resolved = resolveTheme(theme);
+    if (persist !== false) {
+      try {
+        localStorage.setItem(STORAGE_THEME, resolved);
+      } catch { /* ignore */ }
+    }
+    applyTheme(resolved);
   }
 
   function initTheme() {
@@ -32,14 +66,21 @@
     applyTheme(stored || getSystemTheme());
 
     document.querySelectorAll('.theme-toggle').forEach((btn) => {
+      if (btn.dataset.themeBound) return;
+      btn.dataset.themeBound = '1';
       btn.addEventListener('click', () => {
         const current = document.documentElement.getAttribute('data-theme') || getSystemTheme();
-        const next = current === 'dark' ? 'light' : 'dark';
-        try {
-          localStorage.setItem(STORAGE_THEME, next);
-        } catch { /* ignore */ }
-        applyTheme(next);
+        setTheme(current === 'dark' ? 'light' : 'dark');
+        if (typeof lucide !== 'undefined' && lucide.createIcons) {
+          lucide.createIcons({ attrs: { 'aria-hidden': 'true' } });
+        }
       });
+    });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!getStoredTheme()) {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
     });
   }
 
@@ -74,6 +115,8 @@
   }
 
   function initScrollSpy() {
+    if (document.body.classList.contains('platform-active')) return;
+
     const sections = document.querySelectorAll('section[id]');
     const links = document.querySelectorAll('.sb-link[href^="#"]');
     if (!sections.length || !links.length) return;
@@ -144,6 +187,8 @@
     body.style.display = isOpen ? 'none' : 'block';
     head.setAttribute('aria-expanded', String(!isOpen));
   };
+
+  window.GuiaTheme = { setTheme, applyTheme, getStoredTheme };
 
   document.addEventListener('DOMContentLoaded', () => {
     initTheme();
