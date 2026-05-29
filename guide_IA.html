@@ -1,0 +1,3625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Guía metodológica integral para integración ética, segura y verificable de IA en desarrollo de software. Basada en ISO/IEC 25010, NIST AI RMF y regulaciones internacionales.">
+<meta name="theme-color" content="#ffffff">
+<title>Integración de IA en Desarrollo — Guía Metodológica Oficial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════
+   DESIGN SYSTEM v2.0 — Professional Documentation
+════════════════════════════════════════════════════ */
+
+:root {
+  /* COLOR PALETTE — Professional & Institutional */
+  --bg-base:    #ffffff;
+  --bg-alt:     #f8f9fb;
+  --bg-hover:   #f3f4f7;
+  --bg-active:  #eff0f4;
+  
+  --text-primary:    #0f111e;
+  --text-secondary:  #5a6473;
+  --text-tertiary:   #8891a0;
+  --text-disabled:   #c0c5d0;
+  
+  --border-light:    #e8eaef;
+  --border-default:  #d8dce5;
+  --border-strong:   #c0c5d0;
+  
+  --accent-primary:   #2563eb;
+  --accent-primary-hover: #1d4ed8;
+  --accent-secondary: #7c3aed;
+  --accent-tertiary:  #059669;
+  
+  --status-success: #10b981;
+  --status-warning: #f59e0b;
+  --status-error:   #ef4444;
+  --status-info:    #3b82f6;
+  
+  /* TYPOGRAPHY */
+  --font-sans:  'Inter', 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono:  'JetBrains Mono', monospace;
+  --font-serif: 'IBM Plex Sans', system-ui, sans-serif;
+  
+  /* SIZING & SPACING */
+  --sp-xs:  4px;
+  --sp-sm:  8px;
+  --sp-md:  12px;
+  --sp-base: 16px;
+  --sp-lg:  24px;
+  --sp-xl:  32px;
+  --sp-2xl: 48px;
+  --sp-3xl: 64px;
+  
+  /* RADIUS — Subtle, professional */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  
+  /* SHADOWS — Soft, minimal */
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  
+  /* Z-INDEX HIERARCHY */
+  --z-sticky: 10;
+  --z-fixed:  100;
+  --z-modal:  1000;
+}
+
+/* DARK MODE (optional) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-base:    #0f1119;
+    --bg-alt:     #16171f;
+    --bg-hover:   #1e1f2b;
+    --bg-active:  #262735;
+    
+    --text-primary:    #f3f4f7;
+    --text-secondary:  #c0c5d0;
+    --text-tertiary:   #8891a0;
+    --text-disabled:   #5a6473;
+    
+    --border-light:    #2a2d38;
+    --border-default:  #36394a;
+    --border-strong:   #45485a;
+    
+    --accent-primary:   #3b82f6;
+    --accent-primary-hover: #60a5fa;
+  }
+}
+
+/* ════════════════════════════════════════════════════
+   RESET & BASE STYLES
+════════════════════════════════════════════════════ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+}
+
+/* Typography base */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
+p { margin-bottom: 1em; color: var(--text-secondary); }
+a { color: var(--accent-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ════════════════════════════════════════════════════
+   LAYOUT STRUCTURE
+════════════════════════════════════════════════════ */
+
+.shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  background: var(--bg-base);
+}
+
+.sidebar {
+  display: none;
+}
+
+.main {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--sp-3xl) var(--sp-xl);
+  background: var(--bg-base);
+}
+
+@media (min-width: 1024px) {
+  .shell {
+    grid-template-columns: 280px 1fr;
+  }
+  
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--bg-alt);
+    border-right: 1px solid var(--border-light);
+    padding: var(--sp-xl) 0;
+  }
+  
+  .main {
+    padding: var(--sp-3xl) var(--sp-2xl);
+  }
+}
+
+/* ════════════════════════════════════════════════════
+   SIDEBAR NAVIGATION
+════════════════════════════════════════════════════ */
+
+.sb-header {
+  padding: 0 var(--sp-lg) var(--sp-lg);
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: var(--sp-lg);
+}
+
+.sb-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  margin-bottom: var(--sp-sm);
+}
+
+.sb-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.sb-meta {
+  margin-top: var(--sp-md);
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+
+.sb-nav {
+  flex: 1;
+  padding: 0;
+}
+
+.sb-group {
+  margin: 0;
+}
+
+.sb-group-label {
+  padding: var(--sp-md) var(--sp-lg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+}
+
+.sb-link {
+  display: block;
+  padding: 8px var(--sp-lg);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.sb-link:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+  border-left-color: var(--accent-primary);
+}
+
+.sb-link.active {
+  color: var(--accent-primary);
+  background: rgba(37, 99, 235, 0.08);
+  border-left-color: var(--accent-primary);
+  font-weight: 500;
+}
+
+.sb-footer {
+  padding: var(--sp-lg);
+  border-top: 1px solid var(--border-light);
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+/* ════════════════════════════════════════════════════
+   HERO SECTION
+════════════════════════════════════════════════════ */
+
+.hero {
+  margin-bottom: var(--sp-3xl);
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  color: var(--accent-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  padding: 6px 12px;
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--sp-lg);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-base);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+
+.hero-lead {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  line-height: 1.8;
+  margin-bottom: var(--sp-2xl);
+  font-weight: 400;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--sp-lg);
+  margin-bottom: var(--sp-2xl);
+}
+
+.stat-card {
+  padding: var(--sp-lg);
+  background: var(--bg-alt);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  transition: all 0.2s;
+}
+
+.stat-card:hover {
+  border-color: var(--border-default);
+  background: var(--bg-hover);
+}
+
+.stat-num {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: var(--sp-sm);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* ════════════════════════════════════════════════════
+   SECTION STYLING
+════════════════════════════════════════════════════ */
+
+.section {
+  margin-bottom: var(--sp-3xl);
+}
+
+.divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: var(--sp-2xl) 0;
+}
+
+.divider-text {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-base);
+  margin: var(--sp-2xl) 0;
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.divider-text::before,
+.divider-text::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-light);
+}
+
+.s-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  margin-bottom: var(--sp-md);
+}
+
+.s-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-md);
+}
+
+.s-title em {
+  font-style: italic;
+  color: var(--accent-primary);
+}
+
+.s-lead {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 750px;
+  line-height: 1.8;
+  margin-bottom: var(--sp-xl);
+}
+
+/* ════════════════════════════════════════════════════
+   PASO CARD — Improved
+════════════════════════════════════════════════════ */
+
+.paso-card {
+  background: var(--bg-base);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--sp-2xl);
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.paso-card:hover {
+  border-color: var(--border-default);
+  box-shadow: var(--shadow-sm);
+}
+
+.paso-head {
+  padding: var(--sp-xl) var(--sp-2xl);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-lg);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-alt);
+}
+
+.paso-num-badge {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent-primary);
+}
+
+.paso-head-info h3 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-sm);
+}
+
+.paso-head-info p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.paso-body {
+  padding: var(--sp-2xl);
+}
+
+/* ════════════════════════════════════════════════════
+   ALERT & CALLOUT BOXES
+════════════════════════════════════════════════════ */
+
+.alert {
+  display: flex;
+  gap: var(--sp-lg);
+  padding: var(--sp-lg);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--sp-lg);
+  border-left: 4px solid;
+  background: var(--bg-alt);
+}
+
+.alert-info {
+  border-left-color: var(--accent-primary);
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.alert-warn {
+  border-left-color: var(--status-warning);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.alert-icon {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+.alert p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.alert strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ════════════════════════════════════════════════════
+   TAGS & BADGES
+════════════════════════════════════════════════════ */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-lg);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-xl);
+  background: var(--bg-hover);
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+}
+
+.tag-risk {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: #dc2626;
+}
+
+.tag-iso {
+  background: rgba(37, 99, 235, 0.08);
+  border-color: rgba(37, 99, 235, 0.2);
+  color: var(--accent-primary);
+}
+
+.tag-norm {
+  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.2);
+  color: #7c3aed;
+}
+
+.tag-green {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.2);
+  color: #059669;
+}
+
+/* ════════════════════════════════════════════════════
+   CONTENT BLOCKS & TEXT UTILITIES
+════════════════════════════════════════════════════ */
+
+.cb {
+  margin-bottom: var(--sp-xl);
+}
+
+.cb-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  margin-bottom: var(--sp-md);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+}
+
+.cb-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-light);
+}
+
+.cb p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--sp-base);
+}
+
+/* ════════════════════════════════════════════════════
+   TABLES
+════════════════════════════════════════════════════ */
+
+.dt, .iso-t, .comp-t, .rub-t {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.dt thead th,
+.iso-t th,
+.comp-t th,
+.rub-t th {
+  padding: 12px var(--sp-base);
+  background: var(--bg-alt);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+  color: var(--text-tertiary);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.dt tbody td,
+.iso-t td,
+.comp-t td,
+.rub-t td {
+  padding: 12px var(--sp-base);
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+
+.dt tbody tr:hover td,
+.comp-t tr:hover td {
+  background: var(--bg-hover);
+}
+
+.dt tbody tr:last-child td,
+.iso-t tr:last-child td,
+.comp-t tr:last-child td,
+.rub-t tr:last-child td {
+  border-bottom: none;
+}
+
+.td-step {
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.attr {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.check {
+  font-family: var(--font-mono);
+  color: var(--status-success);
+  font-weight: 600;
+}
+
+/* ════════════════════════════════════════════════════
+   NUMBERED LISTS
+════════════════════════════════════════════════════ */
+
+.nsteps {
+  list-style: none;
+  counter-reset: nsteps-counter;
+  margin-bottom: var(--sp-lg);
+}
+
+.nsteps li {
+  counter-increment: nsteps-counter;
+  display: flex;
+  gap: var(--sp-base);
+  margin-bottom: var(--sp-base);
+  align-items: flex-start;
+}
+
+.nsteps li::before {
+  content: counter(nsteps-counter);
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.1);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+}
+
+.nsteps li span {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  padding-top: 2px;
+}
+
+.nsteps li strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ════════════════════════════════════════════════════
+   PROMPT BLOCKS
+════════════════════════════════════════════════════ */
+
+.prompt-block {
+  background: var(--bg-alt);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--sp-base);
+}
+
+.prompt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px var(--sp-base);
+  background: var(--bg-hover);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.prompt-tag {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+}
+
+.prompt-tag .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+}
+
+.prompt-title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.copy-btn {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-mono);
+}
+
+.copy-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-default);
+  background: var(--bg-hover);
+}
+
+.copy-btn.ok {
+  color: var(--status-success);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.prompt-body {
+  padding: var(--sp-lg);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: var(--bg-base);
+  overflow-x: auto;
+}
+
+.pv {
+  color: var(--status-warning);
+  font-weight: 500;
+}
+
+/* ════════════════════════════════════════════════════
+   ACCORDION
+════════════════════════════════════════════════════ */
+
+.accordion {
+  margin-bottom: var(--sp-md);
+}
+
+.acc-trigger {
+  width: 100%;
+  background: var(--bg-alt);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 12px var(--sp-base);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.acc-trigger:hover {
+  color: var(--text-primary);
+  border-color: var(--border-default);
+  background: var(--bg-hover);
+}
+
+.acc-trigger.open {
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-color: var(--border-default);
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.acc-arrow {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.acc-trigger.open .acc-arrow {
+  transform: rotate(180deg);
+}
+
+.acc-body {
+  display: none;
+  border: 1px solid var(--border-light);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  overflow: hidden;
+}
+
+.acc-body.open {
+  display: block;
+}
+
+/* ════════════════════════════════════════════════════
+   CHECKLISTS
+════════════════════════════════════════════════════ */
+
+.checklist {
+  list-style: none;
+  margin-bottom: var(--sp-lg);
+}
+
+.cl-item {
+  display: flex;
+  gap: var(--sp-md);
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.cl-item:last-child {
+  border-bottom: none;
+}
+
+.cl-box {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-default);
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.cl-box.done {
+  background: var(--status-success);
+  border-color: var(--status-success);
+}
+
+.cl-box.done::after {
+  content: '✓';
+  font-size: 12px;
+  color: white;
+  font-weight: 700;
+}
+
+.cl-item span {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding-top: 1px;
+}
+
+.cl-item.checked span {
+  text-decoration: line-through;
+  color: var(--text-tertiary);
+}
+
+/* ════════════════════════════════════════════════════
+   ISO 25010 EVALUATION
+════════════════════════════════════════════════════ */
+
+.iso-eval-intro {
+  background: var(--bg-alt);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-2xl);
+  margin-bottom: var(--sp-xl);
+}
+
+.iso-eval-intro h2 {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-md);
+}
+
+.iso-eval-intro p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* Score Dashboard */
+.score-dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--sp-lg);
+  margin-bottom: var(--sp-xl);
+}
+
+.score-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-lg);
+  text-align: center;
+}
+
+.score-big {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  line-height: 1;
+  margin-bottom: var(--sp-sm);
+}
+
+.score-sub {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.score-bar-wrap {
+  height: 3px;
+  background: var(--bg-hover);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: var(--sp-base);
+}
+
+.score-bar-fill {
+  height: 100%;
+  background: var(--accent-primary);
+  width: 0%;
+  transition: width 0.6s ease;
+  border-radius: 99px;
+}
+
+/* ISO Characteristic Card */
+.iso-char-card {
+  background: var(--bg-base);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--sp-lg);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.iso-char-card:hover {
+  border-color: var(--border-default);
+}
+
+.iso-char-head {
+  padding: var(--sp-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-lg);
+  border-bottom: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.iso-char-head:hover {
+  background: var(--bg-hover);
+}
+
+.iso-char-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.iso-char-info {
+  flex: 1;
+}
+
+.iso-char-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.iso-char-sub {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.iso-char-score {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.iso-char-pct {
+  font-family: var(--font-mono);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  line-height: 1;
+}
+
+.iso-char-label {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+}
+
+.iso-char-bar {
+  width: 80px;
+  height: 3px;
+  background: var(--bg-hover);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.iso-char-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.5s ease;
+  background: var(--accent-primary);
+}
+
+.iso-char-body {
+  padding: var(--sp-xl);
+  display: none;
+}
+
+.iso-char-body[style*="display: block"] {
+  display: block;
+}
+
+.iso-sub-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-lg);
+}
+
+.iso-sub {
+  background: var(--bg-hover);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Question row */
+.q-row {
+  padding: var(--sp-lg) 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.q-row:last-child {
+  border-bottom: none;
+}
+
+.q-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--sp-lg);
+}
+
+.q-text strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.q-options {
+  display: flex;
+  gap: var(--sp-md);
+  flex-wrap: wrap;
+}
+
+.q-opt {
+  position: relative;
+  cursor: pointer;
+}
+
+.q-opt input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.q-opt label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  background: var(--bg-alt);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 7px 14px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.q-opt label:hover {
+  border-color: var(--border-default);
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.q-opt input:checked + label {
+  border-color: var(--accent-primary);
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--accent-primary);
+  font-weight: 500;
+}
+
+.q-opt:nth-child(1) input:checked + label {
+  border-color: var(--status-success);
+  background: rgba(16, 185, 129, 0.08);
+  color: var(--status-success);
+}
+
+.q-opt:nth-child(2) input:checked + label {
+  border-color: #84cc16;
+  background: rgba(132, 204, 22, 0.08);
+  color: #84cc16;
+}
+
+.q-opt:nth-child(3) input:checked + label {
+  border-color: var(--status-warning);
+  background: rgba(245, 158, 11, 0.08);
+  color: var(--status-warning);
+}
+
+.q-opt:nth-child(4) input:checked + label {
+  border-color: var(--status-error);
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--status-error);
+}
+
+.q-opt-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  transition: all 0.15s;
+}
+
+.q-opt input:checked + label .q-opt-dot {
+  background: currentColor;
+}
+
+/* Eval result */
+.eval-result {
+  margin-top: var(--sp-xl);
+  background: var(--bg-alt);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-2xl);
+  display: none;
+}
+
+.eval-result.show {
+  display: block;
+}
+
+.result-header {
+  text-align: center;
+  margin-bottom: var(--sp-xl);
+}
+
+.result-header h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-md);
+}
+
+.result-score-big {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: var(--sp-base);
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--sp-lg);
+  margin-bottom: var(--sp-lg);
+}
+
+.result-item {
+  background: var(--bg-base);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: var(--sp-base);
+}
+
+.result-item-name {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  margin-bottom: var(--sp-sm);
+}
+
+.result-item-val {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
+.eval-btn,
+.reset-btn {
+  font-family: var(--font-sans);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 12px var(--sp-lg);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-top: var(--sp-lg);
+  width: 100%;
+}
+
+.eval-btn {
+  background: var(--accent-primary);
+  color: white;
+  font-size: 1rem;
+}
+
+.eval-btn:hover {
+  background: var(--accent-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.eval-btn:active {
+  transform: translateY(0);
+}
+
+.reset-btn {
+  background: var(--bg-hover);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  font-size: 0.95rem;
+  margin-top: var(--sp-base);
+}
+
+.reset-btn:hover {
+  border-color: var(--border-default);
+  color: var(--text-primary);
+}
+
+/* ════════════════════════════════════════════════════
+   NORM PILLS & CARDS
+════════════════════════════════════════════════════ */
+
+.norm-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-lg);
+}
+
+.norm-pill {
+  background: var(--bg-hover);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+}
+
+.norm-pill strong {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-right: var(--sp-sm);
+}
+
+.norm-card {
+  background: var(--bg-base);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-lg);
+  margin-bottom: var(--sp-base);
+  display: flex;
+  gap: var(--sp-lg);
+}
+
+.norm-badge {
+  min-width: 90px;
+  padding: var(--sp-md);
+  background: var(--bg-alt);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  text-align: center;
+  height: fit-content;
+  flex-shrink: 0;
+}
+
+.norm-content h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-sm);
+}
+
+.norm-content p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.norm-content .norm-steps {
+  margin-top: var(--sp-md);
+  font-size: 0.85rem;
+  color: var(--accent-primary);
+  font-weight: 500;
+}
+
+/* ════════════════════════════════════════════════════
+   RÚBRICA DE EVALUACIÓN
+════════════════════════════════════════════════════ */
+
+.rubrica-wrap {
+  background: var(--bg-base);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--sp-lg);
+}
+
+.lvl {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-md);
+  background: var(--bg-hover);
+  border: 1px solid var(--border-light);
+}
+
+.lvl-ok {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--status-success);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.lvl-mid {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--status-warning);
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+.lvl-no {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--status-error);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+/* ════════════════════════════════════════════════════
+   FOOTER & UTILITIES
+════════════════════════════════════════════════════ */
+
+.page-footer {
+  margin-top: var(--sp-3xl);
+  padding-top: var(--sp-xl);
+  border-top: 1px solid var(--border-light);
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  line-height: 1.8;
+}
+
+.page-footer strong {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* Scroll to top button */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--accent-primary);
+  z-index: 1000;
+  transition: width 0.1s linear;
+}
+
+.scroll-top {
+  position: fixed;
+  bottom: var(--sp-lg);
+  right: var(--sp-lg);
+  width: 42px;
+  height: 42px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 100;
+  box-shadow: var(--shadow-md);
+}
+
+.scroll-top:hover {
+  color: var(--text-primary);
+  border-color: var(--border-default);
+  background: var(--bg-hover);
+}
+
+.scroll-top.vis {
+  opacity: 1;
+}
+
+/* ════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    display: none;
+  }
+  
+  .main {
+    padding: var(--sp-2xl) var(--sp-lg);
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .score-dashboard {
+    grid-template-columns: 1fr;
+  }
+  
+  .result-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .paso-head {
+    flex-direction: column;
+    gap: var(--sp-base);
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: var(--sp-xl) var(--sp-base);
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  .hero-lead {
+    font-size: 1rem;
+  }
+  
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: var(--sp-base);
+  }
+  
+  .stat-card {
+    padding: var(--sp-base);
+  }
+  
+  .paso-head {
+    padding: var(--sp-lg);
+  }
+  
+  .paso-body {
+    padding: var(--sp-lg);
+  }
+  
+  .iso-char-head {
+    flex-direction: column;
+    gap: var(--sp-base);
+  }
+  
+  .iso-char-score {
+    text-align: left;
+  }
+  
+  .q-options {
+    flex-direction: column;
+  }
+  
+  .q-opt label {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .norm-card {
+    flex-direction: column;
+  }
+  
+  .norm-badge {
+    min-width: auto;
+  }
+  
+  .scroll-top {
+    width: 38px;
+    height: 38px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ═══ SECTION WRAPPER ═══ */
+.section { margin-bottom: 80px; }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero { margin-bottom: 72px; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  background: var(--blue-dim); border: 1px solid var(--blue-glow);
+  color: var(--blue); font-size: 11px; font-weight: 500;
+  letter-spacing: .06em; padding: 5px 12px; border-radius: 99px;
+  margin-bottom: var(--sp-6);
+}
+.hero-eyebrow span { width: 5px; height: 5px; background: var(--blue); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+
+.hero h1 {
+  font-family: var(--serif); font-weight: 300; font-size: 44px;
+  line-height: 1.1; margin-bottom: var(--sp-4); color: var(--white);
+  letter-spacing: -.02em;
+}
+.hero h1 em { font-style: italic; color: var(--blue); }
+.hero-lead {
+  font-size: 16px; color: var(--text-2); max-width: 620px;
+  line-height: 1.75; margin-bottom: var(--sp-8);
+}
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3);
+  margin-bottom: var(--sp-8);
+}
+.stat-card {
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: var(--sp-4) var(--sp-5);
+  transition: border-color .2s;
+}
+.stat-card:hover { border-color: var(--border-2); }
+.stat-num { font-family: var(--serif); font-size: 30px; font-weight: 600; color: var(--white); line-height: 1; }
+.stat-label { font-size: 11.5px; color: var(--text-3); margin-top: 4px; line-height: 1.4; }
+
+/* ═══ DIVIDER ═══ */
+.divider { height: 1px; background: var(--border); margin: 56px 0; }
+.divider-text {
+  display: flex; align-items: center; gap: var(--sp-4); margin: 56px 0;
+}
+.divider-text::before, .divider-text::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.divider-text span { font-size: 11px; color: var(--text-3); white-space: nowrap; letter-spacing: .1em; text-transform: uppercase; }
+
+/* ═══ SECTION HEADER ═══ */
+.s-eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); margin-bottom: var(--sp-2); }
+.s-title { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: var(--sp-3); letter-spacing: -.02em; }
+.s-title em { font-style: italic; }
+.s-lead { font-size: 14.5px; color: var(--text-2); max-width: 640px; line-height: 1.7; margin-bottom: var(--sp-8); }
+
+/* ═══ ONBOARDING TABLE ═══ */
+.onboard-table-wrap {
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: var(--r-md); overflow: hidden; margin-bottom: var(--sp-6);
+}
+.dt { width: 100%; border-collapse: collapse; font-size: 13px; }
+.dt thead th {
+  padding: 10px var(--sp-4); background: var(--bg-3);
+  font-size: 10.5px; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--text-3);
+  text-align: left; border-bottom: 1px solid var(--border);
+}
+.dt tbody td {
+  padding: 11px var(--sp-4); border-bottom: 1px solid var(--border);
+  color: var(--text-2); vertical-align: top; font-size: 13px;
+}
+.dt tbody tr:last-child td { border-bottom: none; }
+.dt tbody tr:hover td { background: rgba(255,255,255,.015); }
+.td-step { font-weight: 600; white-space: nowrap; }
+
+/* ═══ ALERT ═══ */
+.alert {
+  display: flex; gap: var(--sp-4); padding: var(--sp-4) var(--sp-5);
+  border-radius: var(--r); margin-bottom: var(--sp-5); font-size: 13.5px;
+}
+.alert-info  { background: var(--blue-dim); border: 1px solid rgba(91,156,246,.2); }
+.alert-warn  { background: var(--am-dim);   border: 1px solid rgba(245,158,11,.2); }
+.alert-icon  { flex-shrink: 0; font-size: 15px; line-height: 1.65; }
+.alert p     { color: var(--text-2); line-height: 1.65; margin: 0; }
+.alert strong { color: var(--text); }
+
+/* ═══════════════════════════════════════════
+   PASO CARD
+═══════════════════════════════════════════ */
+.paso-card {
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: var(--r-lg); margin-bottom: 48px; overflow: hidden;
+  transition: border-color .2s;
+}
+.paso-card:hover { border-color: var(--border-2); }
+
+.paso-head {
+  padding: var(--sp-8) var(--sp-10);
+  display: flex; align-items: flex-start; gap: var(--sp-5);
+  border-bottom: 1px solid var(--border);
+}
+.paso-num-badge {
+  width: 48px; height: 48px; border-radius: var(--r);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 15px; font-weight: 500;
+  flex-shrink: 0; letter-spacing: .05em;
+}
+.paso-head-info h3 {
+  font-family: var(--serif); font-size: 22px; font-weight: 300;
+  color: var(--white); margin-bottom: 4px; letter-spacing: -.01em;
+}
+.paso-head-info p { font-size: 13.5px; color: var(--text-3); line-height: 1.5; }
+
+.paso-body { padding: var(--sp-8) var(--sp-10); }
+
+/* ═══ TAGS ROW ═══ */
+.tags { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-6); }
+.tag {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  font-size: 11px; font-weight: 500; padding: 3px 10px;
+  border-radius: 99px;
+}
+.tag-risk    { background: var(--rose-dim); border: 1px solid rgba(244,63,94,.2);  color: #fb7185; }
+.tag-iso     { background: var(--blue-dim); border: 1px solid rgba(91,156,246,.2); color: var(--blue); }
+.tag-norm    { background: var(--violet-dim); border: 1px solid rgba(139,92,246,.2); color: #a78bfa; }
+.tag-green   { background: var(--em-dim); border: 1px solid rgba(16,185,129,.2); color: #34d399; }
+
+/* ═══ NORM PILLS ═══ */
+.norm-strip { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-6); }
+.norm-pill {
+  background: var(--bg-3); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 5px 11px; font-size: 12px; color: var(--text-3);
+}
+.norm-pill strong { color: var(--text-2); font-weight: 500; }
+
+/* ═══ CONTENT BLOCK ═══ */
+.cb { margin-bottom: var(--sp-8); }
+.cb-label {
+  font-size: 10.5px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--text-3); margin-bottom: var(--sp-3);
+  display: flex; align-items: center; gap: var(--sp-2);
+}
+.cb-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.cb p { font-size: 14px; color: var(--text-2); line-height: 1.75; margin-bottom: var(--sp-3); }
+
+/* ═══ NUMBERED STEPS ═══ */
+.nsteps { list-style: none; counter-reset: ns; }
+.nsteps li {
+  counter-increment: ns; display: flex; gap: var(--sp-4);
+  margin-bottom: var(--sp-4); align-items: flex-start;
+}
+.nsteps li::before {
+  content: counter(ns);
+  min-width: 24px; height: 24px; border-radius: 50%;
+  background: var(--bg-4); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600; color: var(--text-3);
+  flex-shrink: 0; margin-top: 2px; font-family: var(--mono);
+}
+.nsteps li span { font-size: 13.5px; color: var(--text-2); line-height: 1.7; }
+.nsteps li strong { color: var(--text); }
+
+/* ═══ PROMPT BLOCK ═══ */
+.prompt-block {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--r-md); overflow: hidden; margin-bottom: var(--sp-3);
+}
+.prompt-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px var(--sp-4); background: var(--bg-3);
+  border-bottom: 1px solid var(--border);
+}
+.prompt-tag { display: flex; align-items: center; gap: var(--sp-2); }
+.prompt-tag .dot { width: 6px; height: 6px; border-radius: 50%; }
+.prompt-title { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
+.copy-btn {
+  background: var(--bg-4); border: 1px solid var(--border);
+  color: var(--text-3); font-size: 11px; padding: 3px 11px;
+  border-radius: var(--r-sm); cursor: pointer; transition: all .15s;
+  font-family: var(--mono);
+}
+.copy-btn:hover { color: var(--text); border-color: var(--border-2); }
+.copy-btn.ok { color: var(--emerald); border-color: rgba(16,185,129,.3); }
+.prompt-body {
+  padding: var(--sp-5) var(--sp-5); font-family: var(--mono);
+  font-size: 12.5px; color: #8ba5d6; line-height: 1.8; white-space: pre-wrap; word-break: break-word;
+}
+.pv { color: var(--amber); }
+
+/* ═══ ACCORDION ═══ */
+.accordion { margin-bottom: var(--sp-2); }
+.acc-trigger {
+  width: 100%; background: var(--bg-3); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 11px var(--sp-4);
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; font-family: var(--font); font-size: 13px;
+  font-weight: 500; color: var(--text-2); transition: all .15s;
+  text-align: left;
+}
+.acc-trigger:hover { color: var(--text); border-color: var(--border-2); }
+.acc-trigger.open { border-radius: var(--r) var(--r) 0 0; border-color: var(--border-2); color: var(--text); }
+.acc-arrow { font-size: 10px; color: var(--text-3); transition: transform .2s; flex-shrink: 0; }
+.acc-trigger.open .acc-arrow { transform: rotate(180deg); }
+.acc-body { display: none; border: 1px solid var(--border-2); border-top: none; border-radius: 0 0 var(--r) var(--r); overflow: hidden; }
+.acc-body.open { display: block; }
+
+/* ═══ SECTION WRAPPER ═══ */
+.section { margin-bottom: 80px; }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero { margin-bottom: 72px; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  background: var(--blue-dim); border: 1px solid var(--blue-glow);
+  color: var(--blue); font-size: 11px; font-weight: 500;
+  letter-spacing: .06em; padding: 5px 12px; border-radius: 99px;
+  margin-bottom: var(--sp-6);
+}
+.hero-eyebrow span { width: 5px; height: 5px; background: var(--blue); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+
+.hero h1 {
+  font-family: var(--serif); font-weight: 300; font-size: 44px;
+  line-height: 1.1; margin-bottom: var(--sp-4); color: var(--white);
+  letter-spacing: -.02em;
+}
+.hero h1 em { font-style: italic; color: var(--blue); }
+.hero-lead {
+  font-size: 16px; color: var(--text-2); max-width: 620px;
+  line-height: 1.75; margin-bottom: var(--sp-8);
+}
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3);
+  margin-bottom: var(--sp-8);
+}
+.stat-card {
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: var(--sp-4) var(--sp-5);
+  transition: border-color .2s;
+}
+.stat-card:hover { border-color: var(--border-2); }
+.stat-num { font-family: var(--serif); font-size: 30px; font-weight: 600; color: var(--white); line-height: 1; }
+.stat-label { font-size: 11.5px; color: var(--text-3); margin-top: 4px; line-height: 1.4; }
+
+/* ═══ DIVIDER ═══ */
+.divider { height: 1px; background: var(--border); margin: 56px 0; }
+.divider-text {
+  display: flex; align-items: center; gap: var(--sp-4); margin: 56px 0;
+}
+.divider-text::before, .divider-text::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.divider-text span { font-size: 11px; color: var(--text-3); white-space: nowrap; letter-spacing: .1em; text-transform: uppercase; }
+
+/* ═══ SECTION HEADER ═══ */
+.s-eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); margin-bottom: var(--sp-2); }
+.s-title { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: var(--sp-3); letter-spacing: -.02em; }
+.s-title em { font-style: italic; }
+.s-lead { font-size: 14.5px; color: var(--text-2); max-width: 640px; line-height: 1.7; margin-bottom: var(--sp-8); }
+
+/* ═══ ONBOARDING TABLE ═══ */
+.onboard-table-wrap {
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: var(--r-md); overflow: hidden; margin-bottom: var(--sp-6);
+}
+.dt { width: 100%; border-collapse: collapse; font-size: 13px; }
+.dt thead th {
+  padding: 10px var(--sp-4); background: var(--bg-3);
+  font-size: 10.5px; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--text-3);
+  text-align: left; border-bottom: 1px solid var(--border);
+}
+.dt tbody td {
+  padding: 11px var(--sp-4); border-bottom: 1px solid var(--border);
+  color: var(--text-2); vertical-align: top; font-size: 13px;
+}
+.dt tbody tr:last-child td { border-bottom: none; }
+.dt tbody tr:hover td { background: rgba(255,255,255,.015); }
+.td-step { font-weight: 600; white-space: nowrap; }
+
+/* ═══ ALERT ═══ */
+.alert {
+  display: flex; gap: var(--sp-4); padding: var(--sp-4) var(--sp-5);
+  border-radius: var(--r); margin-bottom: var(--sp-5); font-size: 13.5px;
+}
+.alert-info  { background: var(--blue-dim); border: 1px solid rgba(91,156,246,.2); }
+.alert-warn  { background: var(--am-dim);   border: 1px solid rgba(245,158,11,.2); }
+.alert-icon  { flex-shrink: 0; font-size: 15px; line-height: 1.65; }
+.alert p     { color: var(--text-2); line-height: 1.65; margin: 0; }
+.alert strong { color: var(--text); }
+
+/* ═══════════════════════════════════════════
+   PASO CARD
+═══════════════════════════════════════════ */
+.paso-card {
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: var(--r-lg); margin-bottom: 48px; overflow: hidden;
+  transition: border-color .2s;
+}
+.paso-card:hover { border-color: var(--border-2); }
+
+.paso-head {
+  padding: var(--sp-8) var(--sp-10);
+  display: flex; align-items: flex-start; gap: var(--sp-5);
+  border-bottom: 1px solid var(--border);
+}
+.paso-num-badge {
+  width: 48px; height: 48px; border-radius: var(--r);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 15px; font-weight: 500;
+  flex-shrink: 0; letter-spacing: .05em;
+}
+.paso-head-info h3 {
+  font-family: var(--serif); font-size: 22px; font-weight: 300;
+  color: var(--white); margin-bottom: 4px; letter-spacing: -.01em;
+}
+.paso-head-info p { font-size: 13.5px; color: var(--text-3); line-height: 1.5; }
+
+.paso-body { padding: var(--sp-8) var(--sp-10); }
+
+/* ═══ TAGS ROW ═══ */
+.tags { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-6); }
+.tag {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  font-size: 11px; font-weight: 500; padding: 3px 10px;
+  border-radius: 99px;
+}
+.tag-risk    { background: var(--rose-dim); border: 1px solid rgba(244,63,94,.2);  color: #fb7185; }
+.tag-iso     { background: var(--blue-dim); border: 1px solid rgba(91,156,246,.2); color: var(--blue); }
+.tag-norm    { background: var(--violet-dim); border: 1px solid rgba(139,92,246,.2); color: #a78bfa; }
+.tag-green   { background: var(--em-dim); border: 1px solid rgba(16,185,129,.2); color: #34d399; }
+
+/* ═══ NORM PILLS ═══ */
+.norm-strip { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-6); }
+.norm-pill {
+  background: var(--bg-3); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 5px 11px; font-size: 12px; color: var(--text-3);
+}
+.norm-pill strong { color: var(--text-2); font-weight: 500; }
+
+/* ═══ CONTENT BLOCK ═══ */
+.cb { margin-bottom: var(--sp-8); }
+.cb-label {
+  font-size: 10.5px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--text-3); margin-bottom: var(--sp-3);
+  display: flex; align-items: center; gap: var(--sp-2);
+}
+.cb-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.cb p { font-size: 14px; color: var(--text-2); line-height: 1.75; margin-bottom: var(--sp-3); }
+
+/* ═══ NUMBERED STEPS ═══ */
+.nsteps { list-style: none; counter-reset: ns; }
+.nsteps li {
+  counter-increment: ns; display: flex; gap: var(--sp-4);
+  margin-bottom: var(--sp-4); align-items: flex-start;
+}
+.nsteps li::before {
+  content: counter(ns);
+  min-width: 24px; height: 24px; border-radius: 50%;
+  background: var(--bg-4); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600; color: var(--text-3);
+  flex-shrink: 0; margin-top: 2px; font-family: var(--mono);
+}
+.nsteps li span { font-size: 13.5px; color: var(--text-2); line-height: 1.7; }
+.nsteps li strong { color: var(--text); }
+
+/* ═══ PROMPT BLOCK ═══ */
+.prompt-block {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--r-md); overflow: hidden; margin-bottom: var(--sp-3);
+}
+.prompt-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px var(--sp-4); background: var(--bg-3);
+  border-bottom: 1px solid var(--border);
+}
+.prompt-tag { display: flex; align-items: center; gap: var(--sp-2); }
+.prompt-tag .dot { width: 6px; height: 6px; border-radius: 50%; }
+.prompt-title { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
+.copy-btn {
+  background: var(--bg-4); border: 1px solid var(--border);
+  color: var(--text-3); font-size: 11px; padding: 3px 11px;
+  border-radius: var(--r-sm); cursor: pointer; transition: all .15s;
+  font-family: var(--mono);
+}
+.copy-btn:hover { color: var(--text); border-color: var(--border-2); }
+.copy-btn.ok { color: var(--emerald); border-color: rgba(16,185,129,.3); }
+.prompt-body {
+  padding: var(--sp-5) var(--sp-5); font-family: var(--mono);
+  font-size: 12.5px; color: #8ba5d6; line-height: 1.8; white-space: pre-wrap; word-break: break-word;
+}
+.pv { color: var(--amber); }
+
+/* ═══ ACCORDION ═══ */
+.accordion { margin-bottom: var(--sp-2); }
+.acc-trigger {
+  width: 100%; background: var(--bg-3); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 11px var(--sp-4);
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; font-family: var(--font); font-size: 13px;
+  font-weight: 500; color: var(--text-2); transition: all .15s;
+  text-align: left;
+}
+.acc-trigger:hover { color: var(--text); border-color: var(--border-2); }
+.acc-trigger.open { border-radius: var(--r) var(--r) 0 0; border-color: var(--border-2); color: var(--text); }
+.acc-arrow { font-size: 10px; color: var(--text-3); transition: transform .2s; flex-shrink: 0; }
+.acc-trigger.open .acc-arrow { transform: rotate(180deg); }
+.acc-body { display: none; border: 1px solid var(--border-2); border-top: none; border-radius: 0 0 var(--r) var(--r); overflow: hidden; }
+.acc-body.open { display: block; }
+
+/* ═══════════════════════════════════════════
+   ISO 25010 EVALUATION — MAIN FEATURE
+═══════════════════════════════════════════ */
+.iso-eval-section { margin-bottom: 80px; }
+
+.iso-eval-intro {
+  background: linear-gradient(135deg, rgba(91,156,246,.06), rgba(139,92,246,.06));
+  border: 1px solid rgba(91,156,246,.15);
+  border-radius: var(--r-lg); padding: var(--sp-8) var(--sp-10);
+  margin-bottom: var(--sp-8);
+}
+.iso-eval-intro h2 { font-family: var(--serif); font-size: 26px; font-weight: 300; color: var(--white); margin-bottom: var(--sp-3); }
+.iso-eval-intro p { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+
+/* Score Dashboard */
+.score-dashboard {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4);
+  margin-bottom: var(--sp-8);
+}
+.score-card {
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: var(--sp-5); text-align: center;
+}
+.score-big { font-family: var(--serif); font-size: 36px; font-weight: 600; color: var(--white); line-height: 1; margin-bottom: var(--sp-1); }
+.score-sub { font-size: 11.5px; color: var(--text-3); }
+.score-bar-wrap { height: 4px; background: var(--bg-4); border-radius: 99px; overflow: hidden; margin-top: var(--sp-3); }
+.score-bar-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--violet)); width: 0%; transition: width .6s ease; border-radius: 99px; }
+
+/* ISO Characteristic Card */
+.iso-char-card {
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: var(--r-lg); margin-bottom: var(--sp-5);
+  overflow: hidden; transition: border-color .2s;
+}
+.iso-char-card:hover { border-color: var(--border-2); }
+
+.iso-char-head {
+  padding: var(--sp-5) var(--sp-8);
+  display: flex; align-items: center; gap: var(--sp-5);
+  border-bottom: 1px solid var(--border); cursor: pointer;
+  transition: background .15s;
+}
+.iso-char-head:hover { background: rgba(255,255,255,.02); }
+.iso-char-icon {
+  width: 40px; height: 40px; border-radius: var(--r);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.iso-char-info { flex: 1; }
+.iso-char-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.iso-char-sub { font-size: 11.5px; color: var(--text-3); }
+.iso-char-score {
+  text-align: right; flex-shrink: 0;
+}
+.iso-char-pct { font-family: var(--mono); font-size: 20px; font-weight: 500; color: var(--white); line-height: 1; }
+.iso-char-label { font-size: 10px; color: var(--text-3); }
+.iso-char-bar { width: 80px; height: 3px; background: var(--bg-4); border-radius: 99px; overflow: hidden; margin-top: 4px; }
+.iso-char-fill { height: 100%; border-radius: 99px; transition: width .5s ease; }
+
+.iso-char-body { padding: var(--sp-6) var(--sp-8); }
+
+.iso-sub-list { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-5); }
+.iso-sub { background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 3px 10px; font-size: 11.5px; color: var(--text-3); }
+
+/* Question row */
+.q-row {
+  padding: var(--sp-4) 0; border-bottom: 1px solid var(--border);
+}
+.q-row:last-child { border-bottom: none; }
+.q-text { font-size: 13.5px; color: var(--text-2); line-height: 1.6; margin-bottom: var(--sp-3); }
+.q-text strong { color: var(--text); font-weight: 500; }
+.q-options { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+.q-opt {
+  position: relative; cursor: pointer;
+}
+.q-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+.q-opt label {
+  display: flex; align-items: center; gap: var(--sp-2);
+  background: var(--bg-3); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 6px 14px;
+  font-size: 12px; color: var(--text-3); cursor: pointer;
+  transition: all .15s; user-select: none;
+}
+.q-opt input:checked + label { border-color: var(--blue); background: var(--blue-dim); color: var(--blue); }
+.q-opt:nth-child(1) input:checked + label { border-color: #34d399; background: var(--em-dim); color: #34d399; }
+.q-opt:nth-child(2) input:checked + label { border-color: #a3e635; background: rgba(163,230,53,.1); color: #a3e635; }
+.q-opt:nth-child(3) input:checked + label { border-color: var(--amber); background: var(--am-dim); color: var(--amber); }
+.q-opt:nth-child(4) input:checked + label { border-color: var(--rose); background: var(--rose-dim); color: var(--rose); }
+.q-opt label:hover { border-color: var(--border-2); color: var(--text-2); }
+.q-opt-dot { width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid currentColor; transition: all .15s; }
+.q-opt input:checked + label .q-opt-dot { background: currentColor; }
+
+/* Eval result */
+.eval-result {
+  margin-top: var(--sp-8); background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: var(--sp-8); display: none;
+}
+.eval-result.show { display: block; }
+.result-header { text-align: center; margin-bottom: var(--sp-8); }
+.result-header h3 { font-family: var(--serif); font-size: 22px; font-weight: 300; color: var(--white); margin-bottom: var(--sp-2); }
+.result-score-big { font-family: var(--serif); font-size: 64px; font-weight: 600; line-height: 1; margin-bottom: var(--sp-2); }
+.result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+.result-item { background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--r); padding: var(--sp-4); }
+.result-item-name { font-size: 11.5px; color: var(--text-3); margin-bottom: var(--sp-1); }
+.result-item-val { font-family: var(--mono); font-size: 18px; font-weight: 500; }
+.eval-btn {
+  width: 100%; background: var(--blue); color: var(--white);
+  border: none; border-radius: var(--r); padding: 12px var(--sp-6);
+  font-family: var(--font); font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: all .2s; margin-top: var(--sp-6);
+  letter-spacing: .02em;
+}
+.eval-btn:hover { background: #4a8ef0; transform: translateY(-1px); }
+.eval-btn:active { transform: translateY(0); }
+.reset-btn {
+  background: var(--bg-3); color: var(--text-2); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 10px var(--sp-6);
+  font-family: var(--font); font-size: 13px; cursor: pointer;
+  transition: all .15s; margin-top: var(--sp-3); width: 100%;
+}
+.reset-btn:hover { border-color: var(--border-2); color: var(--text); }
+
+/* ═══ COMPARATIVE TABLE ═══ */
+.comp-table-wrap { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; }
+.comp-t { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.comp-t th { padding: 10px var(--sp-4); background: var(--bg-3); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); border-bottom: 1px solid var(--border); text-align: left; }
+.comp-t td { padding: 11px var(--sp-4); border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: top; font-size: 12.5px; }
+.comp-t tr:last-child td { border-bottom: none; }
+.comp-t tr:hover td { background: rgba(255,255,255,.015); }
+
+/* ═══ NORM SECTION ═══ */
+.norm-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--sp-5) var(--sp-6); margin-bottom: var(--sp-3); display: flex; gap: var(--sp-5); }
+.norm-badge { min-width: 80px; padding: var(--sp-2) var(--sp-3); background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--r-sm); font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--blue); text-align: center; height: fit-content; flex-shrink: 0; }
+.norm-content h4 { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.norm-content p { font-size: 12.5px; color: var(--text-3); line-height: 1.65; }
+.norm-content .norm-steps { margin-top: var(--sp-2); font-size: 11.5px; color: var(--blue); }
+
+/* ═══ FOOTER ═══ */
+.page-footer {
+  margin-top: 80px; padding-top: var(--sp-8);
+  border-top: 1px solid var(--border);
+  font-size: 12px; color: var(--text-3); line-height: 1.7;
+}
+.page-footer strong { color: var(--text-2); }
+
+/* ═══ SCROLL TO TOP ═══ */
+.scroll-top {
+  position: fixed; bottom: var(--sp-6); right: var(--sp-6);
+  width: 38px; height: 38px; background: var(--bg-3);
+  border: 1px solid var(--border); border-radius: var(--r);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 14px; color: var(--text-3);
+  opacity: 0; transition: all .3s; z-index: 100;
+  box-shadow: var(--shadow);
+}
+.scroll-top:hover { color: var(--text); border-color: var(--border-2); }
+.scroll-top.vis { opacity: 1; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+  .shell { grid-template-columns: 220px 1fr; }
+  .main { padding: var(--sp-10) var(--sp-10); }
+}
+@media (max-width: 768px) {
+  .shell { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { padding: var(--sp-8) var(--sp-5); }
+  .hero h1 { font-size: 32px; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .score-dashboard { grid-template-columns: 1fr; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .paso-head { flex-direction: column; }
+  .paso-body { padding: var(--sp-6); }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<div class="shell">
+
+<!-- ═══════════════ SIDEBAR ═══════════════ -->
+<nav class="sidebar">
+  <div class="sb-header">
+    <div class="sb-eyebrow">Guía Metodológica · 2025</div>
+    <div class="sb-title">Integración de IA en Desarrollo de Software</div>
+    <div class="sb-meta">Universidad Libre · Cúcuta<br>Ing. en TIC</div>
+  </div>
+
+  <div class="sb-nav">
+    <div class="sb-group">
+      <div class="sb-group-label">Inicio</div>
+      <a class="sb-link active" href="#intro"><span class="sb-indicator" style="background:#5b9cf6"></span>Introducción</a>
+      <a class="sb-link" href="#como-usar"><span class="sb-indicator" style="background:#5a6180"></span>Cómo usar la guía</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-label">Los 6 Pasos</div>
+      <a class="sb-link" href="#paso1"><span class="sb-indicator" style="background:var(--p1)"></span>P1 — Definición</a>
+      <a class="sb-link" href="#paso2"><span class="sb-indicator" style="background:var(--p2)"></span>P2 — Validación</a>
+      <a class="sb-link" href="#paso3"><span class="sb-indicator" style="background:var(--p3)"></span>P3 — Seguridad</a>
+      <a class="sb-link" href="#paso4"><span class="sb-indicator" style="background:var(--p4)"></span>P4 — Supervisión</a>
+      <a class="sb-link" href="#paso5"><span class="sb-indicator" style="background:var(--p5)"></span>P5 — Ética</a>
+      <a class="sb-link" href="#paso6"><span class="sb-indicator" style="background:var(--p6)"></span>P6 — Pensamiento</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-label">Evaluación ISO</div>
+      <a class="sb-link" href="#iso-eval"><span class="sb-indicator" style="background:#a78bfa"></span>Evaluación ISO 25010</a>
+      <a class="sb-link" href="#iso-adec"><span class="sb-indicator" style="background:#5b9cf6"></span>Adecuación Funcional</a>
+      <a class="sb-link" href="#iso-efic"><span class="sb-indicator" style="background:#10b981"></span>Eficiencia Desempeño</a>
+      <a class="sb-link" href="#iso-compat"><span class="sb-indicator" style="background:#f59e0b"></span>Compatibilidad</a>
+      <a class="sb-link" href="#iso-inter"><span class="sb-indicator" style="background:#06b6d4"></span>Interacción</a>
+      <a class="sb-link" href="#iso-fiab"><span class="sb-indicator" style="background:#8b5cf6"></span>Fiabilidad</a>
+      <a class="sb-link" href="#iso-seg"><span class="sb-indicator" style="background:#f43f5e"></span>Seguridad</a>
+      <a class="sb-link" href="#iso-mant"><span class="sb-indicator" style="background:#f97316"></span>Mantenibilidad</a>
+      <a class="sb-link" href="#iso-flex"><span class="sb-indicator" style="background:#84cc16"></span>Flexibilidad</a>
+      <a class="sb-link" href="#iso-prot"><span class="sb-indicator" style="background:#ec4899"></span>Protección</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-label">Cierre</div>
+      <a class="sb-link" href="#comparativa"><span class="sb-indicator" style="background:#5a6180"></span>Tabla comparativa</a>
+      <a class="sb-link" href="#normativa"><span class="sb-indicator" style="background:#5a6180"></span>Marco normativo</a>
+    </div>
+  </div>
+
+  <div class="sb-footer">
+    <div>Andres F. Jaimes Carrillo</div>
+    <div>Dir: PhD. Jesús Álvarez G.</div>
+    <div class="sb-progress-wrap">
+      <div class="sb-progress-label">
+        <span>Progreso de lectura</span><span id="readPct">0%</span>
+      </div>
+      <div class="sb-progress-track">
+        <div class="sb-progress-fill" id="sbFill"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════ MAIN ═══════════════ -->
+<main class="main">
+
+<!-- ═══ HERO ═══ -->
+<section id="intro" class="section hero">
+  <div class="hero-eyebrow"><span></span>Metodología Oficial · Versión 1.0 · 2025</div>
+  <h1>Metodología Integral de<br><em>Integración de la IA</em></h1>
+  <p class="hero-lead">Guía paso a paso para el uso ético, seguro y analítico de herramientas de inteligencia artificial en el desarrollo de proyectos de software — aplicable en el aula de clases y en equipos profesionales. Fundamentada en ISO/IEC 25010, NIST AI RMF y Reglamento UE 2024/1689.</p>
+  <div class="hero-stats">
+    <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">Pasos metodológicos con verificación</div></div>
+    <div class="stat-card"><div class="stat-num">18</div><div class="stat-label">Prompts estructurados listos para usar</div></div>
+    <div class="stat-card"><div class="stat-num">9</div><div class="stat-label">Características ISO 25010 evaluadas</div></div>
+    <div class="stat-card"><div class="stat-num">27+</div><div class="stat-label">Preguntas de evaluación de calidad</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ CÓMO USAR ═══ -->
+<section id="como-usar" class="section">
+  <div class="s-eyebrow">Antes de empezar</div>
+  <div class="s-title">Cómo usar esta <em>guía</em></div>
+  <div class="s-lead">Esta guía se ejecuta en orden secuencial. Cada paso corresponde a un momento específico del flujo de trabajo con IA. No avances al siguiente paso hasta completar la verificación del anterior.</div>
+
+  <div class="alert alert-info">
+    <div class="alert-icon">ℹ️</div>
+    <p><strong>Principio fundamental:</strong> La inteligencia artificial es una herramienta de apoyo, no un sustituto del razonamiento profesional. El desarrollador o estudiante es siempre el responsable técnico, ético y legal del código que produce, sin importar cómo fue generado.</p>
+  </div>
+
+  <div class="onboard-table-wrap">
+    <table class="dt">
+      <thead><tr><th>Paso</th><th>Cuándo ejecutarlo</th><th>Duración</th><th>Riesgo mitigado</th></tr></thead>
+      <tbody>
+        <tr><td class="td-step" style="color:var(--p1)">01 — Definición</td><td>Antes de abrir la IA</td><td>5–10 min</td><td>Dependencia cognitiva</td></tr>
+        <tr><td class="td-step" style="color:var(--p2)">02 — Validación</td><td>Al recibir el output</td><td>10–20 min</td><td>Alucinaciones · Código incorrecto</td></tr>
+        <tr><td class="td-step" style="color:var(--p3)">03 — Seguridad</td><td>Antes de integrar al proyecto</td><td>10–15 min</td><td>Vulnerabilidades · Datos sensibles</td></tr>
+        <tr><td class="td-step" style="color:var(--p4)">04 — Supervisión</td><td>Durante todo el proceso</td><td>Continuo</td><td>Sesgo de automatización</td></tr>
+        <tr><td class="td-step" style="color:var(--p5)">05 — Ética</td><td>Antes de entregar</td><td>5 min</td><td>Fraude · Propiedad intelectual</td></tr>
+        <tr><td class="td-step" style="color:var(--p6)">06 — Pensamiento</td><td>Al finalizar la sesión</td><td>5–10 min</td><td>Dependencia cognitiva acumulada</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert alert-warn">
+    <div class="alert-icon">⚠️</div>
+    <p><strong>Nota:</strong> Los prompts incluidos son plantillas estructuradas. Las palabras en <em style="color:var(--amber); font-family:var(--mono); font-size:12px">[corchetes]</em> deben reemplazarse con información específica de tu proyecto antes de enviarlos.</p>
+  </div>
+</section>
+
+<div class="divider-text"><span>Los 6 pasos metodológicos</span></div>
+
+<!-- ═══════════════ PASO 1 ═══════════════ -->
+<section id="paso1" class="section">
+<div class="s-eyebrow">Paso 1 de 6</div>
+<div class="paso-card">
+  <div class="paso-head">
+    <div class="paso-num-badge" style="background:var(--p1d);color:var(--p1)">01</div>
+    <div class="paso-head-info">
+      <h3>Definición del Propósito</h3>
+      <p>Antes de abrir cualquier herramienta de IA, define con claridad qué problema resolverás y cuál será tu aporte intelectual propio.</p>
+    </div>
+  </div>
+  <div class="paso-body">
+    <div class="tags">
+      <span class="tag tag-risk">⚠ Dependencia cognitiva</span>
+      <span class="tag tag-iso">ISO 25010 — Fiabilidad</span>
+      <span class="tag tag-norm">NIST AI RMF — GOVERN 1.1</span>
+    </div>
+    <div class="norm-strip">
+      <div class="norm-pill"><strong>ISO/IEC 25010</strong> — Fiabilidad · Funcionalidad</div>
+      <div class="norm-pill"><strong>NIST AI RMF</strong> — GOVERN: Accountability</div>
+      <div class="norm-pill"><strong>Reglamento UE 2024/1689</strong> — Art. 14</div>
+    </div>
+    <div class="cb">
+      <div class="cb-label">¿Por qué es obligatorio?</div>
+      <p>El mayor riesgo documentado es la delegación del problema completo a la IA sin elaborar primero un razonamiento propio. El 46,2% de los estudiantes encuestados en Cúcuta usa la IA para generar el código completo de sus ejercicios. Este paso interrumpe ese patrón antes de que comience.</p>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Instrucciones de ejecución</div>
+      <ol class="nsteps">
+        <li><span><strong>Enuncia el problema con tus propias palabras</strong> antes de redactar cualquier prompt. Escribe qué necesitas resolver, cuáles son los requerimientos y cuáles las restricciones.</span></li>
+        <li><span><strong>Identifica qué partes resolverás tú</strong> y cuáles apoyará la IA. La IA acelera tu trabajo, no reemplaza tu razonamiento.</span></li>
+        <li><span><strong>Establece criterios de aceptación previos:</strong> define al menos 3 condiciones concretas de funcionamiento antes de ver el output.</span></li>
+        <li><span><strong>Registra tu propósito en el prompt inicial</strong> incluyendo contexto, lenguaje, restricciones y resultado esperado.</span></li>
+        <li><span><strong>Revisa si hay datos sensibles.</strong> Si el problema involucra datos de usuarios o credenciales, usa datos ficticios en el prompt.</span></li>
+      </ol>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Prompts estructurados</div>
+      <div class="accordion">
+        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>🎯 Prompt 1A — Definición de alcance antes de pedir código</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body open"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p1)"></span><span class="prompt-title">prompt · definición-alcance</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Voy a pedirte ayuda con programación, pero primero ayúdame a delimitar el alcance.
+
+El contexto de mi tarea es: <span class="pv">[describe el ejercicio o requerimiento]</span>
+El lenguaje es: <span class="pv">[Python / JavaScript / Java / etc.]</span>
+Lo que ya tengo resuelto: <span class="pv">[describe lo que ya pensaste o intentaste]</span>
+Lo que necesito que me ayudes: <span class="pv">[sé preciso, no pidas todo el código completo]</span>
+
+Antes de generar código, explícame: ¿cuál sería la estrategia lógica? ¿Qué estructura usarías y por qué? Quiero entender el enfoque antes de ver la implementación.</div>
+        </div></div>
+      </div>
+      <div class="accordion">
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🎯 Prompt 1B — Validación del entendimiento del problema</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p1)"></span><span class="prompt-title">prompt · validación-entendimiento</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Antes de darme una solución, necesito verificar que entiendo el problema.
+
+Mi interpretación del requerimiento: <span class="pv">[escribe con tus palabras lo que crees que pide]</span>
+
+Mis criterios de éxito:
+1. <span class="pv">[criterio 1]</span>
+2. <span class="pv">[criterio 2]</span>
+3. <span class="pv">[criterio 3]</span>
+
+¿Hay aspectos que no estoy considerando? ¿Hay casos borde antes de implementar?</div>
+        </div></div>
+      </div>
+      <div class="accordion">
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🎯 Prompt 1C — Diseño antes del código</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p1)"></span><span class="prompt-title">prompt · diseño-previo</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Necesito resolver: <span class="pv">[descripción del problema]</span>
+
+No me generes código todavía. Primero explícame:
+1. ¿Qué patrón o enfoque algorítmico aplicarías y por qué?
+2. ¿Ventajas y desventajas de ese enfoque frente a otras alternativas?
+3. ¿Qué estructura de datos sería la más adecuada?
+4. ¿Qué casos borde debo considerar?
+
+Cuando confirme que entiendo el enfoque, avanzamos con la implementación.</div>
+        </div></div>
+      </div>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Criterios de verificación ISO 25010</div>
+      <div class="iso-table-wrap"><table class="iso-t">
+        <thead><tr><th>Característica ISO</th><th>Criterio verificable</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td class="attr">Fiabilidad — Madurez</td><td>El propósito está documentado antes de iniciar la sesión</td><td class="check">✓ / ✗</td></tr>
+          <tr><td class="attr">Funcionalidad — Completitud</td><td>Los criterios de aceptación están definidos antes de ver el output</td><td class="check">✓ / ✗</td></tr>
+          <tr><td class="attr">Mantenibilidad — Analizabilidad</td><td>Se identificó qué partes resuelve el desarrollador y cuáles la IA</td><td class="check">✓ / ✗</td></tr>
+          <tr><td class="attr">Seguridad — Confidencialidad</td><td>No se incluyeron datos sensibles reales en el prompt</td><td class="check">✓ / ✗</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Lista de verificación</div>
+      <ul class="checklist">
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Escribí el problema con mis propias palabras antes de abrir la IA</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Definí al menos 3 criterios de aceptación previos</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Identifiqué qué parte resuelvo yo y qué parte apoya la IA</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>El prompt no contiene datos sensibles o credenciales reales</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Pedí la estrategia lógica antes de pedir el código</span></li>
+      </ul>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Rúbrica de evaluación</div>
+      <div class="rubrica-wrap"><table class="rub-t">
+        <thead><tr><th>Criterio</th><th>Logrado</th><th>En proceso</th><th>No logrado</th></tr></thead>
+        <tbody>
+          <tr><td>Definición del problema</td><td><span class="lvl lvl-ok">✓ OK</span> Problema claro y específico antes de consultar</td><td><span class="lvl lvl-mid">~ Parcial</span></td><td><span class="lvl lvl-no">✗ No</span> Delegó definición a la IA</td></tr>
+          <tr><td>Criterios previos</td><td><span class="lvl lvl-ok">✓ OK</span> 3+ criterios documentados</td><td><span class="lvl lvl-mid">~ Parcial</span> 1–2 informales</td><td><span class="lvl lvl-no">✗ No</span> Sin criterios</td></tr>
+          <tr><td>Delimitación del uso</td><td><span class="lvl lvl-ok">✓ OK</span> Claro qué resuelve él y qué la IA</td><td><span class="lvl lvl-mid">~ Parcial</span> Límite difuso</td><td><span class="lvl lvl-no">✗ No</span> IA decide todo</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ PASO 2 ═══ -->
+<section id="paso2" class="section">
+<div class="s-eyebrow">Paso 2 de 6</div>
+<div class="paso-card">
+  <div class="paso-head">
+    <div class="paso-num-badge" style="background:var(--p2d);color:var(--p2)">02</div>
+    <div class="paso-head-info">
+      <h3>Validación Técnica del Output</h3>
+      <p>Antes de usar cualquier código generado por IA, verifícalo línea a línea. Nunca asumas que el output es correcto.</p>
+    </div>
+  </div>
+  <div class="paso-body">
+    <div class="tags">
+      <span class="tag tag-risk">⚠ Alucinaciones de APIs</span>
+      <span class="tag tag-risk">⚠ Código incorrecto no detectado</span>
+      <span class="tag tag-iso">ISO 25010 — Fiabilidad · Mantenibilidad</span>
+      <span class="tag tag-norm">NIST AI RMF — MEASURE 2.5</span>
+    </div>
+    <div class="norm-strip">
+      <div class="norm-pill"><strong>ISO/IEC 25010</strong> — Fiabilidad: Tolerancia a fallos · Mantenibilidad: Analizabilidad</div>
+      <div class="norm-pill"><strong>NIST AI RMF</strong> — MEASURE: Evaluación del rendimiento</div>
+    </div>
+    <div class="cb">
+      <div class="cb-label">¿Por qué es obligatorio?</div>
+      <p>Los LLM generan código con naturaleza probabilística. El 69,2% de los estudiantes encuestados en Cúcuta reportó errores no detectados en código IA, y el 100% de los desarrolladores experimentó vulnerabilidades o errores no auditados. La validación técnica es el control de calidad mínimo que garantiza la fiabilidad del software.</p>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Instrucciones de ejecución</div>
+      <ol class="nsteps">
+        <li><span><strong>Lee el código completo antes de ejecutarlo.</strong> Identifica cada función, variable y flujo lógico. Si no puedes explicar una línea, comprénde la antes de usarla.</span></li>
+        <li><span><strong>Verifica la existencia de métodos y librerías</strong> en la documentación oficial del lenguaje o framework.</span></li>
+        <li><span><strong>Ejecuta pruebas con casos que tú construyas:</strong> caso feliz, valores nulos, valores extremos y un caso de error esperado.</span></li>
+        <li><span><strong>Escribe al menos una prueba unitaria manual</strong> que valide la lógica central del código generado.</span></li>
+        <li><span><strong>Usa un prompt de validación cruzada</strong> pidiendo a la IA que critique su propio output.</span></li>
+      </ol>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Prompts estructurados</div>
+      <div class="accordion">
+        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>🔍 Prompt 2A — Revisión crítica del código generado</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body open"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p2)"></span><span class="prompt-title">prompt · revisión-crítica</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Revisa críticamente el siguiente código que generaste:
+
+<span class="pv">[pega el código a revisar]</span>
+
+Analiza:
+1. ¿Existe algún método o clase que no exista en la versión estándar de <span class="pv">[lenguaje/librería]</span>?
+2. ¿Hay condiciones de borde o errores que el código no maneja?
+3. ¿Hay lógica que podría producir resultados incorrectos con entradas atípicas (nulos, vacíos, extremos)?
+4. ¿Qué partes tienen mayor probabilidad de fallar en producción?
+
+Sé crítico. No justifiques los errores, identifícalos.</div>
+        </div></div>
+      </div>
+      <div class="accordion">
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🔍 Prompt 2B — Generación de casos de prueba</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p2)"></span><span class="prompt-title">prompt · casos-de-prueba</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Para el siguiente código: <span class="pv">[código]</span>
+
+Genera casos de prueba que yo ejecute manualmente:
+1. Al menos 2 casos de funcionamiento esperado (caso feliz)
+2. Al menos 2 casos con entradas inválidas o extremas
+3. Al menos 1 caso de error controlado
+
+Para cada caso: entrada exacta, resultado esperado y criterio que pruebas.
+No generes código de pruebas automáticas. Los ejecutaré manualmente.</div>
+        </div></div>
+      </div>
+      <div class="accordion">
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🔍 Prompt 2C — Explicación línea a línea</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p2)"></span><span class="prompt-title">prompt · comprensión-código</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Explícame este código bloque por bloque: <span class="pv">[código]</span>
+
+Para cada sección explica:
+- Qué hace exactamente ese bloque
+- Por qué se tomó esa decisión de implementación
+- Qué pasaría si ese bloque fallara o se eliminara
+- Si hay una forma alternativa de hacer lo mismo
+
+Necesito entender completamente el código antes de integrarlo.</div>
+        </div></div>
+      </div>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Lista de verificación</div>
+      <ul class="checklist">
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Leí el código completo antes de ejecutarlo por primera vez</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Verifiqué en documentación oficial que todos los métodos existen</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Ejecuté al menos un caso de prueba que yo diseñé</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Probé al menos un caso con entrada inválida o extrema</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Puedo explicar con mis palabras qué hace cada bloque del código</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ PASO 3 ═══ -->
+<section id="paso3" class="section">
+<div class="s-eyebrow">Paso 3 de 6</div>
+<div class="paso-card">
+  <div class="paso-head">
+    <div class="paso-num-badge" style="background:var(--p3d);color:var(--p3)">03</div>
+    <div class="paso-head-info">
+      <h3>Revisión de Seguridad</h3>
+      <p>Todo código que interactúe con datos, usuarios o redes debe auditarse explícitamente antes de integrarse.</p>
+    </div>
+  </div>
+  <div class="paso-body">
+    <div class="tags">
+      <span class="tag tag-risk">⚠ Vulnerabilidades de seguridad</span>
+      <span class="tag tag-risk">⚠ Exposición de datos sensibles</span>
+      <span class="tag tag-iso">ISO 25010 — Seguridad</span>
+      <span class="tag tag-norm">Ley 1581/2012 · NIST AI RMF</span>
+    </div>
+    <div class="norm-strip">
+      <div class="norm-pill"><strong>ISO/IEC 25010</strong> — Confidencialidad · Integridad · No-Repudio</div>
+      <div class="norm-pill"><strong>Ley 1581 de 2012</strong> — Protección de datos Colombia</div>
+      <div class="norm-pill"><strong>NIST AI RMF</strong> — MAP: Identificación de riesgos</div>
+      <div class="norm-pill"><strong>Reglamento UE 2024/1689</strong> — Art. 9</div>
+    </div>
+    <div class="cb">
+      <div class="cb-label">¿Por qué es obligatorio?</div>
+      <p>Los modelos se entrenaron con código que contiene patrones inseguros documentados. Sandoval et al. (2023) reporta que el 36% de las vulnerabilidades en código IA proviene del propio modelo. El 84,6% de los desarrolladores en Cúcuta nunca usa código IA directamente en componentes de seguridad, evidenciando una conciencia del riesgo que debe traducirse en protocolo explícito.</p>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Instrucciones de ejecución</div>
+      <ol class="nsteps">
+        <li><span><strong>Clasifica el tipo de dato:</strong> datos personales, credenciales, información financiera o de salud. Aplica el nivel de revisión más exigente si aplica.</span></li>
+        <li><span><strong>Revisa las 5 vulnerabilidades más comunes:</strong> inyección SQL, credenciales hardcodeadas, ausencia de validación de entradas, exposición en logs y cifrado obsoleto.</span></li>
+        <li><span><strong>Verifica cumplimiento con Ley 1581/2012</strong> si el código maneja datos personales de ciudadanos colombianos.</span></li>
+        <li><span><strong>Usa el prompt de auditoría de seguridad</strong> para obtener segunda opinión de la IA sobre su propio output.</span></li>
+        <li><span><strong>Documenta el resultado de la revisión</strong> especificando qué se revisó, qué se encontró y qué se corrigió.</span></li>
+      </ol>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Prompts estructurados</div>
+      <div class="accordion">
+        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>🔒 Prompt 3A — Auditoría de seguridad completa</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body open"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p3)"></span><span class="prompt-title">prompt · auditoría-seguridad</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Realiza una auditoría de seguridad del siguiente código.
+Contexto: <span class="pv">[describe qué hace el código y en qué entorno se usará]</span>
+
+<span class="pv">[pega el código]</span>
+
+Revisa:
+1. ¿Hay riesgo de inyección (SQL, HTML, comandos) en las entradas?
+2. ¿Hay credenciales o tokens hardcodeados?
+3. ¿El código valida y sanitiza correctamente las entradas?
+4. ¿Hay información sensible expuesta en logs o mensajes de error?
+5. ¿Las funciones de cifrado son seguras y vigentes?
+6. ¿Aplica el principio de mínimo privilegio?
+
+Para cada hallazgo indica nivel de riesgo (alto/medio/bajo) y la corrección específica.</div>
+        </div></div>
+      </div>
+      <div class="accordion">
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🔒 Prompt 3B — Verificación de protección de datos</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p3)"></span><span class="prompt-title">prompt · cumplimiento-normativo</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Este código maneja datos personales: <span class="pv">[tipo: nombres, correos, identificaciones, etc.]</span>
+
+<span class="pv">[código]</span>
+
+Analiza si cumple con los principios básicos de protección de datos:
+1. Minimización: ¿Solo se recolectan datos estrictamente necesarios?
+2. Integridad: ¿Los datos están protegidos contra modificación no autorizada?
+3. Confidencialidad: ¿No son accesibles para usuarios no autorizados?
+4. ¿Hay algún punto donde los datos quedan expuestos sin conocimiento del usuario?
+
+Indica modificaciones concretas para mejorar el cumplimiento.</div>
+        </div></div>
+      </div>
+      <div class="accordion">
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🔒 Prompt 3C — Revisión de componentes de autenticación</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p3)"></span><span class="prompt-title">prompt · autenticación-segura</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Este código implementa <span class="pv">[autenticación / autorización / manejo de sesiones]</span>:
+
+<span class="pv">[código]</span>
+
+Revisa:
+1. ¿Se usan librerías de seguridad recomendadas para <span class="pv">[lenguaje/framework]</span>?
+2. ¿Hay vectores de ataque conocidos que este código no mitiga?
+3. ¿Las contraseñas se almacenan con hash+sal, no en texto plano?
+4. ¿Hay control de intentos fallidos y sesiones expiradas?
+5. ¿Qué pasaría si un atacante manipula directamente los parámetros de entrada?
+
+Dame el nivel de riesgo general y las 3 correcciones más urgentes.</div>
+        </div></div>
+      </div>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Lista de verificación</div>
+      <ul class="checklist">
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Clasifiqué el tipo de dato que maneja el código</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Revisé que no haya credenciales o tokens directamente en el código</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Verifiqué que las entradas del usuario se validan antes de usarse</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Confirmé que los mensajes de error no exponen información interna</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Apliqué el prompt de auditoría y documenté los hallazgos</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ PASO 4 ═══ -->
+<section id="paso4" class="section">
+<div class="s-eyebrow">Paso 4 de 6</div>
+<div class="paso-card">
+  <div class="paso-head">
+    <div class="paso-num-badge" style="background:var(--p4d);color:var(--p4)">04</div>
+    <div class="paso-head-info">
+      <h3>Supervisión Humana Activa</h3>
+      <p>Mantén el control de las decisiones técnicas durante todo el proceso. La IA propone, tú decides.</p>
+    </div>
+  </div>
+  <div class="paso-body">
+    <div class="tags">
+      <span class="tag tag-risk">⚠ Sesgo de automatización</span>
+      <span class="tag tag-risk">⚠ Delegación de decisiones críticas</span>
+      <span class="tag tag-iso">ISO 25010 — Mantenibilidad</span>
+      <span class="tag tag-norm">Reglamento UE 2024/1689 — Art. 14</span>
+    </div>
+    <div class="norm-strip">
+      <div class="norm-pill"><strong>Reglamento UE 2024/1689</strong> — Art. 14: Supervisión humana</div>
+      <div class="norm-pill"><strong>ISO/IEC 25010</strong> — Mantenibilidad: Modificabilidad</div>
+      <div class="norm-pill"><strong>NIST AI RMF</strong> — MANAGE: Control humano</div>
+    </div>
+    <div class="cb">
+      <div class="cb-label">¿Por qué es obligatorio?</div>
+      <p>El sesgo de automatización es la tendencia cognitiva a aceptar sugerencias de un sistema automático sin pensamiento crítico. En software con IA este sesgo es especialmente peligroso porque los modelos generan respuestas con alta confianza superficial incluso cuando están equivocados. El profesional es siempre el responsable último del código que integra.</p>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Instrucciones de ejecución</div>
+      <ol class="nsteps">
+        <li><span><strong>Toma siempre la decisión de arquitectura tú mismo.</strong> La estructura general, el patrón de diseño y la organización de módulos deben ser decisiones tuyas.</span></li>
+        <li><span><strong>Cuestiona activamente cada sugerencia:</strong> ¿por qué eligió esta solución y no otra? ¿Existe una alternativa más simple o segura?</span></li>
+        <li><span><strong>No aceptes la primera respuesta sin cuestionarla.</strong> Pide al menos una alternativa y evalúa cuál se adapta mejor a tu contexto real.</span></li>
+        <li><span><strong>Documenta las decisiones técnicas importantes.</strong> Registra por qué usaste el código IA tal como está o con modificaciones.</span></li>
+        <li><span><strong>Establece puntos de control periódicos.</strong> Si más del 60% del código fue generado por IA, activa una revisión crítica del proceso.</span></li>
+      </ol>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Prompts estructurados</div>
+      <div class="accordion">
+        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>👁 Prompt 4A — Solicitud de alternativas para decisión informada</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body open"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p4)"></span><span class="prompt-title">prompt · alternativas-técnicas</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Para el problema de <span class="pv">[describe el problema]</span>, me propusiste: <span class="pv">[solución propuesta]</span>
+
+Antes de adoptarla, dame al menos 2 enfoques diferentes con:
+- Rendimiento y eficiencia
+- Facilidad de mantenimiento futuro
+- Complejidad de implementación
+- Adecuación para <span class="pv">[equipo pequeño / entorno académico / producción]</span>
+
+Yo decidiré cuál adoptar después de ver las opciones.</div>
+        </div></div>
+      </div>
+      <div class="accordion">
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>👁 Prompt 4B — Justificación de decisión técnica propia</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p4)"></span><span class="prompt-title">prompt · validación-decisión</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Tomé la decisión de usar <span class="pv">[describe tu decisión técnica]</span> para resolver <span class="pv">[el problema]</span>.
+
+Mi contexto específico es: <span class="pv">[lenguaje, tamaño del proyecto, requisitos, equipo]</span>
+
+¿Hay alguna razón técnica por la que esta decisión podría ser incorrecta en mi contexto? Si la hay, ¿qué criterio debería considerar?
+
+No me cambies la decisión. Ayúdame a evaluarla críticamente.</div>
+        </div></div>
+      </div>
+      <div class="accordion">
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>👁 Prompt 4C — Revisión de coherencia arquitectural</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p4)"></span><span class="prompt-title">prompt · coherencia-arquitectura</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Mi arquitectura es: <span class="pv">[describe la estructura de tu proyecto]</span>
+La definí con base en: <span class="pv">[tus criterios de diseño propios]</span>
+
+He usado IA para implementar componentes específicos dentro de esta arquitectura.
+
+¿Hay algún componente que la IA haya implementado de una manera incompatible con mi arquitectura, o que introduzca dependencias no planificadas?
+
+Dame un diagnóstico de coherencia arquitectural.</div>
+        </div></div>
+      </div>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Lista de verificación</div>
+      <ul class="checklist">
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>La arquitectura general fue definida por mí, no delegada a la IA</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Evalué al menos una alternativa antes de adoptar la solución de la IA</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Puedo defender técnicamente cada decisión de diseño del proyecto</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Documenté brevemente las decisiones técnicas más importantes</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Los componentes IA son coherentes con mi diseño original</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ PASO 5 ═══ -->
+<section id="paso5" class="section">
+<div class="s-eyebrow">Paso 5 de 6</div>
+<div class="paso-card">
+  <div class="paso-head">
+    <div class="paso-num-badge" style="background:var(--p5d);color:var(--p5)">05</div>
+    <div class="paso-head-info">
+      <h3>Uso Ético y Declaración de Autoría</h3>
+      <p>Declara el uso de IA en tu trabajo de forma transparente. La honestidad sobre el proceso es un requisito ético y profesional.</p>
+    </div>
+  </div>
+  <div class="paso-body">
+    <div class="tags">
+      <span class="tag tag-risk">⚠ Fraude académico</span>
+      <span class="tag tag-risk">⚠ Violación de propiedad intelectual</span>
+      <span class="tag tag-iso">ISO 25010 — Seguridad · Fiabilidad</span>
+      <span class="tag tag-norm">Ley 23/1982 · CONPES 4144</span>
+    </div>
+    <div class="norm-strip">
+      <div class="norm-pill"><strong>Ley 23 de 1982</strong> — Derechos de autor Colombia</div>
+      <div class="norm-pill"><strong>CONPES 4144 de 2025</strong> — Ética en IA</div>
+      <div class="norm-pill"><strong>Reglamento UE 2024/1689</strong> — Art. 52: Transparencia</div>
+      <div class="norm-pill"><strong>IEEE 7000</strong> — Diseño ético</div>
+    </div>
+    <div class="cb">
+      <div class="cb-label">¿Por qué es obligatorio?</div>
+      <p>Presentar como propio un trabajo generado principalmente por IA constituye deshonestidad académica. El código IA puede incorporar fragmentos con licencias de código abierto sin atribución. La transparencia no es debilidad: es indicador de madurez profesional. El 84,6% de los desarrolladores en Cúcuta no tiene lineamientos éticos formales para datos de clientes.</p>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Instrucciones de ejecución</div>
+      <ol class="nsteps">
+        <li><span><strong>Registra qué partes usaron IA:</strong> sección de código, documentación o análisis asistido, especificando qué herramienta y para qué propósito.</span></li>
+        <li><span><strong>Incluye una declaración de uso de IA</strong> en tus entregas académicas y proyectos profesionales.</span></li>
+        <li><span><strong>Verifica las licencias del código generado.</strong> El código IA puede reproducir fragmentos bajo licencias MIT, GPL, Apache.</span></li>
+        <li><span><strong>No uses IA para generar datos ficticios de investigación.</strong> Es falsedad en documento con consecuencias legales y académicas.</span></li>
+        <li><span><strong>Aplica el principio de proporcionalidad:</strong> el razonamiento, análisis y conclusiones deben ser elaboración propia; la IA apoya en formato y redacción.</span></li>
+      </ol>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Prompts estructurados</div>
+      <div class="accordion">
+        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>⚖️ Prompt 5A — Generación de declaración de uso de IA</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body open"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p5)"></span><span class="prompt-title">prompt · declaración-autoría</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Ayúdame a redactar una declaración de uso de IA para mi trabajo.
+
+El trabajo es: <span class="pv">[tesis / proyecto de aula / documentación técnica]</span>
+Herramientas usadas: <span class="pv">[ChatGPT / GitHub Copilot / Gemini / Claude]</span>
+Las usé para: <span class="pv">[corrección de redacción / generación de código de ejemplo / búsqueda / formateo]</span>
+Partes exclusivamente mías: <span class="pv">[análisis, conclusiones, metodología, diseño]</span>
+
+Redacta una declaración honesta, clara y de no más de 150 palabras.</div>
+        </div></div>
+      </div>
+      <div class="accordion">
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>⚖️ Prompt 5B — Revisión ética del proyecto</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p5)"></span><span class="prompt-title">prompt · revisión-ética</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Mi proyecto de software: <span class="pv">[describe qué hace el sistema]</span>
+Manejará datos de: <span class="pv">[estudiantes / clientes / empleados]</span>
+
+Quiero una revisión ética:
+1. ¿Hay implicaciones éticas no consideradas en el diseño?
+2. ¿Los datos de los usuarios se tratan con la privacidad que merecen?
+3. ¿El sistema podría generar discriminación o sesgo hacia algún grupo?
+4. ¿Hay decisiones automatizadas que deberían requerir supervisión humana?
+
+Dame un diagnóstico con las recomendaciones más importantes.</div>
+        </div></div>
+      </div>
+      <div class="accordion">
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>⚖️ Prompt 5C — Análisis de sesgos del sistema</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p5)"></span><span class="prompt-title">prompt · análisis-sesgos</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Mi sistema <span class="pv">[descripción]</span> usa datos: <span class="pv">[tipo de datos de entrada]</span>
+
+Parte de la lógica fue generada con IA. Verifica si reproduce sesgos no intencionales:
+1. ¿Los datos de entrada representan de forma desigual a distintos grupos?
+2. ¿La lógica produce resultados sistemáticamente diferentes para distintos perfiles sin justificación?
+3. ¿Qué grupos podrían verse perjudicados de forma desproporcionada?
+4. ¿Qué mecanismos de corrección humana debería incluir el sistema?</div>
+        </div></div>
+      </div>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Lista de verificación</div>
+      <ul class="checklist">
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Tengo registro de qué partes usaron IA y para qué</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Incluí o prepararé una declaración de uso de IA en mi entrega</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>No hay datos de investigación ficticios generados por IA</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Revisé las implicaciones éticas del sistema para sus usuarios</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>El análisis y conclusiones del trabajo son de mi propio razonamiento</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ PASO 6 ═══ -->
+<section id="paso6" class="section">
+<div class="s-eyebrow">Paso 6 de 6</div>
+<div class="paso-card">
+  <div class="paso-head">
+    <div class="paso-num-badge" style="background:var(--p6d);color:var(--p6)">06</div>
+    <div class="paso-head-info">
+      <h3>Preservación del Pensamiento Crítico</h3>
+      <p>Al finalizar cada sesión, reflexiona sobre lo que aprendiste y lo que delegaste. Tu capacidad de razonamiento propio es tu activo más valioso.</p>
+    </div>
+  </div>
+  <div class="paso-body">
+    <div class="tags">
+      <span class="tag tag-risk">⚠ Dependencia cognitiva acumulada</span>
+      <span class="tag tag-risk">⚠ Erosión de competencias técnicas</span>
+      <span class="tag tag-iso">ISO 25010 — Mantenibilidad</span>
+      <span class="tag tag-norm">CONPES 4144 · IEEE 7000</span>
+    </div>
+    <div class="norm-strip">
+      <div class="norm-pill"><strong>CONPES 4144 de 2025</strong> — Talento digital y capacidades humanas</div>
+      <div class="norm-pill"><strong>IEEE 7000</strong> — Bienestar humano en diseño de sistemas</div>
+      <div class="norm-pill"><strong>ISO/IEC 25010</strong> — Mantenibilidad: Analizabilidad</div>
+    </div>
+    <div class="cb">
+      <div class="cb-label">¿Por qué es obligatorio?</div>
+      <p>La dependencia cognitiva es un proceso acumulativo. El 53,8% de los estudiantes en Cúcuta tiene dificultades con ejercicios de mediana complejidad sin IA, y el 61,5% se autocalifica con dependencia moderada. Este paso es el mecanismo de autoevaluación que interrumpe esa espiral antes de consolidarse como hábito permanente.</p>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Instrucciones de ejecución</div>
+      <ol class="nsteps">
+        <li><span><strong>Ejecuta la reflexión al finalizar cada sesión,</strong> no al final del proyecto. Dedica 5 minutos a responder las preguntas del prompt de autoevaluación.</span></li>
+        <li><span><strong>Identifica qué habilidades ejercitaste</strong> y cuáles delegaste completamente a la IA.</span></li>
+        <li><span><strong>Practica sin IA al menos una vez por semana.</strong> Elige un ejercicio que puedas resolver solo. Esto mantiene activas tus capacidades de razonamiento autónomo.</span></li>
+        <li><span><strong>Lleva un registro de tu índice de dependencia</strong> por proyecto en escala 1–4. Si sube consistentemente, activa una revisión de tus hábitos.</span></li>
+        <li><span><strong>Comparte y discute el código con pares sin la IA presente.</strong> La capacidad de explicar código en conversaciones humanas es el indicador más honesto de comprensión real.</span></li>
+      </ol>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Prompts estructurados</div>
+      <div class="accordion">
+        <button class="acc-trigger open" onclick="toggleAcc(this)"><span>🧠 Prompt 6A — Autoevaluación al cierre de sesión</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body open"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p6)"></span><span class="prompt-title">prompt · autoevaluación-sesión</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Al finalizar esta sesión, quiero hacer una autoevaluación de mi uso de IA.
+
+Trabajé en: <span class="pv">[describe la tarea]</span>
+
+Respóndeme honestamente:
+1. ¿Qué partes pude haber resuelto por mi cuenta sin IA?
+2. ¿Entiendo completamente todo lo que produjimos juntos?
+3. ¿Hay conceptos que la IA usó que no conocía y debo estudiar?
+4. ¿Si tuviera que reproducir esto mañana sin IA, podría hacerlo?
+5. ¿Hay habilidades que estoy dejando de practicar porque la IA las resuelve?
+
+El objetivo es identificar oportunidades de aprendizaje propio.</div>
+        </div></div>
+      </div>
+      <div class="accordion">
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🧠 Prompt 6B — Plan de práctica autónoma</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p6)"></span><span class="prompt-title">prompt · ejercicio-autónomo</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">He estado usando IA en tareas de <span class="pv">[tipo de tareas]</span>. Quiero verificar que mis habilidades están activas con un ejercicio sin IA.
+
+Dame un ejercicio de dificultad <span class="pv">[básica / media / avanzada]</span> sobre <span class="pv">[tema específico]</span> que:
+1. No requiera instalaciones complejas
+2. Pueda completarse en 20–30 minutos
+3. Tenga un resultado verificable que yo mismo pueda comprobar
+
+Solo dame el ejercicio. No me des la solución todavía.</div>
+        </div></div>
+      </div>
+      <div class="accordion">
+        <button class="acc-trigger" onclick="toggleAcc(this)"><span>🧠 Prompt 6C — Identificación de brechas de conocimiento</span><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><div class="prompt-block">
+          <div class="prompt-header"><div class="prompt-tag"><span class="dot" style="background:var(--p6)"></span><span class="prompt-title">prompt · brechas-conocimiento</span></div><button class="copy-btn" onclick="copyP(this)">copiar</button></div>
+          <div class="prompt-body">Hay conceptos que la IA usó en esta sesión que no comprendo del todo: <span class="pv">[lista los conceptos]</span>
+
+Para cada uno dame:
+1. Explicación breve en lenguaje simple: qué es y para qué sirve
+2. Recurso de referencia donde pueda estudiarlo (documentación oficial, libro)
+3. Un ejercicio mínimo para practicar ese concepto sin IA
+
+El objetivo es convertir la brecha en un plan de estudio propio.</div>
+        </div></div>
+      </div>
+    </div>
+    <div class="cb">
+      <div class="cb-label">Lista de verificación</div>
+      <ul class="checklist">
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Realicé la autoevaluación de la sesión antes de cerrar</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Identifiqué al menos un concepto nuevo que debo estudiar por mi cuenta</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Puedo explicar todo el trabajo de la sesión sin apoyo de la IA</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Esta semana practiqué al menos un ejercicio sin IA</span></li>
+        <li class="cl-item" onclick="toggleCl(this)"><div class="cl-box"></div><span>Mi índice de dependencia no aumentó respecto a la sesión anterior</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider-text"><span>Evaluación de calidad ISO/IEC 25010</span></div>
+
+<!-- ═══════════════════════════════════════════
+     ISO 25010 — EVALUACIÓN COMPLETA
+═══════════════════════════════════════════ -->
+<section id="iso-eval" class="iso-eval-section">
+  <div class="iso-eval-intro">
+    <div class="s-eyebrow">ISO/IEC 25010:2023 — SQuaRE</div>
+    <h2>Evaluación de Calidad del Software</h2>
+    <p>Instrumento de autoevaluación basado en el estándar internacional ISO/IEC 25010:2023. Evalúa el código generado con asistencia de IA contra las 9 características de calidad del producto software. Para cada pregunta selecciona la opción que mejor describe el estado actual de tu proyecto. Al finalizar obtendrás un diagnóstico de cumplimiento por característica.</p>
+    <div style="margin-top:16px;display:flex;gap:24px;flex-wrap:wrap;font-size:12px;color:var(--text-3)">
+      <span style="color:#34d399">● Cumple completamente (4 pts)</span>
+      <span style="color:#a3e635">● Cumple mayormente (3 pts)</span>
+      <span style="color:var(--amber)">● Cumple parcialmente (2 pts)</span>
+      <span style="color:var(--rose)">● No cumple (1 pt)</span>
+    </div>
+  </div>
+
+  <!-- SCORE DASHBOARD -->
+  <div class="score-dashboard">
+    <div class="score-card">
+      <div class="score-big" id="totalScore">—</div>
+      <div class="score-sub">Puntaje total</div>
+      <div class="score-bar-wrap"><div class="score-bar-fill" id="totalFill"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-big" id="totalPct">—</div>
+      <div class="score-sub">Nivel de cumplimiento</div>
+      <div class="score-bar-wrap"><div class="score-bar-fill" id="pctFill"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-big" id="totalResp">0</div>
+      <div class="score-sub">Preguntas respondidas de 27</div>
+      <div class="score-bar-wrap"><div class="score-bar-fill" id="respFill"></div></div>
+    </div>
+  </div>
+
+  <!-- CARACTERÍSTICA 1: ADECUACIÓN FUNCIONAL -->
+  <div id="iso-adec" class="iso-char-card">
+    <div class="iso-char-head" onclick="toggleChar(this)">
+      <div class="iso-char-icon" style="background:rgba(91,156,246,.1);font-size:20px">🎯</div>
+      <div class="iso-char-info">
+        <div class="iso-char-name">1. Adecuación Funcional</div>
+        <div class="iso-char-sub">Grado en que el software provee funciones que satisfacen necesidades declaradas e implícitas</div>
+      </div>
+      <div class="iso-char-score">
+        <div class="iso-char-pct" data-char="adec">—</div>
+        <div class="iso-char-label">cumplimiento</div>
+        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#5b9cf6;width:0%"></div></div>
+      </div>
+    </div>
+    <div class="iso-char-body" style="display:none">
+      <div class="iso-sub-list">
+        <span class="iso-sub">Completitud Funcional</span>
+        <span class="iso-sub">Corrección Funcional</span>
+        <span class="iso-sub">Pertinencia Funcional</span>
+      </div>
+      <div class="q-row" data-char="adec">
+        <div class="q-text"><strong>Completitud Funcional:</strong> El código generado por IA implementa <em>todas</em> las funcionalidades definidas en los requisitos del proyecto, sin omitir ninguna función especificada previamente.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="adec_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="adec_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="adec_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="adec_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="adec">
+        <div class="q-text"><strong>Corrección Funcional:</strong> Los resultados del código generado por IA son exactos y precisos para todos los casos de uso definidos; los cálculos, transformaciones y respuestas producen los valores esperados correctamente.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="adec_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="adec_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="adec_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="adec_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="adec">
+        <div class="q-text"><strong>Pertinencia Funcional:</strong> Las funcionalidades que la IA implementó son pertinentes y relevantes para el problema que se resuelve; no incluye funciones innecesarias que aumenten complejidad sin aportar valor.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="adec_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="adec_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="adec_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="adec_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARACTERÍSTICA 2: EFICIENCIA DE DESEMPEÑO -->
+  <div id="iso-efic" class="iso-char-card">
+    <div class="iso-char-head" onclick="toggleChar(this)">
+      <div class="iso-char-icon" style="background:rgba(16,185,129,.1);font-size:20px">⚡</div>
+      <div class="iso-char-info">
+        <div class="iso-char-name">2. Eficiencia de Desempeño</div>
+        <div class="iso-char-sub">Desempeño relativo a la cantidad de recursos usados bajo condiciones establecidas</div>
+      </div>
+      <div class="iso-char-score">
+        <div class="iso-char-pct" data-char="efic">—</div>
+        <div class="iso-char-label">cumplimiento</div>
+        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#10b981;width:0%"></div></div>
+      </div>
+    </div>
+    <div class="iso-char-body" style="display:none">
+      <div class="iso-sub-list">
+        <span class="iso-sub">Comportamiento Temporal</span>
+        <span class="iso-sub">Utilización de Recursos</span>
+        <span class="iso-sub">Capacidad</span>
+      </div>
+      <div class="q-row" data-char="efic">
+        <div class="q-text"><strong>Comportamiento Temporal:</strong> El código generado por IA responde dentro de los tiempos de respuesta aceptables para el contexto de uso; las operaciones no generan esperas perceptibles que afecten la experiencia del usuario o el flujo del sistema.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="efic_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="efic_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="efic_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="efic_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="efic">
+        <div class="q-text"><strong>Utilización de Recursos:</strong> El código IA hace uso eficiente de los recursos del sistema — memoria, CPU, ancho de banda y almacenamiento — sin consumo innecesario o ineficiencias estructurales introducidas por el modelo.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="efic_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="efic_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="efic_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="efic_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="efic">
+        <div class="q-text"><strong>Capacidad:</strong> El sistema puede manejar el volumen máximo esperado de datos, usuarios concurrentes y transacciones sin degradación del desempeño ni errores de capacidad excedida.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="efic_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="efic_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="efic_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="efic_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARACTERÍSTICA 3: COMPATIBILIDAD -->
+  <div id="iso-compat" class="iso-char-card">
+    <div class="iso-char-head" onclick="toggleChar(this)">
+      <div class="iso-char-icon" style="background:rgba(245,158,11,.1);font-size:20px">🔗</div>
+      <div class="iso-char-info">
+        <div class="iso-char-name">3. Compatibilidad</div>
+        <div class="iso-char-sub">Grado en que puede compartir entorno e intercambiar información con otros sistemas</div>
+      </div>
+      <div class="iso-char-score">
+        <div class="iso-char-pct" data-char="compat">—</div>
+        <div class="iso-char-label">cumplimiento</div>
+        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#f59e0b;width:0%"></div></div>
+      </div>
+    </div>
+    <div class="iso-char-body" style="display:none">
+      <div class="iso-sub-list">
+        <span class="iso-sub">Coexistencia</span>
+        <span class="iso-sub">Interoperabilidad</span>
+      </div>
+      <div class="q-row" data-char="compat">
+        <div class="q-text"><strong>Coexistencia:</strong> El código generado por IA coexiste correctamente con los demás componentes del sistema sin generar conflictos, interferencias o incompatibilidades con el entorno de ejecución existente.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="compat_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="compat_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="compat_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="compat_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="compat">
+        <div class="q-text"><strong>Interoperabilidad con APIs externas:</strong> Los módulos generados por IA son interoperables con las APIs, servicios externos y sistemas de terceros requeridos por el proyecto, usando los protocolos y formatos correctos.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="compat_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="compat_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="compat_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="compat_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="compat">
+        <div class="q-text"><strong>Compatibilidad con librerías existentes:</strong> El código IA no introduce conflictos de versiones, dependencias circulares ni incompatibilidades con las librerías, frameworks o herramientas ya presentes en el proyecto.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="compat_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="compat_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="compat_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="compat_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARACTERÍSTICA 4: CAPACIDAD DE INTERACCIÓN -->
+  <div id="iso-inter" class="iso-char-card">
+    <div class="iso-char-head" onclick="toggleChar(this)">
+      <div class="iso-char-icon" style="background:rgba(6,182,212,.1);font-size:20px">🖥️</div>
+      <div class="iso-char-info">
+        <div class="iso-char-name">4. Capacidad de Interacción</div>
+        <div class="iso-char-sub">Grado en que puede ser usado por usuarios para lograr sus objetivos con efectividad, eficiencia y satisfacción</div>
+      </div>
+      <div class="iso-char-score">
+        <div class="iso-char-pct" data-char="inter">—</div>
+        <div class="iso-char-label">cumplimiento</div>
+        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#06b6d4;width:0%"></div></div>
+      </div>
+    </div>
+    <div class="iso-char-body" style="display:none">
+      <div class="iso-sub-list">
+        <span class="iso-sub">Reconocibilidad</span><span class="iso-sub">Aprendizabilidad</span><span class="iso-sub">Operabilidad</span><span class="iso-sub">Protección ante errores</span><span class="iso-sub">Involucración</span><span class="iso-sub">Inclusividad</span><span class="iso-sub">Asistencia al usuario</span><span class="iso-sub">Auto-descriptividad</span>
+      </div>
+      <div class="q-row" data-char="inter">
+        <div class="q-text"><strong>Reconocibilidad y Aprendizabilidad:</strong> El sistema generado con asistencia de IA es intuitivo: los usuarios pueden reconocer si es adecuado para sus necesidades y aprender a usarlo sin necesidad de capacitación extensa ni documentación excesiva.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="inter_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="inter_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="inter_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="inter_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="inter">
+        <div class="q-text"><strong>Protección ante errores del usuario:</strong> El sistema protege al usuario de cometer errores graves durante su uso: valida entradas, solicita confirmación antes de operaciones irreversibles y presenta mensajes de error claros y accionables.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="inter_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="inter_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="inter_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="inter_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="inter">
+        <div class="q-text"><strong>Inclusividad y Auto-descriptividad:</strong> El sistema es accesible para diferentes perfiles de usuario, no hace suposiciones restrictivas sobre el conocimiento técnico del usuario, y se describe a sí mismo de manera que el usuario entiende en qué estado se encuentra y qué puede hacer.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="inter_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="inter_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="inter_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="inter_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARACTERÍSTICA 5: FIABILIDAD -->
+  <div id="iso-fiab" class="iso-char-card">
+    <div class="iso-char-head" onclick="toggleChar(this)">
+      <div class="iso-char-icon" style="background:rgba(139,92,246,.1);font-size:20px">🛡️</div>
+      <div class="iso-char-info">
+        <div class="iso-char-name">5. Fiabilidad</div>
+        <div class="iso-char-sub">Grado en que realiza funciones especificadas bajo condiciones establecidas por un periodo de tiempo determinado</div>
+      </div>
+      <div class="iso-char-score">
+        <div class="iso-char-pct" data-char="fiab">—</div>
+        <div class="iso-char-label">cumplimiento</div>
+        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#8b5cf6;width:0%"></div></div>
+      </div>
+    </div>
+    <div class="iso-char-body" style="display:none">
+      <div class="iso-sub-list">
+        <span class="iso-sub">Ausencia de Fallos</span><span class="iso-sub">Disponibilidad</span><span class="iso-sub">Tolerancia a Fallos</span><span class="iso-sub">Recuperabilidad</span>
+      </div>
+      <div class="q-row" data-char="fiab">
+        <div class="q-text"><strong>Ausencia de Fallos:</strong> El código generado por IA opera sin fallos, crashes ni comportamientos inesperados bajo condiciones normales de uso; no produce resultados incorrectos silenciosos ni errores no controlados que interrumpan la ejecución del sistema.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="fiab_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="fiab_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="fiab_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="fiab_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="fiab">
+        <div class="q-text"><strong>Disponibilidad y Tolerancia a Fallos:</strong> El sistema está disponible cuando los usuarios lo necesitan sin interrupciones no planificadas; cuando ocurren errores, el sistema los maneja de forma controlada sin propagarlos a otros componentes críticos.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="fiab_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="fiab_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="fiab_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="fiab_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="fiab">
+        <div class="q-text"><strong>Recuperabilidad:</strong> El sistema se recupera correctamente después de un fallo o error inesperado: restaura el estado previo al error, protege la integridad de los datos y retoma la operación normal sin intervención manual en los casos previstos.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="fiab_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="fiab_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="fiab_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="fiab_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARACTERÍSTICA 6: SEGURIDAD -->
+  <div id="iso-seg" class="iso-char-card">
+    <div class="iso-char-head" onclick="toggleChar(this)">
+      <div class="iso-char-icon" style="background:rgba(244,63,94,.1);font-size:20px">🔐</div>
+      <div class="iso-char-info">
+        <div class="iso-char-name">6. Seguridad</div>
+        <div class="iso-char-sub">Grado en que protege la información y los datos de accesos no autorizados y garantiza la autenticidad</div>
+      </div>
+      <div class="iso-char-score">
+        <div class="iso-char-pct" data-char="seg">—</div>
+        <div class="iso-char-label">cumplimiento</div>
+        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#f43f5e;width:0%"></div></div>
+      </div>
+    </div>
+    <div class="iso-char-body" style="display:none">
+      <div class="iso-sub-list">
+        <span class="iso-sub">Confidencialidad</span><span class="iso-sub">Integridad</span><span class="iso-sub">No-Repudio</span><span class="iso-sub">Responsabilidad</span><span class="iso-sub">Autenticidad</span><span class="iso-sub">Resistencia</span>
+      </div>
+      <div class="q-row" data-char="seg">
+        <div class="q-text"><strong>Confidencialidad e Integridad:</strong> El código generado por IA garantiza que los datos solo son accesibles para usuarios autorizados, no expone información sensible en logs ni mensajes de error, y previene modificaciones no autorizadas de los datos que maneja.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="seg_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="seg_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="seg_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="seg_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="seg">
+        <div class="q-text"><strong>No-Repudio y Responsabilidad:</strong> Las operaciones críticas del sistema quedan registradas de forma trazable para garantizar que ninguna acción pueda negarse; existe un registro auditable de quién hizo qué y cuándo en el sistema.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="seg_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="seg_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="seg_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="seg_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="seg">
+        <div class="q-text"><strong>Autenticidad y Resistencia:</strong> El sistema verifica la identidad de los actores que acceden a recursos protegidos, y resiste ataques como inyección SQL, cross-site scripting, fuerza bruta y otras amenazas documentadas relevantes para el contexto de la aplicación.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="seg_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="seg_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="seg_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="seg_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARACTERÍSTICA 7: MANTENIBILIDAD -->
+  <div id="iso-mant" class="iso-char-card">
+    <div class="iso-char-head" onclick="toggleChar(this)">
+      <div class="iso-char-icon" style="background:rgba(249,115,22,.1);font-size:20px">🔧</div>
+      <div class="iso-char-info">
+        <div class="iso-char-name">7. Mantenibilidad</div>
+        <div class="iso-char-sub">Grado de efectividad y eficiencia con la que puede ser modificado por mantenedores previstos</div>
+      </div>
+      <div class="iso-char-score">
+        <div class="iso-char-pct" data-char="mant">—</div>
+        <div class="iso-char-label">cumplimiento</div>
+        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#f97316;width:0%"></div></div>
+      </div>
+    </div>
+    <div class="iso-char-body" style="display:none">
+      <div class="iso-sub-list">
+        <span class="iso-sub">Modularidad</span><span class="iso-sub">Reusabilidad</span><span class="iso-sub">Analizabilidad</span><span class="iso-sub">Capacidad de ser Modificado</span><span class="iso-sub">Capacidad de ser Probado</span>
+      </div>
+      <div class="q-row" data-char="mant">
+        <div class="q-text"><strong>Modularidad y Reusabilidad:</strong> Los módulos del sistema generados con IA son independientes con acoplamiento bajo y cohesión alta, de manera que puedan modificarse o reemplazarse sin afectar otros componentes; los componentes bien construidos son candidatos a reusarse en otros contextos.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="mant_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="mant_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="mant_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="mant_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="mant">
+        <div class="q-text"><strong>Analizabilidad:</strong> Es posible identificar y diagnosticar la causa de un fallo en el código IA sin requerir asistencia de la herramienta que lo generó; el código es legible, está comentado adecuadamente y su flujo lógico es comprensible para el equipo.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="mant_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="mant_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="mant_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="mant_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="mant">
+        <div class="q-text"><strong>Capacidad de ser Modificado y Probado:</strong> El código generado por IA puede modificarse y extenderse con nuevos requisitos sin efectos secundarios no intencionales; y puede ser probado de forma unitaria e integrada para verificar que los cambios no introducen regresiones.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="mant_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="mant_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="mant_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="mant_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARACTERÍSTICA 8: FLEXIBILIDAD -->
+  <div id="iso-flex" class="iso-char-card">
+    <div class="iso-char-head" onclick="toggleChar(this)">
+      <div class="iso-char-icon" style="background:rgba(163,230,53,.1);font-size:20px">🌿</div>
+      <div class="iso-char-info">
+        <div class="iso-char-name">8. Flexibilidad</div>
+        <div class="iso-char-sub">Grado en que puede adaptarse a cambios de requisitos, contextos o entornos de uso</div>
+      </div>
+      <div class="iso-char-score">
+        <div class="iso-char-pct" data-char="flex">—</div>
+        <div class="iso-char-label">cumplimiento</div>
+        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#84cc16;width:0%"></div></div>
+      </div>
+    </div>
+    <div class="iso-char-body" style="display:none">
+      <div class="iso-sub-list">
+        <span class="iso-sub">Adaptabilidad</span><span class="iso-sub">Escalabilidad</span><span class="iso-sub">Instalabilidad</span><span class="iso-sub">Reemplazabilidad</span>
+      </div>
+      <div class="q-row" data-char="flex">
+        <div class="q-text"><strong>Adaptabilidad:</strong> El código generado por IA puede adaptarse a nuevos requisitos, cambios en el entorno o variaciones en los casos de uso sin requerir refactorizaciones mayores ni reescrituras completas de la lógica central.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="flex_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="flex_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="flex_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="flex_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="flex">
+        <div class="q-text"><strong>Escalabilidad:</strong> El sistema puede escalar para manejar mayor carga de usuarios, datos o transacciones sin cambios arquitecturales profundos; el código IA no introduce cuellos de botella que impidan el crecimiento futuro del sistema.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="flex_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="flex_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="flex_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="flex_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="flex">
+        <div class="q-text"><strong>Instalabilidad y Reemplazabilidad:</strong> El software puede instalarse y desinstalarse correctamente en los entornos objetivo definidos; los componentes generados por IA pueden reemplazarse por versiones mejoradas o alternativas sin afectar al resto del sistema.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="flex_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="flex_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="flex_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="flex_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARACTERÍSTICA 9: PROTECCIÓN (SAFETY) -->
+  <div id="iso-prot" class="iso-char-card">
+    <div class="iso-char-head" onclick="toggleChar(this)">
+      <div class="iso-char-icon" style="background:rgba(236,72,153,.1);font-size:20px">⚠️</div>
+      <div class="iso-char-info">
+        <div class="iso-char-name">9. Protección (Safety)</div>
+        <div class="iso-char-sub">Grado en que mitiga el riesgo de daño a personas, bienes, software, hardware o entorno</div>
+      </div>
+      <div class="iso-char-score">
+        <div class="iso-char-pct" data-char="prot">—</div>
+        <div class="iso-char-label">cumplimiento</div>
+        <div class="iso-char-bar"><div class="iso-char-fill" style="background:#ec4899;width:0%"></div></div>
+      </div>
+    </div>
+    <div class="iso-char-body" style="display:none">
+      <div class="iso-sub-list">
+        <span class="iso-sub">Restricción Operativa</span><span class="iso-sub">Identificación de Riesgos</span><span class="iso-sub">Protección ante Fallos</span><span class="iso-sub">Advertencia de Peligro</span><span class="iso-sub">Integración Segura</span>
+      </div>
+      <div class="q-row" data-char="prot">
+        <div class="q-text"><strong>Restricción Operativa e Identificación de Riesgos:</strong> El sistema implementa controles que evitan operar en condiciones no autorizadas o peligrosas; identifica situaciones de riesgo potencial antes de que ocurran fallos e impide la ejecución de operaciones que puedan causar daño a datos, usuarios o sistemas externos.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="prot_1" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="prot_1" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="prot_1" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="prot_1" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="prot">
+        <div class="q-text"><strong>Protección ante Fallos y Advertencia de Peligro:</strong> Ante un fallo del sistema, el código IA garantiza que el sistema pase a un estado seguro conocido; el sistema advierte a los usuarios antes de que realicen acciones potencialmente peligrosas o irreversibles para sus datos.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="prot_2" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="prot_2" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="prot_2" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="prot_2" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+      <div class="q-row" data-char="prot">
+        <div class="q-text"><strong>Integración Segura:</strong> Los componentes generados por IA que interactúan con sistemas externos lo hacen a través de interfaces seguras y validadas; las integraciones están diseñadas para que un fallo en el sistema externo no comprometa la integridad ni la seguridad del sistema principal.</div>
+        <div class="q-options">
+          <label class="q-opt"><input type="radio" name="prot_3" value="4"><label><span class="q-opt-dot"></span>Cumple completamente</label></label>
+          <label class="q-opt"><input type="radio" name="prot_3" value="3"><label><span class="q-opt-dot"></span>Cumple mayormente</label></label>
+          <label class="q-opt"><input type="radio" name="prot_3" value="2"><label><span class="q-opt-dot"></span>Cumple parcialmente</label></label>
+          <label class="q-opt"><input type="radio" name="prot_3" value="1"><label><span class="q-opt-dot"></span>No cumple</label></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTONES DE ACCIÓN -->
+  <button class="eval-btn" onclick="calcScore()">Calcular resultado de evaluación</button>
+  <button class="reset-btn" onclick="resetEval()">Reiniciar evaluación</button>
+
+  <!-- RESULTADO -->
+  <div class="eval-result" id="evalResult">
+    <div class="result-header">
+      <h3>Diagnóstico de Calidad ISO/IEC 25010</h3>
+      <div class="result-score-big" id="resultBig">—</div>
+      <div style="font-size:13px;color:var(--text-3)" id="resultLabel">—</div>
+    </div>
+    <div class="result-grid" id="resultGrid"></div>
+    <div style="margin-top:24px;padding:16px;background:var(--bg-3);border:1px solid var(--border);border-radius:var(--r);font-size:13px;color:var(--text-3)" id="resultRec"></div>
+  </div>
+</section>
+
+<div class="divider-text"><span>Resumen y normativa</span></div>
+
+<!-- ═══ TABLA COMPARATIVA ═══ -->
+<section id="comparativa" class="section">
+  <div class="s-eyebrow">Síntesis general</div>
+  <div class="s-title">Tabla comparativa <em>de los 6 pasos</em></div>
+  <div class="s-lead">Resumen integrado de la metodología con riesgos, normas y productos verificables por paso.</div>
+  <div class="comp-table-wrap">
+    <table class="comp-t">
+      <thead><tr><th>Paso</th><th>Momento</th><th>Riesgo mitigado</th><th>ISO 25010</th><th>Marco normativo</th><th>Producto verificable</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:600;color:var(--p1)">1 — Definición</td><td>Antes de abrir la IA</td><td>Dependencia cognitiva</td><td>Fiabilidad · Funcionalidad</td><td>NIST AI RMF — GOVERN 1.1</td><td>Documento de propósito y criterios</td></tr>
+        <tr><td style="font-weight:600;color:var(--p2)">2 — Validación</td><td>Al recibir el output</td><td>Alucinaciones · Código incorrecto</td><td>Fiabilidad · Mantenibilidad</td><td>NIST AI RMF — MEASURE 2.5</td><td>Casos de prueba ejecutados</td></tr>
+        <tr><td style="font-weight:600;color:var(--p3)">3 — Seguridad</td><td>Antes de integrar</td><td>Vulnerabilidades · Datos sensibles</td><td>Seguridad — Confidencialidad</td><td>Ley 1581/2012 · UE Art. 9</td><td>Informe de auditoría</td></tr>
+        <tr><td style="font-weight:600;color:var(--p4)">4 — Supervisión</td><td>Durante el proceso</td><td>Sesgo de automatización</td><td>Mantenibilidad — Modificabilidad</td><td>Reglamento UE 2024/1689 — Art. 14</td><td>Registro de decisiones técnicas</td></tr>
+        <tr><td style="font-weight:600;color:var(--p5)">5 — Ética</td><td>Antes de entregar</td><td>Fraude · Violación de PI</td><td>Seguridad — Autenticidad</td><td>Ley 23/1982 · CONPES 4144</td><td>Declaración formal de uso de IA</td></tr>
+        <tr><td style="font-weight:600;color:var(--p6)">6 — Pensamiento</td><td>Al finalizar sesión</td><td>Dependencia cognitiva acumulada</td><td>Mantenibilidad — Analizabilidad</td><td>CONPES 4144 · IEEE 7000</td><td>Registro de autoevaluación</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ NORMATIVA ═══ -->
+<section id="normativa" class="section">
+  <div class="s-eyebrow">Marco normativo de referencia</div>
+  <div class="s-title">Normas y estándares <em>aplicados</em></div>
+  <div class="s-lead">Instrumentos normativos, técnicos y éticos que fundamentan esta guía metodológica.</div>
+  <div class="norm-card"><div class="norm-badge">ISO 25010</div><div class="norm-content"><h4>ISO/IEC 25010:2023 — SQuaRE</h4><p>Estándar internacional de calidad de software. Define 9 características de calidad: Adecuación Funcional, Eficiencia de Desempeño, Compatibilidad, Capacidad de Interacción, Fiabilidad, Seguridad, Mantenibilidad, Flexibilidad y Protección.</p><div class="norm-steps">→ Todos los pasos · Sección de evaluación completa</div></div></div>
+  <div class="norm-card"><div class="norm-badge">NIST RMF</div><div class="norm-content"><h4>NIST AI Risk Management Framework (2023)</h4><p>Marco de gestión de riesgos de IA del NIST. Organiza la gestión del riesgo en cuatro funciones: GOVERN, MAP, MEASURE y MANAGE. Referencia técnica internacional para sistemas de IA.</p><div class="norm-steps">→ Pasos 1, 2, 4</div></div></div>
+  <div class="norm-card"><div class="norm-badge">UE 2024</div><div class="norm-content"><h4>Reglamento UE 2024/1689 — AI Act</h4><p>Reglamento de IA de la Unión Europea. Art. 14: supervisión humana obligatoria. Art. 52: transparencia sobre contenidos generados por IA. Art. 9: gestión de riesgos en sistemas de IA.</p><div class="norm-steps">→ Pasos 3, 4, 5</div></div></div>
+  <div class="norm-card"><div class="norm-badge">Ley 1581</div><div class="norm-content"><h4>Ley 1581 de 2012 — Colombia</h4><p>Ley de protección de datos personales en Colombia. Principios: legalidad, finalidad, libertad, veracidad, transparencia, acceso restringido, seguridad y confidencialidad. Aplica a código que procese datos de ciudadanos colombianos.</p><div class="norm-steps">→ Paso 3</div></div></div>
+  <div class="norm-card"><div class="norm-badge">Ley 23</div><div class="norm-content"><h4>Ley 23 de 1982 — Colombia</h4><p>Ley sobre derechos de autor en Colombia. Relevante para autoría del código generado y restricciones de uso de licencias de código abierto en proyectos con asistencia de IA.</p><div class="norm-steps">→ Paso 5</div></div></div>
+  <div class="norm-card"><div class="norm-badge">CONPES 4144</div><div class="norm-content"><h4>CONPES 4144 de 2025 — Colombia</h4><p>Política de Estado colombiana para el aprovechamiento ético, seguro y sostenible de la IA a 2030. Principios de gobernanza, talento digital, confianza y ética en el uso de la IA en Colombia.</p><div class="norm-steps">→ Pasos 5, 6</div></div></div>
+  <div class="norm-card"><div class="norm-badge">IEEE 7000</div><div class="norm-content"><h4>IEEE 7000:2021 — Diseño ético</h4><p>Estándar para diseño de sistemas alineados éticamente. Los sistemas tecnológicos deben priorizar el bienestar humano, la transparencia y la responsabilidad desde la fase de diseño.</p><div class="norm-steps">→ Pasos 5, 6</div></div></div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="page-footer">
+  <strong>Guía Metodológica Integral de Integración de la IA en el Desarrollo de Software</strong><br>
+  Andres Felipe Jaimes Carrillo · Universidad Libre seccional Cúcuta · Ingeniería en TIC · 2025<br>
+  Directores: PhD. Jesús Álvarez Guerrero · Ing. Alix Ospino<br><br>
+  <span style="font-size:11px">Elaboración propia (2025). Fundamentada en ISO/IEC 25010:2023, NIST AI RMF, Reglamento UE 2024/1689, Ley 1581 de 2012, Ley 23 de 1982, CONPES 4144 de 2025 e IEEE 7000:2021.</span>
+</footer>
+
+</main>
+</div>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+/* ═══ SCROLL PROGRESS ═══ */
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = total > 0 ? (scrolled / total) * 100 : 0;
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('sbFill').style.width = pct + '%';
+  document.getElementById('readPct').textContent = Math.round(pct) + '%';
+  document.getElementById('scrollTop').classList.toggle('vis', scrolled > 400);
+}
+window.addEventListener('scroll', updateProgress);
+
+/* ═══ SCROLLSPY ═══ */
+const sections = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.sb-link');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-25% 0px -65% 0px' });
+sections.forEach(s => obs.observe(s));
+
+/* ═══ ACCORDION ═══ */
+function toggleAcc(btn) {
+  btn.classList.toggle('open');
+  const body = btn.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+/* ═══ COPY PROMPT ═══ */
+function copyP(btn) {
+  const text = btn.closest('.prompt-block').querySelector('.prompt-body').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ copiado';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = 'copiar'; btn.classList.remove('ok'); }, 2200);
+  });
+}
+
+/* ═══ CHECKLIST ═══ */
+function toggleCl(li) {
+  li.querySelector('.cl-box').classList.toggle('done');
+  li.classList.toggle('checked');
+}
+
+/* ═══ ISO CHAR TOGGLE ═══ */
+function toggleChar(head) {
+  const body = head.nextElementSibling;
+  const isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+}
+
+/* ═══ ISO SCORE CALCULATION ═══ */
+const CHARS = ['adec','efic','compat','inter','fiab','seg','mant','flex','prot'];
+const CHAR_NAMES = {
+  adec: 'Adecuación Funcional', efic: 'Eficiencia Desempeño',
+  compat: 'Compatibilidad', inter: 'Capacidad Interacción',
+  fiab: 'Fiabilidad', seg: 'Seguridad',
+  mant: 'Mantenibilidad', flex: 'Flexibilidad', prot: 'Protección'
+};
+const CHAR_COLORS = {
+  adec:'#5b9cf6', efic:'#10b981', compat:'#f59e0b', inter:'#06b6d4',
+  fiab:'#8b5cf6', seg:'#f43f5e', mant:'#f97316', flex:'#84cc16', prot:'#ec4899'
+};
+
+function getCharScore(char) {
+  const rows = document.querySelectorAll(`.q-row[data-char="${char}"]`);
+  let total = 0, answered = 0;
+  rows.forEach((_, i) => {
+    const sel = document.querySelector(`input[name="${char}_${i+1}"]:checked`);
+    if (sel) { total += parseInt(sel.value); answered++; }
+  });
+  return { total, answered, max: rows.length * 4, questions: rows.length };
+}
+
+function updateDashboard() {
+  let totalAnswered = 0, totalScore = 0, totalMax = 0;
+  CHARS.forEach(c => {
+    const s = getCharScore(c);
+    totalAnswered += s.answered;
+    totalScore += s.total;
+    totalMax += s.max;
+    const pct = s.answered > 0 ? Math.round((s.total / (s.answered * 4)) * 100) : 0;
+    const el = document.querySelector(`.iso-char-pct[data-char="${c}"]`);
+    if (el) {
+      el.textContent = s.answered === s.questions ? pct + '%' : `${s.answered}/${s.questions}`;
+      const fill = el.closest('.iso-char-score').querySelector('.iso-char-fill');
+      if (fill) fill.style.width = pct + '%';
+    }
+  });
+  const overallPct = totalAnswered > 0 ? Math.round((totalScore / (totalAnswered * 4)) * 100) : 0;
+  document.getElementById('totalResp').textContent = totalAnswered;
+  document.getElementById('respFill').style.width = (totalAnswered / 27) * 100 + '%';
+  if (totalAnswered > 0) {
+    document.getElementById('totalScore').textContent = totalScore + '/' + (totalAnswered * 4);
+    document.getElementById('totalPct').textContent = overallPct + '%';
+    document.getElementById('totalFill').style.width = overallPct + '%';
+    document.getElementById('pctFill').style.width = overallPct + '%';
+  }
+}
+
+document.querySelectorAll('.q-opt input').forEach(inp => {
+  inp.addEventListener('change', updateDashboard);
+});
+
+function calcScore() {
+  const unanswered = [];
+  let totalScore = 0, totalMax = 0;
+  CHARS.forEach(c => {
+    const rows = document.querySelectorAll(`.q-row[data-char="${c}"]`);
+    rows.forEach((_, i) => {
+      const sel = document.querySelector(`input[name="${c}_${i+1}"]:checked`);
+      if (!sel) unanswered.push(`${CHAR_NAMES[c]} — Pregunta ${i+1}`);
+      else { totalScore += parseInt(sel.value); totalMax += 4; }
+    });
+  });
+  if (unanswered.length > 0) {
+    alert(`Por favor responde todas las preguntas antes de calcular.\n\nPendientes:\n• ${unanswered.slice(0,5).join('\n• ')}${unanswered.length > 5 ? '\n• (y ' + (unanswered.length - 5) + ' más...)' : ''}`);
+    return;
+  }
+  const pct = Math.round((totalScore / totalMax) * 100);
+  let label = '', color = '';
+  if (pct >= 85) { label = 'Excelente cumplimiento'; color = '#34d399'; }
+  else if (pct >= 70) { label = 'Buen cumplimiento'; color = '#a3e635'; }
+  else if (pct >= 55) { label = 'Cumplimiento parcial'; color = '#f59e0b'; }
+  else { label = 'Requiere mejoras significativas'; color = '#f43f5e'; }
+  document.getElementById('resultBig').textContent = pct + '%';
+  document.getElementById('resultBig').style.color = color;
+  document.getElementById('resultLabel').textContent = label + ' · ' + totalScore + '/' + totalMax + ' puntos';
+  const grid = document.getElementById('resultGrid');
+  grid.innerHTML = CHARS.map(c => {
+    const s = getCharScore(c);
+    const cp = Math.round((s.total / s.max) * 100);
+    return `<div class="result-item"><div class="result-item-name">${CHAR_NAMES[c]}</div><div class="result-item-val" style="color:${CHAR_COLORS[c]}">${cp}%</div></div>`;
+  }).join('');
+  const weakest = CHARS.filter(c => { const s = getCharScore(c); return (s.total/s.max) < 0.6; }).map(c => CHAR_NAMES[c]);
+  document.getElementById('resultRec').innerHTML = weakest.length > 0
+    ? `<strong style="color:var(--text-2)">Áreas prioritarias de mejora:</strong> ${weakest.join(', ')}. Revisa los pasos metodológicos correspondientes y aplica los prompts de auditoría y validación indicados en cada sección.`
+    : `<strong style="color:#34d399">✓ Excelente resultado.</strong> Tu proyecto muestra un alto nivel de cumplimiento ISO/IEC 25010. Continúa aplicando la metodología de forma sistemática en cada nuevo ciclo de desarrollo.`;
+  document.getElementById('evalResult').classList.add('show');
+  document.getElementById('evalResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetEval() {
+  document.querySelectorAll('.q-opt input').forEach(i => i.checked = false);
+  document.getElementById('evalResult').classList.remove('show');
+  CHARS.forEach(c => {
+    const el = document.querySelector(`.iso-char-pct[data-char="${c}"]`);
+    if (el) { el.textContent = '—'; const fill = el.closest('.iso-char-score').querySelector('.iso-char-fill'); if (fill) fill.style.width = '0%'; }
+  });
+  document.getElementById('totalScore').textContent = '—';
+  document.getElementById('totalPct').textContent = '—';
+  document.getElementById('totalResp').textContent = '0';
+  document.getElementById('totalFill').style.width = '0%';
+  document.getElementById('pctFill').style.width = '0%';
+  document.getElementById('respFill').style.width = '0%';
+}
+</script>
+</body>
+</html>
+HTMLEOF
+echo "Listo: $(wc -l < /home/claude/guia_v2.html) líneas"
+Output
+
+Command argument is 132_247 bytes, exceeding the 100_000-byte per-argument limit. For large content, pipe via stdin or use a file-write API instead of embedding the content inline in the command. Argument preview: 'cat > /home/claude/guia_v2.html << \'HTMLEOF\'\n<!DOCTYPE html>\n<html lang="es">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>Guía Metodológ'
