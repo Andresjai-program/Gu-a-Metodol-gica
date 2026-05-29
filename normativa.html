@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Marco normativo y estándares aplicados en la guía metodológica.">
+  <title>Normativa y Estándares — Guía Metodológica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .norm-card {
+      background: var(--bg-base);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-xl);
+      margin-bottom: var(--sp-2xl);
+      display: flex;
+      gap: var(--sp-xl);
+      transition: all 0.2s;
+    }
+    
+    .norm-card:hover {
+      border-color: var(--border-default);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-2px);
+    }
+    
+    .norm-badge {
+      min-width: 100px;
+      padding: var(--sp-lg);
+      background: var(--bg-alt);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      text-align: center;
+      height: fit-content;
+      flex-shrink: 0;
+    }
+    
+    .norm-content {
+      flex: 1;
+    }
+    
+    .norm-content h3 {
+      margin-bottom: var(--sp-sm);
+      color: var(--text-primary);
+    }
+    
+    .norm-content p {
+      margin-bottom: var(--sp-lg);
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+    
+    .norm-content p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .norm-steps {
+      font-size: 0.9rem;
+      color: var(--accent-primary);
+      font-weight: 600;
+      padding-top: var(--sp-lg);
+      border-top: 1px solid var(--border-light);
+    }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: var(--sp-2xl);
+      background: var(--bg-base);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    
+    .comparison-table th {
+      background: var(--bg-alt);
+      padding: var(--sp-lg);
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+    
+    .comparison-table td {
+      padding: var(--sp-lg);
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .comparison-table tbody tr:hover {
+      background: var(--bg-alt);
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-content">
+    <div class="header-logo">
+      <span></span>
+      <span>Guía Metodológica</span>
+    </div>
+    <nav class="header-nav">
+      <a href="index.html">Inicio</a>
+      <a href="pasos.html">Los 6 Pasos</a>
+      <a href="iso-evaluation.html">Evaluación</a>
+      <a href="normativa.html">Normativa</a>
+    </nav>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main-container">
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="index.html">Inicio</a>
+    <span>/</span>
+    <span>Normativa</span>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" style="margin-bottom: var(--sp-3xl);">
+    <div class="hero-eyebrow">
+      <span>●</span>
+      <span>Marco normativo</span>
+    </div>
+    
+    <h1>Estándares y regulaciones <em>aplicados</em></h1>
+    
+    <p class="hero-lead">
+      Esta guía está fundamentada en normas técnicas internacionales y regulaciones que afectan el desarrollo de software con IA en 2025. Cada estándar aborda dimensiones específicas: calidad técnica, gestión de riesgos, protección de datos, derechos de autor y ética en diseño.
+    </p>
+  </section>
+
+  <!-- NORMA 1: ISO 25010 -->
+  <section class="section">
+    <div class="norm-card">
+      <div class="norm-badge">ISO 25010</div>
+      <div class="norm-content">
+        <h3>ISO/IEC 25010:2023 — SQuaRE</h3>
+        <p>
+          Estándar internacional de calidad de software. Define una arquitectura de 9 características de calidad que cubren todo el ciclo de vida del software: desde su funcionalidad hasta su mantenibilidad y adaptabilidad.
+        </p>
+        <p>
+          <strong>Características evaluadas:</strong> Adecuación Funcional, Eficiencia de Desempeño, Compatibilidad, Capacidad de Interacción, Fiabilidad, Seguridad, Mantenibilidad, Flexibilidad, Protección.
+        </p>
+        <p>
+          <strong>Aplicación en esta guía:</strong> Todos los 6 pasos metodológicos se alinean con características ISO 25010. El instrumento de evaluación interactivo implementa esta norma completamente.
+        </p>
+        <div class="norm-steps">→ Referencia principal de todas las secciones · Evaluación completa en ISO 25010</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NORMA 2: NIST AI RMF -->
+  <section class="section">
+    <div class="norm-card">
+      <div class="norm-badge">NIST RMF</div>
+      <div class="norm-content">
+        <h3>NIST AI Risk Management Framework (2023)</h3>
+        <p>
+          Marco de gestión de riesgos de IA del Instituto Nacional de Estándares y Tecnología (NIST) de EE.UU. Organiza la gestión del riesgo en cuatro funciones: GOVERN (gobernanza), MAP (mapeo de riesgos), MEASURE (medición) y MANAGE (gestión).
+        </p>
+        <p>
+          <strong>Funciones aplicadas:</strong>
+        </p>
+        <ul style="margin-bottom: var(--sp-lg); color: var(--text-secondary);">
+          <li><strong>GOVERN:</strong> Paso 1 — Establecimiento de propósito y criterios antes de usar IA</li>
+          <li><strong>MAP:</strong> Paso 3 — Auditoría de seguridad e identificación de riesgos</li>
+          <li><strong>MEASURE:</strong> Paso 2 — Validación de outputs y pruebas sistemáticas</li>
+          <li><strong>MANAGE:</strong> Paso 4 — Supervisión activa y registro de decisiones</li>
+        </ul>
+        <div class="norm-steps">→ Pasos 1, 2, 3, 4 · Marco técnico global para IA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NORMA 3: UE 2024/1689 -->
+  <section class="section">
+    <div class="norm-card">
+      <div class="norm-badge">UE 2024</div>
+      <div class="norm-content">
+        <h3>Reglamento UE 2024/1689 — AI Act</h3>
+        <p>
+          Reglamento de Inteligencia Artificial de la Unión Europea. Es la regulación más comprehensiva sobre IA a nivel global. Aunque fue diseñada para la UE, sus principios se consideran best practice internacional.
+        </p>
+        <p>
+          <strong>Artículos relevantes:</strong>
+        </p>
+        <ul style="margin-bottom: var(--sp-lg); color: var(--text-secondary);">
+          <li><strong>Art. 14 — Supervisión Humana:</strong> Requiere supervisión humana activa de sistemas de IA. Se alinea con Paso 4</li>
+          <li><strong>Art. 52 — Transparencia:</strong> Los usuarios deben ser informados cuando interactúan con IA. Se alinea con Paso 5</li>
+          <li><strong>Art. 9 — Gestión de Riesgos:</strong> Identificación, análisis y mitigación sistemática de riesgos. Se alinea con Pasos 2 y 3</li>
+        </ul>
+        <div class="norm-steps">→ Pasos 3, 4, 5 · Regulación vinculante en UE desde 2024</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NORMA 4: LEY 1581 -->
+  <section class="section">
+    <div class="norm-card">
+      <div class="norm-badge">LEY 1581</div>
+      <div class="norm-content">
+        <h3>Ley 1581 de 2012 — Protección de Datos Personales (Colombia)</h3>
+        <p>
+          Ley colombiana que regula el tratamiento de datos personales. Establece principios de legalidad, finalidad, libertad, veracidad, transparencia, acceso restringido, seguridad y confidencialidad.
+        </p>
+        <p>
+          <strong>Aplicación:</strong> Si tu código procesa datos de ciudadanos colombianos (nombres, cédulas, emails, ubicación), esta ley es vinculante. El Paso 3 aborda auditoría específica para cumplimiento de estos requisitos.
+        </p>
+        <p>
+          <strong>Riesgos frecuentes:</strong> Código IA que no valida permisos de acceso, que expose datos en logs, o que no implementa derecho al olvido.
+        </p>
+        <div class="norm-steps">→ Paso 3 — Auditoría de Seguridad · Regulación colombiana vigente</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NORMA 5: LEY 23 -->
+  <section class="section">
+    <div class="norm-card">
+      <div class="norm-badge">LEY 23</div>
+      <div class="norm-content">
+        <h3>Ley 23 de 1982 — Derechos de Autor (Colombia)</h3>
+        <p>
+          Ley colombiana que regula los derechos de autor y propiedad intelectual. Relevante cuando usas IA porque los modelos fueron entrenados con código público, y las salidas pueden coincidir con código existente.
+        </p>
+        <p>
+          <strong>Aplicación:</strong> Si generas código con IA y lo usas en un proyecto open source con licencia GPL, debes asegurar que el código IA no viola términos de la licencia. El Paso 5 aborda esta verificación.
+        </p>
+        <p>
+          <strong>Riesgos frecuentes:</strong> Usar código IA en proyectos con licencia restrictiva sin verificar compatibilidad; no declarar que usaste IA en código derivado; generar código que es plagiarismo no intencional.
+        </p>
+        <div class="norm-steps">→ Paso 5 — Declaración Ética · Regulación colombiana vigente</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NORMA 6: CONPES 4144 -->
+  <section class="section">
+    <div class="norm-card">
+      <div class="norm-badge">CONPES</div>
+      <div class="norm-content">
+        <h3>CONPES 4144 de 2025 — Política de IA en Colombia</h3>
+        <p>
+          Política de Estado colombiana para el aprovechamiento ético, seguro y sostenible de la IA a 2030. Establece principios de gobernanza, talento digital, confianza y ética en el uso de la IA en Colombia.
+        </p>
+        <p>
+          <strong>Pilares principales:</strong>
+        </p>
+        <ul style="margin-bottom: var(--sp-lg); color: var(--text-secondary);">
+          <li>Adopción responsable de tecnologías de IA</li>
+          <li>Desarrollo de talento digital cualificado</li>
+          <li>Transparencia y confianza en sistemas de IA</li>
+          <li>Protección de derechos y mitigación de sesgos</li>
+        </ul>
+        <p>
+          <strong>Aplicación:</strong> Los Pasos 5 y 6 se alinean directamente con los principios de transparencia y talento digital del CONPES 4144. Declarar el uso de IA y mantener competencias propias son requisitos de esta política.
+        </p>
+        <div class="norm-steps">→ Pasos 5, 6 · Política nacional vigente 2025–2030</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NORMA 7: IEEE 7000 -->
+  <section class="section">
+    <div class="norm-card">
+      <div class="norm-badge">IEEE</div>
+      <div class="norm-content">
+        <h3>IEEE 7000:2021 — Estándar de Diseño Ético</h3>
+        <p>
+          Estándar del IEEE que especifica cómo diseñar sistemas tecnológicos alineados éticamente. Los sistemas deben priorizar el bienestar humano, la transparencia y la responsabilidad desde la fase inicial de diseño, no como agregado posterior.
+        </p>
+        <p>
+          <strong>Principios relevantes:</strong> Bienestar humano, autoridad y responsabilidad de desarrolladores, transparencia sobre capacidades y limitaciones, protección de privacidad y datos.
+        </p>
+        <p>
+          <strong>Aplicación:</strong> Los Pasos 5 y 6 abordan estos principios: reflexión sobre impacto ético (Paso 5) y preservación del pensamiento crítico humano (Paso 6).
+        </p>
+        <div class="norm-steps">→ Pasos 5, 6 · Estándar ético internacional 2021</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- COMPARISON TABLE -->
+  <section class="section">
+    <div class="section-header">
+      <h2>Matriz de aplicación de normas</h2>
+      <p class="section-lead" style="margin-bottom: var(--sp-2xl);">
+        Tabla que muestra qué paso metodológico mitiga qué riesgo y se alinea con qué estándares.
+      </p>
+    </div>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Paso</th>
+          <th>Riesgo Mitigado</th>
+          <th>ISO 25010</th>
+          <th>NIST RMF</th>
+          <th>Normas Aplicables</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1 — Definición</strong></td>
+          <td>Dependencia cognitiva</td>
+          <td>Funcionalidad</td>
+          <td>GOVERN 1.1</td>
+          <td>NIST RMF, CONPES 4144</td>
+        </tr>
+        <tr>
+          <td><strong>2 — Validación</strong></td>
+          <td>Alucinaciones · Código defectuoso</td>
+          <td>Fiabilidad</td>
+          <td>MEASURE 2.5</td>
+          <td>ISO 25010, NIST RMF</td>
+        </tr>
+        <tr>
+          <td><strong>3 — Seguridad</strong></td>
+          <td>Vulnerabilidades · Exposición de datos</td>
+          <td>Seguridad</td>
+          <td>MEASURE 2.5</td>
+          <td>Ley 1581, UE 2024/1689 Art. 9</td>
+        </tr>
+        <tr>
+          <td><strong>4 — Supervisión</strong></td>
+          <td>Sesgo de automatización</td>
+          <td>Mantenibilidad</td>
+          <td>MANAGE 3.1</td>
+          <td>UE 2024/1689 Art. 14, IEEE 7000</td>
+        </tr>
+        <tr>
+          <td><strong>5 — Ética</strong></td>
+          <td>Fraude · Violación de PI</td>
+          <td>Autenticidad</td>
+          <td>GOVERN 1.1</td>
+          <td>Ley 23/1982, CONPES 4144, IEEE 7000</td>
+        </tr>
+        <tr>
+          <td><strong>6 — Pensamiento</strong></td>
+          <td>Dependencia cognitiva acumulada</td>
+          <td>Analizabilidad</td>
+          <td>GOVERN 1.1</td>
+          <td>CONPES 4144, IEEE 7000</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- RESOURCES -->
+  <section class="section" style="margin-bottom: var(--sp-3xl);">
+    <div class="section-header">
+      <h2>Referencias oficiales</h2>
+      <p class="section-lead" style="margin-bottom: var(--sp-2xl);">
+        Documentos oficiales donde puedes leer estos estándares en su forma íntegra.
+      </p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>ISO/IEC 25010:2023</h3>
+        <p>
+          Disponible a través de ISO. Estándar de referencia global. Costo aproximado: USD 200.
+        </p>
+        <p style="font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 0;">
+          <a href="https://www.iso.org/standard/35683.html" target="_blank" rel="noopener">iso.org</a>
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>NIST AI Risk Management Framework</h3>
+        <p>
+          Disponible gratuitamente en NIST. Descargable en PDF. Versión 1.0 publicada octubre 2023.
+        </p>
+        <p style="font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 0;">
+          <a href="https://airc.nist.gov/AI_RMF_1.0_Roadmap.pdf" target="_blank" rel="noopener">nist.gov</a>
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>EU AI Act (Reglamento 2024/1689)</h3>
+        <p>
+          Texto oficial disponible en EUR-Lex. Regulación vinculante desde 2024 en la UE.
+        </p>
+        <p style="font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 0;">
+          <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">eur-lex.europa.eu</a>
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Ley 1581 de 2012</h3>
+        <p>
+          Disponible en Diario Oficial Colombiano. Ley de Protección de Datos Personales en Colombia.
+        </p>
+        <p style="font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 0;">
+          <a href="https://www.diariooficial.gov.co/" target="_blank" rel="noopener">diariooficial.gov.co</a>
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>CONPES 4144 de 2025</h3>
+        <p>
+          Política nacional colombiana. Disponible en el sitio del Departamento Nacional de Planeación.
+        </p>
+        <p style="font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 0;">
+          <a href="https://www.dnp.gov.co/" target="_blank" rel="noopener">dnp.gov.co</a>
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>IEEE 7000:2021</h3>
+        <p>
+          Disponible a través de IEEE. Estándar sobre diseño ético de sistemas. Costo aproximado: USD 180.
+        </p>
+        <p style="font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 0;">
+          <a href="https://standards.ieee.org/" target="_blank" rel="noopener">ieee.org</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-main">
+      <div class="footer-section">
+        <h4>Navegación</h4>
+        <p><a href="index.html">Inicio</a><br><a href="pasos.html">Los 6 Pasos</a><br><a href="iso-evaluation.html">Evaluación</a></p>
+      </div>
+      <div class="footer-section">
+        <h4>Autoría</h4>
+        <p>Andrés Felipe Jaimes Carrillo<br>Universidad Libre · Cúcuta<br>Ing. en TIC · 2025</p>
+      </div>
+      <div class="footer-section">
+        <h4>Fundamento</h4>
+        <p>Todas las secciones están fundadas en normas internacionales vigentes. Consulta normativa para referencias completas.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <strong>Actualización:</strong> 29 de mayo de 2025
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = total > 0 ? (scrolled / total) * 100 : 0;
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('scrollTop').classList.toggle('visible', scrolled > 400);
+}
+
+window.addEventListener('scroll', updateProgress);
+</script>
+
+</body>
+</html>
